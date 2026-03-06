@@ -359,92 +359,6 @@ function BenefitPill({ icon, label }: { icon: string; label: string }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   EFFECT 3 — Parallax Window Frame (simplified)
-   ═══════════════════════════════════════════════════════════════ */
-function ParallaxWindow({ t }: { t: (k: string) => string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const bgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-
-  if (isMobile) {
-    return (
-      <section className="relative h-[60vh] flex items-center justify-center bg-gradient-to-b from-sky-200 via-sky-100 to-amber-50 overflow-hidden">
-        <div className="text-center px-4 z-10">
-          <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-              {t("home.parallax_title")}
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 font-light">
-              {t("home.parallax_sub")}
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section ref={ref} className="relative h-screen overflow-hidden">
-      <motion.div
-        className="absolute inset-[-15%] z-0"
-        style={{ y: bgY }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-200 to-amber-100" />
-        <div
-          className="absolute w-40 h-40 rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(251,191,36,0.8) 0%, rgba(251,191,36,0) 70%)",
-            top: "15%",
-            right: "20%",
-          }}
-        />
-        <div className="absolute bottom-0 left-0 right-0 h-[35%]">
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(to top, #4ade80 0%, #22c55e 40%, transparent 100%)",
-              borderRadius: "50% 50% 0 0 / 100% 100% 0 0",
-              transform: "scaleX(2)",
-            }}
-          />
-        </div>
-      </motion.div>
-
-      {/* Window frame overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-          <defs>
-            <mask id="windowMask">
-              <rect width="100" height="100" fill="white" />
-              <rect x="12" y="8" width="35" height="40" rx="0.5" fill="black" />
-              <rect x="53" y="8" width="35" height="40" rx="0.5" fill="black" />
-              <rect x="12" y="52" width="35" height="40" rx="0.5" fill="black" />
-              <rect x="53" y="52" width="35" height="40" rx="0.5" fill="black" />
-            </mask>
-          </defs>
-          <rect width="100" height="100" fill="#1e293b" mask="url(#windowMask)" />
-        </svg>
-      </div>
-
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 pointer-events-none">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight text-center drop-shadow-lg">
-          {t("home.parallax_title")}
-        </h2>
-        <p className="mt-4 text-xl sm:text-2xl text-white/90 font-light text-center drop-shadow-md">
-          {t("home.parallax_sub")}
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
    EFFECT 4 — Acoustic Demo (optimized: 10 bars, CSS animations)
    ═══════════════════════════════════════════════════════════════ */
 const BARS = Array.from({ length: 10 }, () => 30 + Math.random() * 70);
@@ -987,7 +901,6 @@ export default function Home() {
 
       <WindowMaskHero prefix={prefix} t={t} />
       <PinnedStorytelling t={t} />
-      <ParallaxWindow t={t} />
       <AcousticDemo t={t} />
       <ThermalSplit t={t} />
       <EnergySavings t={t} prefix={prefix} />
