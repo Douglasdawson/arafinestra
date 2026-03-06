@@ -75,7 +75,21 @@
     "subsidies_headline": "Fins a 40% d'ajuda",
     "subsidies_sub": "Nosaltres ho tramitem per tu",
     "final_title": "Comenca ara",
-    "scroll_hint": "Descobreix mes"
+    "scroll_hint": "Descobreix mes",
+    "mask_title": "ARA FINESTRA",
+    "mask_subtitle": "Obrim un nou mon de confort",
+    "stage1_title": "La teva finestra antiga",
+    "stage1_sub": "Et costa mes del que penses",
+    "stage2_cost": "perduts cada any",
+    "stage2_noise": "de soroll innecessari",
+    "stage2_humidity": "d'humitat a casa",
+    "stage3_transition": "Pero tot pot canviar...",
+    "stage4_title": "Ara imagina aixo",
+    "stage4_warm": "Confort tot l'any",
+    "stage4_quiet": "Silenci absolut",
+    "stage4_save": "Estalvi real",
+    "parallax_title": "Mira el mon amb altres ulls",
+    "parallax_sub": "Cada finestra es un quadre"
   },
   "testimonials": {
     "title": "Que diuen els nostres clients",

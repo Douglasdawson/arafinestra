@@ -75,7 +75,21 @@
     "subsidies_headline": "Hasta 40% de ayuda",
     "subsidies_sub": "Nosotros lo tramitamos por ti",
     "final_title": "Empieza ahora",
-    "scroll_hint": "Descubre mas"
+    "scroll_hint": "Descubre mas",
+    "mask_title": "ARA FINESTRA",
+    "mask_subtitle": "Abrimos un nuevo mundo de confort",
+    "stage1_title": "Tu ventana antigua",
+    "stage1_sub": "Te cuesta mas de lo que piensas",
+    "stage2_cost": "perdidos cada ano",
+    "stage2_noise": "de ruido innecesario",
+    "stage2_humidity": "de humedad en casa",
+    "stage3_transition": "Pero todo puede cambiar...",
+    "stage4_title": "Ahora imagina esto",
+    "stage4_warm": "Confort todo el ano",
+    "stage4_quiet": "Silencio absoluto",
+    "stage4_save": "Ahorro real",
+    "parallax_title": "Mira el mundo con otros ojos",
+    "parallax_sub": "Cada ventana es un cuadro"
   },
   "testimonials": {
     "title": "Que dicen nuestros clientes",
