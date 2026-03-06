@@ -944,6 +944,323 @@ function ParallaxWindow({ t }: { t: (k: string) => string }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   EFFECT 6 — Energy Savings Calculator with Live Weather
+   ═══════════════════════════════════════════════════════════════ */
+const OLD_WINDOW_UF: Record<string, number> = {
+  alumini: 5.7,
+  fusta: 3.5,
+  pvc_antic: 2.8,
+};
+const PVC_CORTIZO_UF = 1.0;
+const KWH_PRICE = 0.18; // €/kWh average Spain
+const HEATING_HOURS = 1800; // hours/year heating season
+
+function calcAnnualLoss(uf: number, m2: number): number {
+  // Simplified: Q = U × A × ΔT × hours, ΔT avg ~12°C
+  return uf * m2 * 12 * HEATING_HOURS * 0.001; // kWh/year
+}
+
+function weatherIcon(code: number): string {
+  if (code <= 1) return "sun";
+  if (code <= 3) return "cloud";
+  if (code <= 48) return "fog";
+  if (code <= 67) return "rain";
+  if (code <= 77) return "snow";
+  return "storm";
+}
+
+const WEATHER_ICONS: Record<string, JSX.Element> = {
+  sun: (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m-8-9H3m18 0h-1m-2.636-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+    </svg>
+  ),
+  cloud: (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+    </svg>
+  ),
+  fog: (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 15h18M3 12h18M3 9h18" />
+    </svg>
+  ),
+  rain: (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15zM8 19v2m4-2v2m4-2v2" />
+    </svg>
+  ),
+  snow: (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18m-6-6l6 6 6-6M6 9l6-6 6 6" />
+    </svg>
+  ),
+  storm: (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+  ),
+};
+
+function EnergySavings({
+  t,
+  prefix,
+}: {
+  t: (k: string) => string;
+  prefix: string;
+}) {
+  const [windowArea, setWindowArea] = useState(8);
+  const [oldType, setOldType] = useState("alumini");
+  const [weather, setWeather] = useState<{
+    temperature: number;
+    humidity: number;
+    weatherCode: number;
+    location: string;
+  } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/weather")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d && setWeather(d))
+      .catch(() => {});
+  }, []);
+
+  const oldUf = OLD_WINDOW_UF[oldType];
+  const oldKwh = calcAnnualLoss(oldUf, windowArea);
+  const newKwh = calcAnnualLoss(PVC_CORTIZO_UF, windowArea);
+  const savingsKwh = oldKwh - newKwh;
+  const savingsEur = Math.round(savingsKwh * KWH_PRICE);
+  const savingsPercent = Math.round((savingsKwh / oldKwh) * 100);
+
+  // Real-time heat loss rate if we have weather
+  const realTimeLoss =
+    weather && weather.temperature < 20
+      ? (oldUf * windowArea * (20 - weather.temperature)) / 1000
+      : null;
+  const realTimeLossPVC =
+    weather && weather.temperature < 20
+      ? (PVC_CORTIZO_UF * windowArea * (20 - weather.temperature)) / 1000
+      : null;
+
+  const windowTypes = [
+    { id: "alumini", label: t("home.energy_aluminium") },
+    { id: "fusta", label: t("home.energy_wood") },
+    { id: "pvc_antic", label: t("home.energy_old_pvc") },
+  ];
+
+  return (
+    <section className="relative py-24 sm:py-32 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 text-center mb-4 tracking-tight">
+            {t("home.energy_title")}
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-500 text-center mb-12 max-w-2xl mx-auto">
+            {t("home.energy_sub")}
+          </p>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          {/* Left: Controls */}
+          <div className="space-y-8">
+            {/* Live weather badge */}
+            {weather && (
+              <motion.div
+                className="flex items-center gap-3 p-4 bg-white rounded-xl border border-slate-200 shadow-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <div className="text-sky-500">
+                  {WEATHER_ICONS[weatherIcon(weather.weatherCode)] ||
+                    WEATHER_ICONS.cloud}
+                </div>
+                <div>
+                  <p className="text-sm text-slate-500">
+                    {t("home.energy_now_in")} {weather.location}
+                  </p>
+                  <p className="text-2xl font-bold text-slate-900">
+                    {weather.temperature}°C
+                  </p>
+                </div>
+                {realTimeLoss !== null && realTimeLossPVC !== null && (
+                  <div className="ml-auto text-right">
+                    <p className="text-xs text-slate-400">
+                      {t("home.energy_losing_now")}
+                    </p>
+                    <p className="text-sm font-semibold text-red-500">
+                      {realTimeLoss.toFixed(2)} kW
+                    </p>
+                    <p className="text-xs text-emerald-500 font-medium">
+                      PVC: {realTimeLossPVC.toFixed(2)} kW
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            )}
+
+            {/* Window type selector */}
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
+                {t("home.energy_current_type")}
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {windowTypes.map((wt) => (
+                  <button
+                    key={wt.id}
+                    onClick={() => setOldType(wt.id)}
+                    className={`px-3 py-3 rounded-xl text-sm font-medium transition-all ${
+                      oldType === wt.id
+                        ? "bg-slate-900 text-white shadow-md"
+                        : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"
+                    }`}
+                  >
+                    {wt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Area slider */}
+            <div>
+              <div className="flex justify-between items-baseline mb-3">
+                <label className="text-sm font-semibold text-slate-700">
+                  {t("home.energy_window_area")}
+                </label>
+                <span className="text-2xl font-bold text-slate-900">
+                  {windowArea} m²
+                </span>
+              </div>
+              <input
+                type="range"
+                min={2}
+                max={40}
+                value={windowArea}
+                onChange={(e) => setWindowArea(parseInt(e.target.value))}
+                className="w-full accent-slate-900 h-2"
+              />
+              <div className="flex justify-between text-xs text-slate-400 mt-1">
+                <span>{t("home.energy_small")}</span>
+                <span>{t("home.energy_large")}</span>
+              </div>
+            </div>
+
+            {/* Uf comparison */}
+            <div className="flex gap-4">
+              <div className="flex-1 p-4 bg-red-50 rounded-xl border border-red-100">
+                <p className="text-xs text-red-400 uppercase tracking-wider font-semibold">
+                  {t("home.energy_current")}
+                </p>
+                <p className="text-2xl font-bold text-red-600 mt-1">
+                  Uf {oldUf}
+                </p>
+                <p className="text-xs text-red-400 mt-1">W/m²K</p>
+              </div>
+              <div className="flex-1 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                <p className="text-xs text-emerald-500 uppercase tracking-wider font-semibold">
+                  PVC Cortizo
+                </p>
+                <p className="text-2xl font-bold text-emerald-600 mt-1">
+                  Uf {PVC_CORTIZO_UF}
+                </p>
+                <p className="text-xs text-emerald-500 mt-1">W/m²K</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Results */}
+          <div className="space-y-6">
+            {/* Main savings display */}
+            <motion.div
+              className="relative bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-8 text-white shadow-xl overflow-hidden"
+              key={`${oldType}-${windowArea}`}
+              initial={{ scale: 0.98, opacity: 0.8 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <p className="text-sm text-emerald-100 uppercase tracking-wider font-semibold">
+                {t("home.energy_annual_savings")}
+              </p>
+              <p className="text-5xl sm:text-6xl font-bold mt-2 tracking-tight">
+                {savingsEur.toLocaleString("es")}€
+              </p>
+              <p className="text-emerald-200 mt-2">
+                {savingsKwh.toFixed(0)} kWh/
+                {t("home.energy_year")}
+              </p>
+              <div className="mt-6 flex items-center gap-3">
+                <div className="w-full bg-emerald-400/30 rounded-full h-3">
+                  <motion.div
+                    className="bg-white rounded-full h-3"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${savingsPercent}%` }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  />
+                </div>
+                <span className="text-lg font-bold whitespace-nowrap">
+                  -{savingsPercent}%
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Comparison bars */}
+            <div className="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
+              <p className="text-sm font-semibold text-slate-700">
+                {t("home.energy_annual_cost")}
+              </p>
+              {/* Old */}
+              <div>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-slate-500">
+                    {t("home.energy_current")}
+                  </span>
+                  <span className="font-bold text-red-600">
+                    {Math.round(oldKwh * KWH_PRICE).toLocaleString("es")}€
+                  </span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-4">
+                  <div
+                    className="bg-red-400 rounded-full h-4 transition-all duration-500"
+                    style={{ width: "100%" }}
+                  />
+                </div>
+              </div>
+              {/* PVC */}
+              <div>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-slate-500">PVC Cortizo</span>
+                  <span className="font-bold text-emerald-600">
+                    {Math.round(newKwh * KWH_PRICE).toLocaleString("es")}€
+                  </span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-4">
+                  <motion.div
+                    className="bg-emerald-400 rounded-full h-4"
+                    initial={{ width: "100%" }}
+                    animate={{
+                      width: `${(newKwh / oldKwh) * 100}%`,
+                    }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <Link
+              to={`/${prefix}/pressupost`}
+              className="block w-full text-center px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors shadow-lg"
+            >
+              {t("cta.calculate")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    MAGNETIC SERVICE CARD
    ═══════════════════════════════════════════════════════════════ */
 function MagneticServiceCard({
@@ -1055,6 +1372,9 @@ export default function Home() {
 
       {/* ─── EFFECT 5: Thermal Visualization ─── */}
       <ThermalSplit t={t} />
+
+      {/* ─── EFFECT 6: Energy Savings Calculator ─── */}
+      <EnergySavings t={t} prefix={prefix} />
 
       {/* ─── SERVICES GRID ─── */}
       <section className="py-24 sm:py-32 bg-slate-50">
