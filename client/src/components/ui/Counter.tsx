@@ -11,7 +11,7 @@ interface CounterProps {
 
 export default function Counter({
   target,
-  duration = 2,
+  duration = 1.5,
   suffix = "",
   prefix = "",
   className = "",
@@ -22,18 +22,17 @@ export default function Counter({
 
   useEffect(() => {
     if (!isInView) return;
-    let start = 0;
-    const step = target / (duration * 60);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 1000 / 60);
-    return () => clearInterval(timer);
+    const ms = duration * 1000;
+    let start: number | null = null;
+    let raf: number;
+    const step = (ts: number) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / ms, 1);
+      setCount(Math.floor(progress * target));
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, [isInView, target, duration]);
 
   return (
