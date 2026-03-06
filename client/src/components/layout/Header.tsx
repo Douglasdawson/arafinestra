@@ -16,7 +16,20 @@ export default function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const prefix = lang || i18n.language || "ca";
-  const isHome = location.pathname === "/" || location.pathname === `/${prefix}`;
+  const isHomePath = location.pathname === "/" || location.pathname === `/${prefix}`;
+
+  // Desktop hero is dark (slate-950), mobile hero is light (amber).
+  // Only use transparent header with white text on desktop home.
+  const [isWide, setIsWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsWide(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsWide(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const isHome = isHomePath && isWide;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
