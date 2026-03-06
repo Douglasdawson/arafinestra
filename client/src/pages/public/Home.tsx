@@ -26,7 +26,7 @@ function useIsMobile() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   EFFECT 1 — Window Mask Reveal (Hero)
+   EFFECT 1 — Window Opens Hero (3D shutters that open on scroll)
    ═══════════════════════════════════════════════════════════════ */
 function WindowMaskHero({
   prefix,
@@ -43,38 +43,36 @@ function WindowMaskHero({
     offset: ["start start", "end start"],
   });
 
-  const insetY = useTransform(scrollYProgress, [0, 0.7], [42, 0]);
-  const insetX = useTransform(scrollYProgress, [0, 0.7], [38, 0]);
-  const clipPath = useMotionTemplate`inset(${insetY}% ${insetX}% ${insetY}% ${insetX}% round 8px)`;
-  const crossbarOpacity = useTransform(scrollYProgress, [0, 0.5], [0.7, 0]);
-  const textScale = useTransform(scrollYProgress, [0, 0.6], [0.6, 1]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  // Left shutter rotates open to the left (0 → -85deg)
+  const leftRotate = useTransform(scrollYProgress, [0, 0.6], [0, -85]);
+  // Right shutter rotates open to the right (0 → 85deg)
+  const rightRotate = useTransform(scrollYProgress, [0, 0.6], [0, 85]);
+  // Frame fades out once shutters are open
+  const frameOpacity = useTransform(scrollYProgress, [0.5, 0.8], [1, 0]);
+  // Content behind fades in
+  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1]);
+  const contentScale = useTransform(scrollYProgress, [0.1, 0.5], [0.92, 1]);
+  // Scroll hint fades out
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   if (isMobile) {
     return (
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-amber-100 to-orange-100 overflow-hidden">
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <motion.h1
-            className="text-5xl sm:text-6xl font-bold text-slate-900 tracking-tight leading-none"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+          <h1
+            className="text-5xl sm:text-6xl font-bold text-slate-900 tracking-tight leading-none animate-fadeIn"
           >
             ARA FINESTRA
-          </motion.h1>
-          <motion.p
-            className="mt-6 text-xl text-slate-600 font-light max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          </h1>
+          <p
+            className="mt-6 text-xl text-slate-600 font-light max-w-2xl mx-auto animate-fadeIn"
+            style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}
           >
             {t("home.mask_subtitle")}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          </p>
+          <div
+            className="animate-fadeIn"
+            style={{ animationDelay: "0.4s", animationFillMode: "backwards" }}
           >
             <Link
               to={`/${prefix}/pressupost`}
@@ -82,39 +80,29 @@ function WindowMaskHero({
             >
               {t("cta.calculate")}
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     );
   }
 
   return (
-    <section ref={sectionRef} className="relative h-[200vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Full dark background */}
-        <div className="absolute inset-0 bg-slate-950 z-[5]" />
+    <section ref={sectionRef} className="relative h-[250vh]">
+      <div className="sticky top-0 h-screen overflow-hidden" style={{ perspective: "1200px" }}>
+        {/* Background — bright landscape behind the window */}
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100 z-0">
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: "radial-gradient(ellipse at 50% 30%, rgba(251,191,36,0.5) 0%, transparent 70%)",
+            }}
+          />
+        </div>
 
-        {/* Bright content revealed through window mask */}
+        {/* Content behind the window */}
         <motion.div
-          className="absolute inset-0 z-10"
-          style={{ clipPath }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100" />
-        </motion.div>
-
-        {/* Window crossbars */}
-        <motion.div
-          className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center"
-          style={{ opacity: crossbarOpacity }}
-        >
-          <div className="absolute top-0 bottom-0 left-1/2 w-[3px] -translate-x-1/2 bg-slate-300/60" />
-          <div className="absolute left-0 right-0 top-1/2 h-[3px] -translate-y-1/2 bg-slate-300/60" />
-        </motion.div>
-
-        {/* Text content */}
-        <motion.div
-          className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4"
-          style={{ scale: textScale, opacity: textOpacity }}
+          className="absolute inset-0 z-[5] flex flex-col items-center justify-center px-4"
+          style={{ opacity: contentOpacity, scale: contentScale }}
         >
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 tracking-tight leading-none text-center">
             ARA FINESTRA
@@ -130,12 +118,97 @@ function WindowMaskHero({
           </Link>
         </motion.div>
 
+        {/* Window frame + shutters */}
+        <motion.div
+          className="absolute inset-0 z-10 flex items-center justify-center"
+          style={{ opacity: frameOpacity }}
+        >
+          {/* Dark surround (wall) */}
+          <div className="absolute inset-0 bg-slate-900" />
+
+          {/* Window opening — the hole in the wall */}
+          <div className="relative w-[60vw] h-[70vh] max-w-[800px] max-h-[600px]">
+            {/* Window frame border */}
+            <div className="absolute inset-0 border-[6px] border-slate-600 rounded-sm z-30 pointer-events-none" />
+
+            {/* Horizontal crossbar */}
+            <div className="absolute left-0 right-0 top-1/2 h-[5px] -translate-y-1/2 bg-slate-600 z-30 pointer-events-none" />
+
+            {/* LEFT shutter */}
+            <motion.div
+              className="absolute top-0 left-0 w-1/2 h-full z-20"
+              style={{
+                rotateY: leftRotate,
+                transformOrigin: "left center",
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {/* Front face (what you see when closed) */}
+              <div
+                className="absolute inset-0 bg-slate-800 border-r-[2px] border-slate-600"
+                style={{ backfaceVisibility: "hidden" }}
+              >
+                {/* Shutter panels */}
+                <div className="absolute inset-[8%] flex flex-col gap-[4%]">
+                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
+                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
+                </div>
+                {/* Handle */}
+                <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[6px] h-[30px] bg-slate-500 rounded-full" />
+              </div>
+              {/* Back face (inside of shutter visible when opening) */}
+              <div
+                className="absolute inset-0 bg-slate-700"
+                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+              />
+            </motion.div>
+
+            {/* RIGHT shutter */}
+            <motion.div
+              className="absolute top-0 right-0 w-1/2 h-full z-20"
+              style={{
+                rotateY: rightRotate,
+                transformOrigin: "right center",
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {/* Front face */}
+              <div
+                className="absolute inset-0 bg-slate-800 border-l-[2px] border-slate-600"
+                style={{ backfaceVisibility: "hidden" }}
+              >
+                <div className="absolute inset-[8%] flex flex-col gap-[4%]">
+                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
+                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
+                </div>
+                {/* Handle */}
+                <div className="absolute left-[10%] top-1/2 -translate-y-1/2 w-[6px] h-[30px] bg-slate-500 rounded-full" />
+              </div>
+              {/* Back face */}
+              <div
+                className="absolute inset-0 bg-slate-700"
+                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+              />
+            </motion.div>
+
+            {/* Glass behind shutters (subtle reflection) */}
+            <div className="absolute inset-0 z-10 bg-sky-100/10 backdrop-blur-[1px]">
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(255,255,255,0.1) 100%)",
+                }}
+              />
+            </div>
+          </div>
+        </motion.div>
+
         {/* Scroll hint */}
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30"
           style={{ opacity: hintOpacity }}
         >
-          <span className="text-sm text-slate-400 tracking-widest uppercase">
+          <span className="text-sm text-white/60 tracking-widest uppercase">
             {t("home.scroll_hint")}
           </span>
           <svg
@@ -144,14 +217,9 @@ function WindowMaskHero({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            className="text-slate-400 animate-bounce"
+            className="text-white/60 animate-bounce"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
       </div>
