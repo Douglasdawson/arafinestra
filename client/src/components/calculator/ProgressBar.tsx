@@ -1,0 +1,67 @@
+import { useTranslation } from "react-i18next";
+
+const STEP_KEYS = [
+  "calculator.step_product",
+  "calculator.step_model",
+  "calculator.step_dimensions",
+  "calculator.step_color",
+  "calculator.step_glass",
+  "calculator.step_extras",
+  "calculator.step_quantity",
+];
+
+interface ProgressBarProps {
+  currentStep: number; // 1-7
+}
+
+export default function ProgressBar({ currentStep }: ProgressBarProps) {
+  const { t } = useTranslation();
+
+  return (
+    <div className="w-full py-6 px-2">
+      <div className="flex items-center justify-between relative">
+        {/* Connecting line behind circles */}
+        <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-200 z-0" />
+        <div
+          className="absolute top-4 left-0 h-0.5 bg-blue-600 z-0 transition-all duration-500"
+          style={{ width: `${((currentStep - 1) / 6) * 100}%` }}
+        />
+
+        {STEP_KEYS.map((key, idx) => {
+          const stepNum = idx + 1;
+          const isCompleted = stepNum < currentStep;
+          const isCurrent = stepNum === currentStep;
+
+          return (
+            <div key={key} className="flex flex-col items-center relative z-10">
+              <div
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
+                  isCompleted
+                    ? "bg-green-500 text-white"
+                    : isCurrent
+                      ? "bg-blue-600 text-white ring-4 ring-blue-100"
+                      : "bg-gray-200 text-gray-500"
+                }`}
+              >
+                {isCompleted ? (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  stepNum
+                )}
+              </div>
+              <span
+                className={`mt-2 text-xs font-medium text-center hidden sm:block max-w-[80px] ${
+                  isCurrent ? "text-blue-600" : isCompleted ? "text-green-600" : "text-gray-400"
+                }`}
+              >
+                {t(key)}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

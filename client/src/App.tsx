@@ -6,6 +6,7 @@ const Home = lazy(() => import("./pages/public/Home"));
 const ServicePage = lazy(() => import("./pages/public/ServicePage"));
 const Cortizo = lazy(() => import("./pages/public/Cortizo"));
 const Subvenciones = lazy(() => import("./pages/public/Subvenciones"));
+const Calculator = lazy(() => import("./pages/public/Calculator"));
 
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const Login = lazy(() => import("./pages/admin/Login"));
@@ -50,7 +51,7 @@ export default function App() {
           <Route path="/:lang/cortizo" element={<Cortizo />} />
           <Route path="/:lang/subvencions" element={<Subvenciones />} />
           <Route path="/:lang/projectes" element={<Placeholder title="Projectes" />} />
-          <Route path="/:lang/pressupost" element={<Placeholder title="Pressupost" />} />
+          <Route path="/:lang/pressupost" element={<Calculator />} />
           <Route path="/:lang/blog" element={<Placeholder title="Blog" />} />
           <Route path="/:lang/opinions" element={<Placeholder title="Opinions" />} />
           <Route path="/:lang/contacte" element={<Placeholder title="Contacte" />} />
