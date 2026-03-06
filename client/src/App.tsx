@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import PublicLayout from "./components/layout/PublicLayout";
+import LoadingSpinner from "./components/ui/LoadingSpinner";
 
 const Home = lazy(() => import("./pages/public/Home"));
 const ServicePage = lazy(() => import("./pages/public/ServicePage"));
@@ -27,17 +28,9 @@ const Testimonials = lazy(() => import("./pages/admin/Testimonials"));
 const Zones = lazy(() => import("./pages/admin/Zones"));
 const SiteConfig = lazy(() => import("./pages/admin/SiteConfig"));
 
-function Loading() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-gray-500">Cargando...</div>
-    </div>
-  );
-}
-
 export default function App() {
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<LoadingSpinner />}>
       <Routes>
         {/* Public routes */}
         <Route element={<PublicLayout />}>
