@@ -1,6 +1,7 @@
 import { useReducer, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PageHead from "../../components/seo/PageHead";
+import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ProgressBar from "../../components/calculator/ProgressBar";
 import StepProductType from "../../components/calculator/StepProductType";
 import StepModel from "../../components/calculator/StepModel";
@@ -141,6 +142,10 @@ export default function Calculator() {
         description={t("calculator.seo_desc")}
         path="/pressupost"
       />
+      <BreadcrumbSchema items={[
+        { name: t("nav.home"), url: "/" },
+        { name: t("nav.calculator"), url: "/pressupost" },
+      ]} />
 
       <div className="min-h-screen bg-gray-50">
         {/* Header */}

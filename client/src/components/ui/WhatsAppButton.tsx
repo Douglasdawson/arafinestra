@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { trackEvent } from "../../lib/analytics";
 
 const WHATSAPP_NUMBER = "34XXXXXXXXX";
 const WHATSAPP_MESSAGE = "Hola! Vull informacio sobre finestres PVC";
@@ -18,6 +19,7 @@ export default function WhatsAppButton() {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("click", "whatsapp", "floating_button")}
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:scale-110 hover:bg-green-600 transition-all duration-200"
       aria-label="WhatsApp"
     >

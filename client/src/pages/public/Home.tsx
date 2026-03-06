@@ -8,6 +8,7 @@ import {
   useMotionTemplate,
   useInView,
 } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import Counter from "../../components/ui/Counter";
@@ -958,6 +959,34 @@ export default function Home() {
     priceRange: "$$",
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ARA FINESTRA",
+    "url": "https://arafinestra.com",
+    "logo": "https://arafinestra.com/logo.png",
+    "description": "Instal\u00b7laci\u00f3 de finestres PVC a Catalunya. Finestres, portes corredisses, persianes i mosquiteres Cortizo.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Blanes",
+      "addressRegion": "Girona",
+      "addressCountry": "ES"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.6742,
+        "longitude": 2.7903
+      },
+      "geoRadius": "60000"
+    },
+    "sameAs": [
+      "https://instagram.com/arafinestra",
+      "https://facebook.com/arafinestra"
+    ]
+  };
+
   return (
     <>
       <PageHead
@@ -966,6 +995,9 @@ export default function Home() {
         path=""
         schema={localBusinessSchema}
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+      </Helmet>
 
       <WindowMaskHero prefix={prefix} t={t} />
       <PinnedStorytelling t={t} />

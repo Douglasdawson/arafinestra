@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import FaqSchema from "../../components/seo/FaqSchema";
+import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import ProjectCard from "../../components/ui/ProjectCard";
 
@@ -122,6 +124,27 @@ export default function ServicePage() {
   const pageTitle = t(titleKey);
   const pageDesc = t(descKey);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": pageTitle,
+    "description": pageDesc,
+    "provider": {
+      "@type": "Organization",
+      "name": "ARA FINESTRA"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.6742,
+        "longitude": 2.7903
+      },
+      "geoRadius": "60000"
+    },
+    "serviceType": "Window Installation"
+  };
+
   return (
     <>
       <PageHead
@@ -129,7 +152,15 @@ export default function ServicePage() {
         description={pageDesc}
         path={`/serveis/${serviceSlug}`}
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+      </Helmet>
       <FaqSchema faqs={faqs} />
+      <BreadcrumbSchema items={[
+        { name: t("nav.home"), url: "/" },
+        { name: t("nav.services"), url: "/serveis" },
+        { name: pageTitle, url: `/serveis/${serviceSlug}` },
+      ]} />
 
       {/* Hero */}
       <section className={`relative py-24 sm:py-32 bg-gradient-to-br ${gradient} overflow-hidden`}>

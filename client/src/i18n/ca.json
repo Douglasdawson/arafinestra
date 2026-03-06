@@ -367,6 +367,13 @@
     "cta_title": "Vols finestres Cortizo?",
     "cta_desc": "Calcula el teu pressupost amb perfils Cortizo i descobreix quant pots estalviar en energia."
   },
+  "errors": {
+    "not_found": "Pagina no trobada",
+    "not_found_desc": "La pagina que busques no existeix.",
+    "go_home": "Tornar a l'inici",
+    "something_wrong": "Alguna cosa ha anat malament",
+    "reload": "Recarregar"
+  },
   "subsidies_page": {
     "page_title": "Subvencions Next Generation per a finestres",
     "page_desc": "Aprofita les ajudes europees per renovar les teves finestres. Nosaltres tramitem tot el paperam.",
@@ -391,5 +398,13 @@
     "amount_desc": "del cost total de la renovacio de finestres i tancaments",
     "cta_title": "Vols saber si pots accedir a les ajudes?",
     "cta_desc": "Contacta'ns i t'informarem sense compromis sobre les subvencions disponibles per a la teva llar."
+  },
+  "legal": {
+    "privacy_title": "Politica de privacitat",
+    "privacy_content": "RESPONSABLE DEL TRACTAMENT\nARA FINESTRA, amb domicili a Girona, Catalunya. Correu: info@arafinestra.com\n\nFINALITAT DEL TRACTAMENT\nLes dades personals recollides a traves del nostre lloc web i formularis de contacte es tractaran amb les seguents finalitats:\n- Gestionar les sol·licituds de pressupost i consultes comercials.\n- Enviar informacio sobre els nostres serveis, ofertes i novetats (nomes amb consentiment previ).\n- Gestionar la relacio contractual amb els nostres clients.\n\nBASE JURIDICA\nEl tractament de les dades es basa en:\n- El consentiment de l'interessat (formularis de contacte i subscripcions).\n- L'execucio d'un contracte o mesures precontractuals (sol·licituds de pressupost).\n- L'interes legitim del responsable (millora dels serveis).\n\nDESTINATARIS\nLes dades no es cediran a tercers excepte obligacio legal. Poden tenir acces als dades prestadors de serveis d'allotjament web i correu electronic.\n\nCONSERVACIO\nLes dades es conservaran mentre es mantingui la relacio comercial i durant els terminis legalment establerts. Les dades de contacte comercial es conservaran fins que sol·liciteu la seva supressio.\n\nDRETS DELS INTERESSATS\nPodeu exercir els vostres drets d'acces, rectificacio, supressio, oposicio, limitacio del tractament i portabilitat enviant un correu a info@arafinestra.com, adjuntant copia del DNI.\nTeniu dret a presentar una reclamacio davant l'Agencia Espanyola de Proteccio de Dades (www.aepd.es).\n\nMESURES DE SEGURETAT\nARA FINESTRA ha adoptat les mesures tecniques i organitzatives necessaries per garantir la seguretat de les dades personals.",
+    "terms_title": "Termes i condicions",
+    "terms_content": "IDENTIFICACIO\nARA FINESTRA, amb domicili a Girona, Catalunya.\nCorreu: info@arafinestra.com\n\nOBJECTE\nAquests termes regulen l'us del lloc web arafinestra.com i la contractacio dels serveis d'instal·lacio de finestres, portes, persianes i mosquiteres.\n\nSERVEIS\nARA FINESTRA ofereix serveis d'instal·lacio de fusteria de PVC amb perfils Cortizo. Els pressupostos online son orientatius i no constitueixen una oferta contractual vinculant. El pressupost definitiu es proporcionara despres de la visita tecnica.\n\nPREUS I PAGAMENT\nEls preus indicats a la calculadora son estimacions orientatives. El preu final es confirmara en el pressupost detallat. Les condicions de pagament s'establiran en el contracte de servei.\n\nGARANTIES\nEls productes instal·lats compten amb la garantia del fabricant (Cortizo). La garantia d'instal·lacio cobreix defectes de muntatge durant 2 anys.\n\nRESPONSABILITAT\nARA FINESTRA no es responsabilitza de:\n- Errors o interrupcions del lloc web.\n- Contingut de llocs web de tercers enllacats.\n- Us inadequat dels productes instal·lats.\n\nPROPIETAT INTEL·LECTUAL\nTots els continguts del lloc web (textos, imatges, dissenys, logotips) son propietat d'ARA FINESTRA o dels seus llicenciants. Queda prohibida la seva reproduccio sense autoritzacio.\n\nLLEI APLICABLE\nAquests termes es regeixen per la legislacio espanyola. Per a qualsevol controversia seran competents els jutjats i tribunals de Girona.",
+    "cookies_title": "Politica de cookies",
+    "cookies_content": "QUE SON LES COOKIES?\nLes cookies son petits fitxers de text que els llocs web emmagatzemen al vostre dispositiu quan els visiteu. Serveixen per recordar les vostres preferencies i millorar l'experiencia de navegacio.\n\nQUINES COOKIES UTILITZEM?\n\nCookies tecniques (necessaries):\n- Cookies de sessio: permeten la navegacio pel lloc web. Caduquen en tancar el navegador.\n- Cookies de preferencia d'idioma: recorden l'idioma seleccionat.\n\nCookies analitiques:\n- Google Analytics: recopilen informacio anonima sobre l'us del lloc web (pagines visitades, temps de permanencia). Finalitat: millorar el lloc web.\n\nCOM GESTIONAR LES COOKIES?\nPodeu configurar el vostre navegador per bloquejar o eliminar les cookies. Tingueu en compte que la desactivacio de cookies tecniques pot afectar el funcionament del lloc web.\n\n- Chrome: Configuracio > Privacitat i seguretat > Cookies\n- Firefox: Opcions > Privacitat i seguretat\n- Safari: Preferencies > Privacitat\n- Edge: Configuracio > Cookies i permisos del lloc\n\nACTUALITZACIO\nAquesta politica de cookies pot ser actualitzada en qualsevol moment. La data de l'ultima actualitzacio es: marc 2026.\n\nMES INFORMACIO\nPer a qualsevol consulta sobre la nostra politica de cookies, podeu contactar-nos a info@arafinestra.com."
   }
 }

@@ -24,6 +24,7 @@ export default function PageHead({ title, description, path, image, schema }: Pa
       <link rel="alternate" hrefLang="ca" href={`${baseUrl}/ca${path}`} />
       <link rel="alternate" hrefLang="es" href={`${baseUrl}/es${path}`} />
       <link rel="alternate" hrefLang="en" href={`${baseUrl}/en${path}`} />
+      <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/ca${path}`} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />

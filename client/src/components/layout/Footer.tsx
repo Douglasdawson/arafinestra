@@ -126,6 +126,18 @@ export default function Footer() {
             &copy; 2026 ARA FINESTRA. {t("footer.rights")}.
           </Link>
 
+          <div className="flex items-center gap-4 text-xs text-slate-500">
+            <Link to={`/${prefix}/legal/privacitat`} className="hover:text-slate-400 transition-colors">
+              {t("legal.privacy_title")}
+            </Link>
+            <Link to={`/${prefix}/legal/termes`} className="hover:text-slate-400 transition-colors">
+              {t("legal.terms_title")}
+            </Link>
+            <Link to={`/${prefix}/legal/cookies`} className="hover:text-slate-400 transition-colors">
+              {t("legal.cookies_title")}
+            </Link>
+          </div>
+
           <div className="flex items-center gap-4">
             <span className="text-xs text-slate-500">Partner Cortizo</span>
             {/* Instagram */}

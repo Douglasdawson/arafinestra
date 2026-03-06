@@ -38,6 +38,7 @@ export default function ScrollReveal({
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",
         transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
+        willChange: "transform, opacity",
       }}
     >
       {children}

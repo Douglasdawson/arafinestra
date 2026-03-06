@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
+import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
+import { trackEvent } from "../../lib/analytics";
 
 export default function Contact() {
   const { t, i18n } = useTranslation();
@@ -47,6 +49,7 @@ export default function Contact() {
         }),
       });
       if (res.ok) {
+        trackEvent("submit", "contact_form");
         setSuccess(true);
         setForm({
           nombre: "",
@@ -96,6 +99,10 @@ export default function Contact() {
         path="/contacte"
         schema={localBusinessSchema}
       />
+      <BreadcrumbSchema items={[
+        { name: t("nav.home"), url: "/" },
+        { name: t("nav.contact"), url: "/contacte" },
+      ]} />
 
       {/* Hero */}
       <section className="relative py-24 sm:py-32 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 overflow-hidden">
@@ -294,6 +301,7 @@ export default function Contact() {
                     href="https://wa.me/34XXXXXXXXX"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("click", "whatsapp", "contact_page")}
                     className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 hover:border-emerald-200 transition-colors group"
                   >
                     <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">

@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { trackEvent } from "../../lib/analytics";
 
 interface CalculatorState {
   step: number;
@@ -107,6 +108,7 @@ export default function Result({ state, onReset }: Props) {
       });
 
       if (!res.ok) throw new Error();
+      trackEvent("complete", "calculator");
       setSubmitted(true);
     } catch {
       setError(t("calculator.form_error"));

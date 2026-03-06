@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
+import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import FilterBar from "../../components/ui/FilterBar";
 import Lightbox from "../../components/ui/Lightbox";
 import BeforeAfterSlider from "../../components/ui/BeforeAfterSlider";
@@ -85,6 +86,10 @@ export default function Projects() {
         description={t("portfolio.title") + " - ARA FINESTRA"}
         path="/projectes"
       />
+      <BreadcrumbSchema items={[
+        { name: t("nav.home"), url: "/" },
+        { name: t("nav.projects"), url: "/projectes" },
+      ]} />
 
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">

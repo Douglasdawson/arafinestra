@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
+import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import { localize } from "../../lib/localize";
 
 interface TestimonialItem {
@@ -60,6 +61,10 @@ export default function Testimonials() {
         description={t("testimonials.title") + " - ARA FINESTRA"}
         path="/opinions"
       />
+      <BreadcrumbSchema items={[
+        { name: t("nav.home"), url: "/" },
+        { name: t("nav.reviews"), url: "/opinions" },
+      ]} />
 
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">

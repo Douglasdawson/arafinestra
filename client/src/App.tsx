@@ -15,6 +15,8 @@ const PublicTestimonials = lazy(() => import("./pages/public/Testimonials"));
 const Contact = lazy(() => import("./pages/public/Contact"));
 const ZonesList = lazy(() => import("./pages/public/ZonesList"));
 const Zone = lazy(() => import("./pages/public/Zone"));
+const Legal = lazy(() => import("./pages/public/Legal"));
+const NotFound = lazy(() => import("./pages/public/NotFound"));
 
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const Login = lazy(() => import("./pages/admin/Login"));
@@ -47,6 +49,7 @@ export default function App() {
           <Route path="/:lang/contacte" element={<Contact />} />
           <Route path="/:lang/zones" element={<ZonesList />} />
           <Route path="/:lang/zones/:slug" element={<Zone />} />
+          <Route path="/:lang/legal/:type" element={<Legal />} />
         </Route>
 
         {/* Admin routes */}
@@ -63,6 +66,9 @@ export default function App() {
           <Route path="zonas" element={<Zones />} />
           <Route path="contenido" element={<SiteConfig />} />
         </Route>
+
+        {/* 404 catch-all */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

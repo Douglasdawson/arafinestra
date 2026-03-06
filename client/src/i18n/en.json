@@ -367,6 +367,13 @@
     "cta_title": "Want Cortizo windows?",
     "cta_desc": "Calculate your quote with Cortizo profiles and discover how much you can save on energy."
   },
+  "errors": {
+    "not_found": "Page not found",
+    "not_found_desc": "The page you're looking for doesn't exist.",
+    "go_home": "Go to homepage",
+    "something_wrong": "Something went wrong",
+    "reload": "Reload"
+  },
   "subsidies_page": {
     "page_title": "Next Generation Subsidies for windows",
     "page_desc": "Take advantage of European grants to renovate your windows. We handle all the paperwork.",
@@ -391,5 +398,13 @@
     "amount_desc": "of the total cost of window and enclosure renovation",
     "cta_title": "Want to know if you qualify for subsidies?",
     "cta_desc": "Contact us and we'll inform you without obligation about the subsidies available for your home."
+  },
+  "legal": {
+    "privacy_title": "Privacy Policy",
+    "privacy_content": "DATA CONTROLLER\nARA FINESTRA, based in Girona, Catalunya, Spain. Email: info@arafinestra.com\n\nPURPOSE OF DATA PROCESSING\nPersonal data collected through our website and contact forms will be processed for the following purposes:\n- Managing quote requests and commercial enquiries.\n- Sending information about our services, offers and news (only with prior consent).\n- Managing the contractual relationship with our clients.\n\nLEGAL BASIS\nData processing is based on:\n- The consent of the data subject (contact forms and subscriptions).\n- The performance of a contract or pre-contractual measures (quote requests).\n- The legitimate interest of the controller (service improvement).\n\nRECIPIENTS\nData will not be shared with third parties except where legally required. Web hosting and email service providers may have access to the data.\n\nDATA RETENTION\nData will be retained for the duration of the business relationship and for the legally established periods. Commercial contact data will be retained until you request its deletion.\n\nDATA SUBJECT RIGHTS\nYou may exercise your rights of access, rectification, erasure, objection, restriction of processing and portability by sending an email to info@arafinestra.com with a copy of your ID.\nYou have the right to lodge a complaint with the Spanish Data Protection Agency (www.aepd.es).\n\nSECURITY MEASURES\nARA FINESTRA has adopted the necessary technical and organisational measures to ensure the security of personal data.",
+    "terms_title": "Terms and Conditions",
+    "terms_content": "IDENTIFICATION\nARA FINESTRA, based in Girona, Catalunya, Spain.\nEmail: info@arafinestra.com\n\nPURPOSE\nThese terms govern the use of the website arafinestra.com and the contracting of window, door, shutter and mosquito net installation services.\n\nSERVICES\nARA FINESTRA offers PVC joinery installation services with Cortizo profiles. Online quotes are indicative and do not constitute a binding contractual offer. The final quote will be provided after the technical visit.\n\nPRICES AND PAYMENT\nPrices shown in the calculator are indicative estimates. The final price will be confirmed in the detailed quote. Payment conditions will be established in the service contract.\n\nWARRANTIES\nInstalled products are covered by the manufacturer's warranty (Cortizo). The installation warranty covers assembly defects for 2 years.\n\nLIABILITY\nARA FINESTRA is not responsible for:\n- Errors or interruptions of the website.\n- Content of linked third-party websites.\n- Improper use of installed products.\n\nINTELLECTUAL PROPERTY\nAll website content (texts, images, designs, logos) is the property of ARA FINESTRA or its licensors. Reproduction without authorisation is prohibited.\n\nAPPLICABLE LAW\nThese terms are governed by Spanish law. The courts of Girona shall have jurisdiction over any disputes.",
+    "cookies_title": "Cookie Policy",
+    "cookies_content": "WHAT ARE COOKIES?\nCookies are small text files that websites store on your device when you visit them. They are used to remember your preferences and improve the browsing experience.\n\nWHAT COOKIES DO WE USE?\n\nTechnical cookies (necessary):\n- Session cookies: enable navigation through the website. They expire when the browser is closed.\n- Language preference cookies: remember the selected language.\n\nAnalytical cookies:\n- Google Analytics: collect anonymous information about website usage (pages visited, time spent). Purpose: to improve the website.\n\nHOW TO MANAGE COOKIES?\nYou can configure your browser to block or delete cookies. Please note that disabling technical cookies may affect the functioning of the website.\n\n- Chrome: Settings > Privacy and security > Cookies\n- Firefox: Options > Privacy and security\n- Safari: Preferences > Privacy\n- Edge: Settings > Cookies and site permissions\n\nUPDATES\nThis cookie policy may be updated at any time. The date of the last update is: March 2026.\n\nMORE INFORMATION\nFor any questions about our cookie policy, you can contact us at info@arafinestra.com."
   }
 }
