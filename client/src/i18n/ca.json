@@ -221,7 +221,8 @@
     "success_desc": "Rebras el teu pressupost en 24h. Gracies per confiar en ARA FINESTRA!",
     "start_over": "Tornar a calcular",
     "integrated_shutter": "Persiana integrada",
-    "integrated_mosquito": "Mosquitera integrada"
+    "integrated_mosquito": "Mosquitera integrada",
+    "preview": "Vista previa"
   },
   "zones_page": {
     "title": "Zones de servei",

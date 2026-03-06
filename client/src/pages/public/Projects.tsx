@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
 import FilterBar from "../../components/ui/FilterBar";
 import Lightbox from "../../components/ui/Lightbox";
+import BeforeAfterSlider from "../../components/ui/BeforeAfterSlider";
 import { localize } from "../../lib/localize";
 
 interface PortfolioItem {
@@ -191,47 +192,42 @@ export default function Projects() {
               </button>
             </div>
             <div className="p-6">
-              {/* Before / After photos */}
-              {(selectedProject.fotos_antes?.length > 0 || selectedProject.fotos_despues?.length > 0) && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  {selectedProject.fotos_antes?.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
-                        {t("portfolio.before")}
-                      </p>
-                      <div className="space-y-2">
-                        {selectedProject.fotos_antes.map((src, i) => (
-                          <img
-                            key={i}
-                            src={src}
-                            alt={`${t("portfolio.before")} ${i + 1}`}
-                            className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                            onClick={() => setLightboxImg(src)}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {selectedProject.fotos_despues?.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
-                        {t("portfolio.after")}
-                      </p>
-                      <div className="space-y-2">
-                        {selectedProject.fotos_despues.map((src, i) => (
-                          <img
-                            key={i}
-                            src={src}
-                            alt={`${t("portfolio.after")} ${i + 1}`}
-                            className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                            onClick={() => setLightboxImg(src)}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
+              {/* Before / After interactive slider */}
+              {selectedProject.fotos_antes?.length > 0 &&
+                selectedProject.fotos_despues?.length > 0 ? (
+                <div className="mb-6 space-y-4">
+                  {selectedProject.fotos_antes.map((beforeSrc, i) => {
+                    const afterSrc =
+                      selectedProject.fotos_despues[i] ||
+                      selectedProject.fotos_despues[0];
+                    return (
+                      <BeforeAfterSlider
+                        key={i}
+                        beforeSrc={beforeSrc}
+                        afterSrc={afterSrc}
+                        beforeLabel={t("portfolio.before")}
+                        afterLabel={t("portfolio.after")}
+                      />
+                    );
+                  })}
                 </div>
-              )}
+              ) : (selectedProject.fotos_antes?.length > 0 ||
+                  selectedProject.fotos_despues?.length > 0) ? (
+                <div className="mb-6 space-y-2">
+                  {(selectedProject.fotos_despues?.length > 0
+                    ? selectedProject.fotos_despues
+                    : selectedProject.fotos_antes
+                  ).map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt={`${t("portfolio.title")} ${i + 1}`}
+                      className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setLightboxImg(src)}
+                    />
+                  ))}
+                </div>
+              ) : null}
 
               {/* Description */}
               {localize(selectedProject as unknown as Record<string, unknown>, "descripcion", currentLang) && (

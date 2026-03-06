@@ -10,6 +10,7 @@ import StepGlass from "../../components/calculator/StepGlass";
 import StepExtras from "../../components/calculator/StepExtras";
 import StepQuantity from "../../components/calculator/StepQuantity";
 import Result from "../../components/calculator/Result";
+import WindowPreview from "../../components/calculator/WindowPreview";
 
 interface CalculatorState {
   step: number;
@@ -144,7 +145,7 @@ export default function Calculator() {
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
         <div className="bg-white border-b border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 py-6">
+          <div className="max-w-6xl mx-auto px-4 py-6">
             <h1 className="text-3xl font-bold text-gray-800 text-center">
               {t("calculator.title")}
             </h1>
@@ -152,68 +153,128 @@ export default function Calculator() {
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="max-w-6xl mx-auto px-4 py-6">
           {/* Progress */}
           {!isResult && <ProgressBar currentStep={state.step} />}
 
-          {/* Step content with fade transition */}
-          <div className="mt-6 animate-[fadeIn_0.3s_ease-out]" key={state.step}>
-            {state.step === 1 && (
-              <StepProductType
-                selected={state.tipo}
-                onSelect={(tipo) => dispatch({ type: "SET_TIPO", tipo })}
-              />
-            )}
-            {state.step === 2 && (
-              <StepModel
-                tipo={state.tipo}
-                selectedModel={state.modelo}
-                selectedModelId={state.modeloId}
-                onSelect={(modelo, modeloId) =>
-                  dispatch({ type: "SET_MODEL", modelo, modeloId })
-                }
-              />
-            )}
-            {state.step === 3 && (
-              <StepDimensions
-                ancho={state.ancho}
-                alto={state.alto}
-                hojas={state.hojas}
-                onChange={(field, value) =>
-                  dispatch({ type: "SET_DIMENSION", field, value })
-                }
-              />
-            )}
-            {state.step === 4 && (
-              <StepColor
-                selected={state.color}
-                onSelect={(color) => dispatch({ type: "SET_COLOR", color })}
-              />
-            )}
-            {state.step === 5 && (
-              <StepGlass
-                selected={state.vidrio}
-                onSelect={(vidrio) => dispatch({ type: "SET_GLASS", vidrio })}
-              />
-            )}
-            {state.step === 6 && (
-              <StepExtras
-                tipo={state.tipo}
-                extras={state.extras}
-                onToggle={(extra) => dispatch({ type: "TOGGLE_EXTRA", extra })}
-              />
-            )}
-            {state.step === 7 && (
-              <StepQuantity
-                cantidad={state.cantidad}
-                onChange={(cantidad) => dispatch({ type: "SET_QUANTITY", cantidad })}
-              />
-            )}
-            {isResult && (
-              <Result
-                state={state}
-                onReset={() => dispatch({ type: "RESET" })}
-              />
+          {/* Main content: steps + live preview */}
+          <div className={`mt-6 ${!isResult && state.step > 1 ? "flex flex-col lg:flex-row gap-8" : ""}`}>
+            {/* Step content */}
+            <div className={`${!isResult && state.step > 1 ? "flex-1 min-w-0" : ""} animate-[fadeIn_0.3s_ease-out]`} key={state.step}>
+              {state.step === 1 && (
+                <StepProductType
+                  selected={state.tipo}
+                  onSelect={(tipo) => dispatch({ type: "SET_TIPO", tipo })}
+                />
+              )}
+              {state.step === 2 && (
+                <StepModel
+                  tipo={state.tipo}
+                  selectedModel={state.modelo}
+                  selectedModelId={state.modeloId}
+                  onSelect={(modelo, modeloId) =>
+                    dispatch({ type: "SET_MODEL", modelo, modeloId })
+                  }
+                />
+              )}
+              {state.step === 3 && (
+                <StepDimensions
+                  ancho={state.ancho}
+                  alto={state.alto}
+                  hojas={state.hojas}
+                  onChange={(field, value) =>
+                    dispatch({ type: "SET_DIMENSION", field, value })
+                  }
+                />
+              )}
+              {state.step === 4 && (
+                <StepColor
+                  selected={state.color}
+                  onSelect={(color) => dispatch({ type: "SET_COLOR", color })}
+                />
+              )}
+              {state.step === 5 && (
+                <StepGlass
+                  selected={state.vidrio}
+                  onSelect={(vidrio) => dispatch({ type: "SET_GLASS", vidrio })}
+                />
+              )}
+              {state.step === 6 && (
+                <StepExtras
+                  tipo={state.tipo}
+                  extras={state.extras}
+                  onToggle={(extra) => dispatch({ type: "TOGGLE_EXTRA", extra })}
+                />
+              )}
+              {state.step === 7 && (
+                <StepQuantity
+                  cantidad={state.cantidad}
+                  onChange={(cantidad) => dispatch({ type: "SET_QUANTITY", cantidad })}
+                />
+              )}
+              {isResult && (
+                <Result
+                  state={state}
+                  onReset={() => dispatch({ type: "RESET" })}
+                />
+              )}
+            </div>
+
+            {/* Live window preview — visible from step 2 onwards */}
+            {!isResult && state.step > 1 && (
+              <div className="lg:w-72 flex-shrink-0">
+                <div className="sticky top-24 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                  <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-4 text-center">
+                    {t("calculator.preview")}
+                  </p>
+                  <div className="flex justify-center">
+                    <WindowPreview
+                      tipo={state.tipo}
+                      ancho={state.ancho}
+                      alto={state.alto}
+                      hojas={state.hojas}
+                      color={state.color}
+                      vidrio={state.vidrio}
+                      extras={state.extras}
+                    />
+                  </div>
+                  {/* Config summary chips */}
+                  <div className="mt-4 flex flex-wrap gap-1.5 justify-center">
+                    {state.tipo && (
+                      <span className="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 rounded-full">
+                        {t(
+                          state.tipo === "ventana"
+                            ? "nav.windows"
+                            : state.tipo === "puerta"
+                              ? "nav.sliding_doors"
+                              : state.tipo === "persiana"
+                                ? "nav.shutters"
+                                : "nav.mosquito_nets"
+                        )}
+                      </span>
+                    )}
+                    {state.modelo && (
+                      <span className="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 rounded-full">
+                        {state.modelo}
+                      </span>
+                    )}
+                    {state.color !== "blanc" && (
+                      <span className="px-2 py-0.5 text-xs font-medium bg-amber-50 text-amber-700 rounded-full">
+                        {t(`calculator.color_${state.color}`)}
+                      </span>
+                    )}
+                    {state.extras.length > 0 &&
+                      state.extras.map((e) => (
+                        <span
+                          key={e}
+                          className="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 rounded-full"
+                        >
+                          {t(`calculator.${e}`)}
+                        </span>
+                      ))}
+                  </div>
+                </div>
+              </div>
             )}
           </div>
 
@@ -237,7 +298,6 @@ export default function Calculator() {
                 </span>
               </button>
 
-              {/* Step 1 auto-advances on click, so only show Next for steps 2-7 */}
               {state.step > 1 && (
                 <button
                   onClick={goNext}

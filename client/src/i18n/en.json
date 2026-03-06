@@ -221,7 +221,8 @@
     "success_desc": "You will receive your quote within 24h. Thank you for trusting ARA FINESTRA!",
     "start_over": "Calculate again",
     "integrated_shutter": "Integrated shutter",
-    "integrated_mosquito": "Integrated mosquito net"
+    "integrated_mosquito": "Integrated mosquito net",
+    "preview": "Preview"
   },
   "zones_page": {
     "title": "Service areas",
