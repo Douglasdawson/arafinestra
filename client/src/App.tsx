@@ -7,6 +7,13 @@ const ServicePage = lazy(() => import("./pages/public/ServicePage"));
 const Cortizo = lazy(() => import("./pages/public/Cortizo"));
 const Subvenciones = lazy(() => import("./pages/public/Subvenciones"));
 const Calculator = lazy(() => import("./pages/public/Calculator"));
+const Projects = lazy(() => import("./pages/public/Projects"));
+const PublicBlogList = lazy(() => import("./pages/public/BlogList"));
+const BlogPost = lazy(() => import("./pages/public/BlogPost"));
+const PublicTestimonials = lazy(() => import("./pages/public/Testimonials"));
+const Contact = lazy(() => import("./pages/public/Contact"));
+const ZonesList = lazy(() => import("./pages/public/ZonesList"));
+const Zone = lazy(() => import("./pages/public/Zone"));
 
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const Login = lazy(() => import("./pages/admin/Login"));
@@ -19,17 +26,6 @@ const BlogEditor = lazy(() => import("./pages/admin/BlogEditor"));
 const Testimonials = lazy(() => import("./pages/admin/Testimonials"));
 const Zones = lazy(() => import("./pages/admin/Zones"));
 const SiteConfig = lazy(() => import("./pages/admin/SiteConfig"));
-
-function Placeholder({ title }: { title: string }) {
-  return (
-    <div className="flex items-center justify-center bg-slate-50 py-32">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-slate-800">{title}</h1>
-        <p className="mt-4 text-slate-500">Properament / Proximamente / Coming soon</p>
-      </div>
-    </div>
-  );
-}
 
 function Loading() {
   return (
@@ -50,11 +46,14 @@ export default function App() {
           <Route path="/:lang/serveis/:serviceSlug" element={<ServicePage />} />
           <Route path="/:lang/cortizo" element={<Cortizo />} />
           <Route path="/:lang/subvencions" element={<Subvenciones />} />
-          <Route path="/:lang/projectes" element={<Placeholder title="Projectes" />} />
+          <Route path="/:lang/projectes" element={<Projects />} />
           <Route path="/:lang/pressupost" element={<Calculator />} />
-          <Route path="/:lang/blog" element={<Placeholder title="Blog" />} />
-          <Route path="/:lang/opinions" element={<Placeholder title="Opinions" />} />
-          <Route path="/:lang/contacte" element={<Placeholder title="Contacte" />} />
+          <Route path="/:lang/blog" element={<PublicBlogList />} />
+          <Route path="/:lang/blog/:slug" element={<BlogPost />} />
+          <Route path="/:lang/opinions" element={<PublicTestimonials />} />
+          <Route path="/:lang/contacte" element={<Contact />} />
+          <Route path="/:lang/zones" element={<ZonesList />} />
+          <Route path="/:lang/zones/:slug" element={<Zone />} />
         </Route>
 
         {/* Admin routes */}

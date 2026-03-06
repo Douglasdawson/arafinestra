@@ -62,14 +62,32 @@
     "final_cta_desc": "Calcula tu presupuesto online en menos de 2 minutos. Sin compromiso."
   },
   "testimonials": {
-    "title": "Que dicen nuestros clientes"
+    "title": "Que dicen nuestros clientes",
+    "no_testimonials": "Proximamente mostraremos las opiniones de nuestros clientes."
   },
   "blog_section": {
     "title": "Ultimas publicaciones",
     "read_more": "Leer mas"
   },
+  "blog": {
+    "seo_desc": "Articulos y consejos sobre ventanas PVC, eficiencia energetica, subvenciones y reformas en Girona y Maresme.",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "no_posts": "Proximamente publicaremos articulos en nuestro blog.",
+    "not_found": "Articulo no encontrado",
+    "back_to_blog": "Volver al blog",
+    "cta_title": "Quieres un presupuesto?",
+    "cta_desc": "Calcula el precio de tus ventanas en menos de 2 minutos.",
+    "cat_eficiencia": "Eficiencia energetica",
+    "cat_subvencions": "Subvenciones",
+    "cat_consells": "Consejos",
+    "cat_cortizo": "Cortizo",
+    "cat_noticies": "Noticias"
+  },
   "contact": {
     "title": "Contactanos",
+    "form_title": "Envianos un mensaje",
+    "info_title": "Informacion de contacto",
     "name": "Nombre",
     "email": "Correo electronico",
     "phone": "Telefono",
@@ -81,6 +99,8 @@
     "send": "Enviar",
     "address": "Direccion",
     "hours": "Horario",
+    "hours_detail": "Lunes a viernes: 9:00 - 18:00",
+    "whatsapp_cta": "Escribenos por WhatsApp",
     "success": "Mensaje enviado correctamente!",
     "error": "Error al enviar el mensaje"
   },
@@ -152,7 +172,12 @@
   },
   "zones_page": {
     "title": "Zonas de servicio",
-    "we_serve": "Servimos en"
+    "we_serve": "Servimos en",
+    "h1": "Instalacion de ventanas PVC en {{zone}}",
+    "map_title": "Donde estamos",
+    "no_zones": "Proximamente mostraremos nuestras zonas de servicio.",
+    "not_found": "Zona no encontrada",
+    "back_to_zones": "Volver a zonas"
   },
   "portfolio": {
     "title": "Proyectos realizados",
@@ -160,7 +185,8 @@
     "after": "Despues",
     "all": "Todos",
     "filter_location": "Localidad",
-    "filter_type": "Tipo"
+    "filter_type": "Tipo",
+    "coming_soon": "Proximamente mostraremos nuestros proyectos."
   },
   "service_pages": {
     "benefits_title": "Ventajas",

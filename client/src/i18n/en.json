@@ -62,14 +62,32 @@
     "final_cta_desc": "Calculate your quote online in less than 2 minutes. No commitment."
   },
   "testimonials": {
-    "title": "What our clients say"
+    "title": "What our clients say",
+    "no_testimonials": "We will soon share our client reviews."
   },
   "blog_section": {
     "title": "Latest posts",
     "read_more": "Read more"
   },
+  "blog": {
+    "seo_desc": "Articles and tips about PVC windows, energy efficiency, subsidies and renovations in Girona and Maresme.",
+    "prev": "Previous",
+    "next": "Next",
+    "no_posts": "We will soon publish articles on our blog.",
+    "not_found": "Article not found",
+    "back_to_blog": "Back to blog",
+    "cta_title": "Want a quote?",
+    "cta_desc": "Calculate the price of your windows in less than 2 minutes.",
+    "cat_eficiencia": "Energy efficiency",
+    "cat_subvencions": "Subsidies",
+    "cat_consells": "Tips",
+    "cat_cortizo": "Cortizo",
+    "cat_noticies": "News"
+  },
   "contact": {
     "title": "Contact us",
+    "form_title": "Send us a message",
+    "info_title": "Contact information",
     "name": "Name",
     "email": "Email",
     "phone": "Phone",
@@ -81,6 +99,8 @@
     "send": "Send",
     "address": "Address",
     "hours": "Hours",
+    "hours_detail": "Monday to Friday: 9:00 - 18:00",
+    "whatsapp_cta": "Write us on WhatsApp",
     "success": "Message sent successfully!",
     "error": "Error sending message"
   },
@@ -152,7 +172,12 @@
   },
   "zones_page": {
     "title": "Service areas",
-    "we_serve": "We serve in"
+    "we_serve": "We serve in",
+    "h1": "PVC window installation in {{zone}}",
+    "map_title": "Where we are",
+    "no_zones": "We will soon showcase our service areas.",
+    "not_found": "Area not found",
+    "back_to_zones": "Back to areas"
   },
   "portfolio": {
     "title": "Completed projects",
@@ -160,7 +185,8 @@
     "after": "After",
     "all": "All",
     "filter_location": "Location",
-    "filter_type": "Type"
+    "filter_type": "Type",
+    "coming_soon": "We will soon showcase our projects."
   },
   "service_pages": {
     "benefits_title": "Benefits",

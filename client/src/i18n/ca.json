@@ -62,14 +62,32 @@
     "final_cta_desc": "Calcula el teu pressupost online en menys de 2 minuts. Sense compromis."
   },
   "testimonials": {
-    "title": "Que diuen els nostres clients"
+    "title": "Que diuen els nostres clients",
+    "no_testimonials": "Properament mostrarem les opinions dels nostres clients."
   },
   "blog_section": {
     "title": "Ultimes publicacions",
     "read_more": "Llegir mes"
   },
+  "blog": {
+    "seo_desc": "Articles i consells sobre finestres PVC, eficiencia energetica, subvencions i reformes a Girona i Maresme.",
+    "prev": "Anterior",
+    "next": "Seguent",
+    "no_posts": "Properament publicarem articles al nostre blog.",
+    "not_found": "Article no trobat",
+    "back_to_blog": "Tornar al blog",
+    "cta_title": "Vols un pressupost?",
+    "cta_desc": "Calcula el preu de les teves finestres en menys de 2 minuts.",
+    "cat_eficiencia": "Eficiencia energetica",
+    "cat_subvencions": "Subvencions",
+    "cat_consells": "Consells",
+    "cat_cortizo": "Cortizo",
+    "cat_noticies": "Noticies"
+  },
   "contact": {
     "title": "Contacta'ns",
+    "form_title": "Envia'ns un missatge",
+    "info_title": "Informacio de contacte",
     "name": "Nom",
     "email": "Correu electronic",
     "phone": "Telefon",
@@ -81,6 +99,8 @@
     "send": "Enviar",
     "address": "Adreca",
     "hours": "Horari",
+    "hours_detail": "Dilluns a divendres: 9:00 - 18:00",
+    "whatsapp_cta": "Escriu-nos per WhatsApp",
     "success": "Missatge enviat correctament!",
     "error": "Error en enviar el missatge"
   },
@@ -152,7 +172,12 @@
   },
   "zones_page": {
     "title": "Zones de servei",
-    "we_serve": "Servim a"
+    "we_serve": "Servim a",
+    "h1": "Instal\u00b7lacio de finestres PVC a {{zone}}",
+    "map_title": "On som",
+    "no_zones": "Properament mostrarem les nostres zones de servei.",
+    "not_found": "Zona no trobada",
+    "back_to_zones": "Tornar a zones"
   },
   "portfolio": {
     "title": "Projectes realitzats",
@@ -160,7 +185,8 @@
     "after": "Despres",
     "all": "Tots",
     "filter_location": "Localitat",
-    "filter_type": "Tipus"
+    "filter_type": "Tipus",
+    "coming_soon": "Properament mostrarem els nostres projectes."
   },
   "service_pages": {
     "benefits_title": "Avantatges",
