@@ -1,4 +1,3 @@
-import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 interface CounterProps {
@@ -16,24 +15,34 @@ export default function Counter({
   prefix = "",
   className = "",
 }: CounterProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const ref = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!isInView) return;
-    const ms = duration * 1000;
-    let start: number | null = null;
-    let raf: number;
-    const step = (ts: number) => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / ms, 1);
-      setCount(Math.floor(progress * target));
-      if (progress < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [isInView, target, duration]);
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          observer.disconnect();
+          const ms = duration * 1000;
+          let start: number | null = null;
+          const step = (ts: number) => {
+            if (!start) start = ts;
+            const progress = Math.min((ts - start) / ms, 1);
+            setCount(Math.floor(progress * target));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      },
+      { rootMargin: "0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration]);
 
   return (
     <span ref={ref} className={className}>

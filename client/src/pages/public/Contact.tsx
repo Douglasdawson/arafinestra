@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
 import PageHead from "../../components/seo/PageHead";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 
@@ -110,14 +109,9 @@ export default function Contact() {
           />
         </div>
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight animate-fadeIn">
             {t("contact.title")}
-          </motion.h1>
+          </h1>
         </div>
       </section>
 
@@ -134,25 +128,17 @@ export default function Contact() {
               </ScrollReveal>
 
               {success && (
-                <motion.div
-                  className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-sm font-medium flex items-center gap-3"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
+                <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-sm font-medium flex items-center gap-3 animate-fadeIn">
                   <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   {t("contact.success")}
-                </motion.div>
+                </div>
               )}
               {error && (
-                <motion.div
-                  className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm font-medium"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm font-medium animate-fadeIn">
                   {t("contact.error")}
-                </motion.div>
+                </div>
               )}
 
               <ScrollReveal delay={0.1}>

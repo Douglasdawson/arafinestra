@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import PageHead from "../../components/seo/PageHead";
 import FaqSchema from "../../components/seo/FaqSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
@@ -53,32 +52,26 @@ function AccordionItem({
           <span className="text-base font-medium text-slate-800 group-hover:text-sky-600 transition-colors pr-4">
             {question}
           </span>
-          <motion.svg
-            className="w-5 h-5 text-slate-400 flex-shrink-0"
+          <svg
+            className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            animate={{ rotate: open ? 180 : 0 }}
-            transition={{ duration: 0.25 }}
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </motion.svg>
+          </svg>
         </button>
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <p className="pb-5 text-sm text-slate-600 leading-relaxed">
-                {answer}
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          className="overflow-hidden transition-all duration-300 ease-in-out"
+          style={{
+            maxHeight: open ? "500px" : "0",
+            opacity: open ? 1 : 0,
+          }}
+        >
+          <p className="pb-5 text-sm text-slate-600 leading-relaxed">
+            {answer}
+          </p>
+        </div>
       </div>
     </ScrollReveal>
   );
@@ -150,34 +143,20 @@ export default function ServicePage() {
           />
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight animate-fadeIn">
             {pageTitle}
-          </motion.h1>
-          <motion.p
-            className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto font-light"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-          >
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto font-light animate-fadeIn" style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}>
             {pageDesc}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          </p>
+          <div className="animate-fadeIn" style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}>
             <Link
               to={`/${prefix}/pressupost`}
               className="inline-block mt-8 px-8 py-3.5 bg-white text-slate-900 font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg"
             >
               {t("cta.calculate")}
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
