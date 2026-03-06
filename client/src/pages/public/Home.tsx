@@ -44,14 +44,14 @@ function WindowMaskHero({
   });
 
   // Left shutter rotates open to the left (0 → -85deg)
-  const leftRotate = useTransform(scrollYProgress, [0, 0.6], [0, -85]);
+  const leftRotate = useTransform(scrollYProgress, [0, 0.85], [0, -85]);
   // Right shutter rotates open to the right (0 → 85deg)
-  const rightRotate = useTransform(scrollYProgress, [0, 0.6], [0, 85]);
+  const rightRotate = useTransform(scrollYProgress, [0, 0.85], [0, 85]);
   // Frame fades out once shutters are open
-  const frameOpacity = useTransform(scrollYProgress, [0.5, 0.8], [1, 0]);
+  const frameOpacity = useTransform(scrollYProgress, [0.75, 0.95], [1, 0]);
   // Content behind fades in
-  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1]);
-  const contentScale = useTransform(scrollYProgress, [0.1, 0.5], [0.92, 1]);
+  const contentOpacity = useTransform(scrollYProgress, [0.15, 0.5], [0, 1]);
+  const contentScale = useTransform(scrollYProgress, [0.15, 0.6], [0.92, 1]);
   // Scroll hint fades out
   const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
