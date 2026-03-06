@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "windows": "Ventanas PVC",
+    "sliding_doors": "Puertas correderas",
+    "shutters": "Persianas",
+    "mosquito_nets": "Mosquiteras",
+    "calculator": "Presupuesto",
+    "projects": "Proyectos",
+    "cortizo": "Cortizo",
+    "subsidies": "Subvenciones",
+    "blog": "Blog",
+    "reviews": "Opiniones",
+    "contact": "Contacto",
+    "zones": "Zonas"
+  },
+  "cta": {
+    "calculate": "Calcula tu presupuesto",
+    "contact_us": "Contactanos",
+    "request_quote": "Quiero presupuesto exacto",
+    "call_us": "Llamanos",
+    "free_quote": "Presupuesto gratuito",
+    "view_projects": "Ver proyectos"
+  },
+  "hero": {
+    "title": "Ventanas PVC en Girona y Maresme",
+    "subtitle": "Instalacion profesional con perfiles Cortizo",
+    "description": "Calidad, aislamiento y ahorro energetico para tu hogar"
+  },
+  "services": {
+    "title": "Nuestros servicios",
+    "windows_desc": "Ventanas PVC de alta eficiencia con perfiles Cortizo. Aislamiento termico y acustico superior.",
+    "doors_desc": "Puertas correderas estilo ventanal. Maxima luz y espacio para tu hogar.",
+    "shutters_desc": "Persianas de alta calidad. Proteccion, privacidad y eficiencia energetica.",
+    "mosquito_desc": "Mosquiteras a medida. Proteccion contra insectos sin perder ventilacion."
+  },
+  "stats": {
+    "experience": "Anos de experiencia",
+    "projects": "Proyectos realizados",
+    "coverage": "Km de cobertura"
+  },
+  "about": {
+    "title": "Por que ARA FINESTRA?",
+    "quality": "Calidad Cortizo",
+    "quality_desc": "Trabajamos con perfiles Cortizo, marca espanola de referencia.",
+    "local": "Servicio local",
+    "local_desc": "Cubrimos toda la provincia de Girona y el Maresme.",
+    "subsidies": "Subvenciones",
+    "subsidies_desc": "Tramitamos las ayudas Next Generation por ti."
+  },
+  "testimonials": {
+    "title": "Que dicen nuestros clientes"
+  },
+  "blog_section": {
+    "title": "Ultimas publicaciones",
+    "read_more": "Leer mas"
+  },
+  "contact": {
+    "title": "Contactanos",
+    "name": "Nombre",
+    "email": "Correo electronico",
+    "phone": "Telefono",
+    "message": "Mensaje",
+    "client_type": "Tipo de cliente",
+    "particular": "Particular",
+    "builder": "Constructora",
+    "community": "Comunidad de vecinos",
+    "send": "Enviar",
+    "address": "Direccion",
+    "hours": "Horario",
+    "success": "Mensaje enviado correctamente!",
+    "error": "Error al enviar el mensaje"
+  },
+  "footer": {
+    "services": "Servicios",
+    "zones": "Zonas",
+    "company": "Empresa",
+    "contact": "Contacto",
+    "rights": "Todos los derechos reservados",
+    "about": "Sobre nosotros"
+  },
+  "calculator": {
+    "title": "Calcula tu presupuesto",
+    "step_product": "Tipo de producto",
+    "step_model": "Modelo",
+    "step_dimensions": "Dimensiones",
+    "step_color": "Color",
+    "step_glass": "Cristal",
+    "step_extras": "Extras",
+    "step_quantity": "Cantidad",
+    "next": "Siguiente",
+    "back": "Anterior",
+    "result_title": "Presupuesto orientativo",
+    "result_from": "A partir de",
+    "width": "Ancho (cm)",
+    "height": "Alto (cm)",
+    "leaves": "Numero de hojas",
+    "quantity": "Cantidad",
+    "integrated_shutter": "Persiana integrada",
+    "integrated_mosquito": "Mosquitera integrada"
+  },
+  "zones_page": {
+    "title": "Zonas de servicio",
+    "we_serve": "Servimos en"
+  },
+  "portfolio": {
+    "title": "Proyectos realizados",
+    "before": "Antes",
+    "after": "Despues",
+    "all": "Todos",
+    "filter_location": "Localidad",
+    "filter_type": "Tipo"
+  }
+}

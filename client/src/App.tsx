@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import PublicLayout from "./components/layout/PublicLayout";
 
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const Login = lazy(() => import("./pages/admin/Login"));
@@ -14,9 +16,14 @@ const Zones = lazy(() => import("./pages/admin/Zones"));
 const SiteConfig = lazy(() => import("./pages/admin/SiteConfig"));
 
 function Home() {
+  const { t } = useTranslation();
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <h1 className="text-4xl font-bold text-gray-900">ARA FINESTRA</h1>
+    <div className="flex items-center justify-center bg-gray-50 py-32">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900">ARA FINESTRA</h1>
+        <p className="mt-4 text-lg text-gray-600">{t("hero.title")}</p>
+        <p className="mt-2 text-gray-500">{t("hero.subtitle")}</p>
+      </div>
     </div>
   );
 }
@@ -33,7 +40,13 @@ export default function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Public routes */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/:lang" element={<Home />} />
+        </Route>
+
+        {/* Admin routes */}
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />

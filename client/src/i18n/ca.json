@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Inici",
+    "services": "Serveis",
+    "windows": "Finestres PVC",
+    "sliding_doors": "Portes corredisses",
+    "shutters": "Persianes",
+    "mosquito_nets": "Mosquiteres",
+    "calculator": "Pressupost",
+    "projects": "Projectes",
+    "cortizo": "Cortizo",
+    "subsidies": "Subvencions",
+    "blog": "Blog",
+    "reviews": "Opinions",
+    "contact": "Contacte",
+    "zones": "Zones"
+  },
+  "cta": {
+    "calculate": "Calcula el teu pressupost",
+    "contact_us": "Contacta'ns",
+    "request_quote": "Vull pressupost exacte",
+    "call_us": "Truca'ns",
+    "free_quote": "Pressupost gratuit",
+    "view_projects": "Veure projectes"
+  },
+  "hero": {
+    "title": "Finestres PVC a Girona i Maresme",
+    "subtitle": "Instal·lacio professional amb perfils Cortizo",
+    "description": "Qualitat, aillament i estalvi energetic per a la teva llar"
+  },
+  "services": {
+    "title": "Els nostres serveis",
+    "windows_desc": "Finestres PVC d'alta eficiencia amb perfils Cortizo. Aillament termic i acustic superior.",
+    "doors_desc": "Portes corredisses estil finestral. Maxima llum i espai per a la teva llar.",
+    "shutters_desc": "Persianes d'alta qualitat. Proteccio, privacitat i eficiencia energetica.",
+    "mosquito_desc": "Mosquiteres a mida. Proteccio contra insectes sense perdre ventilacio."
+  },
+  "stats": {
+    "experience": "Anys d'experiencia",
+    "projects": "Projectes realitzats",
+    "coverage": "Km de cobertura"
+  },
+  "about": {
+    "title": "Per que ARA FINESTRA?",
+    "quality": "Qualitat Cortizo",
+    "quality_desc": "Treballem amb perfils Cortizo, marca espanyola de referencia.",
+    "local": "Servei local",
+    "local_desc": "Cobrim tota la provincia de Girona i el Maresme.",
+    "subsidies": "Subvencions",
+    "subsidies_desc": "Tramitem les ajudes Next Generation per a tu."
+  },
+  "testimonials": {
+    "title": "Que diuen els nostres clients"
+  },
+  "blog_section": {
+    "title": "Ultimes publicacions",
+    "read_more": "Llegir mes"
+  },
+  "contact": {
+    "title": "Contacta'ns",
+    "name": "Nom",
+    "email": "Correu electronic",
+    "phone": "Telefon",
+    "message": "Missatge",
+    "client_type": "Tipus de client",
+    "particular": "Particular",
+    "builder": "Constructora",
+    "community": "Comunitat de veins",
+    "send": "Enviar",
+    "address": "Adreca",
+    "hours": "Horari",
+    "success": "Missatge enviat correctament!",
+    "error": "Error en enviar el missatge"
+  },
+  "footer": {
+    "services": "Serveis",
+    "zones": "Zones",
+    "company": "Empresa",
+    "contact": "Contacte",
+    "rights": "Tots els drets reservats",
+    "about": "Sobre nosaltres"
+  },
+  "calculator": {
+    "title": "Calcula el teu pressupost",
+    "step_product": "Tipus de producte",
+    "step_model": "Model",
+    "step_dimensions": "Dimensions",
+    "step_color": "Color",
+    "step_glass": "Vidre",
+    "step_extras": "Extres",
+    "step_quantity": "Quantitat",
+    "next": "Seguent",
+    "back": "Anterior",
+    "result_title": "Pressupost orientatiu",
+    "result_from": "A partir de",
+    "width": "Amplada (cm)",
+    "height": "Alcada (cm)",
+    "leaves": "Nombre de fulles",
+    "quantity": "Quantitat",
+    "integrated_shutter": "Persiana integrada",
+    "integrated_mosquito": "Mosquitera integrada"
+  },
+  "zones_page": {
+    "title": "Zones de servei",
+    "we_serve": "Servim a"
+  },
+  "portfolio": {
+    "title": "Projectes realitzats",
+    "before": "Abans",
+    "after": "Despres",
+    "all": "Tots",
+    "filter_location": "Localitat",
+    "filter_type": "Tipus"
+  }
+}

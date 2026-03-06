@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "windows": "PVC Windows",
+    "sliding_doors": "Sliding Doors",
+    "shutters": "Shutters",
+    "mosquito_nets": "Mosquito Nets",
+    "calculator": "Quote",
+    "projects": "Projects",
+    "cortizo": "Cortizo",
+    "subsidies": "Subsidies",
+    "blog": "Blog",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "zones": "Areas"
+  },
+  "cta": {
+    "calculate": "Calculate your quote",
+    "contact_us": "Contact us",
+    "request_quote": "Request exact quote",
+    "call_us": "Call us",
+    "free_quote": "Free quote",
+    "view_projects": "View projects"
+  },
+  "hero": {
+    "title": "PVC Windows in Girona and Maresme",
+    "subtitle": "Professional installation with Cortizo profiles",
+    "description": "Quality, insulation and energy savings for your home"
+  },
+  "services": {
+    "title": "Our services",
+    "windows_desc": "High-efficiency PVC windows with Cortizo profiles. Superior thermal and acoustic insulation.",
+    "doors_desc": "Bay window style sliding doors. Maximum light and space for your home.",
+    "shutters_desc": "High-quality shutters. Protection, privacy and energy efficiency.",
+    "mosquito_desc": "Custom mosquito nets. Insect protection without losing ventilation."
+  },
+  "stats": {
+    "experience": "Years of experience",
+    "projects": "Projects completed",
+    "coverage": "Km coverage"
+  },
+  "about": {
+    "title": "Why ARA FINESTRA?",
+    "quality": "Cortizo Quality",
+    "quality_desc": "We work with Cortizo profiles, Spain's leading brand.",
+    "local": "Local service",
+    "local_desc": "We cover the entire province of Girona and Maresme.",
+    "subsidies": "Subsidies",
+    "subsidies_desc": "We process Next Generation grants for you."
+  },
+  "testimonials": {
+    "title": "What our clients say"
+  },
+  "blog_section": {
+    "title": "Latest posts",
+    "read_more": "Read more"
+  },
+  "contact": {
+    "title": "Contact us",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "client_type": "Client type",
+    "particular": "Individual",
+    "builder": "Builder",
+    "community": "Homeowners association",
+    "send": "Send",
+    "address": "Address",
+    "hours": "Hours",
+    "success": "Message sent successfully!",
+    "error": "Error sending message"
+  },
+  "footer": {
+    "services": "Services",
+    "zones": "Areas",
+    "company": "Company",
+    "contact": "Contact",
+    "rights": "All rights reserved",
+    "about": "About us"
+  },
+  "calculator": {
+    "title": "Calculate your quote",
+    "step_product": "Product type",
+    "step_model": "Model",
+    "step_dimensions": "Dimensions",
+    "step_color": "Color",
+    "step_glass": "Glass",
+    "step_extras": "Extras",
+    "step_quantity": "Quantity",
+    "next": "Next",
+    "back": "Back",
+    "result_title": "Estimated quote",
+    "result_from": "Starting from",
+    "width": "Width (cm)",
+    "height": "Height (cm)",
+    "leaves": "Number of leaves",
+    "quantity": "Quantity",
+    "integrated_shutter": "Integrated shutter",
+    "integrated_mosquito": "Integrated mosquito net"
+  },
+  "zones_page": {
+    "title": "Service areas",
+    "we_serve": "We serve in"
+  },
+  "portfolio": {
+    "title": "Completed projects",
+    "before": "Before",
+    "after": "After",
+    "all": "All",
+    "filter_location": "Location",
+    "filter_type": "Type"
+  }
+}
