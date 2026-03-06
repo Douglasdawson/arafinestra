@@ -1,4 +1,9 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const Login = lazy(() => import("./pages/admin/Login"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 
 function Home() {
   return (
@@ -8,10 +13,24 @@ function Home() {
   );
 }
 
+function Loading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-gray-500">Cargando...</div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }

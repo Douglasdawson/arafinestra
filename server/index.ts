@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import session from "express-session";
+import passport from "./middleware/auth.js";
 import { registerRoutes } from "./routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -9,6 +11,24 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Session middleware — must be before passport and routes
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "ara-finestra-dev-secret-change-me",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    },
+  })
+);
+
+// Passport initialization
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Register API routes
 registerRoutes(app);
