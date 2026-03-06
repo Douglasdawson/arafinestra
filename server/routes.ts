@@ -18,13 +18,19 @@ export function registerRoutes(app: Express) {
   // Auth routes
   app.post("/api/auth/login", (req, res, next) => {
     passport.authenticate("local", (err: any, user: any, info: any) => {
-      if (err) return next(err);
+      if (err) {
+        console.error("Auth error:", err);
+        return res.status(500).json({ error: "Error interno de autenticacion" });
+      }
       if (!user) {
         return res.status(401).json({ error: info?.message || "Login fallido" });
       }
-      req.logIn(user, (err) => {
-        if (err) return next(err);
-        return res.json({ id: user.id, username: user.username });
+      req.logIn(user, (loginErr) => {
+        if (loginErr) {
+          console.error("Login error:", loginErr);
+          return res.status(500).json({ error: "Error al crear sesion" });
+        }
+        return res.json({ user: { id: user.id, username: user.username } });
       });
     })(req, res, next);
   });

@@ -30,13 +30,19 @@ export function useAuth() {
       credentials: "include",
       body: JSON.stringify({ username, password }),
     });
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error("Error de conexion con el servidor");
+    }
     if (!res.ok) {
-      const data = await res.json();
       throw new Error(data.error || "Login fallido");
     }
-    const data = await res.json();
-    setUser(data);
-    return data;
+    const user = data.user || data;
+    setUser(user);
+    return user;
   }, []);
 
   const logout = useCallback(async () => {
