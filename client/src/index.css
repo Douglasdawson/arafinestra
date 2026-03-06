@@ -47,3 +47,40 @@ h1, h2, h3, h4, h5, h6 {
 .pulse-glow-btn {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* Custom cursor — hide default on desktop only */
+@media (pointer: fine) {
+  .cursor-none,
+  .cursor-none * {
+    cursor: none !important;
+  }
+}
+
+/* Animated link underline */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Smooth button press */
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(14, 165, 233, 0.15);
+  color: inherit;
+}
