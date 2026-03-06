@@ -44,14 +44,14 @@ function WindowMaskHero({
   });
 
   // Left shutter rotates open to the left (0 → -85deg)
-  const leftRotate = useTransform(scrollYProgress, [0, 0.85], [0, -85]);
+  const leftRotate = useTransform(scrollYProgress, [0, 0.35], [0, -85]);
   // Right shutter rotates open to the right (0 → 85deg)
-  const rightRotate = useTransform(scrollYProgress, [0, 0.85], [0, 85]);
+  const rightRotate = useTransform(scrollYProgress, [0, 0.35], [0, 85]);
   // Frame fades out once shutters are open
-  const frameOpacity = useTransform(scrollYProgress, [0.75, 0.95], [1, 0]);
+  const frameOpacity = useTransform(scrollYProgress, [0.3, 0.45], [1, 0]);
   // Content behind fades in
-  const contentOpacity = useTransform(scrollYProgress, [0.15, 0.5], [0, 1]);
-  const contentScale = useTransform(scrollYProgress, [0.15, 0.6], [0.92, 1]);
+  const contentOpacity = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
+  const contentScale = useTransform(scrollYProgress, [0.05, 0.3], [0.92, 1]);
   // Scroll hint fades out
   const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
@@ -87,7 +87,7 @@ function WindowMaskHero({
   }
 
   return (
-    <section ref={sectionRef} className="relative h-[250vh]">
+    <section ref={sectionRef} className="relative h-[180vh]">
       <div className="sticky top-0 h-screen overflow-hidden" style={{ perspective: "1200px" }}>
         {/* Background — bright landscape behind the window */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100 z-0">
