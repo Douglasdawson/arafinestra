@@ -28,7 +28,8 @@
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.4.1",
     "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.1.5"
+    "react-router-dom": "^7.1.5",
+    "ws": "^8.19.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.14",
