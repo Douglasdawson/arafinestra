@@ -30,7 +30,7 @@ export default function LanguageSwitcher() {
             onClick={() => switchLang(l)}
             className={`text-xs font-medium uppercase px-1 py-0.5 rounded transition-colors ${
               i18n.language === l || i18n.language.startsWith(l + "-")
-                ? "text-sky-600 font-bold"
+                ? "text-brand font-bold"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >

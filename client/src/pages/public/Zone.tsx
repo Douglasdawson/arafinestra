@@ -84,7 +84,7 @@ export default function Zone() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-slate-500 py-20">
         <p className="text-2xl font-semibold mb-4">{t("zones_page.not_found")}</p>
-        <Link to={`/${prefix}/zones`} className="text-sky-600 hover:text-sky-700">
+        <Link to={`/${prefix}/zones`} className="text-brand hover:text-brand-dark">
           {t("zones_page.back_to_zones")}
         </Link>
       </div>
@@ -135,7 +135,7 @@ export default function Zone() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-slate-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
             {t("zones_page.h1", { zone: nombre })}
@@ -158,7 +158,7 @@ export default function Zone() {
       {projects.length > 0 && (
         <section className="py-12 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">
+            <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">
               {t("portfolio.title")}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -184,7 +184,7 @@ export default function Zone() {
                       )}
                     </div>
                     <div className="p-4">
-                      <h3 className="text-sm font-semibold text-slate-800">{title}</h3>
+                      <h3 className="text-sm font-semibold text-navy-800">{title}</h3>
                     </div>
                   </div>
                 );
@@ -198,7 +198,7 @@ export default function Zone() {
       {zone.latitud && zone.longitud && (
         <section className="py-12 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">{t("zones_page.map_title")}</h2>
+            <h2 className="text-2xl font-bold text-navy-800 mb-6 text-center">{t("zones_page.map_title")}</h2>
             <div className="rounded-xl overflow-hidden shadow-md">
               <iframe
                 title={nombre}
@@ -216,9 +216,9 @@ export default function Zone() {
       )}
 
       {/* CTA */}
-      <section className="py-16 bg-sky-50">
+      <section className="py-16 bg-brand-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">
+          <h2 className="text-2xl font-bold text-navy-800 mb-4">
             {t("service_pages.cta_title")}
           </h2>
           <p className="text-slate-600 mb-8 max-w-xl mx-auto">
@@ -226,7 +226,7 @@ export default function Zone() {
           </p>
           <Link
             to={`/${prefix}/pressupost`}
-            className="inline-flex items-center px-8 py-4 bg-sky-500 text-white font-semibold rounded-lg hover:bg-sky-400 transition-colors shadow-lg shadow-sky-500/25 text-lg"
+            className="inline-flex items-center px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-lg"
           >
             {t("cta.calculate")}
           </Link>

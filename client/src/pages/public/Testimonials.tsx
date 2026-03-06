@@ -62,7 +62,7 @@ export default function Testimonials() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-slate-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("testimonials.title")}</h1>
         </div>
@@ -87,7 +87,7 @@ export default function Testimonials() {
                           className="w-12 h-12 rounded-full object-cover"
                         />
                       ) : (
-                        <div className="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 font-bold text-lg">
+                        <div className="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center text-brand font-bold text-lg">
                           {t_item.nombre.charAt(0).toUpperCase()}
                         </div>
                       )}

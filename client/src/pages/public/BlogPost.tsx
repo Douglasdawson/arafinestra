@@ -89,7 +89,7 @@ export default function BlogPost() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-slate-500 py-20">
         <p className="text-2xl font-semibold mb-4">{t("blog.not_found")}</p>
-        <Link to={`/${prefix}/blog`} className="text-sky-600 hover:text-sky-700">
+        <Link to={`/${prefix}/blog`} className="text-brand hover:text-brand-dark">
           {t("blog.back_to_blog")}
         </Link>
       </div>
@@ -141,13 +141,13 @@ export default function BlogPost() {
 
       {/* Hero image */}
       {post.imagen_portada && (
-        <section className="relative h-64 sm:h-80 lg:h-96 bg-slate-800">
+        <section className="relative h-64 sm:h-80 lg:h-96 bg-navy-800">
           <img
             src={post.imagen_portada}
             alt={title}
             className="w-full h-full object-cover opacity-70"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent" />
         </section>
       )}
 
@@ -157,7 +157,7 @@ export default function BlogPost() {
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Main content */}
             <article className="flex-1 max-w-3xl">
-              <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">{title}</h1>
+              <h1 className="text-3xl sm:text-4xl font-bold text-navy-800 mb-4">{title}</h1>
               <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 mb-8 pb-6 border-b border-slate-200">
                 {post.autor && <span>{post.autor}</span>}
                 {date && (
@@ -171,25 +171,25 @@ export default function BlogPost() {
                 {post.categoria && (
                   <>
                     <span className="text-slate-300">|</span>
-                    <span className="px-2 py-0.5 bg-sky-50 text-sky-700 rounded-full text-xs font-medium">
+                    <span className="px-2 py-0.5 bg-brand-light text-brand rounded-full text-xs font-medium">
                       {t(`blog.cat_${post.categoria}`)}
                     </span>
                   </>
                 )}
               </div>
-              <div className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-slate-800 prose-a:text-sky-600 hover:prose-a:text-sky-700">
+              <div className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-navy-800 prose-a:text-brand hover:prose-a:text-brand-dark">
                 <ReactMarkdown>{content}</ReactMarkdown>
               </div>
             </article>
 
             {/* Sidebar CTA */}
             <aside className="lg:w-80 flex-shrink-0">
-              <div className="sticky top-24 bg-sky-50 rounded-xl p-6">
-                <h3 className="text-lg font-bold text-slate-800 mb-2">{t("blog.cta_title")}</h3>
+              <div className="sticky top-24 bg-brand-light rounded-xl p-6">
+                <h3 className="text-lg font-bold text-navy-800 mb-2">{t("blog.cta_title")}</h3>
                 <p className="text-sm text-slate-600 mb-4">{t("blog.cta_desc")}</p>
                 <Link
                   to={`/${prefix}/pressupost`}
-                  className="block w-full text-center px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg hover:bg-sky-400 transition-colors"
+                  className="block w-full text-center px-6 py-3 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors"
                 >
                   {t("cta.calculate")}
                 </Link>

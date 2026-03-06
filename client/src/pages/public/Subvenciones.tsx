@@ -40,7 +40,7 @@ export default function Subvenciones() {
       {/* What Are They */}
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">{t("subsidies_page.what_title")}</h2>
+          <h2 className="text-2xl font-bold text-navy-800 mb-6 text-center">{t("subsidies_page.what_title")}</h2>
           <p className="text-slate-600 leading-relaxed mb-4">{t("subsidies_page.what_p1")}</p>
           <p className="text-slate-600 leading-relaxed">{t("subsidies_page.what_p2")}</p>
         </div>
@@ -49,7 +49,7 @@ export default function Subvenciones() {
       {/* Requirements */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">{t("subsidies_page.req_title")}</h2>
+          <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">{t("subsidies_page.req_title")}</h2>
           <ul className="space-y-4">
             {requirements.map((req, i) => (
               <li key={i} className="flex gap-3 items-start">
@@ -68,7 +68,7 @@ export default function Subvenciones() {
       {/* We Handle the Paperwork */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">{t("subsidies_page.paperwork_title")}</h2>
+          <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">{t("subsidies_page.paperwork_title")}</h2>
           <p className="text-slate-600 text-center max-w-2xl mx-auto mb-10">{t("subsidies_page.paperwork_desc")}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step) => (
@@ -86,7 +86,7 @@ export default function Subvenciones() {
       {/* Amount Info */}
       <section className="py-16 bg-emerald-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">{t("subsidies_page.amount_title")}</h2>
+          <h2 className="text-2xl font-bold text-navy-800 mb-4">{t("subsidies_page.amount_title")}</h2>
           <p className="text-4xl font-bold text-emerald-600 mb-4">{t("subsidies_page.amount_value")}</p>
           <p className="text-slate-600">{t("subsidies_page.amount_desc")}</p>
         </div>
@@ -95,7 +95,7 @@ export default function Subvenciones() {
       {/* CTA */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">{t("subsidies_page.cta_title")}</h2>
+          <h2 className="text-2xl font-bold text-navy-800 mb-4">{t("subsidies_page.cta_title")}</h2>
           <p className="text-slate-600 max-w-xl mx-auto mb-8">{t("subsidies_page.cta_desc")}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

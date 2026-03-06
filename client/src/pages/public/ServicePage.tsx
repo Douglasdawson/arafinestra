@@ -16,10 +16,10 @@ const SLUG_TO_TYPE: Record<string, ServiceType> = {
 };
 
 const SERVICE_COLORS: Record<ServiceType, { gradient: string; accent: string }> = {
-  ventana: { gradient: "from-sky-800 via-blue-900 to-slate-900", accent: "sky" },
-  puerta: { gradient: "from-teal-800 via-cyan-900 to-slate-900", accent: "teal" },
-  persiana: { gradient: "from-slate-700 via-slate-800 to-slate-900", accent: "slate" },
-  mosquitera: { gradient: "from-emerald-800 via-green-900 to-slate-900", accent: "emerald" },
+  ventana: { gradient: "from-navy-700 via-navy-800 to-navy-950", accent: "sky" },
+  puerta: { gradient: "from-teal-800 via-navy-800 to-navy-950", accent: "teal" },
+  persiana: { gradient: "from-navy-600 via-navy-800 to-navy-950", accent: "slate" },
+  mosquitera: { gradient: "from-emerald-800 via-navy-800 to-navy-950", accent: "emerald" },
 };
 
 interface PortfolioItem {
@@ -49,7 +49,7 @@ function AccordionItem({
           onClick={() => setOpen(!open)}
           className="w-full flex items-center justify-between py-5 text-left group"
         >
-          <span className="text-base font-medium text-slate-800 group-hover:text-sky-600 transition-colors pr-4">
+          <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">
             {question}
           </span>
           <svg
@@ -152,7 +152,7 @@ export default function ServicePage() {
           <div className="animate-fadeIn" style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}>
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-8 px-8 py-3.5 bg-white text-slate-900 font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg"
+              className="inline-block mt-8 px-8 py-3.5 bg-white text-navy-900 font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg"
             >
               {t("cta.calculate")}
             </Link>
@@ -164,15 +164,15 @@ export default function ServicePage() {
       <section className="py-20 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-12 text-center tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
               {t("service_pages.benefits_title")}
             </h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((b, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
-                <div className="flex gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-sky-200 hover:shadow-sm transition-all">
-                  <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg bg-sky-100 text-sky-600">
+                <div className="flex gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-brand/20 hover:shadow-sm transition-all">
+                  <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg bg-brand-light text-brand">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -190,7 +190,7 @@ export default function ServicePage() {
         <section className="py-20 sm:py-24 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-12 text-center tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
                 {t("service_pages.gallery_title")}
               </h2>
             </ScrollReveal>
@@ -214,7 +214,7 @@ export default function ServicePage() {
       <section className="py-20 sm:py-24 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-12 text-center tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
               {t("service_pages.faq_title")}
             </h2>
           </ScrollReveal>
@@ -232,13 +232,13 @@ export default function ServicePage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 sm:py-32 bg-slate-950 overflow-hidden">
+      <section className="relative py-24 sm:py-32 bg-navy-950 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(circle at 50% 50%, rgba(14,165,233,0.3) 0%, transparent 60%)",
+                "radial-gradient(circle at 50% 50%, rgba(232,101,43,0.3) 0%, transparent 60%)",
             }}
           />
         </div>
@@ -256,7 +256,7 @@ export default function ServicePage() {
           <ScrollReveal delay={0.3}>
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-10 px-10 py-4 bg-white text-slate-900 text-lg font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg pulse-glow-btn"
+              className="inline-block mt-10 px-10 py-4 bg-white text-navy-900 text-lg font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg pulse-glow-btn"
             >
               {t("cta.calculate")}
             </Link>

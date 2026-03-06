@@ -50,10 +50,10 @@ export default function ZonesList() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-slate-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("zones_page.title")}</h1>
-          <p className="mt-4 text-xl text-sky-200">{t("zones_page.we_serve")}</p>
+          <p className="mt-4 text-xl text-brand-light">{t("zones_page.we_serve")}</p>
         </div>
       </section>
 
@@ -73,13 +73,13 @@ export default function ZonesList() {
                     className="group bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-300"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-sky-100 text-sky-600">
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-brand-light text-brand">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                       </div>
-                      <h2 className="text-lg font-semibold text-slate-800 group-hover:text-sky-600 transition-colors">
+                      <h2 className="text-lg font-semibold text-navy-800 group-hover:text-brand transition-colors">
                         {name}
                       </h2>
                     </div>

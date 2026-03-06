@@ -86,7 +86,7 @@ export default function Contact() {
   };
 
   const inputCls =
-    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all";
+    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
 
   return (
     <>
@@ -98,7 +98,7 @@ export default function Contact() {
       />
 
       {/* Hero */}
-      <section className="relative py-24 sm:py-32 bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900 overflow-hidden">
+      <section className="relative py-24 sm:py-32 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
@@ -122,7 +122,7 @@ export default function Contact() {
             {/* Form */}
             <div className="lg:col-span-3">
               <ScrollReveal>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-navy-900 mb-8">
                   {t("contact.form_title")}
                 </h2>
               </ScrollReveal>
@@ -214,7 +214,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full px-6 py-3.5 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base btn-press"
+                    className="w-full px-6 py-3.5 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base btn-press"
                   >
                     {sending ? "..." : t("contact.send")}
                   </button>
@@ -225,7 +225,7 @@ export default function Contact() {
             {/* Contact info */}
             <div className="lg:col-span-2">
               <ScrollReveal delay={0.2}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-navy-900 mb-8">
                   {t("contact.info_title")}
                 </h2>
               </ScrollReveal>
@@ -237,7 +237,7 @@ export default function Contact() {
                     ),
                     title: t("contact.phone"),
                     content: (
-                      <a href="tel:+34XXXXXXXXX" className="text-sky-600 hover:text-sky-700 font-medium link-underline">
+                      <a href="tel:+34XXXXXXXXX" className="text-brand hover:text-brand-dark font-medium link-underline">
                         +34 XXX XXX XXX
                       </a>
                     ),
@@ -248,7 +248,7 @@ export default function Contact() {
                     ),
                     title: t("contact.email"),
                     content: (
-                      <a href="mailto:info@arafinestra.com" className="text-sky-600 hover:text-sky-700 font-medium link-underline">
+                      <a href="mailto:info@arafinestra.com" className="text-brand hover:text-brand-dark font-medium link-underline">
                         info@arafinestra.com
                       </a>
                     ),
@@ -273,13 +273,13 @@ export default function Contact() {
                 ].map((item, i) => (
                   <ScrollReveal key={i} delay={0.25 + i * 0.08}>
                     <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-sky-100 text-sky-600">
+                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-brand-light text-brand">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           {item.icon}
                         </svg>
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-slate-800">
+                        <p className="text-sm font-semibold text-navy-800">
                           {item.title}
                         </p>
                         <div className="text-sm mt-0.5">{item.content}</div>

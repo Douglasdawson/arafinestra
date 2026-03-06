@@ -26,12 +26,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-navy-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Services */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-100 mb-4">
               {t("footer.services")}
             </h3>
             <ul className="space-y-2">
@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* Zones */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-100 mb-4">
               {t("footer.zones")}
             </h3>
             <ul className="space-y-2">
@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-100 mb-4">
               {t("footer.company")}
             </h3>
             <ul className="space-y-2">
@@ -88,7 +88,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-100 mb-4">
               {t("footer.contact")}
             </h3>
             <ul className="space-y-2 text-sm text-slate-400">
@@ -120,7 +120,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-slate-800">
+      <div className="border-t border-navy-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <Link to="/admin/login" className="text-xs text-slate-500 hover:text-slate-400 transition-colors">
             &copy; 2026 ARA FINESTRA. {t("footer.rights")}.

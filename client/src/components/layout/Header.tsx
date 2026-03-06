@@ -85,8 +85,8 @@ export default function Header() {
             <Link to={`/${prefix}`} className="group flex items-center gap-2">
               <span
                 className={`text-xl font-bold tracking-tight transition-colors duration-300 ${
-                  scrolled || !isHome ? "text-slate-800" : "text-white"
-                } group-hover:text-sky-600`}
+                  scrolled || !isHome ? "text-navy-800" : "text-white"
+                } group-hover:text-brand`}
               >
                 ARA FINESTRA
               </span>
@@ -100,7 +100,7 @@ export default function Header() {
                   onClick={() => setServicesOpen(!servicesOpen)}
                   className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isServiceActive
-                      ? "text-sky-600"
+                      ? "text-brand"
                       : scrolled || !isHome
                         ? "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                         : "text-white/90 hover:text-white hover:bg-white/10"
@@ -116,7 +116,7 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                   {isServiceActive && (
-                    <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-sky-600 rounded-full" />
+                    <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand rounded-full" />
                   )}
                 </button>
                 {servicesOpen && (
@@ -128,7 +128,7 @@ export default function Header() {
                         onClick={() => setServicesOpen(false)}
                         className={`block px-4 py-2.5 text-sm transition-colors ${
                           isActive(s.to)
-                            ? "text-sky-600 bg-sky-50 font-medium"
+                            ? "text-brand bg-brand-light font-medium"
                             : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                         }`}
                       >
@@ -145,7 +145,7 @@ export default function Header() {
                   to={link.to}
                   className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isActive(link.to)
-                      ? "text-sky-600"
+                      ? "text-brand"
                       : scrolled || !isHome
                         ? "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                         : "text-white/90 hover:text-white hover:bg-white/10"
@@ -153,7 +153,7 @@ export default function Header() {
                 >
                   {link.label}
                   {isActive(link.to) && (
-                    <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-sky-600 rounded-full" />
+                    <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand rounded-full" />
                   )}
                 </Link>
               ))}
@@ -165,7 +165,7 @@ export default function Header() {
                 href={`tel:${PHONE.replace(/\s/g, "")}`}
                 className={`text-sm font-medium transition-colors ${
                   scrolled || !isHome
-                    ? "text-slate-600 hover:text-sky-600"
+                    ? "text-slate-600 hover:text-brand"
                     : "text-white/90 hover:text-white"
                 }`}
               >
@@ -218,7 +218,7 @@ export default function Header() {
             style={{ animation: "slideInRight 0.3s ease-out" }}
           >
             <div className="flex items-center justify-between p-4 border-b border-slate-100">
-              <span className="text-lg font-bold text-slate-800">ARA FINESTRA</span>
+              <span className="text-lg font-bold text-navy-800">ARA FINESTRA</span>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="p-2 rounded-lg text-slate-500 hover:bg-slate-100"
@@ -239,7 +239,7 @@ export default function Header() {
                   to={s.to}
                   className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive(s.to)
-                      ? "bg-sky-50 text-sky-600"
+                      ? "bg-brand-light text-brand"
                       : "text-slate-700 hover:bg-slate-50"
                   }`}
                 >
@@ -255,7 +255,7 @@ export default function Header() {
                   to={link.to}
                   className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive(link.to)
-                      ? "bg-sky-50 text-sky-600"
+                      ? "bg-brand-light text-brand"
                       : "text-slate-700 hover:bg-slate-50"
                   }`}
                 >
@@ -267,7 +267,7 @@ export default function Header() {
             <div className="p-4 border-t border-slate-100 space-y-3">
               <a
                 href={`tel:${PHONE.replace(/\s/g, "")}`}
-                className="block text-center py-3 px-4 bg-sky-600 text-white rounded-xl font-medium hover:bg-sky-700 transition-colors"
+                className="block text-center py-3 px-4 bg-brand text-white rounded-xl font-medium hover:bg-brand-dark transition-colors"
               >
                 {t("cta.call_us")} {PHONE}
               </a>

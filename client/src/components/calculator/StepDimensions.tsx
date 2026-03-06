@@ -29,7 +29,7 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
             {/* Leaves */}
             <div className="flex w-full h-full p-1 gap-0.5">
               {Array.from({ length: hojas }).map((_, i) => (
-                <div key={i} className="flex-1 border-2 border-blue-400 rounded-sm bg-sky-100/50 flex items-center justify-center">
+                <div key={i} className="flex-1 border-2 border-blue-400 rounded-sm bg-brand-light/50 flex items-center justify-center">
                   {/* Handle */}
                   <div className="w-1 h-4 bg-blue-400 rounded-full" />
                 </div>

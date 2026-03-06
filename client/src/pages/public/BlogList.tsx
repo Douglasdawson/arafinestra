@@ -97,7 +97,7 @@ export default function BlogList() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-slate-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">Blog</h1>
         </div>
@@ -147,14 +147,14 @@ export default function BlogList() {
                       <div className="p-5">
                         <div className="flex items-center gap-3 text-xs text-slate-500 mb-2">
                           {post.categoria && (
-                            <span className="px-2 py-0.5 bg-sky-50 text-sky-700 rounded-full font-medium">
+                            <span className="px-2 py-0.5 bg-brand-light text-brand rounded-full font-medium">
                               {t(`blog.cat_${post.categoria}`)}
                             </span>
                           )}
                           <span>{date}</span>
                           <span>{minutes} min</span>
                         </div>
-                        <h2 className="text-lg font-semibold text-slate-800 group-hover:text-sky-600 transition-colors mb-2">
+                        <h2 className="text-lg font-semibold text-navy-800 group-hover:text-brand transition-colors mb-2">
                           {title}
                         </h2>
                         {excerpt && (

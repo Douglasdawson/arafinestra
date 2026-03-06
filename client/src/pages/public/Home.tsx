@@ -60,7 +60,7 @@ function WindowMaskHero({
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-amber-100 to-orange-100 overflow-hidden">
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1
-            className="text-5xl sm:text-6xl font-bold text-slate-900 tracking-tight leading-none animate-fadeIn"
+            className="text-5xl sm:text-6xl font-bold text-navy-900 tracking-tight leading-none animate-fadeIn"
           >
             ARA FINESTRA
           </h1>
@@ -76,7 +76,7 @@ function WindowMaskHero({
           >
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-10 px-10 py-4 bg-slate-900 text-white text-lg font-semibold rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
+              className="inline-block mt-10 px-10 py-4 bg-navy-900 text-white text-lg font-semibold rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
             >
               {t("cta.calculate")}
             </Link>
@@ -104,7 +104,7 @@ function WindowMaskHero({
           className="absolute inset-0 z-[5] flex flex-col items-center justify-center px-4"
           style={{ opacity: contentOpacity, scale: contentScale }}
         >
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 tracking-tight leading-none text-center">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-navy-900 tracking-tight leading-none text-center">
             ARA FINESTRA
           </h1>
           <p className="mt-6 sm:mt-8 text-xl sm:text-2xl text-slate-600 font-light max-w-2xl mx-auto text-center">
@@ -112,7 +112,7 @@ function WindowMaskHero({
           </p>
           <Link
             to={`/${prefix}/pressupost`}
-            className="inline-block mt-10 sm:mt-12 px-10 py-4 bg-slate-900 text-white text-lg font-semibold rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
+            className="inline-block mt-10 sm:mt-12 px-10 py-4 bg-navy-900 text-white text-lg font-semibold rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
           >
             {t("cta.calculate")}
           </Link>
@@ -124,7 +124,7 @@ function WindowMaskHero({
           style={{ opacity: frameOpacity }}
         >
           {/* Dark surround (wall) */}
-          <div className="absolute inset-0 bg-slate-900" />
+          <div className="absolute inset-0 bg-navy-900" />
 
           {/* Window opening — the hole in the wall */}
           <div className="relative w-[60vw] h-[70vh] max-w-[800px] max-h-[600px]">
@@ -145,20 +145,20 @@ function WindowMaskHero({
             >
               {/* Front face (what you see when closed) */}
               <div
-                className="absolute inset-0 bg-slate-800 border-r-[2px] border-slate-600"
+                className="absolute inset-0 bg-navy-800 border-r-[2px] border-slate-600"
                 style={{ backfaceVisibility: "hidden" }}
               >
                 {/* Shutter panels */}
                 <div className="absolute inset-[8%] flex flex-col gap-[4%]">
-                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
-                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
+                  <div className="flex-1 bg-navy-700/80 rounded-sm" />
+                  <div className="flex-1 bg-navy-700/80 rounded-sm" />
                 </div>
                 {/* Handle */}
                 <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[6px] h-[30px] bg-slate-500 rounded-full" />
               </div>
               {/* Back face (inside of shutter visible when opening) */}
               <div
-                className="absolute inset-0 bg-slate-700"
+                className="absolute inset-0 bg-navy-700"
                 style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
               />
             </motion.div>
@@ -174,25 +174,25 @@ function WindowMaskHero({
             >
               {/* Front face */}
               <div
-                className="absolute inset-0 bg-slate-800 border-l-[2px] border-slate-600"
+                className="absolute inset-0 bg-navy-800 border-l-[2px] border-slate-600"
                 style={{ backfaceVisibility: "hidden" }}
               >
                 <div className="absolute inset-[8%] flex flex-col gap-[4%]">
-                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
-                  <div className="flex-1 bg-slate-700/80 rounded-sm" />
+                  <div className="flex-1 bg-navy-700/80 rounded-sm" />
+                  <div className="flex-1 bg-navy-700/80 rounded-sm" />
                 </div>
                 {/* Handle */}
                 <div className="absolute left-[10%] top-1/2 -translate-y-1/2 w-[6px] h-[30px] bg-slate-500 rounded-full" />
               </div>
               {/* Back face */}
               <div
-                className="absolute inset-0 bg-slate-700"
+                className="absolute inset-0 bg-navy-700"
                 style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
               />
             </motion.div>
 
             {/* Glass behind shutters (subtle reflection) */}
-            <div className="absolute inset-0 z-10 bg-sky-100/10 backdrop-blur-[1px]">
+            <div className="absolute inset-0 z-10 bg-brand-light/10 backdrop-blur-[1px]">
               <div
                 className="absolute inset-0 opacity-20"
                 style={{
@@ -252,7 +252,7 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
 
   if (isMobile) {
     return (
-      <div className="bg-slate-950">
+      <div className="bg-navy-950">
         <section className="min-h-[70vh] flex items-center justify-center px-4 py-16">
           <ScrollReveal>
             <div className="text-center">
@@ -263,7 +263,7 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
             </div>
           </ScrollReveal>
         </section>
-        <section className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-slate-900">
+        <section className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-navy-900">
           <div className="text-center space-y-8">
             <ScrollReveal>
               <p className="text-5xl sm:text-6xl font-bold text-red-400">
@@ -299,7 +299,7 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
         <section className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-amber-50">
           <div className="text-center space-y-6">
             <ScrollReveal>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-bold text-navy-900">
                 {t("home.stage4_title")}
               </h2>
             </ScrollReveal>
@@ -382,7 +382,7 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
           style={{ opacity: s4Opacity }}
         >
           <div className="text-center max-w-3xl">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 tracking-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 tracking-tight">
               {t("home.stage4_title")}
             </h2>
             <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center">
@@ -421,7 +421,7 @@ function BenefitPill({ icon, label }: { icon: string; label: string }) {
       <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-amber-100 text-amber-600">
         {icons[icon]}
       </div>
-      <span className="text-lg font-semibold text-slate-800">{label}</span>
+      <span className="text-lg font-semibold text-navy-800">{label}</span>
     </div>
   );
 }
@@ -437,7 +437,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={ref} className="relative py-20 sm:py-28 bg-slate-950 overflow-hidden">
+    <section ref={ref} className="relative py-20 sm:py-28 bg-navy-950 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4 tracking-tight">
@@ -478,7 +478,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
           {/* Window divider */}
           <div className="relative w-12 sm:w-24 flex flex-col items-center mx-1 sm:mx-4">
             <div className="w-full h-40 sm:h-56 relative">
-              <div className="absolute inset-0 border-4 border-slate-600 rounded-sm bg-slate-800/30">
+              <div className="absolute inset-0 border-4 border-slate-600 rounded-sm bg-navy-800/30">
                 <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-slate-600" />
                 <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-slate-600" />
               </div>
@@ -486,8 +486,8 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
                 <span
                   className={`text-xs sm:text-sm font-semibold px-3 py-1 rounded-full transition-colors duration-300 ${
                     isPVC
-                      ? "bg-sky-500/20 text-sky-400"
-                      : "bg-slate-700 text-slate-500"
+                      ? "bg-brand/20 text-brand"
+                      : "bg-navy-700 text-slate-500"
                   }`}
                 >
                   {isPVC ? "PVC Cortizo" : t("home.acoustic_old")}
@@ -545,7 +545,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
             className={`relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
               isPVC
                 ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
-                : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                : "bg-navy-800 text-slate-300 hover:bg-navy-700"
             }`}
           >
             {isPVC
@@ -604,7 +604,7 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
   }, [isDragging]);
 
   return (
-    <section className="relative py-20 sm:py-28 bg-slate-900 overflow-hidden">
+    <section className="relative py-20 sm:py-28 bg-navy-900 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4 tracking-tight">
@@ -692,19 +692,19 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
           <ScrollReveal>
-            <div className="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
-              <p className="text-3xl sm:text-4xl font-bold text-sky-400">70%</p>
+            <div className="text-center p-6 rounded-xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-3xl sm:text-4xl font-bold text-brand">70%</p>
               <p className="mt-2 text-sm text-slate-400">{t("home.thermal_stat_heat")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <div className="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
+            <div className="text-center p-6 rounded-xl bg-navy-800/50 border border-navy-700/50">
               <p className="text-3xl sm:text-4xl font-bold text-emerald-400">40%</p>
               <p className="mt-2 text-sm text-slate-400">{t("home.thermal_stat_bill")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <div className="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
+            <div className="text-center p-6 rounded-xl bg-navy-800/50 border border-navy-700/50">
               <p className="text-3xl sm:text-4xl font-bold text-amber-400">1.0</p>
               <p className="mt-2 text-sm text-slate-400">{t("home.thermal_stat_uf")}</p>
             </div>
@@ -758,7 +758,7 @@ function EnergySavings({
     <section className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 text-center mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 text-center mb-4 tracking-tight">
             {t("home.energy_title")}
           </h2>
           <p className="text-lg sm:text-xl text-slate-500 text-center mb-12 max-w-2xl mx-auto">
@@ -780,7 +780,7 @@ function EnergySavings({
                     onClick={() => setOldType(wt.id)}
                     className={`px-3 py-3 rounded-xl text-sm font-medium transition-all ${
                       oldType === wt.id
-                        ? "bg-slate-900 text-white shadow-md"
+                        ? "bg-navy-900 text-white shadow-md"
                         : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"
                     }`}
                   >
@@ -795,7 +795,7 @@ function EnergySavings({
                 <label className="text-sm font-semibold text-slate-700">
                   {t("home.energy_window_area")}
                 </label>
-                <span className="text-2xl font-bold text-slate-900">
+                <span className="text-2xl font-bold text-navy-900">
                   {windowArea} m²
                 </span>
               </div>
@@ -805,7 +805,7 @@ function EnergySavings({
                 max={40}
                 value={windowArea}
                 onChange={(e) => setWindowArea(parseInt(e.target.value))}
-                className="w-full accent-slate-900 h-2"
+                className="w-full accent-navy-900 h-2"
               />
               <div className="flex justify-between text-xs text-slate-400 mt-1">
                 <span>{t("home.energy_small")}</span>
@@ -890,7 +890,7 @@ function EnergySavings({
 
             <Link
               to={`/${prefix}/pressupost`}
-              className="block w-full text-center px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors shadow-lg btn-press"
+              className="block w-full text-center px-8 py-4 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 transition-colors shadow-lg btn-press"
             >
               {t("cta.calculate")}
             </Link>
@@ -917,11 +917,11 @@ function ServiceCard({
 }) {
   return (
     <Link to={link} className="block group">
-      <div className="bg-white rounded-2xl p-8 sm:p-10 border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-200 transition-all duration-300">
-        <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-sky-50 text-sky-600 mb-6 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
+      <div className="bg-white rounded-2xl p-8 sm:p-10 border border-slate-100 shadow-sm hover:shadow-lg hover:border-brand/30 transition-all duration-300">
+        <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-light text-brand mb-6 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
           {icon}
         </div>
-        <h3 className="text-xl font-semibold text-slate-900 mb-2">{title}</h3>
+        <h3 className="text-xl font-semibold text-navy-900 mb-2">{title}</h3>
         <p className="text-slate-500 leading-relaxed">{desc}</p>
       </div>
     </Link>
@@ -977,7 +977,7 @@ export default function Home() {
       <section className="py-20 sm:py-28 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 text-center mb-16">
               {t("services.title")}
             </h2>
           </ScrollReveal>
@@ -1036,14 +1036,14 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-r from-sky-600 via-blue-600 to-blue-700 overflow-hidden">
+      <section className="relative py-20 sm:py-28 bg-gradient-to-r from-brand via-brand-dark to-navy-800 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 text-center">
             <ScrollReveal>
               <p className="text-6xl sm:text-7xl font-bold text-white">
                 <Counter target={15} suffix="+" />
               </p>
-              <p className="mt-3 text-lg text-sky-100 font-medium">
+              <p className="mt-3 text-lg text-brand-light font-medium">
                 {t("stats.experience")}
               </p>
             </ScrollReveal>
@@ -1051,7 +1051,7 @@ export default function Home() {
               <p className="text-6xl sm:text-7xl font-bold text-white">
                 <Counter target={500} suffix="+" />
               </p>
-              <p className="mt-3 text-lg text-sky-100 font-medium">
+              <p className="mt-3 text-lg text-brand-light font-medium">
                 {t("stats.projects")}
               </p>
             </ScrollReveal>
@@ -1059,7 +1059,7 @@ export default function Home() {
               <p className="text-6xl sm:text-7xl font-bold text-white">
                 <Counter target={60} suffix="km" />
               </p>
-              <p className="mt-3 text-lg text-sky-100 font-medium">
+              <p className="mt-3 text-lg text-brand-light font-medium">
                 {t("stats.coverage")}
               </p>
             </ScrollReveal>
@@ -1097,7 +1097,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-28 sm:py-36 bg-slate-950 overflow-hidden flex items-center justify-center">
+      <section className="relative py-28 sm:py-36 bg-navy-950 overflow-hidden flex items-center justify-center">
         <div className="text-center px-4">
           <ScrollReveal>
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">
@@ -1108,7 +1108,7 @@ export default function Home() {
             <div className="mt-12">
               <Link
                 to={`/${prefix}/pressupost`}
-                className="inline-block px-14 py-6 bg-white text-slate-900 text-xl font-semibold rounded-lg shadow-lg pulse-glow-btn btn-press"
+                className="inline-block px-14 py-6 bg-white text-navy-900 text-xl font-semibold rounded-lg shadow-lg pulse-glow-btn btn-press"
               >
                 {t("cta.calculate")}
               </Link>

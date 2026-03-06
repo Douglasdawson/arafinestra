@@ -30,7 +30,7 @@ export default function ProjectCard({ photo, title, location, link }: ProjectCar
         )}
       </div>
       <div className="p-4">
-        <h3 className="text-sm font-semibold text-slate-800 group-hover:text-sky-600 transition-colors">
+        <h3 className="text-sm font-semibold text-navy-800 group-hover:text-brand transition-colors">
           {title}
         </h3>
         {location && (

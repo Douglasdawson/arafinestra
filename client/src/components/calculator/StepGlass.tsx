@@ -48,8 +48,8 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
               )}
 
               {/* Glass icon */}
-              <div className="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center mb-3">
-                <svg className="w-6 h-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-3">
+                <svg className="w-6 h-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v18H3V3zm4 4h10v10H7V7z" />
                 </svg>
               </div>

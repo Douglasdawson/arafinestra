@@ -87,7 +87,7 @@ export default function Projects() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-slate-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">
             {t("portfolio.title")}
@@ -104,7 +104,7 @@ export default function Projects() {
               <select
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
-                className="px-4 py-2 rounded-lg border border-slate-300 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-sky-500"
+                className="px-4 py-2 rounded-lg border border-slate-300 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand"
               >
                 <option value="">{t("portfolio.filter_location")}</option>
                 {locations.map((loc) => (
@@ -148,11 +148,11 @@ export default function Projects() {
                     )}
                   </div>
                   <div className="p-4">
-                    <h3 className="text-sm font-semibold text-slate-800 group-hover:text-sky-600 transition-colors">
+                    <h3 className="text-sm font-semibold text-navy-800 group-hover:text-brand transition-colors">
                       {localize(p as unknown as Record<string, unknown>, "titulo", currentLang)}
                     </h3>
                     {p.localidad && (
-                      <span className="mt-2 inline-block px-2 py-0.5 text-xs font-medium bg-sky-50 text-sky-700 rounded-full">
+                      <span className="mt-2 inline-block px-2 py-0.5 text-xs font-medium bg-brand-light text-brand rounded-full">
                         {p.localidad}
                       </span>
                     )}
@@ -179,7 +179,7 @@ export default function Projects() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-4 border-b border-slate-200">
-              <h2 className="text-xl font-bold text-slate-800">
+              <h2 className="text-xl font-bold text-navy-800">
                 {localize(selectedProject as unknown as Record<string, unknown>, "titulo", currentLang)}
               </h2>
               <button
@@ -244,7 +244,7 @@ export default function Projects() {
                   </span>
                 )}
                 {selectedProject.localidad && (
-                  <span className="inline-flex items-center px-3 py-1 text-xs font-medium bg-sky-50 text-sky-700 rounded-full">
+                  <span className="inline-flex items-center px-3 py-1 text-xs font-medium bg-brand-light text-brand rounded-full">
                     {selectedProject.localidad}
                   </span>
                 )}
