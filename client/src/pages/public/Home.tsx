@@ -13,17 +13,6 @@ import ScrollReveal from "../../components/ui/ScrollReveal";
 import Counter from "../../components/ui/Counter";
 import MagneticButton from "../../components/ui/MagneticButton";
 
-/* ─── Types ─── */
-interface TestimonialItem {
-  id: number;
-  nombre: string;
-  localidad: string | null;
-  estrellas: number;
-  texto_ca: string | null;
-  texto_es: string | null;
-  texto_en: string | null;
-}
-
 /* ─── Helpers ─── */
 function useIsMobile() {
   const [mobile, setMobile] = useState(false);
@@ -427,6 +416,420 @@ function BenefitPill({ icon, label }: { icon: string; label: string }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   EFFECT 4 — Interactive Acoustic Demo
+   ═══════════════════════════════════════════════════════════════ */
+function AcousticDemo({ t }: { t: (k: string) => string }) {
+  const [isPVC, setIsPVC] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const outsideBars = useRef(
+    Array.from({ length: 20 }, () => 30 + Math.random() * 70)
+  ).current;
+
+  return (
+    <section ref={ref} className="relative py-24 sm:py-32 bg-slate-950 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4 tracking-tight">
+            {t("home.acoustic_title")}
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-400 text-center mb-16 max-w-2xl mx-auto">
+            {t("home.acoustic_sub")}
+          </p>
+        </ScrollReveal>
+
+        <div className="relative flex items-center justify-center gap-0">
+          {/* Outside */}
+          <div className="flex-1 flex flex-col items-center">
+            <p className="text-xs sm:text-sm uppercase tracking-widest text-slate-500 mb-6">
+              {t("home.acoustic_outside")}
+            </p>
+            <div className="flex items-end gap-[3px] h-32 sm:h-52">
+              {outsideBars.map((h, i) => (
+                <motion.div
+                  key={i}
+                  className="w-[4px] sm:w-[8px] rounded-full bg-gradient-to-t from-red-500 to-orange-400"
+                  initial={{ height: 0 }}
+                  animate={
+                    isInView
+                      ? {
+                          height: [
+                            h * 0.3,
+                            h,
+                            h * 0.5,
+                            h * 0.9,
+                            h * 0.4,
+                          ],
+                        }
+                      : { height: 0 }
+                  }
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: i * 0.05,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <p className="text-3xl sm:text-5xl font-bold text-red-400">
+                75 dB
+              </p>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                {t("home.acoustic_street")}
+              </p>
+            </div>
+          </div>
+
+          {/* Window divider */}
+          <div className="relative w-12 sm:w-24 flex flex-col items-center mx-1 sm:mx-4">
+            <div className="w-full h-44 sm:h-64 relative">
+              <div className="absolute inset-0 border-4 border-slate-600 rounded-sm bg-slate-800/30 backdrop-blur-sm">
+                <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-slate-600" />
+                <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-slate-600" />
+              </div>
+              <motion.div
+                className="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap"
+                animate={{ opacity: isPVC ? 1 : 0.4 }}
+              >
+                <span
+                  className={`text-xs sm:text-sm font-semibold px-3 py-1 rounded-full ${
+                    isPVC
+                      ? "bg-sky-500/20 text-sky-400"
+                      : "bg-slate-700 text-slate-500"
+                  }`}
+                >
+                  {isPVC ? "PVC Cortizo" : t("home.acoustic_old")}
+                </span>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Inside */}
+          <div className="flex-1 flex flex-col items-center">
+            <p className="text-xs sm:text-sm uppercase tracking-widest text-slate-500 mb-6">
+              {t("home.acoustic_inside")}
+            </p>
+            <div className="flex items-end gap-[3px] h-32 sm:h-52">
+              {outsideBars.map((h, i) => {
+                const reduction = isPVC ? 0.12 : 0.55;
+                return (
+                  <motion.div
+                    key={i}
+                    className={`w-[4px] sm:w-[8px] rounded-full bg-gradient-to-t ${
+                      isPVC
+                        ? "from-emerald-500 to-emerald-300"
+                        : "from-amber-500 to-yellow-400"
+                    }`}
+                    animate={{
+                      height: isInView
+                        ? [
+                            h * reduction * 0.3,
+                            h * reduction,
+                            h * reduction * 0.5,
+                            h * reduction * 0.9,
+                            h * reduction * 0.4,
+                          ]
+                        : 0,
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      delay: i * 0.05 + 0.3,
+                      ease: "easeInOut",
+                    }}
+                  />
+                );
+              })}
+            </div>
+            <div className="mt-6 text-center">
+              <motion.p
+                className={`text-3xl sm:text-5xl font-bold ${
+                  isPVC ? "text-emerald-400" : "text-amber-400"
+                }`}
+                key={isPVC ? "pvc" : "old"}
+                initial={{ scale: 1.3, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                {isPVC ? "33 dB" : "55 dB"}
+              </motion.p>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                {isPVC
+                  ? t("home.acoustic_whisper")
+                  : t("home.acoustic_conversation")}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Toggle */}
+        <div className="flex justify-center mt-16">
+          <button
+            onClick={() => setIsPVC(!isPVC)}
+            className={`relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-500 ${
+              isPVC
+                ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
+                : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+            }`}
+          >
+            {isPVC
+              ? t("home.acoustic_toggle_old")
+              : t("home.acoustic_toggle_pvc")}
+          </button>
+        </div>
+
+        {/* Reduction badge */}
+        <motion.div
+          className="flex justify-center mt-8"
+          animate={{ opacity: isPVC ? 1 : 0, y: isPVC ? 0 : 10 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="px-6 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+            <p className="text-emerald-400 font-semibold text-base sm:text-lg">
+              -42 dB — {t("home.acoustic_reduction")}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   EFFECT 5 — Thermal Visualization Split
+   ═══════════════════════════════════════════════════════════════ */
+function ThermalSplit({ t }: { t: (k: string) => string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [splitPos, setSplitPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    if (!isDragging) return;
+    const onMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const { left, width } = containerRef.current.getBoundingClientRect();
+      setSplitPos(Math.max(10, Math.min(90, ((e.clientX - left) / width) * 100)));
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!containerRef.current) return;
+      const { left, width } = containerRef.current.getBoundingClientRect();
+      setSplitPos(
+        Math.max(10, Math.min(90, ((e.touches[0].clientX - left) / width) * 100))
+      );
+    };
+    const onUp = () => setIsDragging(false);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchend", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchend", onUp);
+    };
+  }, [isDragging]);
+
+  return (
+    <section className="relative py-24 sm:py-32 bg-slate-900 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4 tracking-tight">
+            {t("home.thermal_title")}
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+            {t("home.thermal_sub")}
+          </p>
+        </ScrollReveal>
+
+        {/* Thermal comparison container */}
+        <div
+          ref={containerRef}
+          className="relative w-full aspect-[4/3] sm:aspect-[2/1] rounded-2xl overflow-hidden cursor-ew-resize select-none touch-none"
+          onMouseDown={() => setIsDragging(true)}
+          onTouchStart={() => setIsDragging(true)}
+        >
+          {/* COLD side (old window) — full background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950">
+            <div className="absolute top-[20%] left-[15%] w-32 h-32 rounded-full bg-cyan-500/20 blur-3xl" />
+            <div className="absolute bottom-[25%] left-[25%] w-24 h-24 rounded-full bg-blue-400/15 blur-2xl" />
+            <div className="absolute top-[40%] left-[40%] w-40 h-40 rounded-full bg-indigo-500/10 blur-3xl" />
+            {/* Window outline */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 sm:w-48 h-36 sm:h-56 border-2 border-cyan-400/30 rounded-sm">
+              <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-cyan-400/20" />
+              <div className="absolute top-1/2 left-0 right-0 h-px -translate-y-1/2 bg-cyan-400/20" />
+              {/* Cold draft arrows */}
+              <motion.div
+                className="absolute -right-6 sm:-right-8 top-1/4 text-cyan-400/60"
+                animate={{ x: [0, -6, 0], opacity: [0.3, 0.7, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M4 10h12M10 4l6 6-6 6" />
+                </svg>
+              </motion.div>
+              <motion.div
+                className="absolute -right-6 sm:-right-8 top-3/4 text-cyan-400/40"
+                animate={{ x: [0, -4, 0], opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M4 10h12M10 4l6 6-6 6" />
+                </svg>
+              </motion.div>
+            </div>
+            {/* Labels cold side */}
+            <div className="absolute top-4 left-4 sm:top-8 sm:left-8">
+              <p className="text-xs sm:text-sm uppercase tracking-widest text-cyan-400/60">
+                {t("home.thermal_before")}
+              </p>
+              <p className="text-2xl sm:text-4xl font-bold text-cyan-300 mt-1">
+                5°C
+              </p>
+              <p className="text-xs sm:text-sm text-cyan-400/50 mt-1">
+                {t("home.thermal_cold_desc")}
+              </p>
+            </div>
+            <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8">
+              <p className="text-sm sm:text-xl font-bold text-cyan-300">
+                {t("home.thermal_heat_loss")}
+              </p>
+              <p className="text-xs sm:text-sm text-cyan-400/60">
+                Uf = 5.7 W/m²K
+              </p>
+            </div>
+          </div>
+
+          {/* WARM side (PVC) — clipped */}
+          <div
+            className="absolute inset-0"
+            style={{ clipPath: `inset(0 0 0 ${splitPos}%)` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-900 via-orange-800 to-red-900">
+              <div className="absolute top-[30%] right-[15%] w-40 h-40 rounded-full bg-amber-500/25 blur-3xl" />
+              <div className="absolute bottom-[20%] right-[25%] w-32 h-32 rounded-full bg-orange-400/20 blur-2xl" />
+              <div className="absolute top-[50%] right-[40%] w-36 h-36 rounded-full bg-red-500/15 blur-3xl" />
+              {/* Window outline warm */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 sm:w-48 h-36 sm:h-56 border-2 border-amber-400/40 rounded-sm">
+                <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-amber-400/25" />
+                <div className="absolute top-1/2 left-0 right-0 h-px -translate-y-1/2 bg-amber-400/25" />
+                <div className="absolute inset-2 bg-amber-500/10 rounded-sm" />
+              </div>
+              {/* Labels warm side */}
+              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 text-right">
+                <p className="text-xs sm:text-sm uppercase tracking-widest text-amber-400/60">
+                  {t("home.thermal_after")}
+                </p>
+                <p className="text-2xl sm:text-4xl font-bold text-amber-300 mt-1">
+                  21°C
+                </p>
+                <p className="text-xs sm:text-sm text-amber-400/50 mt-1">
+                  {t("home.thermal_warm_desc")}
+                </p>
+              </div>
+              <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 text-right">
+                <p className="text-sm sm:text-xl font-bold text-amber-300">
+                  {t("home.thermal_no_loss")}
+                </p>
+                <p className="text-xs sm:text-sm text-amber-400/60">
+                  Uf = 1.0 W/m²K
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider handle */}
+          <div
+            className="absolute top-0 bottom-0 z-20"
+            style={{
+              left: `${splitPos}%`,
+              transform: "translateX(-50%)",
+            }}
+          >
+            <div className="w-[2px] h-full bg-white/80" />
+            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg shadow-black/30 flex items-center justify-center">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                className="text-slate-700"
+                strokeWidth="2"
+              >
+                <path d="M7 4l-4 6 4 6M13 4l4 6-4 6" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Drag hint */}
+          {!isDragging && (
+            <motion.div
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+            >
+              <p className="text-xs sm:text-sm text-white/80">
+                {t("home.thermal_drag")}
+              </p>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Stats below */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+          <ScrollReveal delay={0}>
+            <div className="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <p className="text-3xl sm:text-4xl font-bold text-sky-400">70%</p>
+              <p className="mt-2 text-sm text-slate-400">
+                {t("home.thermal_stat_heat")}
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <div className="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-400">
+                40%
+              </p>
+              <p className="mt-2 text-sm text-slate-400">
+                {t("home.thermal_stat_bill")}
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <p className="text-3xl sm:text-4xl font-bold text-amber-400">
+                1.0
+              </p>
+              <p className="mt-2 text-sm text-slate-400">
+                {t("home.thermal_stat_uf")}
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    EFFECT 3 — Parallax Window Frame
    ═══════════════════════════════════════════════════════════════ */
 function ParallaxWindow({ t }: { t: (k: string) => string }) {
@@ -607,23 +1010,6 @@ export default function Home() {
   const prefix = lang || i18n.language || "ca";
   const currentLang = lang || i18n.language || "ca";
 
-  const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
-
-  useEffect(() => {
-    fetch("/api/testimonials?published=true")
-      .then((r) => (r.ok ? r.json() : []))
-      .then(setTestimonials)
-      .catch(() => setTestimonials([]));
-  }, []);
-
-  const getTestimonialText = (item: TestimonialItem) => {
-    if (currentLang === "es") return item.texto_es || item.texto_ca || "";
-    if (currentLang === "en") return item.texto_en || item.texto_ca || "";
-    return item.texto_ca || "";
-  };
-
-  const firstTestimonial = testimonials.length > 0 ? testimonials[0] : null;
-
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -663,6 +1049,12 @@ export default function Home() {
 
       {/* ─── EFFECT 3: Parallax Window Frame ─── */}
       <ParallaxWindow t={t} />
+
+      {/* ─── EFFECT 4: Interactive Acoustic Demo ─── */}
+      <AcousticDemo t={t} />
+
+      {/* ─── EFFECT 5: Thermal Visualization ─── */}
+      <ThermalSplit t={t} />
 
       {/* ─── SERVICES GRID ─── */}
       <section className="py-24 sm:py-32 bg-slate-50">
