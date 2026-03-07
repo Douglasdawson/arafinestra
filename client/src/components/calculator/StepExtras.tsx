@@ -36,7 +36,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
   if (options.length === 0) {
     return (
       <div className="space-y-6 text-center">
-        <h2 className="text-2xl font-bold text-gray-800">{t("calculator.step_extras")}</h2>
+        <h2 className="text-2xl font-bold text-navy-900">{t("calculator.step_extras")}</h2>
         <p className="text-gray-500">{t("calculator.no_extras")}</p>
       </div>
     );
@@ -44,7 +44,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_extras")}
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_extras_desc")}</p>
@@ -58,11 +58,11 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
               onClick={() => onToggle(id)}
               className={`w-full flex items-center gap-4 p-5 rounded-xl border-2 transition-all duration-200 ${
                 isActive
-                  ? "border-blue-500 bg-blue-50"
+                  ? "border-brand bg-brand-light"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
-              <svg className="w-10 h-10 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-10 h-10 text-navy-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
               </svg>
 
@@ -80,7 +80,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
                 {/* Toggle switch */}
                 <div
                   className={`w-12 h-7 rounded-full transition-colors duration-200 relative ${
-                    isActive ? "bg-blue-600" : "bg-gray-300"
+                    isActive ? "bg-brand" : "bg-gray-300"
                   }`}
                 >
                   <div

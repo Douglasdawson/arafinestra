@@ -23,7 +23,7 @@ export default function StepColor({ selected, onSelect, availableColors }: Props
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_color")}
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_color_desc")}</p>
@@ -40,14 +40,14 @@ export default function StepColor({ selected, onSelect, availableColors }: Props
               <div
                 className={`w-16 h-16 rounded-full transition-all duration-200 ${
                   isSelected
-                    ? "ring-4 ring-blue-500 ring-offset-2 scale-110"
+                    ? "ring-4 ring-brand ring-offset-2 scale-110"
                     : "ring-1 ring-gray-300 group-hover:ring-2 group-hover:ring-gray-400"
                 } ${color.border ? "border border-gray-200" : ""}`}
                 style={{ backgroundColor: color.hex }}
               />
               <span
                 className={`text-sm font-medium ${
-                  isSelected ? "text-blue-600" : "text-gray-600"
+                  isSelected ? "text-brand" : "text-gray-600"
                 }`}
               >
                 {t(`calculator.color_${color.id}`)}

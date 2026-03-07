@@ -4,6 +4,30 @@ import { db } from "../db.js";
 import { leads } from "@shared/schema";
 import { eq, and, or, like, desc, sql, count } from "drizzle-orm";
 
+// Simple in-memory rate limiter for POST /api/leads
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
+// Cleanup expired entries every 15 minutes
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of rateLimitMap) {
+    if (now > entry.resetAt) rateLimitMap.delete(ip);
+  }
+}, RATE_LIMIT_WINDOW_MS);
+
 export function registerLeadRoutes(app: Express) {
   // GET /api/leads — list with filters + pagination
   app.get("/api/leads", requireAuth, async (req, res) => {
@@ -67,8 +91,14 @@ export function registerLeadRoutes(app: Express) {
     }
   });
 
-  // POST /api/leads — PUBLIC (form submission)
+  // POST /api/leads — PUBLIC (form submission) with rate limiting
   app.post("/api/leads", async (req, res) => {
+    const ip = req.ip || req.socket.remoteAddress || "unknown";
+    if (isRateLimited(ip)) {
+      return res.status(429).json({
+        error: "Demasiadas solicitudes. Por favor, inténtalo de nuevo en unos minutos.",
+      });
+    }
     try {
       const [lead] = await db.insert(leads).values(req.body).returning();
       res.status(201).json(lead);

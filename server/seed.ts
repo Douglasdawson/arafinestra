@@ -543,6 +543,643 @@ For most homes in the Girona and Maresme regions, Cortizo PVC windows offer the 
   await db.insert(blogPosts).values(blogData).onConflictDoNothing({ target: blogPosts.slug });
   console.log("  1 Blog Post OK");
 
+  // ── Blog Post 2: Com triar finestres ──────────────────────
+  const blogData2 = {
+    slug: "com-triar-finestres-llar",
+    tituloCa: "Com triar les millors finestres per a la teva llar",
+    tituloEs: "Cómo elegir las mejores ventanas para tu hogar",
+    tituloEn: "How to Choose the Best Windows for Your Home",
+    contenidoCa: `<h2>Guia completa per triar finestres</h2>
+<p>Escollir les finestres adequades per a la teva llar és una decisió important que afecta el confort, l'eficiència energètica i el valor de l'immoble. A Catalunya, on el clima varia des de la brisa marina de la Costa Brava fins als hiverns freds de l'interior, triar bé és essencial.</p>
+
+<h3>1. Material del perfil: PVC, alumini o fusta?</h3>
+<p>El <strong>PVC</strong> ofereix el millor equilibri entre aïllament tèrmic, durabilitat i preu. A diferència de l'alumini, no transmet el fred ni la calor, i a diferència de la fusta, no requereix manteniment periòdic. Els perfils Cortizo de PVC inclouen cambres d'aire internes que actuen com a barrera tèrmica natural.</p>
+
+<h3>2. Tipus de vidre</h3>
+<p>El vidre representa el 70-80% de la superfície de la finestra, per això la seva elecció és fonamental:</p>
+<ul>
+<li><strong>Doble vidre:</strong> dos vidres amb cambra d'aire. Estàndard per a la majoria de llars.</li>
+<li><strong>Vidre baix emissiu:</strong> capa metàl·lica que reflecteix el calor cap a l'interior a l'hivern i el rebutja a l'estiu. Estalvi addicional del 15-20%.</li>
+<li><strong>Triple vidre:</strong> tres vidres amb dues cambres. Recomanat per a zones de muntanya com Olot o Figueres amb tramuntana.</li>
+</ul>
+
+<h3>3. Aïllament acústic</h3>
+<p>Si vius a prop d'una carretera, aeroport o zona urbana sorollosa, l'aïllament acústic és prioritari. Les finestres de PVC Cortizo C-70 aconsegueixen fins a 42 dB de reducció sonora, equivalent a convertir el soroll d'un carrer transitat en un murmuri llunyà.</p>
+
+<h3>4. Eficiència energètica</h3>
+<p>Busca finestres amb una <strong>transmitància tèrmica (valor U) baixa</strong>. A Catalunya, recomanem un valor U inferior a 1.4 W/m²K per complir amb el CTE i accedir a subvencions Next Generation. El model Cortizo E-170 aconsegueix 0.9 W/m²K, apte per a estàndards Passivhaus.</p>
+
+<h3>5. Tipus d'obertura</h3>
+<p>L'obertura oscil·lobatent és la més versàtil: permet ventilació parcial (posició oscil·lant) i obertura completa. Per a terrasses, les corredisses elevables ofereixen grans superfícies de vidre amb un funcionament suau.</p>
+
+<h3>6. Colors i acabats</h3>
+<p>Les finestres de PVC modernes ofereixen acabats que imiten la fusta, colors RAL personalitzats i tons clàssics com blanc o gris antracita. L'acabat foliado és resistent als raigs UV i no es decolora amb el temps.</p>
+
+<h3>Conclusió</h3>
+<p>Cada llar és diferent. A Ara Finestra t'assessorem gratuïtament per trobar la finestra perfecta segons la teva ubicació, pressupost i necessitats. Demana el teu pressupost sense compromís.</p>`,
+    contenidoEs: `<h2>Guía completa para elegir ventanas</h2>
+<p>Elegir las ventanas adecuadas para tu hogar es una decisión importante que afecta al confort, la eficiencia energética y el valor del inmueble. En Cataluña, donde el clima varía desde la brisa marina de la Costa Brava hasta los inviernos fríos del interior, elegir bien es esencial.</p>
+
+<h3>1. Material del perfil: ¿PVC, aluminio o madera?</h3>
+<p>El <strong>PVC</strong> ofrece el mejor equilibrio entre aislamiento térmico, durabilidad y precio. A diferencia del aluminio, no transmite el frío ni el calor, y a diferencia de la madera, no requiere mantenimiento periódico. Los perfiles Cortizo de PVC incluyen cámaras de aire internas que actúan como barrera térmica natural.</p>
+
+<h3>2. Tipo de vidrio</h3>
+<p>El vidrio representa el 70-80% de la superficie de la ventana, por lo que su elección es fundamental:</p>
+<ul>
+<li><strong>Doble vidrio:</strong> dos vidrios con cámara de aire. Estándar para la mayoría de hogares.</li>
+<li><strong>Vidrio bajo emisivo:</strong> capa metálica que refleja el calor hacia el interior en invierno y lo rechaza en verano. Ahorro adicional del 15-20%.</li>
+<li><strong>Triple vidrio:</strong> tres vidrios con dos cámaras. Recomendado para zonas de montaña como Olot o Figueres con tramontana.</li>
+</ul>
+
+<h3>3. Aislamiento acústico</h3>
+<p>Si vives cerca de una carretera, aeropuerto o zona urbana ruidosa, el aislamiento acústico es prioritario. Las ventanas de PVC Cortizo C-70 alcanzan hasta 42 dB de reducción sonora, equivalente a convertir el ruido de una calle transitada en un murmullo lejano.</p>
+
+<h3>4. Eficiencia energética</h3>
+<p>Busca ventanas con una <strong>transmitancia térmica (valor U) baja</strong>. En Cataluña, recomendamos un valor U inferior a 1.4 W/m²K para cumplir con el CTE y acceder a subvenciones Next Generation. El modelo Cortizo E-170 alcanza 0.9 W/m²K, apto para estándares Passivhaus.</p>
+
+<h3>5. Tipo de apertura</h3>
+<p>La apertura oscilobatiente es la más versátil: permite ventilación parcial (posición oscilante) y apertura completa. Para terrazas, las correderas elevables ofrecen grandes superficies de vidrio con un funcionamiento suave.</p>
+
+<h3>6. Colores y acabados</h3>
+<p>Las ventanas de PVC modernas ofrecen acabados que imitan la madera, colores RAL personalizados y tonos clásicos como blanco o gris antracita. El acabado foliado es resistente a los rayos UV y no se decolora con el tiempo.</p>
+
+<h3>Conclusión</h3>
+<p>Cada hogar es diferente. En Ara Finestra te asesoramos gratuitamente para encontrar la ventana perfecta según tu ubicación, presupuesto y necesidades. Pide tu presupuesto sin compromiso.</p>`,
+    contenidoEn: `<h2>Complete guide to choosing windows</h2>
+<p>Choosing the right windows for your home is an important decision that affects comfort, energy efficiency, and property value. In Catalonia, where the climate ranges from the Costa Brava sea breeze to cold inland winters, making the right choice is essential.</p>
+
+<h3>1. Profile material: PVC, aluminum, or wood?</h3>
+<p><strong>PVC</strong> offers the best balance between thermal insulation, durability, and price. Unlike aluminum, it doesn't transmit cold or heat, and unlike wood, it doesn't require periodic maintenance. Cortizo PVC profiles include internal air chambers that act as a natural thermal barrier.</p>
+
+<h3>2. Glass type</h3>
+<p>Glass represents 70-80% of the window surface, making its selection fundamental:</p>
+<ul>
+<li><strong>Double glazing:</strong> two panes with an air chamber. Standard for most homes.</li>
+<li><strong>Low-emissivity glass:</strong> metallic coating that reflects heat inward in winter and rejects it in summer. Additional savings of 15-20%.</li>
+<li><strong>Triple glazing:</strong> three panes with two chambers. Recommended for mountain areas like Olot or Figueres with tramontana winds.</li>
+</ul>
+
+<h3>3. Acoustic insulation</h3>
+<p>If you live near a highway, airport, or noisy urban area, acoustic insulation is a priority. Cortizo C-70 PVC windows achieve up to 42 dB of noise reduction, equivalent to turning busy street noise into a distant murmur.</p>
+
+<h3>4. Energy efficiency</h3>
+<p>Look for windows with a <strong>low thermal transmittance (U-value)</strong>. In Catalonia, we recommend a U-value below 1.4 W/m²K to comply with CTE regulations and access Next Generation subsidies. The Cortizo E-170 model achieves 0.9 W/m²K, suitable for Passivhaus standards.</p>
+
+<h3>5. Opening type</h3>
+<p>Tilt-and-turn opening is the most versatile: it allows partial ventilation (tilt position) and full opening. For terraces, lift-and-slide doors offer large glass surfaces with smooth operation.</p>
+
+<h3>6. Colors and finishes</h3>
+<p>Modern PVC windows offer wood-effect finishes, custom RAL colors, and classic tones like white or anthracite grey. The foil finish is UV resistant and won't fade over time.</p>
+
+<h3>Conclusion</h3>
+<p>Every home is different. At Ara Finestra, we provide free advice to find the perfect window for your location, budget, and needs. Request your no-obligation quote today.</p>`,
+    extractoCa: "Guia completa per triar finestres: material, vidre, aïllament acústic, eficiència energètica, tipus d'obertura i acabats. Tot el que necessites saber abans de canviar les finestres.",
+    extractoEs: "Guía completa para elegir ventanas: material, vidrio, aislamiento acústico, eficiencia energética, tipo de apertura y acabados. Todo lo que necesitas saber antes de cambiar las ventanas.",
+    extractoEn: "Complete guide to choosing windows: material, glass, acoustic insulation, energy efficiency, opening type, and finishes. Everything you need to know before replacing your windows.",
+    categoria: "Guies",
+    autor: "ARA FINESTRA",
+    imagenPortada: null,
+    metaTitleCa: "Com triar les millors finestres per a la teva llar | Ara Finestra",
+    metaTitleEs: "Cómo elegir las mejores ventanas para tu hogar | Ara Finestra",
+    metaTitleEn: "How to Choose the Best Windows for Your Home | Ara Finestra",
+    metaDescriptionCa: "Guia per triar finestres: PVC vs alumini, tipus de vidre, aïllament acústic i tèrmic. Consells d'experts per a llars a Catalunya.",
+    metaDescriptionEs: "Guía para elegir ventanas: PVC vs aluminio, tipo de vidrio, aislamiento acústico y térmico. Consejos de expertos para hogares en Cataluña.",
+    metaDescriptionEn: "Guide to choosing windows: PVC vs aluminum, glass type, acoustic and thermal insulation. Expert advice for homes in Catalonia.",
+    published: true,
+    publishedAt: new Date(),
+  };
+
+  await db.insert(blogPosts).values(blogData2).onConflictDoNothing({ target: blogPosts.slug });
+  console.log("  Blog Post 2 OK");
+
+  // ── Blog Post 3: Aïllament tèrmic i estalvi energètic ────
+  const blogData3 = {
+    slug: "aillament-termic-estalvi-energetic-pvc",
+    tituloCa: "Aïllament tèrmic i estalvi energètic amb finestres PVC",
+    tituloEs: "Aislamiento térmico y ahorro energético con ventanas PVC",
+    tituloEn: "Thermal Insulation and Energy Savings with PVC Windows",
+    contenidoCa: `<h2>Com les finestres de PVC redueixen la teva factura energètica</h2>
+<p>Les finestres són el punt més feble de l'envolupant tèrmica d'un habitatge. Fins al <strong>30% de les pèrdues de calor</strong> a l'hivern i els guanys de calor a l'estiu es produeixen a través de finestres antigues o mal aïllades. Substituir-les per finestres de PVC Cortizo és la millora amb el retorn d'inversió més ràpid.</p>
+
+<h3>Què és el valor U i per què importa?</h3>
+<p>El valor U (transmitància tèrmica) mesura la quantitat de calor que travessa la finestra. Com més baix, millor aïllament:</p>
+<ul>
+<li><strong>Finestra antiga d'alumini sense RPT:</strong> 5.0-5.7 W/m²K</li>
+<li><strong>Alumini amb rotura de pont tèrmic:</strong> 2.5-3.0 W/m²K</li>
+<li><strong>PVC Cortizo A-70 (doble vidre):</strong> 1.3 W/m²K</li>
+<li><strong>PVC Cortizo E-170 (triple vidre):</strong> 0.9 W/m²K</li>
+</ul>
+<p>La diferència entre una finestra antiga (5.0) i una de PVC moderna (1.3) suposa una <strong>reducció del 74% en les pèrdues tèrmiques</strong> a través de la finestra.</p>
+
+<h3>Estalvi real a Catalunya</h3>
+<p>Un habitatge típic de 90 m² a Girona amb finestres antigues pot gastar uns 1.800€/any en calefacció i refrigeració. Amb finestres de PVC Cortizo, l'estalvi estimat és de <strong>450-720€ anuals</strong>, la qual cosa significa que la inversió es recupera en 5-8 anys.</p>
+<p>A zones de muntanya com Olot o la Cerdanya, l'estalvi pot ser encara superior gràcies a l'ús de triple vidre amb gas argó, que aconsegueix valors U de 0.9 W/m²K.</p>
+
+<h3>Certificacions i normativa</h3>
+<p>El Codi Tècnic de l'Edificació (CTE) estableix uns valors U màxims segons la zona climàtica. A Catalunya:</p>
+<ul>
+<li><strong>Zona C (costa):</strong> U màxim 2.3 W/m²K</li>
+<li><strong>Zona D (interior):</strong> U màxim 1.8 W/m²K</li>
+<li><strong>Zona E (muntanya):</strong> U màxim 1.4 W/m²K</li>
+</ul>
+<p>Totes les finestres Cortizo de PVC compleixen sobradament amb la normativa, i els models E-170 estan preparats per a l'estàndard Passivhaus.</p>
+
+<h3>Vidre baix emissiu: la clau de l'eficiència</h3>
+<p>El vidre baix emissiu té una capa microscòpica de metall que reflecteix la radiació infraroja. A l'hivern, manté el calor dins de casa; a l'estiu, rebutja la calor solar. Combinat amb gas argó entre els vidres, s'aconsegueix una millora addicional del 15-20% respecte al doble vidre estàndard.</p>
+
+<h3>Estanqueïtat: l'element oblidat</h3>
+<p>Una finestra pot tenir un bon vidre i un bon perfil, però si no és estanca, l'aire s'escaparà per les juntes. Les finestres Cortizo compten amb <strong>doble o triple junta d'estanqueïtat</strong> i ferramentes perimetrals que asseguren un tancament hermètic a tot el perímetre. La classificació d'estanqueïtat classe 4 garanteix zero infiltracions d'aire.</p>
+
+<h3>Conclusió</h3>
+<p>Invertir en finestres de PVC és invertir en confort i estalvi. A Ara Finestra calculem l'estalvi estimat per a la teva llar de forma gratuïta. Contacta'ns i descobreix quant pots estalviar.</p>`,
+    contenidoEs: `<h2>Cómo las ventanas de PVC reducen tu factura energética</h2>
+<p>Las ventanas son el punto más débil de la envolvente térmica de una vivienda. Hasta el <strong>30% de las pérdidas de calor</strong> en invierno y las ganancias de calor en verano se producen a través de ventanas antiguas o mal aisladas. Sustituirlas por ventanas de PVC Cortizo es la mejora con el retorno de inversión más rápido.</p>
+
+<h3>¿Qué es el valor U y por qué importa?</h3>
+<p>El valor U (transmitancia térmica) mide la cantidad de calor que atraviesa la ventana. Cuanto más bajo, mejor aislamiento:</p>
+<ul>
+<li><strong>Ventana antigua de aluminio sin RPT:</strong> 5.0-5.7 W/m²K</li>
+<li><strong>Aluminio con rotura de puente térmico:</strong> 2.5-3.0 W/m²K</li>
+<li><strong>PVC Cortizo A-70 (doble vidrio):</strong> 1.3 W/m²K</li>
+<li><strong>PVC Cortizo E-170 (triple vidrio):</strong> 0.9 W/m²K</li>
+</ul>
+<p>La diferencia entre una ventana antigua (5.0) y una de PVC moderna (1.3) supone una <strong>reducción del 74% en las pérdidas térmicas</strong> a través de la ventana.</p>
+
+<h3>Ahorro real en Cataluña</h3>
+<p>Una vivienda típica de 90 m² en Girona con ventanas antiguas puede gastar unos 1.800€/año en calefacción y refrigeración. Con ventanas de PVC Cortizo, el ahorro estimado es de <strong>450-720€ anuales</strong>, lo que significa que la inversión se recupera en 5-8 años.</p>
+<p>En zonas de montaña como Olot o la Cerdanya, el ahorro puede ser aún mayor gracias al uso de triple vidrio con gas argón, que alcanza valores U de 0.9 W/m²K.</p>
+
+<h3>Certificaciones y normativa</h3>
+<p>El Código Técnico de la Edificación (CTE) establece unos valores U máximos según la zona climática. En Cataluña:</p>
+<ul>
+<li><strong>Zona C (costa):</strong> U máximo 2.3 W/m²K</li>
+<li><strong>Zona D (interior):</strong> U máximo 1.8 W/m²K</li>
+<li><strong>Zona E (montaña):</strong> U máximo 1.4 W/m²K</li>
+</ul>
+<p>Todas las ventanas Cortizo de PVC cumplen sobradamente con la normativa, y los modelos E-170 están preparados para el estándar Passivhaus.</p>
+
+<h3>Vidrio bajo emisivo: la clave de la eficiencia</h3>
+<p>El vidrio bajo emisivo tiene una capa microscópica de metal que refleja la radiación infrarroja. En invierno, mantiene el calor dentro de casa; en verano, rechaza el calor solar. Combinado con gas argón entre los vidrios, se consigue una mejora adicional del 15-20% respecto al doble vidrio estándar.</p>
+
+<h3>Estanqueidad: el elemento olvidado</h3>
+<p>Una ventana puede tener un buen vidrio y un buen perfil, pero si no es estanca, el aire se escapará por las juntas. Las ventanas Cortizo cuentan con <strong>doble o triple junta de estanqueidad</strong> y herrajes perimetrales que aseguran un cierre hermético en todo el perímetro. La clasificación de estanqueidad clase 4 garantiza cero infiltraciones de aire.</p>
+
+<h3>Conclusión</h3>
+<p>Invertir en ventanas de PVC es invertir en confort y ahorro. En Ara Finestra calculamos el ahorro estimado para tu hogar de forma gratuita. Contáctanos y descubre cuánto puedes ahorrar.</p>`,
+    contenidoEn: `<h2>How PVC windows reduce your energy bill</h2>
+<p>Windows are the weakest point in a home's thermal envelope. Up to <strong>30% of heat loss</strong> in winter and heat gain in summer occurs through old or poorly insulated windows. Replacing them with Cortizo PVC windows is the improvement with the fastest return on investment.</p>
+
+<h3>What is the U-value and why does it matter?</h3>
+<p>The U-value (thermal transmittance) measures the amount of heat that passes through the window. The lower it is, the better the insulation:</p>
+<ul>
+<li><strong>Old aluminum window without thermal break:</strong> 5.0-5.7 W/m²K</li>
+<li><strong>Aluminum with thermal break:</strong> 2.5-3.0 W/m²K</li>
+<li><strong>PVC Cortizo A-70 (double glazing):</strong> 1.3 W/m²K</li>
+<li><strong>PVC Cortizo E-170 (triple glazing):</strong> 0.9 W/m²K</li>
+</ul>
+<p>The difference between an old window (5.0) and a modern PVC one (1.3) represents a <strong>74% reduction in thermal losses</strong> through the window.</p>
+
+<h3>Real savings in Catalonia</h3>
+<p>A typical 90 m² home in Girona with old windows can spend around €1,800/year on heating and cooling. With Cortizo PVC windows, the estimated saving is <strong>€450-720 per year</strong>, meaning the investment pays for itself in 5-8 years.</p>
+<p>In mountain areas like Olot or the Cerdanya, savings can be even greater thanks to triple glazing with argon gas, achieving U-values of 0.9 W/m²K.</p>
+
+<h3>Certifications and regulations</h3>
+<p>Spain's Technical Building Code (CTE) establishes maximum U-values according to climate zone. In Catalonia:</p>
+<ul>
+<li><strong>Zone C (coast):</strong> Maximum U 2.3 W/m²K</li>
+<li><strong>Zone D (inland):</strong> Maximum U 1.8 W/m²K</li>
+<li><strong>Zone E (mountain):</strong> Maximum U 1.4 W/m²K</li>
+</ul>
+<p>All Cortizo PVC windows comfortably meet the regulations, and the E-170 models are Passivhaus-ready.</p>
+
+<h3>Low-emissivity glass: the key to efficiency</h3>
+<p>Low-emissivity glass has a microscopic metal coating that reflects infrared radiation. In winter, it keeps heat inside the home; in summer, it rejects solar heat. Combined with argon gas between the panes, it achieves an additional 15-20% improvement over standard double glazing.</p>
+
+<h3>Air tightness: the forgotten element</h3>
+<p>A window can have great glass and a great profile, but if it's not airtight, air will escape through the joints. Cortizo windows feature <strong>double or triple weatherseals</strong> and perimeter hardware that ensures a hermetic closure around the entire frame. Class 4 air permeability rating guarantees zero air infiltration.</p>
+
+<h3>Conclusion</h3>
+<p>Investing in PVC windows means investing in comfort and savings. At Ara Finestra, we calculate the estimated savings for your home free of charge. Contact us and discover how much you can save.</p>`,
+    extractoCa: "Descobreix com les finestres de PVC redueixen fins al 40% la factura energètica. Valors U, vidre baix emissiu, certificacions i estalvi real a Catalunya.",
+    extractoEs: "Descubre cómo las ventanas de PVC reducen hasta un 40% la factura energética. Valores U, vidrio bajo emisivo, certificaciones y ahorro real en Cataluña.",
+    extractoEn: "Discover how PVC windows reduce energy bills by up to 40%. U-values, low-emissivity glass, certifications, and real savings in Catalonia.",
+    categoria: "Eficiència Energètica",
+    autor: "ARA FINESTRA",
+    imagenPortada: null,
+    metaTitleCa: "Aïllament tèrmic i estalvi energètic amb finestres PVC | Ara Finestra",
+    metaTitleEs: "Aislamiento térmico y ahorro energético con ventanas PVC | Ara Finestra",
+    metaTitleEn: "Thermal Insulation and Energy Savings with PVC Windows | Ara Finestra",
+    metaDescriptionCa: "Com les finestres de PVC redueixen la factura energètica: valors U, vidre baix emissiu, normativa CTE i estalvi real per a llars a Catalunya.",
+    metaDescriptionEs: "Cómo las ventanas de PVC reducen la factura energética: valores U, vidrio bajo emisivo, normativa CTE y ahorro real para hogares en Cataluña.",
+    metaDescriptionEn: "How PVC windows reduce energy bills: U-values, low-emissivity glass, CTE regulations, and real savings for homes in Catalonia.",
+    published: true,
+    publishedAt: new Date(),
+  };
+
+  await db.insert(blogPosts).values(blogData3).onConflictDoNothing({ target: blogPosts.slug });
+  console.log("  Blog Post 3 OK");
+
+  // ── Blog Post 4: Subvencions Next Generation ─────────────
+  const blogData4 = {
+    slug: "subvencions-next-generation-finestres-2026",
+    tituloCa: "Subvencions Next Generation per a la renovació de finestres 2026",
+    tituloEs: "Subvenciones Next Generation para la renovación de ventanas 2026",
+    tituloEn: "Next Generation Subsidies for Window Renovation 2026",
+    contenidoCa: `<h2>Aprofita les ajudes europees per renovar les teves finestres</h2>
+<p>El programa <strong>Next Generation EU</strong> destina fons significatius a la rehabilitació energètica d'edificis a Espanya. Si estàs pensant en canviar les finestres, aquest és el millor moment: pots obtenir fins al <strong>40-80% del cost subvencionat</strong> segons la millora energètica aconseguida.</p>
+
+<h3>Quines ajudes estan disponibles el 2026?</h3>
+<p>Les principals línies de subvenció per a finestres a Catalunya són:</p>
+<ul>
+<li><strong>Programa 3 (edificis residencials):</strong> fins a 6.300€ per habitatge per a actuacions a l'envolupant tèrmica (inclou finestres). Subvenció del 40-80% segons la reducció d'energia primària aconseguida.</li>
+<li><strong>Programa 4 (habitatges individuals):</strong> fins a 3.000€ per habitatge. Subvenció del 40% amb un mínim de 30% de reducció en demanda de calefacció/refrigeració.</li>
+<li><strong>Deduccions IRPF:</strong> deducció addicional del 20-60% en la declaració de la renda per obres de millora energètica, amb una base màxima de 5.000-7.500€.</li>
+</ul>
+
+<h3>Qui pot sol·licitar les subvencions?</h3>
+<p>Poden sol·licitar les ajudes:</p>
+<ul>
+<li>Propietaris d'habitatges (individuals o en comunitat)</li>
+<li>Comunitats de propietaris</li>
+<li>Empreses i entitats que siguin propietàries d'edificis residencials</li>
+<li>Administracions públiques i entitats de dret públic</li>
+</ul>
+<p>L'habitatge ha de ser la residència habitual o estar llogat com a habitatge habitual. Les segones residències també poden optar-hi en determinats programes.</p>
+
+<h3>Requisits per accedir a les ajudes</h3>
+<p>Per a la substitució de finestres, cal:</p>
+<ul>
+<li>Que les noves finestres tinguin un <strong>valor U inferior a 1.8 W/m²K</strong> (totes les finestres Cortizo de PVC ho compleixen).</li>
+<li>Que es demostri una <strong>reducció mínima del 30%</strong> en la demanda de calefacció i refrigeració.</li>
+<li>Obtenir un <strong>certificat d'eficiència energètica</strong> (CEE) abans i després de l'obra.</li>
+<li>Que l'obra sigui realitzada per una empresa registrada (Ara Finestra està homologada).</li>
+</ul>
+
+<h3>Com tramitar la subvenció pas a pas</h3>
+<p>El procés és més senzill del que sembla:</p>
+<ul>
+<li><strong>Pas 1:</strong> Contacta amb Ara Finestra per a un pressupost i estudi energètic previ.</li>
+<li><strong>Pas 2:</strong> Obtenim el certificat energètic actual (CEE) del teu habitatge.</li>
+<li><strong>Pas 3:</strong> Presentem la sol·licitud de subvenció a l'Agència de l'Habitatge de Catalunya.</li>
+<li><strong>Pas 4:</strong> Un cop aprovada, realitzem la instal·lació de les finestres.</li>
+<li><strong>Pas 5:</strong> Obtenim el nou CEE que demostra la millora energètica.</li>
+<li><strong>Pas 6:</strong> Justifiquem l'obra i es rep la subvenció.</li>
+</ul>
+
+<h3>Quant pots estalviar amb subvencions?</h3>
+<p>Exemple pràctic: una llar amb 6 finestres a Girona:</p>
+<ul>
+<li>Cost de les finestres de PVC Cortizo C-70: ~4.200€</li>
+<li>Subvenció Next Generation (40%): -1.680€</li>
+<li>Deducció IRPF (20%): -840€ addicionals</li>
+<li><strong>Cost final net: ~1.680€</strong></li>
+</ul>
+<p>A més, l'estalvi energètic anual de 450-720€ fa que la inversió es recuperi en menys de 3 anys.</p>
+
+<h3>Conclusió</h3>
+<p>Les subvencions Next Generation fan que renovar les finestres sigui més assequible que mai. A Ara Finestra t'assessorem en tot el procés, des del pressupost fins a la tramitació de les ajudes. No deixis escapar aquesta oportunitat.</p>`,
+    contenidoEs: `<h2>Aprovecha las ayudas europeas para renovar tus ventanas</h2>
+<p>El programa <strong>Next Generation EU</strong> destina fondos significativos a la rehabilitación energética de edificios en España. Si estás pensando en cambiar las ventanas, este es el mejor momento: puedes obtener hasta el <strong>40-80% del coste subvencionado</strong> según la mejora energética conseguida.</p>
+
+<h3>¿Qué ayudas están disponibles en 2026?</h3>
+<p>Las principales líneas de subvención para ventanas en Cataluña son:</p>
+<ul>
+<li><strong>Programa 3 (edificios residenciales):</strong> hasta 6.300€ por vivienda para actuaciones en la envolvente térmica (incluye ventanas). Subvención del 40-80% según la reducción de energía primaria conseguida.</li>
+<li><strong>Programa 4 (viviendas individuales):</strong> hasta 3.000€ por vivienda. Subvención del 40% con un mínimo de 30% de reducción en demanda de calefacción/refrigeración.</li>
+<li><strong>Deducciones IRPF:</strong> deducción adicional del 20-60% en la declaración de la renta por obras de mejora energética, con una base máxima de 5.000-7.500€.</li>
+</ul>
+
+<h3>¿Quién puede solicitar las subvenciones?</h3>
+<p>Pueden solicitar las ayudas:</p>
+<ul>
+<li>Propietarios de viviendas (individuales o en comunidad)</li>
+<li>Comunidades de propietarios</li>
+<li>Empresas y entidades propietarias de edificios residenciales</li>
+<li>Administraciones públicas y entidades de derecho público</li>
+</ul>
+<p>La vivienda debe ser la residencia habitual o estar alquilada como vivienda habitual. Las segundas residencias también pueden optar en determinados programas.</p>
+
+<h3>Requisitos para acceder a las ayudas</h3>
+<p>Para la sustitución de ventanas se requiere:</p>
+<ul>
+<li>Que las nuevas ventanas tengan un <strong>valor U inferior a 1.8 W/m²K</strong> (todas las ventanas Cortizo de PVC lo cumplen).</li>
+<li>Que se demuestre una <strong>reducción mínima del 30%</strong> en la demanda de calefacción y refrigeración.</li>
+<li>Obtener un <strong>certificado de eficiencia energética</strong> (CEE) antes y después de la obra.</li>
+<li>Que la obra sea realizada por una empresa registrada (Ara Finestra está homologada).</li>
+</ul>
+
+<h3>Cómo tramitar la subvención paso a paso</h3>
+<p>El proceso es más sencillo de lo que parece:</p>
+<ul>
+<li><strong>Paso 1:</strong> Contacta con Ara Finestra para un presupuesto y estudio energético previo.</li>
+<li><strong>Paso 2:</strong> Obtenemos el certificado energético actual (CEE) de tu vivienda.</li>
+<li><strong>Paso 3:</strong> Presentamos la solicitud de subvención a la Agència de l'Habitatge de Catalunya.</li>
+<li><strong>Paso 4:</strong> Una vez aprobada, realizamos la instalación de las ventanas.</li>
+<li><strong>Paso 5:</strong> Obtenemos el nuevo CEE que demuestra la mejora energética.</li>
+<li><strong>Paso 6:</strong> Justificamos la obra y se recibe la subvención.</li>
+</ul>
+
+<h3>¿Cuánto puedes ahorrar con subvenciones?</h3>
+<p>Ejemplo práctico: un hogar con 6 ventanas en Girona:</p>
+<ul>
+<li>Coste de las ventanas de PVC Cortizo C-70: ~4.200€</li>
+<li>Subvención Next Generation (40%): -1.680€</li>
+<li>Deducción IRPF (20%): -840€ adicionales</li>
+<li><strong>Coste final neto: ~1.680€</strong></li>
+</ul>
+<p>Además, el ahorro energético anual de 450-720€ hace que la inversión se recupere en menos de 3 años.</p>
+
+<h3>Conclusión</h3>
+<p>Las subvenciones Next Generation hacen que renovar las ventanas sea más asequible que nunca. En Ara Finestra te asesoramos en todo el proceso, desde el presupuesto hasta la tramitación de las ayudas. No dejes escapar esta oportunidad.</p>`,
+    contenidoEn: `<h2>Take advantage of European grants to renovate your windows</h2>
+<p>The <strong>Next Generation EU</strong> program allocates significant funds to the energy rehabilitation of buildings in Spain. If you're thinking about replacing your windows, now is the best time: you can get up to <strong>40-80% of the cost subsidized</strong> depending on the energy improvement achieved.</p>
+
+<h3>What grants are available in 2026?</h3>
+<p>The main subsidy lines for windows in Catalonia are:</p>
+<ul>
+<li><strong>Program 3 (residential buildings):</strong> up to €6,300 per dwelling for thermal envelope improvements (includes windows). Subsidy of 40-80% depending on the primary energy reduction achieved.</li>
+<li><strong>Program 4 (individual dwellings):</strong> up to €3,000 per dwelling. 40% subsidy with a minimum 30% reduction in heating/cooling demand.</li>
+<li><strong>Income tax deductions:</strong> additional 20-60% deduction on income tax for energy improvement works, with a maximum base of €5,000-7,500.</li>
+</ul>
+
+<h3>Who can apply for subsidies?</h3>
+<p>The following can apply for grants:</p>
+<ul>
+<li>Homeowners (individual or in community)</li>
+<li>Homeowner associations</li>
+<li>Companies and entities that own residential buildings</li>
+<li>Public administrations and public law entities</li>
+</ul>
+<p>The dwelling must be the primary residence or rented as a primary residence. Second homes may also qualify under certain programs.</p>
+
+<h3>Requirements for accessing grants</h3>
+<p>For window replacement, you need:</p>
+<ul>
+<li>New windows with a <strong>U-value below 1.8 W/m²K</strong> (all Cortizo PVC windows meet this).</li>
+<li>Demonstrated <strong>minimum 30% reduction</strong> in heating and cooling demand.</li>
+<li>An <strong>energy efficiency certificate</strong> (EPC) before and after the work.</li>
+<li>The work must be carried out by a registered company (Ara Finestra is certified).</li>
+</ul>
+
+<h3>How to apply for the subsidy step by step</h3>
+<p>The process is simpler than it seems:</p>
+<ul>
+<li><strong>Step 1:</strong> Contact Ara Finestra for a quote and preliminary energy study.</li>
+<li><strong>Step 2:</strong> We obtain the current energy certificate (EPC) for your home.</li>
+<li><strong>Step 3:</strong> We submit the subsidy application to the Catalan Housing Agency.</li>
+<li><strong>Step 4:</strong> Once approved, we carry out the window installation.</li>
+<li><strong>Step 5:</strong> We obtain the new EPC demonstrating the energy improvement.</li>
+<li><strong>Step 6:</strong> We justify the work and you receive the subsidy.</li>
+</ul>
+
+<h3>How much can you save with subsidies?</h3>
+<p>Practical example: a home with 6 windows in Girona:</p>
+<ul>
+<li>Cost of Cortizo C-70 PVC windows: ~€4,200</li>
+<li>Next Generation subsidy (40%): -€1,680</li>
+<li>Income tax deduction (20%): -€840 additional</li>
+<li><strong>Net final cost: ~€1,680</strong></li>
+</ul>
+<p>Additionally, annual energy savings of €450-720 mean the investment pays for itself in less than 3 years.</p>
+
+<h3>Conclusion</h3>
+<p>Next Generation subsidies make window renovation more affordable than ever. At Ara Finestra, we guide you through the entire process, from the quote to the grant application. Don't miss this opportunity.</p>`,
+    extractoCa: "Guia completa sobre les subvencions Next Generation 2026 per renovar finestres. Fins al 80% del cost subvencionat. Requisits, tramitació i estalvi real.",
+    extractoEs: "Guía completa sobre las subvenciones Next Generation 2026 para renovar ventanas. Hasta el 80% del coste subvencionado. Requisitos, tramitación y ahorro real.",
+    extractoEn: "Complete guide to Next Generation 2026 subsidies for window renovation. Up to 80% of the cost subsidized. Requirements, application process, and real savings.",
+    categoria: "Subvencions",
+    autor: "ARA FINESTRA",
+    imagenPortada: null,
+    metaTitleCa: "Subvencions Next Generation finestres 2026 | Ara Finestra",
+    metaTitleEs: "Subvenciones Next Generation ventanas 2026 | Ara Finestra",
+    metaTitleEn: "Next Generation Window Subsidies 2026 | Ara Finestra",
+    metaDescriptionCa: "Aconsegueix fins al 80% de subvenció per canviar finestres amb els fons Next Generation 2026. T'ajudem amb la tramitació a Catalunya.",
+    metaDescriptionEs: "Consigue hasta el 80% de subvención para cambiar ventanas con los fondos Next Generation 2026. Te ayudamos con la tramitación en Cataluña.",
+    metaDescriptionEn: "Get up to 80% subsidy to replace windows with Next Generation 2026 funds. We help with the application process in Catalonia.",
+    published: true,
+    publishedAt: new Date(),
+  };
+
+  await db.insert(blogPosts).values(blogData4).onConflictDoNothing({ target: blogPosts.slug });
+  console.log("  Blog Post 4 OK");
+
+  // ── Blog Post 5: Manteniment de finestres PVC ─────────────
+  const blogData5 = {
+    slug: "manteniment-finestres-pvc-consells",
+    tituloCa: "Manteniment de finestres PVC: consells pràctics",
+    tituloEs: "Mantenimiento de ventanas PVC: consejos prácticos",
+    tituloEn: "PVC Window Maintenance: Practical Tips",
+    contenidoCa: `<h2>Com mantenir les teves finestres de PVC en perfecte estat</h2>
+<p>Un dels grans avantatges de les finestres de PVC és el seu <strong>baix manteniment</strong>. No necessiten pintura, no es corroen i no es deformen amb el temps. Tot i així, un manteniment bàsic periòdic allargarà la seva vida útil i mantindrà el seu rendiment òptim durant dècades.</p>
+
+<h3>Neteja dels perfils de PVC</h3>
+<p>Els perfils de PVC es netegen fàcilment amb materials que tens a casa:</p>
+<ul>
+<li><strong>Freqüència:</strong> cada 3-4 mesos, o més sovint en zones costaneres.</li>
+<li><strong>Producte:</strong> aigua tèbia amb sabó neutre o rentavaixelles suau. Mai utilitzis dissolvents, acetona o productes abrasius.</li>
+<li><strong>Mètode:</strong> utilitza un drap suau o esponja. Esbandeix amb aigua neta i asseca amb un drap sec.</li>
+<li><strong>Taques difícils:</strong> per a taques persistents, utilitza un netejador específic per a PVC (disponible a la nostra botiga). Mai rasquis amb estris metàl·lics.</li>
+</ul>
+
+<h3>Cura dels vidres</h3>
+<p>El vidre és la superfície més gran de la finestra i la que més es nota quan està bruta:</p>
+<ul>
+<li>Neteja els vidres amb netejacristalls comercial o una barreja d'aigua amb vinagre blanc.</li>
+<li>Utilitza un drap de microfibra per evitar ratlles.</li>
+<li>A l'exterior, una perxa telescòpica amb rasqueta facilita la feina en pisos alts.</li>
+<li>El vidre baix emissiu es neteja igual que el vidre normal: la capa metàl·lica és a l'interior de la unitat segellada.</li>
+</ul>
+
+<h3>Manteniment de les ferramentes</h3>
+<p>Les ferramentes (frontisses, mecanismes d'obertura, panys) són les parts mòbils de la finestra i necessiten atenció especial:</p>
+<ul>
+<li><strong>Lubrificació:</strong> aplica unes gotes d'oli de silicona o vaselina als punts de gir i tancament cada 6-12 mesos.</li>
+<li><strong>Ajust de pressió:</strong> si notes que la finestra no tanca bé o passa aire, és possible que les ferramentes necessitin un ajust. Pots regular els cargols de les frontisses amb una clau Allen.</li>
+<li><strong>Neteja:</strong> retira la pols i la brutícia de les ranures amb un pinzell o aspirador.</li>
+</ul>
+
+<h3>Revisió de les juntes d'estanqueïtat</h3>
+<p>Les juntes de goma (EPDM) són essencials per a l'estanqueïtat de la finestra:</p>
+<ul>
+<li><strong>Inspecció visual:</strong> comprova les juntes cada any. Si estan aixafades, esquerdades o endures, cal substituir-les.</li>
+<li><strong>Manteniment:</strong> aplica un producte revitalitzador de goma (silicona en esprai) un cop l'any per mantenir l'elasticitat.</li>
+<li><strong>Substitució:</strong> les juntes tenen una vida útil de 10-15 anys. La seva substitució és econòmica i la podem fer a domicili.</li>
+</ul>
+
+<h3>Cura de les persianes</h3>
+<p>Si les teves finestres inclouen persianes de PVC:</p>
+<ul>
+<li>Neteja les lames amb un drap humit cada 3 mesos.</li>
+<li>No forcis la persiana si nota resistència: pot haver-hi una lama desalineada.</li>
+<li>Lubrica les guies laterals amb silicona en esprai un cop l'any.</li>
+<li>Si la cinta de la persiana està desgastada, substitueix-la abans que es trenqui del tot.</li>
+</ul>
+
+<h3>Manteniment estacional</h3>
+<p>Cada estació requereix una atenció especial:</p>
+<ul>
+<li><strong>Primavera:</strong> neteja general de perfils, vidres i canals de drenatge. Comprova que els forats de drenatge no estiguin obstruïts.</li>
+<li><strong>Estiu:</strong> ajusta les ferramentes a posició d'estiu (menys pressió de tancament) per no sobrecarregar les juntes.</li>
+<li><strong>Tardor:</strong> revisa les juntes abans de l'hivern. Neteja les fulles caigudes dels canals.</li>
+<li><strong>Hivern:</strong> ajusta les ferramentes a posició d'hivern (més pressió) per garantir l'estanqueïtat màxima.</li>
+</ul>
+
+<h3>Quan cal trucar a un professional?</h3>
+<p>Contacta amb Ara Finestra si observes:</p>
+<ul>
+<li>Condensació entre els vidres (indica trencament del segellat)</li>
+<li>Dificultat per obrir o tancar la finestra</li>
+<li>Corrents d'aire malgrat tenir la finestra tancada</li>
+<li>Sorolls o cruixits al manipular la finestra</li>
+</ul>
+<p>Oferim un servei de manteniment i reparació a domicili per a totes les marques de finestres de PVC.</p>`,
+    contenidoEs: `<h2>Cómo mantener tus ventanas de PVC en perfecto estado</h2>
+<p>Una de las grandes ventajas de las ventanas de PVC es su <strong>bajo mantenimiento</strong>. No necesitan pintura, no se corroen y no se deforman con el tiempo. Sin embargo, un mantenimiento básico periódico alargará su vida útil y mantendrá su rendimiento óptimo durante décadas.</p>
+
+<h3>Limpieza de los perfiles de PVC</h3>
+<p>Los perfiles de PVC se limpian fácilmente con materiales que tienes en casa:</p>
+<ul>
+<li><strong>Frecuencia:</strong> cada 3-4 meses, o más a menudo en zonas costeras.</li>
+<li><strong>Producto:</strong> agua templada con jabón neutro o lavavajillas suave. Nunca uses disolventes, acetona ni productos abrasivos.</li>
+<li><strong>Método:</strong> utiliza un paño suave o esponja. Aclara con agua limpia y seca con un paño seco.</li>
+<li><strong>Manchas difíciles:</strong> para manchas persistentes, utiliza un limpiador específico para PVC (disponible en nuestra tienda). Nunca rasques con utensilios metálicos.</li>
+</ul>
+
+<h3>Cuidado de los vidrios</h3>
+<p>El vidrio es la superficie más grande de la ventana y la que más se nota cuando está sucio:</p>
+<ul>
+<li>Limpia los vidrios con limpiacristales comercial o una mezcla de agua con vinagre blanco.</li>
+<li>Utiliza un paño de microfibra para evitar rayas.</li>
+<li>En el exterior, una pértiga telescópica con rasqueta facilita el trabajo en pisos altos.</li>
+<li>El vidrio bajo emisivo se limpia igual que el vidrio normal: la capa metálica está en el interior de la unidad sellada.</li>
+</ul>
+
+<h3>Mantenimiento de los herrajes</h3>
+<p>Los herrajes (bisagras, mecanismos de apertura, cerraduras) son las partes móviles de la ventana y necesitan atención especial:</p>
+<ul>
+<li><strong>Lubricación:</strong> aplica unas gotas de aceite de silicona o vaselina en los puntos de giro y cierre cada 6-12 meses.</li>
+<li><strong>Ajuste de presión:</strong> si notas que la ventana no cierra bien o pasa aire, es posible que los herrajes necesiten un ajuste. Puedes regular los tornillos de las bisagras con una llave Allen.</li>
+<li><strong>Limpieza:</strong> retira el polvo y la suciedad de las ranuras con un pincel o aspirador.</li>
+</ul>
+
+<h3>Revisión de las juntas de estanqueidad</h3>
+<p>Las juntas de goma (EPDM) son esenciales para la estanqueidad de la ventana:</p>
+<ul>
+<li><strong>Inspección visual:</strong> comprueba las juntas cada año. Si están aplastadas, agrietadas o endurecidas, hay que sustituirlas.</li>
+<li><strong>Mantenimiento:</strong> aplica un producto revitalizador de goma (silicona en spray) una vez al año para mantener la elasticidad.</li>
+<li><strong>Sustitución:</strong> las juntas tienen una vida útil de 10-15 años. Su sustitución es económica y la podemos hacer a domicilio.</li>
+</ul>
+
+<h3>Cuidado de las persianas</h3>
+<p>Si tus ventanas incluyen persianas de PVC:</p>
+<ul>
+<li>Limpia las lamas con un paño húmedo cada 3 meses.</li>
+<li>No fuerces la persiana si nota resistencia: puede haber una lama desalineada.</li>
+<li>Lubrica las guías laterales con silicona en spray una vez al año.</li>
+<li>Si la cinta de la persiana está desgastada, sustitúyela antes de que se rompa del todo.</li>
+</ul>
+
+<h3>Mantenimiento estacional</h3>
+<p>Cada estación requiere una atención especial:</p>
+<ul>
+<li><strong>Primavera:</strong> limpieza general de perfiles, vidrios y canales de drenaje. Comprueba que los agujeros de drenaje no estén obstruidos.</li>
+<li><strong>Verano:</strong> ajusta los herrajes a posición de verano (menos presión de cierre) para no sobrecargar las juntas.</li>
+<li><strong>Otoño:</strong> revisa las juntas antes del invierno. Limpia las hojas caídas de los canales.</li>
+<li><strong>Invierno:</strong> ajusta los herrajes a posición de invierno (más presión) para garantizar la estanqueidad máxima.</li>
+</ul>
+
+<h3>¿Cuándo hay que llamar a un profesional?</h3>
+<p>Contacta con Ara Finestra si observas:</p>
+<ul>
+<li>Condensación entre los vidrios (indica rotura del sellado)</li>
+<li>Dificultad para abrir o cerrar la ventana</li>
+<li>Corrientes de aire a pesar de tener la ventana cerrada</li>
+<li>Ruidos o crujidos al manipular la ventana</li>
+</ul>
+<p>Ofrecemos un servicio de mantenimiento y reparación a domicilio para todas las marcas de ventanas de PVC.</p>`,
+    contenidoEn: `<h2>How to keep your PVC windows in perfect condition</h2>
+<p>One of the great advantages of PVC windows is their <strong>low maintenance</strong>. They don't need painting, they don't corrode, and they don't warp over time. However, basic periodic maintenance will extend their lifespan and keep them performing optimally for decades.</p>
+
+<h3>Cleaning PVC profiles</h3>
+<p>PVC profiles are easily cleaned with materials you have at home:</p>
+<ul>
+<li><strong>Frequency:</strong> every 3-4 months, or more often in coastal areas.</li>
+<li><strong>Product:</strong> warm water with neutral soap or mild dish soap. Never use solvents, acetone, or abrasive products.</li>
+<li><strong>Method:</strong> use a soft cloth or sponge. Rinse with clean water and dry with a dry cloth.</li>
+<li><strong>Tough stains:</strong> for persistent stains, use a PVC-specific cleaner (available in our shop). Never scrape with metal tools.</li>
+</ul>
+
+<h3>Glass care</h3>
+<p>Glass is the largest surface of the window and the most noticeable when dirty:</p>
+<ul>
+<li>Clean glass with commercial glass cleaner or a mixture of water and white vinegar.</li>
+<li>Use a microfiber cloth to avoid streaks.</li>
+<li>For exterior glass, a telescopic pole with squeegee makes the job easier on upper floors.</li>
+<li>Low-emissivity glass is cleaned the same way as regular glass: the metallic coating is inside the sealed unit.</li>
+</ul>
+
+<h3>Hardware maintenance</h3>
+<p>Hardware (hinges, opening mechanisms, locks) are the moving parts of the window and need special attention:</p>
+<ul>
+<li><strong>Lubrication:</strong> apply a few drops of silicone oil or petroleum jelly to pivot and locking points every 6-12 months.</li>
+<li><strong>Pressure adjustment:</strong> if you notice the window doesn't close properly or drafts come through, the hardware may need adjustment. You can adjust the hinge screws with an Allen key.</li>
+<li><strong>Cleaning:</strong> remove dust and dirt from grooves with a brush or vacuum cleaner.</li>
+</ul>
+
+<h3>Checking weatherseals</h3>
+<p>Rubber gaskets (EPDM) are essential for the window's airtightness:</p>
+<ul>
+<li><strong>Visual inspection:</strong> check the seals every year. If they are flattened, cracked, or hardened, they need replacing.</li>
+<li><strong>Maintenance:</strong> apply a rubber revitalizer (silicone spray) once a year to maintain elasticity.</li>
+<li><strong>Replacement:</strong> seals have a lifespan of 10-15 years. Replacement is affordable and we can do it at your home.</li>
+</ul>
+
+<h3>Roller shutter care</h3>
+<p>If your windows include PVC roller shutters:</p>
+<ul>
+<li>Clean the slats with a damp cloth every 3 months.</li>
+<li>Don't force the shutter if you feel resistance: a slat may be misaligned.</li>
+<li>Lubricate the side guides with silicone spray once a year.</li>
+<li>If the shutter strap is worn, replace it before it breaks completely.</li>
+</ul>
+
+<h3>Seasonal maintenance</h3>
+<p>Each season requires special attention:</p>
+<ul>
+<li><strong>Spring:</strong> general cleaning of profiles, glass, and drainage channels. Check that drainage holes are not blocked.</li>
+<li><strong>Summer:</strong> adjust hardware to summer position (less closing pressure) to avoid overloading the seals.</li>
+<li><strong>Autumn:</strong> inspect seals before winter. Clear fallen leaves from channels.</li>
+<li><strong>Winter:</strong> adjust hardware to winter position (more pressure) to ensure maximum airtightness.</li>
+</ul>
+
+<h3>When to call a professional</h3>
+<p>Contact Ara Finestra if you notice:</p>
+<ul>
+<li>Condensation between the glass panes (indicates seal failure)</li>
+<li>Difficulty opening or closing the window</li>
+<li>Drafts despite the window being closed</li>
+<li>Noises or creaking when operating the window</li>
+</ul>
+<p>We offer a home maintenance and repair service for all brands of PVC windows.</p>`,
+    extractoCa: "Consells pràctics per al manteniment de finestres de PVC: neteja, lubrificació de ferramentes, revisió de juntes i cura estacional per allargar la vida útil.",
+    extractoEs: "Consejos prácticos para el mantenimiento de ventanas de PVC: limpieza, lubricación de herrajes, revisión de juntas y cuidado estacional para alargar la vida útil.",
+    extractoEn: "Practical tips for PVC window maintenance: cleaning, hardware lubrication, seal inspection, and seasonal care to extend their lifespan.",
+    categoria: "Manteniment",
+    autor: "ARA FINESTRA",
+    imagenPortada: null,
+    metaTitleCa: "Manteniment de finestres PVC: consells pràctics | Ara Finestra",
+    metaTitleEs: "Mantenimiento de ventanas PVC: consejos prácticos | Ara Finestra",
+    metaTitleEn: "PVC Window Maintenance: Practical Tips | Ara Finestra",
+    metaDescriptionCa: "Com mantenir les finestres de PVC: neteja, ferramentes, juntes i cura estacional. Guia completa per allargar la vida útil de les teves finestres.",
+    metaDescriptionEs: "Cómo mantener las ventanas de PVC: limpieza, herrajes, juntas y cuidado estacional. Guía completa para alargar la vida útil de tus ventanas.",
+    metaDescriptionEn: "How to maintain PVC windows: cleaning, hardware, seals, and seasonal care. Complete guide to extending your window lifespan.",
+    published: true,
+    publishedAt: new Date(),
+  };
+
+  await db.insert(blogPosts).values(blogData5).onConflictDoNothing({ target: blogPosts.slug });
+  console.log("  Blog Post 5 OK");
+
   console.log("Seed complete!");
   process.exit(0);
 }

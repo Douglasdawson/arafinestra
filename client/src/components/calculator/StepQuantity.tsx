@@ -15,7 +15,7 @@ export default function StepQuantity({ cantidad, onChange }: Props) {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_quantity")}
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_quantity_desc")}</p>
@@ -32,7 +32,7 @@ export default function StepQuantity({ cantidad, onChange }: Props) {
           </svg>
         </button>
 
-        <span className="text-6xl font-bold text-blue-600 w-24 text-center tabular-nums">
+        <span className="text-6xl font-bold text-navy-900 w-24 text-center tabular-nums">
           {cantidad}
         </span>
 
@@ -55,7 +55,7 @@ export default function StepQuantity({ cantidad, onChange }: Props) {
             onClick={() => onChange(n)}
             className={`w-12 h-12 rounded-xl text-sm font-semibold transition-all ${
               cantidad === n
-                ? "bg-blue-600 text-white shadow-md"
+                ? "bg-brand text-white shadow-md"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >

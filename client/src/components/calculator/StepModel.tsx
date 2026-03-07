@@ -46,14 +46,14 @@ export default function StepModel({ tipo, selectedModel, selectedModelId, onSele
   if (loading) {
     return (
       <div className="flex justify-center py-16">
-        <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-navy-100 border-t-brand rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_model")}
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_model_desc")}</p>
@@ -68,19 +68,19 @@ export default function StepModel({ tipo, selectedModel, selectedModelId, onSele
               onClick={() => onSelect(name, p.id > 0 ? p.id : null)}
               className={`relative p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
-                  ? "border-blue-500 bg-blue-50 shadow-md"
+                  ? "border-brand bg-brand-light shadow-md"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
               {isSelected && (
-                <div className="absolute top-3 right-3 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="absolute top-3 right-3 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               )}
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-3">
+                <svg className="w-6 h-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                 </svg>
               </div>

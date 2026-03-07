@@ -13,14 +13,14 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
 
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_dimensions")}
       </h2>
 
       <div className="flex flex-col lg:flex-row gap-8 max-w-3xl mx-auto items-center">
         {/* Visual window representation */}
         <div className="flex-shrink-0 flex items-center justify-center">
-          <div className="relative border-4 border-blue-600 rounded-md bg-blue-50/30 flex items-center justify-center"
+          <div className="relative border-4 border-navy-700 rounded-md bg-navy-50/30 flex items-center justify-center"
             style={{
               width: Math.max(80, Math.min(220, ancho * 0.55)),
               height: Math.max(80, Math.min(220, alto * 0.55)),
@@ -29,18 +29,18 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
             {/* Leaves */}
             <div className="flex w-full h-full p-1 gap-0.5">
               {Array.from({ length: hojas }).map((_, i) => (
-                <div key={i} className="flex-1 border-2 border-blue-400 rounded-sm bg-brand-light/50 flex items-center justify-center">
+                <div key={i} className="flex-1 border-2 border-navy-600 rounded-sm bg-brand-light/50 flex items-center justify-center">
                   {/* Handle */}
-                  <div className="w-1 h-4 bg-blue-400 rounded-full" />
+                  <div className="w-1 h-4 bg-navy-600 rounded-full" />
                 </div>
               ))}
             </div>
             {/* Dimensions labels */}
-            <div className="absolute -bottom-7 left-0 right-0 text-center text-sm font-medium text-blue-700">
+            <div className="absolute -bottom-7 left-0 right-0 text-center text-sm font-medium text-navy-700">
               {ancho} cm
             </div>
             <div className="absolute -right-10 top-0 bottom-0 flex items-center">
-              <span className="text-sm font-medium text-blue-700 -rotate-90 whitespace-nowrap">{alto} cm</span>
+              <span className="text-sm font-medium text-navy-700 -rotate-90 whitespace-nowrap">{alto} cm</span>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                 max={400}
                 value={ancho}
                 onChange={(e) => onChange("ancho", parseInt(e.target.value))}
-                className="flex-1 accent-blue-600"
+                className="flex-1 accent-brand"
               />
               <input
                 type="number"
@@ -68,7 +68,7 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                   const v = parseInt(e.target.value) || 40;
                   onChange("ancho", Math.max(40, Math.min(400, v)));
                 }}
-                className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-brand focus:border-brand"
               />
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                 max={300}
                 value={alto}
                 onChange={(e) => onChange("alto", parseInt(e.target.value))}
-                className="flex-1 accent-blue-600"
+                className="flex-1 accent-brand"
               />
               <input
                 type="number"
@@ -94,7 +94,7 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                   const v = parseInt(e.target.value) || 40;
                   onChange("alto", Math.max(40, Math.min(300, v)));
                 }}
-                className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-brand focus:border-brand"
               />
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                   onClick={() => onChange("hojas", n)}
                   className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${
                     hojas === n
-                      ? "bg-blue-600 text-white shadow-md"
+                      ? "bg-brand text-white shadow-md"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
@@ -120,9 +120,9 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
           </div>
 
           {/* Calculated area */}
-          <div className="bg-blue-50 rounded-lg p-4 text-center">
-            <span className="text-sm text-blue-600 font-medium">{t("calculator.area")}</span>
-            <span className="ml-2 text-xl font-bold text-blue-800">{area} m²</span>
+          <div className="bg-navy-50 rounded-lg p-4 text-center">
+            <span className="text-sm text-navy-700 font-medium">{t("calculator.area")}</span>
+            <span className="ml-2 text-xl font-bold text-navy-900">{area} m²</span>
           </div>
         </div>
       </div>

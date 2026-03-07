@@ -21,7 +21,7 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_glass")}
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_glass_desc")}</p>
@@ -35,12 +35,12 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
               onClick={() => onSelect(id)}
               className={`relative p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
-                  ? "border-blue-500 bg-blue-50 shadow-md"
+                  ? "border-brand bg-brand-light shadow-md"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
               {isSelected && (
-                <div className="absolute top-3 right-3 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="absolute top-3 right-3 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>

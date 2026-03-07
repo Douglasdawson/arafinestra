@@ -40,7 +40,7 @@ export default function StepProductType({ selected, onSelect }: Props) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 text-center">
+      <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_product")}
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_product_desc")}</p>
@@ -54,18 +54,18 @@ export default function StepProductType({ selected, onSelect }: Props) {
               onClick={() => onSelect(id)}
               className={`relative p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
-                  ? "border-blue-500 bg-blue-50 shadow-md"
+                  ? "border-brand bg-brand-light shadow-md"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
               {isSelected && (
-                <div className="absolute top-3 right-3 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="absolute top-3 right-3 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               )}
-              <svg className="w-12 h-12 text-blue-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-12 h-12 text-navy-700 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d={iconPath} />
               </svg>
               <h3 className="text-lg font-semibold text-gray-800">{t(NAME_KEYS[id])}</h3>

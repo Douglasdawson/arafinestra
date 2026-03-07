@@ -75,6 +75,7 @@ export default function Result({ state, onReset }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -121,18 +122,18 @@ export default function Result({ state, onReset }: Props) {
     <div className="space-y-8 max-w-2xl mx-auto">
       {/* Price display */}
       <div className="text-center space-y-3">
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-2xl font-bold text-navy-900">
           {t("calculator.result_title")}
         </h2>
-        <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-white shadow-lg">
-          <p className="text-blue-100 text-sm uppercase tracking-wider mb-2">
+        <div className="bg-gradient-to-br from-navy-900 to-navy-800 rounded-2xl p-8 text-white shadow-lg">
+          <p className="text-navy-100 text-sm uppercase tracking-wider mb-2">
             {t("calculator.result_from")}
           </p>
           <p className="text-5xl sm:text-6xl font-bold tracking-tight animate-[fadeIn_0.6s_ease-out]">
             {low.toLocaleString()}&euro; &mdash; {high.toLocaleString()}&euro;
           </p>
           {state.cantidad > 1 && (
-            <p className="text-blue-200 mt-2 text-sm">
+            <p className="text-navy-100 mt-2 text-sm">
               {state.cantidad} {t("calculator.units")} &middot; ~{Math.round(low / state.cantidad)}&euro;/u
             </p>
           )}
@@ -162,7 +163,7 @@ export default function Result({ state, onReset }: Props) {
       {!submitted ? (
         <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
           <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-800">{t("calculator.want_exact")}</h3>
+            <h3 className="text-xl font-bold text-navy-900">{t("calculator.want_exact")}</h3>
             <p className="text-gray-500 text-sm mt-1">{t("calculator.exact_desc")}</p>
           </div>
 
@@ -175,8 +176,14 @@ export default function Result({ state, onReset }: Props) {
                   required
                   value={form.nombre}
                   onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  onBlur={() => setTouched((t) => ({ ...t, nombre: true }))}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-brand focus:border-brand transition-colors ${
+                    touched.nombre && !form.nombre ? "border-red-400 bg-red-50" : "border-gray-300"
+                  }`}
                 />
+                {touched.nombre && !form.nombre && (
+                  <p className="text-red-500 text-xs mt-1">{t("contact.name")} *</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t("contact.phone")} *</label>
@@ -185,8 +192,14 @@ export default function Result({ state, onReset }: Props) {
                   required
                   value={form.telefono}
                   onChange={(e) => setForm((f) => ({ ...f, telefono: e.target.value }))}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  onBlur={() => setTouched((t) => ({ ...t, telefono: true }))}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-brand focus:border-brand transition-colors ${
+                    touched.telefono && !form.telefono ? "border-red-400 bg-red-50" : "border-gray-300"
+                  }`}
                 />
+                {touched.telefono && !form.telefono && (
+                  <p className="text-red-500 text-xs mt-1">{t("contact.phone")} *</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t("contact.email")}</label>
@@ -194,7 +207,7 @@ export default function Result({ state, onReset }: Props) {
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
                 />
               </div>
               <div>
@@ -203,7 +216,7 @@ export default function Result({ state, onReset }: Props) {
                   type="text"
                   value={form.localidad}
                   onChange={(e) => setForm((f) => ({ ...f, localidad: e.target.value }))}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
                 />
               </div>
             </div>
@@ -213,15 +226,15 @@ export default function Result({ state, onReset }: Props) {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold rounded-lg transition-colors text-lg"
+              className="w-full py-3.5 bg-brand hover:bg-brand-dark disabled:opacity-60 text-white font-semibold rounded-lg transition-colors text-lg shadow-md hover:shadow-lg"
             >
               {submitting ? t("calculator.sending") : t("cta.request_quote")}
             </button>
           </form>
         </div>
       ) : (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center space-y-3">
-          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
+        <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center space-y-3 animate-[fadeIn_0.5s_ease-out]">
+          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto shadow-md">
             <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
@@ -235,7 +248,7 @@ export default function Result({ state, onReset }: Props) {
       <div className="text-center">
         <button
           onClick={onReset}
-          className="text-blue-600 hover:text-blue-800 font-medium text-sm underline underline-offset-2"
+          className="text-navy-700 hover:text-navy-900 font-medium text-sm underline underline-offset-2"
         >
           {t("calculator.start_over")}
         </button>
@@ -248,7 +261,7 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between px-5 py-3">
       <span className="text-gray-500 text-sm">{label}</span>
-      <span className="text-gray-800 font-medium text-sm text-right">{value}</span>
+      <span className="text-navy-900 font-medium text-sm text-right">{value}</span>
     </div>
   );
 }

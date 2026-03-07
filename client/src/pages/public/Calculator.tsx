@@ -151,7 +151,7 @@ export default function Calculator() {
         {/* Header */}
         <div className="bg-white border-b border-gray-100">
           <div className="max-w-6xl mx-auto px-4 py-6">
-            <h1 className="text-3xl font-bold text-gray-800 text-center">
+            <h1 className="text-3xl font-bold text-navy-900 text-center">
               {t("calculator.title")}
             </h1>
             <p className="text-gray-500 text-center mt-2">{t("calculator.subtitle")}</p>
@@ -246,7 +246,7 @@ export default function Calculator() {
                   {/* Config summary chips */}
                   <div className="mt-4 flex flex-wrap gap-1.5 justify-center">
                     {state.tipo && (
-                      <span className="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-700 rounded-full">
+                      <span className="px-2 py-0.5 text-xs font-medium bg-navy-50 text-navy-700 rounded-full">
                         {t(
                           state.tipo === "ventana"
                             ? "nav.windows"
@@ -309,7 +309,7 @@ export default function Calculator() {
                   disabled={!canAdvance(state)}
                   className={`px-8 py-3 rounded-lg font-semibold transition-all ${
                     canAdvance(state)
-                      ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg"
+                      ? "bg-brand hover:bg-brand-dark text-white shadow-md hover:shadow-lg"
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   }`}
                 >
