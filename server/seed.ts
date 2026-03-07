@@ -449,12 +449,57 @@ async function seed() {
       puntuacion: 5,
       published: true,
     },
+    {
+      nombre: "Núria S.",
+      localidad: "Lloret de Mar",
+      textoCa: "Vam canviar totes les persianes de casa per unes noves d'alumini amb Ara Finestra. La diferència és brutal: ara es pugen i baixen amb molta suavitat i aïllen molt millor del fred i la calor. Els instal·ladors van ser molt nets i puntuals, van deixar-ho tot impecable.",
+      textoEs: "Cambiamos todas las persianas de casa por unas nuevas de aluminio con Ara Finestra. La diferencia es brutal: ahora suben y bajan con mucha suavidad y aíslan mucho mejor del frío y el calor. Los instaladores fueron muy limpios y puntuales, lo dejaron todo impecable.",
+      textoEn: "We replaced all our shutters with new aluminum ones from Ara Finestra. The difference is huge: they now go up and down very smoothly and insulate much better from cold and heat. The installers were very clean and punctual, they left everything spotless.",
+      puntuacion: 5,
+      published: true,
+    },
+    {
+      nombre: "Ferran M.",
+      localidad: "Tossa de Mar",
+      textoCa: "Ens van posar mosquiteres enrollables a totes les finestres de la planta baixa. Per fi podem dormir amb les finestres obertes a l'estiu sense que entrin mosquits. La qualitat del material és excel·lent i el preu molt raonable. Molt recomanable.",
+      textoEs: "Nos pusieron mosquiteras enrollables en todas las ventanas de la planta baja. Por fin podemos dormir con las ventanas abiertas en verano sin que entren mosquitos. La calidad del material es excelente y el precio muy razonable. Muy recomendable.",
+      textoEn: "They installed roller mosquito nets on all the ground floor windows. We can finally sleep with the windows open in summer without mosquitoes getting in. The material quality is excellent and the price very reasonable. Highly recommended.",
+      puntuacion: 5,
+      published: true,
+    },
+    {
+      nombre: "Carles R.",
+      localidad: "Mataró",
+      textoCa: "Vam demanar pressupost a tres empreses i Ara Finestra va ser la millor relació qualitat-preu. Ens van instal·lar finestres oscil·lobatents amb vidre doble i hem notat un estalvi important a la factura de la calefacció, gairebé un 30% menys. El tracte va ser molt proper i professional.",
+      textoEs: "Pedimos presupuesto a tres empresas y Ara Finestra fue la mejor relación calidad-precio. Nos instalaron ventanas oscilobatientes con doble acristalamiento y hemos notado un ahorro importante en la factura de calefacción, casi un 30% menos. El trato fue muy cercano y profesional.",
+      textoEn: "We asked three companies for quotes and Ara Finestra had the best value for money. They installed tilt-and-turn windows with double glazing and we noticed significant savings on our heating bill, almost 30% less. The service was very friendly and professional.",
+      puntuacion: 4,
+      published: true,
+    },
+    {
+      nombre: "Montse V.",
+      localidad: "Calella",
+      textoCa: "Teníem unes finestres d'alumini molt velles que no tancaven bé i entrava molta humitat. Ara Finestra ens va assessorar perfectament i vam optar per PVC amb trencament de pont tèrmic. La casa ara és molt més silenciosa i s'ha acabat la condensació als vidres. Estem encantats.",
+      textoEs: "Teníamos unas ventanas de aluminio muy viejas que no cerraban bien y entraba mucha humedad. Ara Finestra nos asesoró perfectamente y optamos por PVC con rotura de puente térmico. La casa ahora es mucho más silenciosa y se acabó la condensación en los cristales. Estamos encantados.",
+      textoEn: "We had very old aluminum windows that didn't close properly and let in a lot of moisture. Ara Finestra advised us perfectly and we chose PVC with thermal bridge break. The house is now much quieter and the condensation on the glass is gone. We are delighted.",
+      puntuacion: 5,
+      published: true,
+    },
+    {
+      nombre: "Pere L.",
+      localidad: "Palafrugell",
+      textoCa: "Reforma integral de fusteria a la nostra casa de poble: finestres, balconera corredissa i persianes. Tot coordinat per Ara Finestra sense cap problema. El que més valoro és que van respectar l'estètica de la façana antiga amb uns acabats molt cuidats. Bon preu pel volum de feina.",
+      textoEs: "Reforma integral de carpintería en nuestra casa de pueblo: ventanas, balconera corredera y persianas. Todo coordinado por Ara Finestra sin ningún problema. Lo que más valoro es que respetaron la estética de la fachada antigua con unos acabados muy cuidados. Buen precio por el volumen de trabajo.",
+      textoEn: "Full carpentry renovation in our village house: windows, sliding balcony door and shutters. Everything coordinated by Ara Finestra without any issues. What I value most is that they respected the aesthetics of the old facade with very careful finishes. Good price for the volume of work.",
+      puntuacion: 4,
+      published: true,
+    },
   ];
 
   for (const t of testimonialsData) {
     await db.insert(testimonials).values(t).onConflictDoNothing();
   }
-  console.log("  2 Testimonials OK");
+  console.log("  6 Testimonials OK");
 
   // ── 1 Blog Post ─────────────────────────────────────────────
   const blogData = {

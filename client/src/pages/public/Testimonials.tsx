@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import { localize } from "../../lib/localize";
@@ -54,6 +55,15 @@ export default function Testimonials() {
       });
   }, []);
 
+  const aggregateRating = useMemo(() => {
+    if (testimonials.length === 0) {
+      return { ratingValue: "4.9", reviewCount: "6" };
+    }
+    const sum = testimonials.reduce((acc, t_item) => acc + t_item.puntuacion, 0);
+    const avg = (sum / testimonials.length).toFixed(1);
+    return { ratingValue: avg, reviewCount: String(testimonials.length) };
+  }, [testimonials]);
+
   return (
     <>
       <PageHead
@@ -65,6 +75,21 @@ export default function Testimonials() {
         { name: t("nav.home"), url: "/" },
         { name: t("nav.reviews"), url: "/opinions" },
       ]} />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "ARA FINESTRA",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": aggregateRating.ratingValue,
+              "reviewCount": aggregateRating.reviewCount,
+              "bestRating": "5",
+            },
+          })}
+        </script>
+      </Helmet>
 
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">

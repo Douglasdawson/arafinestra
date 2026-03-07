@@ -29,8 +29,11 @@ export default function PageHead({ title, description, path, image, schema }: Pa
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
-      {image && <meta property="og:image" content={image} />}
+      <meta property="og:image" content={image || `${baseUrl}/og-image.svg`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={image || `${baseUrl}/og-image.svg`} />
       {schema && (
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       )}

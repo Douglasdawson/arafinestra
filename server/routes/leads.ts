@@ -3,6 +3,7 @@ import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
 import { leads } from "@shared/schema";
 import { eq, and, or, like, desc, sql, count } from "drizzle-orm";
+import { notifyNewLead } from "../lib/notify.js";
 
 // Simple in-memory rate limiter for POST /api/leads
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -101,6 +102,14 @@ export function registerLeadRoutes(app: Express) {
     }
     try {
       const [lead] = await db.insert(leads).values(req.body).returning();
+      // Fire-and-forget email notification
+      notifyNewLead({
+        nombre: lead.nombre,
+        email: lead.email,
+        telefono: lead.telefono,
+        localidad: lead.localidad,
+        origen: lead.origen,
+      }).catch(() => {});
       res.status(201).json(lead);
     } catch (err) {
       console.error("Error creating lead:", err);
