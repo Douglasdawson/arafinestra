@@ -143,7 +143,7 @@ export default function Footer() {
             <span className="text-xs text-slate-500">Partner Cortizo</span>
             {/* Instagram */}
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/arafinestra"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-500 hover:text-white transition-colors"
