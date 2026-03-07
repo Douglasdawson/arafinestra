@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useParams, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const PHONE = "+34 XXX XXX XXX";
+const PHONE = "+34 611 500 372";
 
 export default function Header() {
   const { t, i18n } = useTranslation();

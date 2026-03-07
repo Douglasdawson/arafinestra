@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { trackEvent } from "../../lib/analytics";
 
-const WHATSAPP_NUMBER = "34XXXXXXXXX";
+const WHATSAPP_NUMBER = "34611500372";
 const WHATSAPP_MESSAGE = "Hola! Vull informacio sobre finestres PVC";
 const CONSENT_KEY = "cookie_consent";
 

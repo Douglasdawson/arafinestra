@@ -103,7 +103,7 @@ export default function Zone() {
     name: "ARA FINESTRA",
     description: metaDesc,
     url: `https://arafinestra.com/${currentLang}/zones/${zone.slug}`,
-    telephone: "+34XXXXXXXXX",
+    telephone: "+34611500372",
     address: {
       "@type": "PostalAddress",
       addressLocality: nombre,

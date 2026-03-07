@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 
-const PHONE = "+34 XXX XXX XXX";
+const PHONE = "+34 611 500 372";
 const EMAIL = "info@arafinestra.com";
 
 const ZONE_CITIES = ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa"];

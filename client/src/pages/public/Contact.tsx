@@ -74,7 +74,7 @@ export default function Contact() {
     name: "ARA FINESTRA",
     description: t("hero.description"),
     url: "https://arafinestra.com",
-    telephone: "+34XXXXXXXXX",
+    telephone: "+34611500372",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Girona",
@@ -244,8 +244,8 @@ export default function Contact() {
                     ),
                     title: t("contact.phone"),
                     content: (
-                      <a href="tel:+34XXXXXXXXX" className="text-brand hover:text-brand-dark font-medium link-underline">
-                        +34 XXX XXX XXX
+                      <a href="tel:+34611500372" className="text-brand hover:text-brand-dark font-medium link-underline">
+                        +34 611 500 372
                       </a>
                     ),
                   },
@@ -298,7 +298,7 @@ export default function Contact() {
                 {/* WhatsApp */}
                 <ScrollReveal delay={0.6}>
                   <a
-                    href="https://wa.me/34XXXXXXXXX"
+                    href="https://wa.me/34611500372"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackEvent("click", "whatsapp", "contact_page")}

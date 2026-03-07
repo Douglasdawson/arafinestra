@@ -943,7 +943,7 @@ export default function Home() {
     name: "ARA FINESTRA",
     description: t("hero.description"),
     url: "https://arafinestra.com",
-    telephone: "+34XXXXXXXXX",
+    telephone: "+34611500372",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Girona",

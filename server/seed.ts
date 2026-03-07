@@ -412,9 +412,9 @@ async function seed() {
 
   // ── Site Config (10 keys) ───────────────────────────────────
   const configData = [
-    { key: "telefono", valueCa: "+34 972 XXX XXX", valueEs: "+34 972 XXX XXX", valueEn: "+34 972 XXX XXX" },
+    { key: "telefono", valueCa: "+34 611 500 372", valueEs: "+34 611 500 372", valueEn: "+34 611 500 372" },
     { key: "email", valueCa: "info@arafinestra.com", valueEs: "info@arafinestra.com", valueEn: "info@arafinestra.com" },
-    { key: "whatsapp", valueCa: "34972XXXXXX", valueEs: "34972XXXXXX", valueEn: "34972XXXXXX" },
+    { key: "whatsapp", valueCa: "34611500372", valueEs: "34611500372", valueEn: "34611500372" },
     { key: "horario", valueCa: "Dilluns a Divendres 9:00-18:00", valueEs: "Lunes a Viernes 9:00-18:00", valueEn: "Monday to Friday 9:00-18:00" },
     { key: "direccion", valueCa: "Blanes, Girona", valueEs: "Blanes, Girona", valueEn: "Blanes, Girona" },
     { key: "facebook", valueCa: "https://facebook.com/arafinestra", valueEs: "https://facebook.com/arafinestra", valueEn: "https://facebook.com/arafinestra" },
