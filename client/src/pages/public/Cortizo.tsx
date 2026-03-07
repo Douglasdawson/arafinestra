@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
+import ScrollReveal from "../../components/ui/ScrollReveal";
 
 export default function Cortizo() {
   const { t, i18n } = useTranslation();
@@ -107,6 +108,116 @@ export default function Cortizo() {
             ))}
           </div>
           <p className="mt-6 text-sm text-slate-500 max-w-xl mx-auto">{t("cortizo.certs_desc")}</p>
+        </div>
+      </section>
+
+      {/* Material Comparison */}
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-2xl font-bold text-navy-800 mb-10 text-center">
+              {t("cortizo.comparison_title")}
+            </h2>
+          </ScrollReveal>
+
+          {/* Desktop table */}
+          <ScrollReveal delay={0.15} className="hidden md:block">
+            <div className="overflow-hidden rounded-lg border border-slate-200">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-navy-800">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                      {t("cortizo.comp_characteristic")}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-white bg-brand-light/20">
+                      {t("cortizo.comp_pvc")}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-white">
+                      {t("cortizo.comp_aluminium")}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-white">
+                      {t("cortizo.comp_wood")}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {[
+                    { key: "thermal", pvc: "★★★★★", pvcLabel: t("cortizo.comp_excellent"), alu: "★★★", aluLabel: t("cortizo.comp_regular"), wood: "★★★★", woodLabel: t("cortizo.comp_good") },
+                    { key: "acoustic", pvc: "★★★★★", pvcLabel: t("cortizo.comp_excellent"), alu: "★★★", aluLabel: t("cortizo.comp_regular"), wood: "★★★★", woodLabel: t("cortizo.comp_good") },
+                    { key: "maintenance", pvc: "★★★★★", pvcLabel: t("cortizo.comp_zero"), alu: "★★★★", aluLabel: t("cortizo.comp_low"), wood: "★★", woodLabel: t("cortizo.comp_high") },
+                    { key: "durability", pvc: "★★★★★", pvcLabel: "50+", alu: "★★★★", aluLabel: "30+", wood: "★★★", woodLabel: "20+" },
+                    { key: "sustainability", pvc: "★★★★★", pvcLabel: t("cortizo.comp_recyclable_100"), alu: "★★★★", aluLabel: t("cortizo.comp_recyclable"), wood: "★★★", woodLabel: t("cortizo.comp_renewable") },
+                    { key: "price", pvc: "★★★★", pvcLabel: t("cortizo.comp_good_value"), alu: "★★★", aluLabel: t("cortizo.comp_medium"), wood: "★★", woodLabel: t("cortizo.comp_expensive") },
+                    { key: "condensation", pvc: "★★★★★", pvcLabel: t("cortizo.comp_excellent"), alu: "★★", aluLabel: t("cortizo.comp_poor"), wood: "★★★", woodLabel: t("cortizo.comp_regular") },
+                  ].map((row, i) => (
+                    <tr key={row.key} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
+                      <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                        {t(`cortizo.comp_row_${row.key}`)}
+                      </td>
+                      <td className="px-6 py-4 text-center bg-brand-light/10">
+                        <span className="text-brand text-sm">{row.pvc}</span>
+                        <span className="block text-xs text-slate-600 mt-0.5">{row.pvcLabel}</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className="text-slate-400 text-sm">{row.alu}</span>
+                        <span className="block text-xs text-slate-600 mt-0.5">{row.aluLabel}</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className="text-amber-600 text-sm">{row.wood}</span>
+                        <span className="block text-xs text-slate-600 mt-0.5">{row.woodLabel}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
+
+          {/* Mobile cards */}
+          <div className="md:hidden space-y-4">
+            {[
+              { key: "thermal", pvc: "★★★★★", pvcLabel: t("cortizo.comp_excellent"), alu: "★★★", aluLabel: t("cortizo.comp_regular"), wood: "★★★★", woodLabel: t("cortizo.comp_good") },
+              { key: "acoustic", pvc: "★★★★★", pvcLabel: t("cortizo.comp_excellent"), alu: "★★★", aluLabel: t("cortizo.comp_regular"), wood: "★★★★", woodLabel: t("cortizo.comp_good") },
+              { key: "maintenance", pvc: "★★★★★", pvcLabel: t("cortizo.comp_zero"), alu: "★★★★", aluLabel: t("cortizo.comp_low"), wood: "★★", woodLabel: t("cortizo.comp_high") },
+              { key: "durability", pvc: "★★★★★", pvcLabel: "50+", alu: "★★★★", aluLabel: "30+", wood: "★★★", woodLabel: "20+" },
+              { key: "sustainability", pvc: "★★★★★", pvcLabel: t("cortizo.comp_recyclable_100"), alu: "★★★★", aluLabel: t("cortizo.comp_recyclable"), wood: "★★★", woodLabel: t("cortizo.comp_renewable") },
+              { key: "price", pvc: "★★★★", pvcLabel: t("cortizo.comp_good_value"), alu: "★★★", aluLabel: t("cortizo.comp_medium"), wood: "★★", woodLabel: t("cortizo.comp_expensive") },
+              { key: "condensation", pvc: "★★★★★", pvcLabel: t("cortizo.comp_excellent"), alu: "★★", aluLabel: t("cortizo.comp_poor"), wood: "★★★", woodLabel: t("cortizo.comp_regular") },
+            ].map((row, i) => (
+              <ScrollReveal key={row.key} delay={i * 0.08}>
+                <div className="rounded-lg border border-slate-200 overflow-hidden">
+                  <div className="bg-navy-800 px-4 py-3">
+                    <h3 className="text-sm font-semibold text-white">
+                      {t(`cortizo.comp_row_${row.key}`)}
+                    </h3>
+                  </div>
+                  <div className="divide-y divide-slate-100">
+                    <div className="flex items-center justify-between px-4 py-3 bg-brand-light/10">
+                      <span className="text-sm font-medium text-slate-700">{t("cortizo.comp_pvc")}</span>
+                      <div className="text-right">
+                        <span className="text-brand text-sm">{row.pvc}</span>
+                        <span className="block text-xs text-slate-600">{row.pvcLabel}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between px-4 py-3">
+                      <span className="text-sm font-medium text-slate-700">{t("cortizo.comp_aluminium")}</span>
+                      <div className="text-right">
+                        <span className="text-slate-400 text-sm">{row.alu}</span>
+                        <span className="block text-xs text-slate-600">{row.aluLabel}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between px-4 py-3">
+                      <span className="text-sm font-medium text-slate-700">{t("cortizo.comp_wood")}</span>
+                      <div className="text-right">
+                        <span className="text-amber-600 text-sm">{row.wood}</span>
+                        <span className="block text-xs text-slate-600">{row.woodLabel}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -243,7 +243,21 @@
     "start_over": "Volver a calcular",
     "integrated_shutter": "Persiana integrada",
     "integrated_mosquito": "Mosquitera integrada",
-    "preview": "Vista previa"
+    "preview": "Vista previa",
+    "social_proof": "Más de 500 familias ya han confiado en nosotros",
+    "urgency": "Instalación disponible en 2-3 semanas. Reservas limitadas este mes.",
+    "warranty_note": "10 años de garantía Cortizo incluida",
+    "faq_title": "Preguntas frecuentes sobre presupuestos",
+    "faq_q1": "¿Cuál es el precio medio de una ventana PVC?",
+    "faq_a1": "El precio de una ventana PVC estándar oscila entre 200€ y 500€ por unidad, dependiendo de las dimensiones, el tipo de vidrio y los acabados. Con nuestro calculador obtendrás un presupuesto personalizado en menos de 2 minutos.",
+    "faq_q2": "¿Cuánto tiempo dura la instalación?",
+    "faq_a2": "La instalación de una ventana estándar se completa en 2-3 horas. Para un piso completo (5-8 ventanas), el proceso suele durar 1-2 días laborables.",
+    "faq_q3": "¿Qué garantía tienen las ventanas Cortizo?",
+    "faq_a3": "Las ventanas Cortizo tienen 10 años de garantía de fábrica sobre perfiles y herrajes. Además, ARA FINESTRA ofrece 2 años de garantía adicional sobre la instalación.",
+    "faq_q4": "¿Se puede pedir subvención para cambiar las ventanas?",
+    "faq_a4": "Sí, las ventanas PVC con altas prestaciones térmicas pueden optar a las ayudas Next Generation de la Unión Europea, con subvenciones de hasta el 40% del coste total.",
+    "faq_q5": "¿Hace falta permiso de obras para cambiar ventanas?",
+    "faq_a5": "En la mayoría de casos no hace falta permiso de obras si se mantienen las mismas dimensiones y estética de la fachada. Nuestro equipo te asesorará sobre la normativa de tu municipio."
   },
   "zones_page": {
     "title": "Zonas de servicio",
@@ -372,7 +386,32 @@
     "certs_title": "Certificaciones",
     "certs_desc": "Todos los perfiles Cortizo cuentan con las certificaciones europeas mas exigentes, garantizando calidad y durabilidad.",
     "cta_title": "Quieres ventanas Cortizo?",
-    "cta_desc": "Calcula tu presupuesto con perfiles Cortizo y descubre cuanto puedes ahorrar en energia."
+    "cta_desc": "Calcula tu presupuesto con perfiles Cortizo y descubre cuanto puedes ahorrar en energia.",
+    "comparison_title": "Compara materiales: PVC vs Aluminio vs Madera",
+    "comp_characteristic": "Caracteristica",
+    "comp_pvc": "PVC Cortizo",
+    "comp_aluminium": "Aluminio",
+    "comp_wood": "Madera",
+    "comp_row_thermal": "Aislamiento termico",
+    "comp_row_acoustic": "Aislamiento acustico",
+    "comp_row_maintenance": "Mantenimiento",
+    "comp_row_durability": "Durabilidad",
+    "comp_row_sustainability": "Sostenibilidad",
+    "comp_row_price": "Precio",
+    "comp_row_condensation": "Resistencia a la condensacion",
+    "comp_excellent": "Excelente",
+    "comp_good": "Bueno",
+    "comp_regular": "Regular",
+    "comp_poor": "Deficiente",
+    "comp_zero": "Cero",
+    "comp_low": "Bajo",
+    "comp_high": "Alto",
+    "comp_recyclable_100": "100% reciclable",
+    "comp_recyclable": "Reciclable",
+    "comp_renewable": "Renovable",
+    "comp_good_value": "Buena relacion calidad-precio",
+    "comp_medium": "Medio",
+    "comp_expensive": "Caro"
   },
   "process": {
     "page_title": "Como trabajamos - Proceso de instalacion",
@@ -422,7 +461,18 @@
     "amount_value": "Hasta el 40%",
     "amount_desc": "del coste total de la renovacion de ventanas y cerramientos",
     "cta_title": "Quieres saber si puedes acceder a las ayudas?",
-    "cta_desc": "Contactanos y te informaremos sin compromiso sobre las subvenciones disponibles para tu hogar."
+    "cta_desc": "Contactanos y te informaremos sin compromiso sobre las subvenciones disponibles para tu hogar.",
+    "faq_title": "Preguntas frecuentes sobre subvenciones",
+    "faq_q1": "¿Qué son las ayudas Next Generation?",
+    "faq_a1": "Las ayudas Next Generation son fondos europeos destinados a mejorar la eficiencia energética de los edificios. Cubren hasta el 40% del coste de la renovación de ventanas y cerramientos.",
+    "faq_q2": "¿Quién puede acceder a las subvenciones?",
+    "faq_a2": "Viviendas construidas antes de 2007, con mejora demostrable de la eficiencia energética, instalación por profesional acreditado y cerramientos con transmitancia térmica inferior a los límites establecidos.",
+    "faq_q3": "¿Cuánto puedo ahorrar con las subvenciones?",
+    "faq_a3": "Las subvenciones cubren hasta el 40% del coste total de la renovación de ventanas y cerramientos, incluyendo materiales e instalación.",
+    "faq_q4": "¿Quién gestiona el papeleo de la subvención?",
+    "faq_a4": "ARA FINESTRA gestiona todo el proceso: visita técnica, documentación, presentación de la solicitud y seguimiento hasta la resolución y cobro.",
+    "faq_q5": "¿Cuánto tarda el proceso de solicitud?",
+    "faq_a5": "El proceso completo, desde la visita técnica hasta la resolución, suele durar entre 2 y 4 meses, dependiendo del organismo gestor."
   },
   "trust": {
     "secure": "Datos seguros",
@@ -433,7 +483,7 @@
     "title": "Garantía total",
     "description": "10 años de garantía Cortizo de fábrica + 2 años de garantía de instalación. Tranquilidad absoluta."
   },
-  "whatsapp_tooltip": "Escr\u00edbenos por WhatsApp",
+  "whatsapp_tooltip": "Escríbenos por WhatsApp",
   "cookies_banner": {
     "text": "Utilizamos cookies para mejorar tu experiencia.",
     "accept": "Aceptar",
@@ -441,11 +491,11 @@
     "link": "Politica de cookies"
   },
   "exit_popup": {
-    "title": "\u00a1Espera! Consigue un 10% de descuento",
-    "subtitle": "D\u00e9janos tu email y te enviaremos un cup\u00f3n de descuento para tu presupuesto.",
+    "title": "¡Espera! Consigue un 10% de descuento",
+    "subtitle": "Déjanos tu email y te enviaremos un cupón de descuento para tu presupuesto.",
     "placeholder": "Tu email",
     "button": "Quiero el descuento",
-    "success": "\u00a1Gracias! Recibir\u00e1s el cup\u00f3n en tu email."
+    "success": "¡Gracias! Recibirás el cupón en tu email."
   },
   "legal": {
     "privacy_title": "Politica de privacidad",

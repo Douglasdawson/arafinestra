@@ -1,7 +1,8 @@
-import { useReducer, useCallback, useEffect } from "react";
+import { useReducer, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
+import FaqSchema from "../../components/seo/FaqSchema";
 import ProgressBar from "../../components/calculator/ProgressBar";
 import StepProductType from "../../components/calculator/StepProductType";
 import StepModel from "../../components/calculator/StepModel";
@@ -324,7 +325,73 @@ export default function Calculator() {
             </div>
           )}
         </div>
+
+        {/* FAQ Section */}
+        <CalculatorFaq />
       </div>
+    </>
+  );
+}
+
+function FaqAccordionItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-slate-200">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-5 text-left group"
+      >
+        <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">
+          {question}
+        </span>
+        <svg
+          className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: open ? "500px" : "0", opacity: open ? 1 : 0 }}
+      >
+        <p className="pb-5 text-sm text-slate-600 leading-relaxed">{answer}</p>
+      </div>
+    </div>
+  );
+}
+
+function CalculatorFaq() {
+  const { t } = useTranslation();
+
+  const faqs = [];
+  for (let i = 1; i <= 5; i++) {
+    const qKey = `calculator.faq_q${i}`;
+    const aKey = `calculator.faq_a${i}`;
+    const q = t(qKey);
+    const a = t(aKey);
+    if (q !== qKey && a !== aKey) faqs.push({ question: q, answer: a });
+  }
+
+  if (faqs.length === 0) return null;
+
+  return (
+    <>
+      <FaqSchema faqs={faqs} />
+      <section className="py-16 bg-white mt-12 rounded-2xl border border-gray-200 shadow-sm">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
+            {t("calculator.faq_title")}
+          </h2>
+          <div className="border-t border-slate-200">
+            {faqs.map((faq, i) => (
+              <FaqAccordionItem key={i} question={faq.question} answer={faq.answer} />
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

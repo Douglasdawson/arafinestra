@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
+import FaqSchema from "../../components/seo/FaqSchema";
 
 export default function Subvenciones() {
   const { t, i18n } = useTranslation();
@@ -20,6 +22,15 @@ export default function Subvenciones() {
     { num: "3", text: t("subsidies_page.step_3") },
     { num: "4", text: t("subsidies_page.step_4") },
   ];
+
+  const faqs: { question: string; answer: string }[] = [];
+  for (let i = 1; i <= 5; i++) {
+    const qKey = `subsidies_page.faq_q${i}`;
+    const aKey = `subsidies_page.faq_a${i}`;
+    const q = t(qKey);
+    const a = t(aKey);
+    if (q !== qKey && a !== aKey) faqs.push({ question: q, answer: a });
+  }
 
   return (
     <>
@@ -92,6 +103,25 @@ export default function Subvenciones() {
         </div>
       </section>
 
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <>
+          <FaqSchema faqs={faqs} />
+          <section className="py-16 bg-white">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">
+                {t("subsidies_page.faq_title")}
+              </h2>
+              <div className="border-t border-slate-200">
+                {faqs.map((faq, i) => (
+                  <SubvencionesFaqItem key={i} question={faq.question} answer={faq.answer} />
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
       {/* CTA */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -114,5 +144,35 @@ export default function Subvenciones() {
         </div>
       </section>
     </>
+  );
+}
+
+function SubvencionesFaqItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-slate-200">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-5 text-left group"
+      >
+        <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">
+          {question}
+        </span>
+        <svg
+          className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: open ? "500px" : "0", opacity: open ? 1 : 0 }}
+      >
+        <p className="pb-5 text-sm text-slate-600 leading-relaxed">{answer}</p>
+      </div>
+    </div>
   );
 }
