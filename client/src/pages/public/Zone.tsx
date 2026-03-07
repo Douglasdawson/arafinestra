@@ -159,12 +159,15 @@ export default function Zone() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-navy-800 to-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-[20%] right-[10%] w-[180px] h-[180px] rounded-full bg-brand/8 blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
             {t("zones_page.h1", { zone: nombre })}
           </h1>
-          <p className="mt-4 text-lg text-slate-200 max-w-2xl mx-auto">
+          <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-light">
             {t("zones_page.hero_subtitle", { zone: nombre })}
           </p>
           <Link

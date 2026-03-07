@@ -50,11 +50,14 @@ export default function ZonesList() {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-navy-800 to-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("zones_page.title")}</h1>
-          <p className="mt-4 text-xl text-brand-light">{t("zones_page.we_serve")}</p>
-          <p className="mt-3 text-lg text-slate-300 max-w-2xl mx-auto">{t("zones_page.subtitle")}</p>
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[20%] left-[15%] w-[180px] h-[180px] rounded-full bg-brand/8 blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("zones_page.title")}</h1>
+          <p className="mt-4 text-lg sm:text-xl text-brand-light">{t("zones_page.we_serve")}</p>
+          <p className="mt-3 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-light">{t("zones_page.subtitle")}</p>
         </div>
       </section>
 

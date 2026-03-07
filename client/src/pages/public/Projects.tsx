@@ -113,9 +113,12 @@ export default function Projects() {
       )}
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-navy-800 to-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">
+      <section className="relative py-16 sm:py-20 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-[20%] right-[15%] w-[150px] h-[150px] rounded-full bg-brand/8 blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">
             {t("portfolio.title")}
           </h1>
         </div>
