@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import { localize } from "../../lib/localize";
+import TrustBar from "../../components/ui/TrustBar";
 
 interface TestimonialItem {
   id: number;
@@ -218,6 +219,8 @@ export default function Testimonials() {
               {t("cta.free_visit")}
             </Link>
           </div>
+          <p className="mt-4 text-sm text-slate-500">{t("cta_microcopy")}</p>
+          <TrustBar className="mt-4" />
         </div>
       </section>
     </>

@@ -9,6 +9,7 @@ import Lightbox from "../../components/ui/Lightbox";
 import BeforeAfterSlider from "../../components/ui/BeforeAfterSlider";
 import { localize } from "../../lib/localize";
 import ProgressiveImage from "../../components/ui/ProgressiveImage";
+import TrustBar from "../../components/ui/TrustBar";
 
 interface PortfolioItem {
   id: number;
@@ -229,6 +230,8 @@ export default function Projects() {
               {t("cta.free_visit")}
             </Link>
           </div>
+          <p className="mt-4 text-sm text-slate-500">{t("cta_microcopy")}</p>
+          <TrustBar className="mt-4" />
         </div>
       </section>
 

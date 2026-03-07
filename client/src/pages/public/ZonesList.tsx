@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
+import TrustBar from "../../components/ui/TrustBar";
 import PageHead from "../../components/seo/PageHead";
 import { localize } from "../../lib/localize";
 
@@ -156,6 +157,8 @@ export default function ZonesList() {
               {t("cta.free_visit")}
             </Link>
           </div>
+          <p className="mt-4 text-sm text-slate-500">{t("cta_microcopy")}</p>
+          <TrustBar className="mt-4" />
         </div>
       </section>
     </>

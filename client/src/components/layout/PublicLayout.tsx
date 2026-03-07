@@ -8,6 +8,9 @@ import ExitPopup from "../ui/ExitPopup";
 import ScrollToTop from "../ui/ScrollToTop";
 import ScrollProgressBar from "../ui/ScrollProgressBar";
 import PageTransition from "../ui/PageTransition";
+import SocialProofToast from "../ui/SocialProofToast";
+import UrgencyBanner from "../ui/UrgencyBanner";
+import StickyCTA from "../ui/StickyCTA";
 
 export default function PublicLayout() {
   return (
@@ -17,6 +20,7 @@ export default function PublicLayout() {
       </a>
       <ScrollToTop />
       <ScrollProgressBar />
+      <UrgencyBanner />
       <Header />
       <main id="main-content" className="flex-1">
         <PageTransition>
@@ -26,6 +30,8 @@ export default function PublicLayout() {
       <Footer />
       <WhatsAppButton />
       <StickyMobileBar />
+      <StickyCTA />
+      <SocialProofToast />
       <ExitPopup />
       <CookieBanner />
     </div>

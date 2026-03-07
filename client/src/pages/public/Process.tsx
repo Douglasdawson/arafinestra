@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
+import TrustBar from "../../components/ui/TrustBar";
 
 const STEPS = [
   {
@@ -178,6 +179,8 @@ export default function Process() {
                 {t("cta.free_visit")}
               </Link>
             </div>
+            <p className="mt-4 text-sm text-slate-500">{t("cta_microcopy")}</p>
+            <TrustBar className="mt-4" />
           </ScrollReveal>
         </div>
       </section>

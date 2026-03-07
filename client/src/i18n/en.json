@@ -702,5 +702,24 @@
     "faq2_a": "The technical visit takes between 30 and 45 minutes. The technician takes measurements, assesses the current state of windows and advises on the best options.",
     "faq3_q": "Am I obligated to hire after the visit?",
     "faq3_a": "No, absolutely no obligation. The visit and quote are free. You decide at your own pace and without any pressure."
-  }
+  },
+  "social_proof_toast": {
+    "names": ["Maria", "Joan", "Anna", "Peter", "Marta", "George", "Laura", "Marc", "Nuria", "Albert"],
+    "cities": ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa", "Palafrugell", "Sant Feliu"],
+    "action_quote": "requested a quote",
+    "action_visit": "booked a free visit",
+    "time_ago": "{{minutes}} min ago"
+  },
+  "trust_bar": {
+    "cortizo": "Cortizo Partner",
+    "warranty": "10-year warranty",
+    "projects": "500+ projects",
+    "response": "24h response"
+  },
+  "cta_microcopy": "No commitment · 24h response · 10-year warranty",
+  "urgency_banner": {
+    "text": "2026 Subsidies: Last months to apply",
+    "cta": "Calculate your savings"
+  },
+  "sticky_cta": "Calculate quote"
 }

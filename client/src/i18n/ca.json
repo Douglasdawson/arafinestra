@@ -702,5 +702,24 @@
     "cta_title": "Comenca a calcular el teu pressupost",
     "cta_desc": "Descobreix quant costaran les teves noves finestres i quina sera la teva quota mensual."
   },
-  "nav_financing": "Financament"
+  "nav_financing": "Financament",
+  "social_proof_toast": {
+    "names": ["Maria", "Joan", "Anna", "Pere", "Marta", "Jordi", "Laia", "Marc", "Nuria", "Albert"],
+    "cities": ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa", "Palafrugell", "Sant Feliu"],
+    "action_quote": "ha sol·licitat pressupost",
+    "action_visit": "ha reservat visita gratuita",
+    "time_ago": "fa {{minutes}} min"
+  },
+  "trust_bar": {
+    "cortizo": "Partner Cortizo",
+    "warranty": "10 anys de garantia",
+    "projects": "+500 projectes",
+    "response": "Resposta en 24h"
+  },
+  "cta_microcopy": "Sense compromis · Resposta en 24h · Garantia 10 anys",
+  "urgency_banner": {
+    "text": "Subvencions 2026: Ultims mesos per sol·licitar",
+    "cta": "Calcula el teu estalvi"
+  },
+  "sticky_cta": "Calcula pressupost"
 }

@@ -702,5 +702,24 @@
     "faq2_a": "La visita t\u00e9cnica dura entre 30 y 45 minutos. El t\u00e9cnico toma medidas, eval\u00faa el estado actual de las ventanas y te asesora sobre las mejores opciones.",
     "faq3_q": "\u00bfEstoy obligado a contratar despu\u00e9s de la visita?",
     "faq3_a": "No, absolutamente ninguna obligaci\u00f3n. La visita y el presupuesto son gratuitos. Decides con calma y sin presiones."
-  }
+  },
+  "social_proof_toast": {
+    "names": ["Maria", "Juan", "Ana", "Pedro", "Marta", "Jorge", "Laura", "Marc", "Nuria", "Albert"],
+    "cities": ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa", "Palafrugell", "Sant Feliu"],
+    "action_quote": "ha solicitado presupuesto",
+    "action_visit": "ha reservado visita gratuita",
+    "time_ago": "hace {{minutes}} min"
+  },
+  "trust_bar": {
+    "cortizo": "Partner Cortizo",
+    "warranty": "10 anos de garantia",
+    "projects": "+500 proyectos",
+    "response": "Respuesta en 24h"
+  },
+  "cta_microcopy": "Sin compromiso · Respuesta en 24h · Garantia 10 anos",
+  "urgency_banner": {
+    "text": "Subvenciones 2026: Ultimos meses para solicitar",
+    "cta": "Calcula tu ahorro"
+  },
+  "sticky_cta": "Calcula presupuesto"
 }

@@ -9,6 +9,7 @@ import ScrollReveal from "../../components/ui/ScrollReveal";
 import ProjectCard from "../../components/ui/ProjectCard";
 import TestimonialCarousel from "../../components/ui/TestimonialCarousel";
 import ProgressiveImage from "../../components/ui/ProgressiveImage";
+import TrustBar from "../../components/ui/TrustBar";
 
 type ServiceType = "ventana" | "puerta" | "persiana" | "mosquitera";
 
@@ -572,7 +573,10 @@ export default function ServicePage() {
                 {t("cta.free_visit")}
               </Link>
             </div>
-            <p className="mt-3 text-sm text-slate-500">{t("cta.free_no_commitment")}</p>
+            <p className="mt-3 text-sm text-slate-400">{t("cta_microcopy")}</p>
+            <div className="mt-5">
+              <TrustBar variant="dark" />
+            </div>
           </ScrollReveal>
         </div>
       </section>
