@@ -399,6 +399,19 @@
     "cta_title": "Want to know if you qualify for subsidies?",
     "cta_desc": "Contact us and we'll inform you without obligation about the subsidies available for your home."
   },
+  "cookies_banner": {
+    "text": "We use cookies to improve your experience.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "link": "Cookie policy"
+  },
+  "exit_popup": {
+    "title": "Wait! Get 10% off",
+    "subtitle": "Leave us your email and we'll send you a discount coupon for your quote.",
+    "placeholder": "Your email",
+    "button": "I want the discount",
+    "success": "Thanks! You'll receive the coupon in your email."
+  },
   "legal": {
     "privacy_title": "Privacy Policy",
     "privacy_content": "DATA CONTROLLER\nARA FINESTRA, based in Girona, Catalunya, Spain. Email: info@arafinestra.com\n\nPURPOSE OF DATA PROCESSING\nPersonal data collected through our website and contact forms will be processed for the following purposes:\n- Managing quote requests and commercial enquiries.\n- Sending information about our services, offers and news (only with prior consent).\n- Managing the contractual relationship with our clients.\n\nLEGAL BASIS\nData processing is based on:\n- The consent of the data subject (contact forms and subscriptions).\n- The performance of a contract or pre-contractual measures (quote requests).\n- The legitimate interest of the controller (service improvement).\n\nRECIPIENTS\nData will not be shared with third parties except where legally required. Web hosting and email service providers may have access to the data.\n\nDATA RETENTION\nData will be retained for the duration of the business relationship and for the legally established periods. Commercial contact data will be retained until you request its deletion.\n\nDATA SUBJECT RIGHTS\nYou may exercise your rights of access, rectification, erasure, objection, restriction of processing and portability by sending an email to info@arafinestra.com with a copy of your ID.\nYou have the right to lodge a complaint with the Spanish Data Protection Agency (www.aepd.es).\n\nSECURITY MEASURES\nARA FINESTRA has adopted the necessary technical and organisational measures to ensure the security of personal data.",

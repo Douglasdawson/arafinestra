@@ -399,6 +399,19 @@
     "cta_title": "Vols saber si pots accedir a les ajudes?",
     "cta_desc": "Contacta'ns i t'informarem sense compromis sobre les subvencions disponibles per a la teva llar."
   },
+  "cookies_banner": {
+    "text": "Utilitzem cookies per millorar la teva experiencia.",
+    "accept": "Acceptar",
+    "reject": "Rebutjar",
+    "link": "Politica de cookies"
+  },
+  "exit_popup": {
+    "title": "Espera! Aconsegueix un 10% de descompte",
+    "subtitle": "Deixa'ns el teu email i t'enviarem un cup\u00f3 de descompte per al teu pressupost.",
+    "placeholder": "El teu email",
+    "button": "Vull el descompte",
+    "success": "Gr\u00e0cies! Rebr\u00e0s el cup\u00f3 al teu email."
+  },
   "legal": {
     "privacy_title": "Politica de privacitat",
     "privacy_content": "RESPONSABLE DEL TRACTAMENT\nARA FINESTRA, amb domicili a Girona, Catalunya. Correu: info@arafinestra.com\n\nFINALITAT DEL TRACTAMENT\nLes dades personals recollides a traves del nostre lloc web i formularis de contacte es tractaran amb les seguents finalitats:\n- Gestionar les sol·licituds de pressupost i consultes comercials.\n- Enviar informacio sobre els nostres serveis, ofertes i novetats (nomes amb consentiment previ).\n- Gestionar la relacio contractual amb els nostres clients.\n\nBASE JURIDICA\nEl tractament de les dades es basa en:\n- El consentiment de l'interessat (formularis de contacte i subscripcions).\n- L'execucio d'un contracte o mesures precontractuals (sol·licituds de pressupost).\n- L'interes legitim del responsable (millora dels serveis).\n\nDESTINATARIS\nLes dades no es cediran a tercers excepte obligacio legal. Poden tenir acces als dades prestadors de serveis d'allotjament web i correu electronic.\n\nCONSERVACIO\nLes dades es conservaran mentre es mantingui la relacio comercial i durant els terminis legalment establerts. Les dades de contacte comercial es conservaran fins que sol·liciteu la seva supressio.\n\nDRETS DELS INTERESSATS\nPodeu exercir els vostres drets d'acces, rectificacio, supressio, oposicio, limitacio del tractament i portabilitat enviant un correu a info@arafinestra.com, adjuntant copia del DNI.\nTeniu dret a presentar una reclamacio davant l'Agencia Espanyola de Proteccio de Dades (www.aepd.es).\n\nMESURES DE SEGURETAT\nARA FINESTRA ha adoptat les mesures tecniques i organitzatives necessaries per garantir la seguretat de les dades personals.",

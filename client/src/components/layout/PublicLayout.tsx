@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import WhatsAppButton from "../ui/WhatsAppButton";
+import CookieBanner from "../ui/CookieBanner";
 import ExitPopup from "../ui/ExitPopup";
 import ScrollToTop from "../ui/ScrollToTop";
 
@@ -19,6 +20,7 @@ export default function PublicLayout() {
       <Footer />
       <WhatsAppButton />
       <ExitPopup />
+      <CookieBanner />
     </div>
   );
 }

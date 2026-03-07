@@ -3,6 +3,7 @@ const GA_ID = "";
 
 export function initAnalytics() {
   if (!GA_ID || typeof window === "undefined") return;
+  if (localStorage.getItem("cookie_consent") !== "accepted") return;
 
   const script = document.createElement("script");
   script.async = true;

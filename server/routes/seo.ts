@@ -8,14 +8,17 @@ const LANGS = ["ca", "es", "en"] as const;
 
 const STATIC_PAGES = [
   { path: "", priority: "1.0", changefreq: "monthly" },
-  { path: "/cortizo", priority: "0.8", changefreq: "monthly" },
-  { path: "/subvencions", priority: "0.8", changefreq: "monthly" },
+  { path: "/cortizo", priority: "0.7", changefreq: "monthly" },
+  { path: "/subvencions", priority: "0.7", changefreq: "monthly" },
   { path: "/pressupost", priority: "0.9", changefreq: "monthly" },
   { path: "/projectes", priority: "0.8", changefreq: "monthly" },
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
-  { path: "/opinions", priority: "0.8", changefreq: "monthly" },
+  { path: "/opinions", priority: "0.6", changefreq: "weekly" },
   { path: "/contacte", priority: "0.9", changefreq: "monthly" },
   { path: "/zones", priority: "0.8", changefreq: "monthly" },
+  { path: "/legal/privacitat", priority: "0.3", changefreq: "yearly" },
+  { path: "/legal/termes", priority: "0.3", changefreq: "yearly" },
+  { path: "/legal/cookies", priority: "0.3", changefreq: "yearly" },
 ];
 
 const SERVICE_PAGES = [
