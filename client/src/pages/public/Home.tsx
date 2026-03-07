@@ -58,7 +58,7 @@ function WindowMaskHero({
 
   if (isMobile) {
     return (
-      <section className="relative min-h-screen flex flex-col items-center justify-center bg-navy-950 overflow-hidden">
+      <section className="relative min-h-[100svh] flex flex-col items-center justify-center bg-navy-950 overflow-hidden">
         {/* Ambient glow effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div
@@ -84,12 +84,12 @@ function WindowMaskHero({
           />
         </div>
 
-        {/* Geometric window silhouette */}
+        {/* Geometric window silhouette — scaled down on short screens */}
         <div
-          className="absolute top-[12%] left-1/2 -translate-x-1/2 opacity-[0.07]"
+          className="absolute top-[10%] left-1/2 -translate-x-1/2 opacity-[0.07]"
           style={{ animation: "heroWindowFloat 8s ease-in-out infinite" }}
         >
-          <svg width="280" height="340" viewBox="0 0 280 340" fill="none">
+          <svg className="w-[200px] h-[240px] sm:w-[280px] sm:h-[340px]" viewBox="0 0 280 340" fill="none">
             <rect x="10" y="10" width="260" height="320" rx="4" stroke="white" strokeWidth="3" />
             <line x1="140" y1="10" x2="140" y2="330" stroke="white" strokeWidth="2" />
             <line x1="10" y1="170" x2="270" y2="170" stroke="white" strokeWidth="2" />
@@ -114,7 +114,7 @@ function WindowMaskHero({
 
           {/* Title */}
           <h1
-            className="text-[3.25rem] sm:text-6xl font-bold tracking-tight leading-[0.95] animate-fadeIn"
+            className="text-[2.75rem] sm:text-6xl font-bold tracking-tight leading-[0.95] animate-fadeIn"
             style={{ animationDuration: "0.6s", animationDelay: "0.15s", animationFillMode: "backwards" }}
           >
             <span className="text-white">ARA</span>
@@ -158,7 +158,7 @@ function WindowMaskHero({
 
           {/* CTA Button */}
           <div
-            className="mt-10 animate-fadeIn"
+            className="mt-8 sm:mt-10 animate-fadeIn"
             style={{ animationDelay: "0.6s", animationFillMode: "backwards" }}
           >
             <Link
@@ -172,7 +172,7 @@ function WindowMaskHero({
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeIn" style={{ animationDelay: "1s", animationFillMode: "backwards" }}>
+        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeIn" style={{ animationDelay: "1s", animationFillMode: "backwards" }}>
           <span className="text-[10px] text-slate-600 tracking-[0.2em] uppercase">{t("home.scroll_hint")}</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-slate-600 animate-bounce" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -373,26 +373,26 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute bottom-[15%] left-[15%] w-[200px] h-[200px] rounded-full bg-red-500/8 blur-3xl" />
           </div>
-          <div className="relative text-center space-y-10 w-full max-w-sm mx-auto">
+          <div className="relative text-center space-y-8 sm:space-y-10 w-full max-w-sm mx-auto">
             <ScrollReveal>
-              <p className="text-5xl sm:text-6xl font-bold text-red-400">
+              <p className="text-4xl sm:text-6xl font-bold text-red-400">
                 <Counter target={847} suffix=" EUR" />
               </p>
-              <p className="mt-3 text-base text-slate-400">{t("home.stage2_cost")}</p>
+              <p className="mt-3 text-sm sm:text-base text-slate-400">{t("home.stage2_cost")}</p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
-                  <p className="text-3xl font-bold text-red-400">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="p-4 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
+                  <p className="text-2xl sm:text-3xl font-bold text-red-400">
                     <Counter target={32} suffix=" dB" />
                   </p>
-                  <p className="mt-2 text-sm text-slate-400">{t("home.stage2_noise")}</p>
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.stage2_noise")}</p>
                 </div>
-                <div className="p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
-                  <p className="text-3xl font-bold text-red-400">
+                <div className="p-4 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
+                  <p className="text-2xl sm:text-3xl font-bold text-red-400">
                     <Counter target={85} suffix="%" />
                   </p>
-                  <p className="mt-2 text-sm text-slate-400">{t("home.stage2_humidity")}</p>
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.stage2_humidity")}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -586,15 +586,15 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
 
         <div className="relative flex items-center justify-center gap-0">
           {/* Outside */}
-          <div className="flex-1 flex flex-col items-center">
-            <p className="text-xs sm:text-sm uppercase tracking-widest text-slate-500 mb-6">
+          <div className="flex-1 flex flex-col items-center min-w-0">
+            <p className="text-[10px] sm:text-sm uppercase tracking-widest text-slate-500 mb-4 sm:mb-6">
               {t("home.acoustic_outside")}
             </p>
-            <div className="flex items-end gap-1 h-32 sm:h-48">
+            <div className="flex items-end gap-[3px] sm:gap-1 h-24 sm:h-48">
               {BARS.map((h, i) => (
                 <div
                   key={i}
-                  className="w-[6px] sm:w-[10px] rounded-full bg-gradient-to-t from-red-500 to-orange-400"
+                  className="w-[4px] sm:w-[10px] rounded-full bg-gradient-to-t from-red-500 to-orange-400"
                   style={{
                     height: isInView ? `${h}%` : 0,
                     transition: `height 0.5s ease ${i * 0.04}s`,
@@ -603,24 +603,24 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
                 />
               ))}
             </div>
-            <div className="mt-6 text-center">
-              <p className="text-3xl sm:text-5xl font-bold text-red-400">75 dB</p>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            <div className="mt-4 sm:mt-6 text-center">
+              <p className="text-2xl sm:text-5xl font-bold text-red-400">75 dB</p>
+              <p className="text-[10px] sm:text-sm text-slate-500 mt-1">
                 {t("home.acoustic_street")}
               </p>
             </div>
           </div>
 
           {/* Window divider */}
-          <div className="relative w-12 sm:w-24 flex flex-col items-center mx-1 sm:mx-4">
-            <div className="w-full h-40 sm:h-56 relative">
-              <div className="absolute inset-0 border-4 border-slate-600 rounded-sm bg-navy-800/30">
+          <div className="relative w-10 sm:w-24 flex flex-col items-center mx-1 sm:mx-4 shrink-0">
+            <div className="w-full h-32 sm:h-56 relative">
+              <div className="absolute inset-0 border-[3px] sm:border-4 border-slate-600 rounded-sm bg-navy-800/30">
                 <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-slate-600" />
                 <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-slate-600" />
               </div>
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
+              <div className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
                 <span
-                  className={`text-xs sm:text-sm font-semibold px-3 py-1 rounded-full transition-colors duration-300 ${
+                  className={`text-[10px] sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full transition-colors duration-300 ${
                     isPVC
                       ? "bg-brand/20 text-brand"
                       : "bg-navy-700 text-slate-500"
@@ -633,17 +633,17 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
           </div>
 
           {/* Inside */}
-          <div className="flex-1 flex flex-col items-center">
-            <p className="text-xs sm:text-sm uppercase tracking-widest text-slate-500 mb-6">
+          <div className="flex-1 flex flex-col items-center min-w-0">
+            <p className="text-[10px] sm:text-sm uppercase tracking-widest text-slate-500 mb-4 sm:mb-6">
               {t("home.acoustic_inside")}
             </p>
-            <div className="flex items-end gap-1 h-32 sm:h-48">
+            <div className="flex items-end gap-[3px] sm:gap-1 h-24 sm:h-48">
               {BARS.map((h, i) => {
                 const reduction = isPVC ? 0.12 : 0.55;
                 return (
                   <div
                     key={i}
-                    className={`w-[6px] sm:w-[10px] rounded-full bg-gradient-to-t transition-all duration-500 ${
+                    className={`w-[4px] sm:w-[10px] rounded-full bg-gradient-to-t transition-all duration-500 ${
                       isPVC
                         ? "from-emerald-500 to-emerald-300"
                         : "from-amber-500 to-yellow-400"
@@ -657,15 +657,15 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
                 );
               })}
             </div>
-            <div className="mt-6 text-center">
+            <div className="mt-4 sm:mt-6 text-center">
               <p
-                className={`text-3xl sm:text-5xl font-bold transition-colors duration-300 ${
+                className={`text-2xl sm:text-5xl font-bold transition-colors duration-300 ${
                   isPVC ? "text-emerald-400" : "text-amber-400"
                 }`}
               >
                 {isPVC ? "33 dB" : "55 dB"}
               </p>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              <p className="text-[10px] sm:text-sm text-slate-500 mt-1">
                 {isPVC
                   ? t("home.acoustic_whisper")
                   : t("home.acoustic_conversation")}
@@ -835,23 +835,23 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-10 sm:mt-12">
+        <div className="grid grid-cols-3 gap-2 sm:gap-6 mt-8 sm:mt-12">
           <ScrollReveal>
-            <div className="text-center p-4 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-2xl sm:text-4xl font-bold text-brand">70%</p>
-              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.thermal_stat_heat")}</p>
+            <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-xl sm:text-4xl font-bold text-brand">70%</p>
+              <p className="mt-1 sm:mt-2 text-[10px] sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_heat")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <div className="text-center p-4 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-2xl sm:text-4xl font-bold text-emerald-400">40%</p>
-              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.thermal_stat_bill")}</p>
+            <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-xl sm:text-4xl font-bold text-emerald-400">40%</p>
+              <p className="mt-1 sm:mt-2 text-[10px] sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_bill")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <div className="text-center p-4 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-2xl sm:text-4xl font-bold text-amber-400">1.0</p>
-              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.thermal_stat_uf")}</p>
+            <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-xl sm:text-4xl font-bold text-amber-400">1.0</p>
+              <p className="mt-1 sm:mt-2 text-[10px] sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_uf")}</p>
             </div>
           </ScrollReveal>
         </div>
@@ -926,12 +926,12 @@ function EnergySavings({
               <label className="block text-sm font-semibold text-slate-700 mb-3">
                 {t("home.energy_current_type")}
               </label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                 {windowTypes.map((wt) => (
                   <button
                     key={wt.id}
                     onClick={() => setOldType(wt.id)}
-                    className={`px-3 py-3 rounded-xl text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                       oldType === wt.id
                         ? "bg-navy-900 text-white shadow-md"
                         : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"
@@ -991,7 +991,7 @@ function EnergySavings({
               <p className="text-sm text-emerald-100 uppercase tracking-wider font-semibold">
                 {t("home.energy_annual_savings")}
               </p>
-              <p className="text-5xl sm:text-6xl font-bold mt-2 tracking-tight">
+              <p className="text-4xl sm:text-6xl font-bold mt-2 tracking-tight">
                 {savingsEur.toLocaleString("es")}€
               </p>
               <p className="text-emerald-200 mt-2">
@@ -1250,30 +1250,30 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-[200px] h-[200px] rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3" />
         </div>
         <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-8 text-center">
+          <div className="grid grid-cols-3 gap-2 sm:gap-8 text-center">
             <ScrollReveal>
-              <p className="text-4xl sm:text-7xl font-bold text-white">
+              <p className="text-3xl sm:text-7xl font-bold text-white">
                 <Counter target={15} suffix="+" />
               </p>
-              <p className="mt-2 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium">
+              <p className="mt-1.5 sm:mt-3 text-[10px] sm:text-lg text-white/70 font-medium leading-tight">
                 {t("stats.experience")}
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
               <div className="border-x border-white/15 sm:border-0">
-                <p className="text-4xl sm:text-7xl font-bold text-white">
+                <p className="text-3xl sm:text-7xl font-bold text-white">
                   <Counter target={500} suffix="+" />
                 </p>
-                <p className="mt-2 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium">
+                <p className="mt-1.5 sm:mt-3 text-[10px] sm:text-lg text-white/70 font-medium leading-tight">
                   {t("stats.projects")}
                 </p>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
-              <p className="text-4xl sm:text-7xl font-bold text-white">
+              <p className="text-3xl sm:text-7xl font-bold text-white">
                 <Counter target={60} suffix="km" />
               </p>
-              <p className="mt-2 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium">
+              <p className="mt-1.5 sm:mt-3 text-[10px] sm:text-lg text-white/70 font-medium leading-tight">
                 {t("stats.coverage")}
               </p>
             </ScrollReveal>
@@ -1300,7 +1300,7 @@ export default function Home() {
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <p className="mt-5 text-4xl sm:text-6xl md:text-7xl font-bold text-white/95">
+            <p className="mt-4 sm:mt-5 text-3xl sm:text-6xl md:text-7xl font-bold text-white/95">
               {t("home.subsidies_headline")}
             </p>
           </ScrollReveal>
@@ -1330,7 +1330,7 @@ export default function Home() {
         </div>
         <div className="relative text-center px-6">
           <ScrollReveal>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight">
               {t("home.final_title")}
             </h2>
           </ScrollReveal>
@@ -1338,7 +1338,7 @@ export default function Home() {
             <div className="mt-10 sm:mt-12 flex flex-col items-center gap-4">
               <Link
                 to={`/${prefix}/pressupost`}
-                className="inline-block px-12 py-5 sm:px-14 sm:py-6 bg-brand text-white text-lg sm:text-xl font-semibold rounded-xl shadow-lg shadow-brand/30 pulse-glow-btn active:scale-[0.97] transition-transform duration-150"
+                className="inline-block px-10 py-4 sm:px-14 sm:py-6 bg-brand text-white text-base sm:text-xl font-semibold rounded-xl shadow-lg shadow-brand/30 pulse-glow-btn active:scale-[0.97] transition-transform duration-150"
               >
                 {t("cta.calculate")}
               </Link>
