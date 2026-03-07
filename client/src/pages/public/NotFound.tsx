@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
+import PageHead from "../../components/seo/PageHead";
 
 export default function NotFound() {
   const { t } = useTranslation();
@@ -7,6 +8,12 @@ export default function NotFound() {
   const prefix = lang || "ca";
 
   return (
+    <>
+    <PageHead
+      title="404"
+      description={t("errors.not_found", "Pagina no trobada")}
+      path="/404"
+    />
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 animate-fadeIn">
       <h1 className="text-[8rem] sm:text-[10rem] font-extrabold leading-none text-navy-900">
         404
@@ -24,5 +31,6 @@ export default function NotFound() {
         {t("errors.go_home", "Tornar a l'inici")}
       </Link>
     </div>
+    </>
   );
 }

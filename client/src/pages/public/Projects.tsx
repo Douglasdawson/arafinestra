@@ -126,6 +126,7 @@ export default function Projects() {
       {/* Grid */}
       <section className="py-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="sr-only">{t("portfolio.title")}</h2>
           {loading ? (
             <div className="text-center py-20 text-slate-500">{t("portfolio.title")}...</div>
           ) : filtered.length > 0 ? (
@@ -177,6 +178,8 @@ export default function Projects() {
       {selectedProject && (
         <div
           className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 p-4"
+          role="dialog"
+          aria-modal="true"
           onClick={() => setSelectedProject(null)}
         >
           <div

@@ -266,7 +266,8 @@
     "map_title": "On som",
     "no_zones": "Properament mostrarem les nostres zones de servei.",
     "not_found": "Zona no trobada",
-    "back_to_zones": "Tornar a zones"
+    "back_to_zones": "Tornar a zones",
+    "services_title": "Serveis a {{zone}}"
   },
   "portfolio": {
     "title": "Projectes realitzats",
@@ -284,6 +285,7 @@
     "cta_title": "Vols un pressupost?",
     "cta_desc": "Calcula el preu de les teves noves finestres online en menys de 2 minuts.",
     "related_articles": "Articles sobre aquest tema",
+    "related_services": "Serveis complementaris",
     "zones_title": "Zones on treballem",
     "ventana": {
       "title": "Finestres PVC Cortizo",

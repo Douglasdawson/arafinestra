@@ -215,6 +215,75 @@ export default function Zone() {
         </section>
       )}
 
+      {/* Services Available */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">
+            {t("zones_page.services_title", { zone: nombre })}
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                to: `/${prefix}/serveis/finestres-pvc`,
+                label: t("nav.windows"),
+                icon: (
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <rect x="3" y="3" width="18" height="18" rx="1" />
+                    <line x1="12" y1="3" x2="12" y2="21" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                  </svg>
+                ),
+              },
+              {
+                to: `/${prefix}/serveis/portes-corredisses`,
+                label: t("nav.sliding_doors"),
+                icon: (
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <rect x="2" y="3" width="20" height="18" rx="1" />
+                    <line x1="12" y1="3" x2="12" y2="21" />
+                    <path d="M8 12h-2M16 12h2" strokeLinecap="round" />
+                  </svg>
+                ),
+              },
+              {
+                to: `/${prefix}/serveis/persianes`,
+                label: t("nav.shutters"),
+                icon: (
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <rect x="4" y="2" width="16" height="20" rx="1" />
+                    <line x1="4" y1="6" x2="20" y2="6" />
+                    <line x1="4" y1="10" x2="20" y2="10" />
+                    <line x1="4" y1="14" x2="20" y2="14" />
+                    <line x1="4" y1="18" x2="20" y2="18" />
+                  </svg>
+                ),
+              },
+              {
+                to: `/${prefix}/serveis/mosquiteres`,
+                label: t("nav.mosquito_nets"),
+                icon: (
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <rect x="3" y="3" width="18" height="18" rx="1" />
+                    <path d="M3 3l18 18M3 9l12 12M3 15l6 6M9 3l12 12M15 3l6 6" strokeOpacity="0.5" />
+                  </svg>
+                ),
+              },
+            ].map((svc) => (
+              <Link
+                key={svc.to}
+                to={svc.to}
+                className="flex flex-col items-center gap-3 p-6 bg-slate-50 rounded-xl hover:bg-brand-light hover:shadow-md transition-all text-center group"
+              >
+                <span className="text-brand group-hover:text-brand-dark transition-colors">
+                  {svc.icon}
+                </span>
+                <span className="font-semibold text-navy-800 text-sm sm:text-base">{svc.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 bg-brand-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

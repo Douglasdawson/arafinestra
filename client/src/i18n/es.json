@@ -266,7 +266,8 @@
     "map_title": "Donde estamos",
     "no_zones": "Proximamente mostraremos nuestras zonas de servicio.",
     "not_found": "Zona no encontrada",
-    "back_to_zones": "Volver a zonas"
+    "back_to_zones": "Volver a zonas",
+    "services_title": "Servicios en {{zone}}"
   },
   "portfolio": {
     "title": "Proyectos realizados",
@@ -284,6 +285,7 @@
     "cta_title": "Quieres un presupuesto?",
     "cta_desc": "Calcula el precio de tus nuevas ventanas online en menos de 2 minutos.",
     "related_articles": "Artículos sobre este tema",
+    "related_services": "Servicios complementarios",
     "zones_title": "Zonas donde trabajamos",
     "ventana": {
       "title": "Ventanas PVC Cortizo",

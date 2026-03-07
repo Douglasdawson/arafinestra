@@ -82,6 +82,7 @@ export default function Process() {
       {/* Timeline */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="sr-only">{t("process.title")}</h2>
           {/* Desktop horizontal timeline */}
           <div className="hidden lg:block">
             {/* Connector line */}

@@ -115,6 +115,7 @@ export default function Testimonials() {
                           src={t_item.foto_url}
                           alt={t_item.nombre}
                           className="w-12 h-12 rounded-full object-cover"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center text-brand font-bold text-lg">

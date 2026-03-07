@@ -155,6 +155,7 @@ export default function BlogPost() {
             src={post.imagen_portada}
             alt={title}
             className="w-full h-full object-cover opacity-70"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent" />
         </section>
@@ -268,6 +269,7 @@ export default function BlogPost() {
                             src={rp.imagen_portada}
                             alt={rpTitle}
                             className="w-full h-40 object-cover"
+                            loading="lazy"
                           />
                         )}
                         <div className="p-5">
@@ -289,9 +291,17 @@ export default function BlogPost() {
       {/* Service CTA */}
       {(() => {
         const cat = (post.categoria || "").toLowerCase();
-        let serviceLink = `/${prefix}/serveis/finestres-pvc`;
+        let serviceLink: string;
         if (cat.includes("subvencion") || cat.includes("subvenci")) {
           serviceLink = `/${prefix}/subvencions`;
+        } else if (cat.includes("porta") || cat.includes("puerta") || cat.includes("door") || cat.includes("corrediss")) {
+          serviceLink = `/${prefix}/serveis/portes-corredisses`;
+        } else if (cat.includes("persiana") || cat.includes("shutter")) {
+          serviceLink = `/${prefix}/serveis/persianes`;
+        } else if (cat.includes("mosquiter")) {
+          serviceLink = `/${prefix}/serveis/mosquiteres`;
+        } else {
+          serviceLink = `/${prefix}/serveis/finestres-pvc`;
         }
         return (
           <section className="py-12 bg-white">

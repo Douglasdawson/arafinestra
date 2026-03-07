@@ -266,7 +266,8 @@
     "map_title": "Where we are",
     "no_zones": "We will soon showcase our service areas.",
     "not_found": "Area not found",
-    "back_to_zones": "Back to areas"
+    "back_to_zones": "Back to areas",
+    "services_title": "Services in {{zone}}"
   },
   "portfolio": {
     "title": "Completed projects",
@@ -284,6 +285,7 @@
     "cta_title": "Want a quote?",
     "cta_desc": "Calculate the price of your new windows online in less than 2 minutes.",
     "related_articles": "Articles about this topic",
+    "related_services": "Complementary Services",
     "zones_title": "Areas we cover",
     "ventana": {
       "title": "Cortizo PVC Windows",

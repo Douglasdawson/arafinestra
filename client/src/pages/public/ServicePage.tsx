@@ -7,8 +7,48 @@ import FaqSchema from "../../components/seo/FaqSchema";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import ProjectCard from "../../components/ui/ProjectCard";
+import TestimonialCarousel from "../../components/ui/TestimonialCarousel";
 
 type ServiceType = "ventana" | "puerta" | "persiana" | "mosquitera";
+
+const ALL_SERVICES: { slug: string; navKey: string; icon: JSX.Element }[] = [
+  {
+    slug: "finestres-pvc",
+    navKey: "nav.windows",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h18v18H3V3zm9 0v18M3 12h18" />
+      </svg>
+    ),
+  },
+  {
+    slug: "portes-corredisses",
+    navKey: "nav.sliding_doors",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h7v18H3V3zm11 0h7v18h-7V3zm-4 9h4" />
+      </svg>
+    ),
+  },
+  {
+    slug: "persianes",
+    navKey: "nav.shutters",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18" />
+      </svg>
+    ),
+  },
+  {
+    slug: "mosquiteres",
+    navKey: "nav.mosquito_nets",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4h16v16H4V4zm4 0v16m4-16v16m4-16v16M4 8h16M4 12h16M4 16h16" />
+      </svg>
+    ),
+  },
+];
 
 const SLUG_TO_TYPE: Record<string, ServiceType> = {
   "finestres-pvc": "ventana",
@@ -119,6 +159,7 @@ export default function ServicePage() {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [zones, setZones] = useState<Zone[]>([]);
+  const [testimonials, setTestimonials] = useState<{ id: number; nombre: string; localidad: string | null; estrellas: number; texto_ca: string | null; texto_es: string | null; texto_en: string | null }[]>([]);
 
   useEffect(() => {
     fetch(`/api/portfolio?published=true&tipo=${serviceType}`)
@@ -146,6 +187,12 @@ export default function ServicePage() {
       });
       setBlogPosts(unique.slice(0, 2));
     });
+
+    // Fetch testimonials
+    fetch("/api/testimonials?published=true&limit=6")
+      .then((r) => (r.ok ? r.json() : []))
+      .then(setTestimonials)
+      .catch(() => setTestimonials([]));
 
     // Fetch zones
     fetch("/api/zones?published=true")
@@ -335,6 +382,15 @@ export default function ServicePage() {
         </section>
       )}
 
+      {/* Testimonials */}
+      {testimonials.length > 0 && (
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <TestimonialCarousel testimonials={testimonials} lang={currentLang} />
+          </div>
+        </section>
+      )}
+
       {/* Related Articles */}
       {blogPosts.length > 0 && (
         <section className="py-20 sm:py-24 bg-white">
@@ -356,6 +412,7 @@ export default function ServicePage() {
                         src={post.imagen_portada}
                         alt={getBlogTitle(post)}
                         className="w-full h-48 object-cover"
+                        loading="lazy"
                       />
                     )}
                     <div className="p-5">
@@ -425,6 +482,34 @@ export default function ServicePage() {
           </div>
         </section>
       )}
+
+      {/* Complementary Services */}
+      <section className="py-20 sm:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-bold text-navy-800 mb-12 text-center tracking-tight">
+              {t("service_pages.related_services")}
+            </h2>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {ALL_SERVICES.filter((s) => s.slug !== serviceSlug).map((service, i) => (
+              <ScrollReveal key={service.slug} delay={i * 0.1}>
+                <Link
+                  to={`/${prefix}/serveis/${service.slug}`}
+                  className="block bg-white rounded-lg shadow-md border border-slate-100 hover:border-brand/20 hover:shadow-lg transition-all p-6 text-center"
+                >
+                  <div className="flex items-center justify-center w-14 h-14 mx-auto mb-4 rounded-full bg-brand-light text-brand">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-base font-semibold text-navy-800">
+                    {t(service.navKey)}
+                  </h3>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="relative py-24 sm:py-32 bg-navy-950 overflow-hidden">
