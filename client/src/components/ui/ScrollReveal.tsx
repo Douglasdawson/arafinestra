@@ -13,6 +13,15 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -35,10 +44,10 @@ export default function ScrollReveal({
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(20px)",
-        transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
-        willChange: "transform, opacity",
+        opacity: prefersReducedMotion || visible ? 1 : 0,
+        transform: prefersReducedMotion || visible ? "translateY(0)" : "translateY(20px)",
+        transition: prefersReducedMotion ? "none" : `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
+        willChange: prefersReducedMotion ? "auto" : "transform, opacity",
       }}
     >
       {children}

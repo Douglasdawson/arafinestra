@@ -41,7 +41,7 @@ export default function CookieBanner() {
       <div className="bg-navy-900 text-white px-4 py-4 sm:px-6 sm:py-5 shadow-2xl pb-[calc(1rem+env(safe-area-inset-bottom))] md:pb-4">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <p className="text-xs text-white/60 mb-1">
+            <p className="text-xs text-white/80 mb-1">
               {t("cookies_banner.explanation")}
             </p>
             <p className="text-sm sm:text-base">
@@ -57,13 +57,13 @@ export default function CookieBanner() {
           <div className="flex items-center gap-3 flex-shrink-0">
             <button
               onClick={handleReject}
-              className="px-5 py-2 text-sm font-medium border border-white/40 rounded-lg hover:bg-white/10 transition-colors"
+              className="px-5 py-3 text-sm font-medium border border-white/40 rounded-lg hover:bg-white/10 transition-colors"
             >
               {t("cookies_banner.reject")}
             </button>
             <button
               onClick={handleAccept}
-              className="px-5 py-2 text-sm font-medium bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors"
+              className="px-5 py-3 text-sm font-medium bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors"
             >
               {t("cookies_banner.accept")}
             </button>

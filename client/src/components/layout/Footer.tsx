@@ -43,7 +43,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-1 text-sm text-slate-400 hover:text-white transition-colors link-underline"
                   >
                     {link.label}
                   </Link>
@@ -62,7 +62,7 @@ export default function Footer() {
                 <li key={city}>
                   <Link
                     to={`/${prefix}/zones/${city.toLowerCase()}`}
-                    className="text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-1 text-sm text-slate-400 hover:text-white transition-colors link-underline"
                   >
                     {city}
                   </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-1 text-sm text-slate-400 hover:text-white transition-colors link-underline"
                   >
                     {link.label}
                   </Link>
@@ -112,10 +112,10 @@ export default function Footer() {
                   {EMAIL}
                 </a>
               </li>
-              <li className="text-slate-500">
+              <li className="text-slate-400">
                 {t("contact.address")}: Girona, Catalunya
               </li>
-              <li className="text-slate-500">
+              <li className="text-slate-400">
                 {t("contact.hours")}: Dl-Dv 9:00-18:00
               </li>
             </ul>
@@ -126,30 +126,30 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-navy-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <Link to="/admin/login" className="text-xs text-slate-500 hover:text-slate-400 transition-colors">
+          <Link to="/admin/login" className="text-xs text-slate-400 hover:text-slate-300 transition-colors">
             &copy; 2026 ARA FINESTRA. {t("footer.rights")}.
           </Link>
 
-          <div className="flex items-center gap-4 text-xs text-slate-500">
-            <Link to={`/${prefix}/legal/privacitat`} className="hover:text-slate-400 transition-colors">
+          <div className="flex items-center gap-4 text-xs text-slate-400">
+            <Link to={`/${prefix}/legal/privacitat`} className="py-2 hover:text-slate-300 transition-colors">
               {t("legal.privacy_title")}
             </Link>
-            <Link to={`/${prefix}/legal/termes`} className="hover:text-slate-400 transition-colors">
+            <Link to={`/${prefix}/legal/termes`} className="py-2 hover:text-slate-300 transition-colors">
               {t("legal.terms_title")}
             </Link>
-            <Link to={`/${prefix}/legal/cookies`} className="hover:text-slate-400 transition-colors">
+            <Link to={`/${prefix}/legal/cookies`} className="py-2 hover:text-slate-300 transition-colors">
               {t("legal.cookies_title")}
             </Link>
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="text-xs text-slate-500">Partner Cortizo</span>
+            <span className="text-xs text-slate-400">Partner Cortizo</span>
             {/* Instagram */}
             <a
               href="https://instagram.com/arafinestra"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 hover:text-white transition-colors"
+              className="p-2 text-slate-400 hover:text-white transition-colors"
               aria-label="Instagram"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@ export default function Footer() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 hover:text-white transition-colors"
+              className="p-2 text-slate-400 hover:text-white transition-colors"
               aria-label="Facebook"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

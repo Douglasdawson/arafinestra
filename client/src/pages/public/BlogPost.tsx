@@ -226,7 +226,7 @@ export default function BlogPost() {
             src={post.imagen_portada}
             alt={title}
             className="w-full h-full object-cover opacity-70"
-            loading="lazy"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent" />
         </section>
@@ -328,7 +328,7 @@ export default function BlogPost() {
               </div>
 
               <div
-                className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-navy-800 prose-a:text-brand hover:prose-a:text-brand-dark"
+                className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-navy-800 prose-a:text-brand hover:prose-a:text-brand-dark break-words"
                 dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
               />
 

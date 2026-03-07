@@ -68,7 +68,8 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                   const v = parseInt(e.target.value) || 40;
                   onChange("ancho", Math.max(40, Math.min(400, v)));
                 }}
-                className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-brand focus:border-brand"
+                inputMode="numeric"
+                className="w-20 px-3 py-2 text-base border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-brand focus:border-brand"
               />
             </div>
           </div>
@@ -94,7 +95,8 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                   const v = parseInt(e.target.value) || 40;
                   onChange("alto", Math.max(40, Math.min(300, v)));
                 }}
-                className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-brand focus:border-brand"
+                inputMode="numeric"
+                className="w-20 px-3 py-2 text-base border border-gray-300 rounded-lg text-center font-mono focus:ring-2 focus:ring-brand focus:border-brand"
               />
             </div>
           </div>

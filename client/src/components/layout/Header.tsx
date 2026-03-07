@@ -99,6 +99,8 @@ export default function Header() {
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setServicesOpen(!servicesOpen)}
+                  aria-expanded={servicesOpen}
+                  aria-haspopup="true"
                   className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isServiceActive
                       ? "text-brand"
@@ -184,12 +186,13 @@ export default function Header() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-2 rounded-lg transition-colors ${
+              className={`lg:hidden p-3 rounded-lg transition-colors ${
                 scrolled || !isHome
                   ? "text-slate-700 hover:bg-slate-100"
                   : "text-white hover:bg-white/10"
               }`}
               aria-label="Menu"
+              aria-expanded={mobileOpen}
             >
               <div className="w-5 h-4 flex flex-col justify-between">
                 <span
@@ -228,7 +231,8 @@ export default function Header() {
               <span className="text-lg font-bold text-navy-800">ARA FINESTRA</span>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 rounded-lg text-slate-500 hover:bg-slate-100"
+                className="p-3 rounded-lg text-slate-500 hover:bg-slate-100"
+                aria-label="Tancar menú"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -237,14 +241,14 @@ export default function Header() {
             </div>
 
             <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                 {t("nav.services")}
               </p>
               {serviceLinks.map((s) => (
                 <Link
                   key={s.to}
                   to={s.to}
-                  className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`block px-3 py-3 rounded-lg text-sm font-medium transition-colors ${
                     isActive(s.to)
                       ? "bg-brand-light text-brand"
                       : "text-slate-700 hover:bg-slate-50"
@@ -260,7 +264,7 @@ export default function Header() {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`block px-3 py-3 rounded-lg text-sm font-medium transition-colors ${
                     isActive(link.to)
                       ? "bg-brand-light text-brand"
                       : "text-slate-700 hover:bg-slate-50"

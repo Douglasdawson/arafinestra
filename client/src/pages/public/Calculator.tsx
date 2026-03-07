@@ -236,7 +236,7 @@ export default function Calculator() {
             {!isResult && state.step > 1 && (
               <div className="lg:w-72 flex-shrink-0">
                 <div className="sticky top-24 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                  <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-4 text-center">
+                  <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4 text-center">
                     {t("calculator.preview")}
                   </p>
                   <div className="flex justify-center">
@@ -375,7 +375,9 @@ export default function Calculator() {
                         value={savePhone}
                         onChange={(e) => setSavePhone(e.target.value)}
                         placeholder={t("calculator.save_phone_placeholder")}
-                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand/40 w-44"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        className="px-3 py-2 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand/40 w-44"
                         required
                       />
                       <button
@@ -388,7 +390,7 @@ export default function Calculator() {
                       <button
                         type="button"
                         onClick={() => setSaveOpen(false)}
-                        className="text-gray-300 hover:text-gray-500 transition-colors"
+                        className="p-2 text-gray-300 hover:text-gray-500 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -419,6 +421,7 @@ function FaqAccordionItem({ question, answer }: { question: string; answer: stri
     <div className="border-b border-slate-200">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
         <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">

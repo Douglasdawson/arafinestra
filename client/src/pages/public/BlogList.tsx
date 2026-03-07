@@ -314,7 +314,9 @@ export default function BlogList() {
                 value={nlEmail}
                 onChange={(e) => setNlEmail(e.target.value)}
                 placeholder={t("blog.subscribe_placeholder")}
-                className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent text-sm"
+                inputMode="email"
+                autoComplete="email"
+                className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent text-base"
               />
               <button
                 type="submit"

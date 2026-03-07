@@ -3,6 +3,12 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 const LANGS = ["ca", "es", "en"] as const;
 
+const LANG_ARIA_LABELS: Record<string, string> = {
+  ca: "Canviar a Català",
+  es: "Cambiar a Español",
+  en: "Switch to English",
+};
+
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
@@ -28,7 +34,8 @@ export default function LanguageSwitcher() {
           {i > 0 && <span className="text-slate-300 text-xs mx-0.5">|</span>}
           <button
             onClick={() => switchLang(l)}
-            className={`text-xs font-medium uppercase px-1 py-0.5 rounded transition-colors ${
+            aria-label={LANG_ARIA_LABELS[l]}
+            className={`text-xs font-medium uppercase px-2 py-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded transition-colors ${
               i18n.language === l || i18n.language.startsWith(l + "-")
                 ? "text-brand font-bold"
                 : "text-slate-500 hover:text-slate-800"

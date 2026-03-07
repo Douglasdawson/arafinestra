@@ -89,7 +89,7 @@ export default function Contact() {
   };
 
   const inputCls =
-    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
+    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
 
   return (
     <>
@@ -201,6 +201,7 @@ export default function Contact() {
                       <input
                         type="email"
                         name="email"
+                        inputMode="email"
                         autoComplete="email"
                         value={form.email}
                         onChange={handleChange}

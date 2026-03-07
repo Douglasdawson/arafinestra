@@ -117,6 +117,7 @@ function AccordionItem({
       <div className="border-b border-slate-200">
         <button
           onClick={() => setOpen(!open)}
+          aria-expanded={open}
           className="w-full flex items-center justify-between py-5 text-left group"
         >
           <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">

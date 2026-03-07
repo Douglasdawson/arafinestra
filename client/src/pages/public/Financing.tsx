@@ -127,7 +127,7 @@ export default function Financing() {
             ))}
           </div>
 
-          <p className="text-center text-xs text-slate-400 mt-4">{t("financing.calc_disclaimer")}</p>
+          <p className="text-center text-xs text-slate-500 mt-4">{t("financing.calc_disclaimer")}</p>
         </div>
       </section>
 
@@ -256,6 +256,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
     <div className="border-b border-slate-200">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
         <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">

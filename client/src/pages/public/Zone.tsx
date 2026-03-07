@@ -180,7 +180,7 @@ export default function Zone() {
       {contenido && (
         <section className="py-12 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-slate prose-sm sm:prose-base max-w-none text-slate-700 leading-relaxed whitespace-pre-line">
+            <div className="prose prose-slate prose-sm sm:prose-base max-w-none text-slate-700 leading-relaxed whitespace-pre-line break-words">
               {contenido}
             </div>
           </div>

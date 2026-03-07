@@ -25,7 +25,7 @@ export default function WhatsAppButton() {
     const interval = setInterval(() => {
       const current = localStorage.getItem(CONSENT_KEY);
       setCookieBannerVisible(!current);
-    }, 500);
+    }, 2000);
 
     return () => {
       window.removeEventListener("storage", handleStorage);

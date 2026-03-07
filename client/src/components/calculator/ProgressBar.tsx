@@ -30,7 +30,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
     <div className="w-full py-6 px-2">
       <div className="flex items-center justify-between mb-2 px-1">
         <span className="text-xs font-medium text-brand">{percentage}%</span>
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-slate-500">
           {t("calculator.time_remaining", { minutes: timeRemaining })}
         </span>
       </div>
@@ -68,7 +68,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
               </div>
               <span
                 className={`mt-2 text-xs font-medium text-center hidden sm:block max-w-[80px] ${
-                  isCurrent ? "text-brand" : isCompleted ? "text-green-600" : "text-gray-400"
+                  isCurrent ? "text-brand" : isCompleted ? "text-green-600" : "text-gray-500"
                 }`}
               >
                 {t(key)}

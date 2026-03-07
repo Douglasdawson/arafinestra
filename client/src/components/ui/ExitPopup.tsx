@@ -64,6 +64,16 @@ export default function ExitPopup() {
     dismiss();
   }, []);
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!visible) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [visible, handleClose]);
+
   useEffect(() => {
     if (isDismissed()) return;
     if (!isAllowedRoute(location.pathname)) return;
@@ -127,6 +137,9 @@ export default function ExitPopup() {
     >
       <div
         className="relative rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("exit_popup.title")}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Navy header band */}
@@ -142,7 +155,7 @@ export default function ExitPopup() {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute top-3 right-3 text-white/70 hover:text-white text-2xl leading-none"
+            className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center rounded-lg text-white/70 hover:text-white text-2xl leading-none"
             aria-label="Close"
           >
             &times;
@@ -163,10 +176,12 @@ export default function ExitPopup() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="email"
+                  inputMode="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("exit_popup.placeholder")}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-brand)] focus:border-[var(--color-brand)] outline-none"
+                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-brand)] focus:border-[var(--color-brand)] outline-none"
                   required
                 />
                 <button

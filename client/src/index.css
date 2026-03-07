@@ -137,6 +137,11 @@ html {
   color: inherit;
 }
 
+.prose {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

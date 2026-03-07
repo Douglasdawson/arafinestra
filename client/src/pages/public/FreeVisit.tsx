@@ -76,7 +76,7 @@ export default function FreeVisit() {
   };
 
   const inputCls =
-    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
+    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
 
   const freeVisitSchema = {
     "@context": "https://schema.org",
@@ -289,6 +289,7 @@ export default function FreeVisit() {
                       <input
                         type="email"
                         name="email"
+                        inputMode="email"
                         autoComplete="email"
                         value={form.email}
                         onChange={handleChange}

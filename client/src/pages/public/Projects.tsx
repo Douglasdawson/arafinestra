@@ -130,7 +130,7 @@ export default function Projects() {
               <select
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
-                className="px-4 py-2 rounded-lg border border-slate-300 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand"
+                className="px-4 py-2 rounded-lg border border-slate-300 text-base text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand"
               >
                 <option value="">{t("portfolio.filter_location")}</option>
                 {locations.map((loc) => (
@@ -224,7 +224,7 @@ export default function Projects() {
       {/* Detail Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4"
           role="dialog"
           aria-modal="true"
           onClick={() => setSelectedProject(null)}
@@ -240,6 +240,7 @@ export default function Projects() {
               <button
                 onClick={() => setSelectedProject(null)}
                 className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-500"
+                aria-label="Tancar"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
