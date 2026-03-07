@@ -161,6 +161,7 @@ export default function Products() {
         ) : products.length === 0 ? (
           <div className="p-8 text-center text-gray-400">No hay productos</div>
         ) : (
+          <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -197,6 +198,7 @@ export default function Products() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 
@@ -216,7 +218,7 @@ export default function Products() {
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Gama</label>
                   <input type="text" value={editing.gama || ""} onChange={(e) => setEditing({ ...editing, gama: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
@@ -232,7 +234,7 @@ export default function Products() {
                 <textarea value={editing.descripcion || ""} onChange={(e) => setEditing({ ...editing, descripcion: e.target.value })} rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Precio base (EUR)</label>
                   <input type="number" step="0.01" value={editing.precioBase ?? ""} onChange={(e) => setEditing({ ...editing, precioBase: parseFloat(e.target.value) || 0 })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />

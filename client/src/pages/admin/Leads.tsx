@@ -165,7 +165,7 @@ export default function Leads() {
           placeholder="Buscar nombre o email..."
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-          className="px-3 py-2 border border-gray-300 rounded-md text-sm flex-1 min-w-[200px]"
+          className="px-3 py-2 border border-gray-300 rounded-md text-sm flex-1 min-w-0 w-full sm:min-w-[200px] sm:w-auto"
         />
 
         <button
@@ -180,7 +180,7 @@ export default function Leads() {
         </button>
       </div>
 
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6">
         {/* Table */}
         <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           {loading ? (
@@ -188,6 +188,7 @@ export default function Leads() {
           ) : leads.length === 0 ? (
             <div className="p-8 text-center text-gray-400">No hay leads</div>
           ) : (
+            <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
@@ -241,6 +242,7 @@ export default function Leads() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
 
           {/* Pagination */}
@@ -272,7 +274,7 @@ export default function Leads() {
 
         {/* Detail panel */}
         {selected && (
-          <div className="w-96 bg-white rounded-lg shadow-sm border border-gray-200 p-5 self-start">
+          <div className="w-full lg:w-96 bg-white rounded-lg shadow-sm border border-gray-200 p-5 self-start">
             <div className="flex justify-between items-start mb-4">
               <h2 className="font-semibold text-navy-900">{selected.nombre}</h2>
               <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600">x</button>

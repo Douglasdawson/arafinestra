@@ -98,7 +98,7 @@ export default function SiteConfig() {
                 {savingKey === item.key ? "..." : "Guardar"}
               </button>
             </div>
-            <div className="grid grid-cols-3 gap-3 mt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
               <div>
                 <span className="text-xs text-gray-400 block mb-1">CA</span>
                 <input

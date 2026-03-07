@@ -164,7 +164,7 @@ export default function BlogEditor() {
           onChange={(lang, val) => updateField(`extracto${lang.charAt(0).toUpperCase() + lang.slice(1)}`, val)}
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
             <select value={post.categoria} onChange={(e) => updateField("categoria", e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">

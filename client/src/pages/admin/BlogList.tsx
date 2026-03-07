@@ -67,6 +67,7 @@ export default function BlogList() {
         ) : posts.length === 0 ? (
           <div className="p-8 text-center text-gray-400">No hay articulos</div>
         ) : (
+          <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -98,6 +99,7 @@ export default function BlogList() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </div>
