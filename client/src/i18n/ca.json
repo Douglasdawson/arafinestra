@@ -176,7 +176,10 @@
     "hours_detail": "Dilluns a divendres: 9:00 - 18:00",
     "whatsapp_cta": "Escriu-nos per WhatsApp",
     "success": "Missatge enviat correctament!",
-    "error": "Error en enviar el missatge"
+    "error": "Error en enviar el missatge",
+    "response_time": "Responem en menys de 2 hores",
+    "google_rating": "4.9/5 a Google Reviews",
+    "guarantee_badge": "10 anys de garantia Cortizo"
   },
   "footer": {
     "services": "Serveis",
@@ -267,7 +270,8 @@
     "no_zones": "Properament mostrarem les nostres zones de servei.",
     "not_found": "Zona no trobada",
     "back_to_zones": "Tornar a zones",
-    "services_title": "Serveis a {{zone}}"
+    "services_title": "Serveis a {{zone}}",
+    "before_after": "Abans i després"
   },
   "portfolio": {
     "title": "Projectes realitzats",

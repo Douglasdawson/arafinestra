@@ -176,7 +176,10 @@
     "hours_detail": "Monday to Friday: 9:00 - 18:00",
     "whatsapp_cta": "Write us on WhatsApp",
     "success": "Message sent successfully!",
-    "error": "Error sending message"
+    "error": "Error sending message",
+    "response_time": "We respond in less than 2 hours",
+    "google_rating": "4.9/5 on Google Reviews",
+    "guarantee_badge": "10 years Cortizo warranty"
   },
   "footer": {
     "services": "Services",
@@ -267,7 +270,8 @@
     "no_zones": "We will soon showcase our service areas.",
     "not_found": "Area not found",
     "back_to_zones": "Back to areas",
-    "services_title": "Services in {{zone}}"
+    "services_title": "Services in {{zone}}",
+    "before_after": "Before and after"
   },
   "portfolio": {
     "title": "Completed projects",

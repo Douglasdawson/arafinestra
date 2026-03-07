@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
@@ -8,18 +9,21 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ photo, title, location, link }: ProjectCardProps) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <Link
       to={link}
       className="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
     >
       <div className="aspect-[4/3] bg-slate-200 overflow-hidden">
-        {photo ? (
+        {photo && !imgError ? (
           <img
             src={photo}
             alt={title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
+            onError={() => setImgError(true)}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-slate-400">

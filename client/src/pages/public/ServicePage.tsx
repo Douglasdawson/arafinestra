@@ -157,15 +157,18 @@ export default function ServicePage() {
   const { gradient } = SERVICE_COLORS[serviceType];
 
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [loadingPortfolio, setLoadingPortfolio] = useState(true);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [zones, setZones] = useState<Zone[]>([]);
   const [testimonials, setTestimonials] = useState<{ id: number; nombre: string; localidad: string | null; estrellas: number; texto_ca: string | null; texto_es: string | null; texto_en: string | null }[]>([]);
 
   useEffect(() => {
+    setLoadingPortfolio(true);
     fetch(`/api/portfolio?published=true&tipo=${serviceType}`)
       .then((r) => (r.ok ? r.json() : []))
       .then(setPortfolioItems)
-      .catch(() => setPortfolioItems([]));
+      .catch(() => setPortfolioItems([]))
+      .finally(() => setLoadingPortfolio(false));
 
     // Fetch blog posts matching service categories
     const categories = SERVICE_BLOG_CATEGORIES[serviceType];
@@ -358,7 +361,7 @@ export default function ServicePage() {
       </section>
 
       {/* Portfolio */}
-      {portfolioItems.length > 0 && (
+      {(loadingPortfolio || portfolioItems.length > 0) && (
         <section className="py-20 sm:py-24 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal>
@@ -367,16 +370,26 @@ export default function ServicePage() {
               </h2>
             </ScrollReveal>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {portfolioItems.map((p, i) => (
-                <ScrollReveal key={p.id} delay={i * 0.1}>
-                  <ProjectCard
-                    photo={p.foto_despues}
-                    title={getTitle(p)}
-                    location={p.localidad}
-                    link={`/${prefix}/projectes`}
-                  />
-                </ScrollReveal>
-              ))}
+              {loadingPortfolio
+                ? Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                      <div className="aspect-[4/3] bg-slate-200 animate-pulse" />
+                      <div className="p-4 space-y-2">
+                        <div className="h-4 bg-slate-200 rounded animate-pulse w-3/4" />
+                        <div className="h-3 bg-slate-100 rounded animate-pulse w-1/2" />
+                      </div>
+                    </div>
+                  ))
+                : portfolioItems.map((p, i) => (
+                    <ScrollReveal key={p.id} delay={i * 0.1}>
+                      <ProjectCard
+                        photo={p.foto_despues}
+                        title={getTitle(p)}
+                        location={p.localidad}
+                        link={`/${prefix}/projectes`}
+                      />
+                    </ScrollReveal>
+                  ))}
             </div>
           </div>
         </section>

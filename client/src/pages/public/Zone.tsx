@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
+import BeforeAfterSlider from "../../components/ui/BeforeAfterSlider";
 import { localize } from "../../lib/localize";
 
 interface ZoneData {
@@ -30,6 +31,7 @@ interface PortfolioItem {
   titulo_es: string;
   titulo_en: string;
   localidad: string | null;
+  fotos_antes: string[];
   fotos_despues: string[];
 }
 
@@ -155,12 +157,34 @@ export default function Zone() {
       )}
 
       {/* Portfolio for this zone */}
-      {projects.length > 0 && (
+      {projects.length > 0 && (() => {
+        const showcaseProject = projects.find(
+          (p) =>
+            p.fotos_antes && p.fotos_antes.length > 0 &&
+            p.fotos_despues && p.fotos_despues.length > 0
+        );
+        return (
         <section className="py-12 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">
               {t("portfolio.title")}
             </h2>
+
+            {/* Before / After showcase */}
+            {showcaseProject && (
+              <div className="mb-10 max-w-3xl mx-auto">
+                <h3 className="text-lg font-semibold text-navy-700 mb-4 text-center">
+                  {t("zones_page.before_after")}
+                </h3>
+                <BeforeAfterSlider
+                  beforeSrc={showcaseProject.fotos_antes[0]}
+                  afterSrc={showcaseProject.fotos_despues[0]}
+                  beforeLabel={t("portfolio.before")}
+                  afterLabel={t("portfolio.after")}
+                />
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((p) => {
                 const pObj = p as unknown as Record<string, unknown>;
@@ -192,7 +216,8 @@ export default function Zone() {
             </div>
           </div>
         </section>
-      )}
+        );
+      })()}
 
       {/* Map */}
       {zone.latitud && zone.longitud && (
