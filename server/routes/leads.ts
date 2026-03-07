@@ -136,6 +136,8 @@ export function registerLeadRoutes(app: Express) {
         telefono: lead.telefono,
         localidad: lead.localidad,
         origen: lead.origen,
+        mensaje: lead.notas,
+        configuracion: req.body.configuracion,
       }).catch(() => {});
       res.status(201).json(lead);
     } catch (err) {
