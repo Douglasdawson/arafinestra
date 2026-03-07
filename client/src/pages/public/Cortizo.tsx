@@ -31,10 +31,13 @@ export default function Cortizo() {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-navy-900 to-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("cortizo.h1")}</h1>
-          <p className="mt-4 text-xl text-brand-light max-w-2xl mx-auto">{t("cortizo.subtitle")}</p>
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-[20%] right-[10%] w-[180px] h-[180px] rounded-full bg-brand/8 blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("cortizo.h1")}</h1>
+          <p className="mt-5 text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-light">{t("cortizo.subtitle")}</p>
         </div>
       </section>
 

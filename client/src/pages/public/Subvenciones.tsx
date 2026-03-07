@@ -41,10 +41,13 @@ export default function Subvenciones() {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-emerald-700 to-teal-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("subsidies_page.h1")}</h1>
-          <p className="mt-4 text-xl text-emerald-100 max-w-2xl mx-auto">{t("subsidies_page.subtitle")}</p>
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-emerald-700 via-teal-800 to-teal-900 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[25%] right-[10%] w-[200px] h-[200px] rounded-full bg-emerald-400/10 blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("subsidies_page.h1")}</h1>
+          <p className="mt-5 text-base sm:text-xl text-emerald-100/80 max-w-2xl mx-auto font-light">{t("subsidies_page.subtitle")}</p>
         </div>
       </section>
 

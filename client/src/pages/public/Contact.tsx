@@ -105,20 +105,17 @@ export default function Contact() {
       ]} />
 
       {/* Hero */}
-      <section className="relative py-24 sm:py-32 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 60% 30%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-            }}
-          />
+      <section className="relative py-20 sm:py-32 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[30%] right-[10%] w-[200px] h-[200px] rounded-full bg-brand/8 blur-3xl" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight animate-fadeIn">
             {t("contact.title")}
           </h1>
+          <p className="mt-3 text-sm text-white/50 animate-fadeIn" style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}>
+            {t("contact.response_time")}
+          </p>
         </div>
       </section>
 
@@ -239,7 +236,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full px-6 py-3.5 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base btn-press"
+                    className="w-full px-6 py-4 bg-brand text-white font-semibold rounded-xl hover:bg-brand-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base shadow-lg shadow-brand/20 btn-press"
                   >
                     {sending ? "..." : t("contact.send")}
                   </button>

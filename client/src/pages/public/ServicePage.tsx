@@ -297,29 +297,32 @@ export default function ServicePage() {
 
       {/* Hero */}
       <section className={`relative py-24 sm:py-32 bg-gradient-to-br ${gradient} overflow-hidden`}>
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-            }}
-          />
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[20%] left-[10%] w-[200px] h-[200px] rounded-full bg-white/5 blur-3xl" />
+          <div className="absolute bottom-[10%] right-[10%] w-[150px] h-[150px] rounded-full bg-brand/10 blur-3xl" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight animate-fadeIn">
             {pageTitle}
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto font-light animate-fadeIn" style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}>
+          <p className="mt-5 text-base sm:text-xl text-white/70 max-w-2xl mx-auto font-light animate-fadeIn" style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}>
             {pageDesc}
           </p>
           <div className="animate-fadeIn" style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}>
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-8 px-8 py-3.5 bg-white text-navy-900 font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg"
+              className="inline-block mt-8 px-8 py-4 bg-brand text-white font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30"
             >
               {t(ctaKey[serviceType])}
             </Link>
+            <div className="mt-4 flex items-center justify-center gap-1.5">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+              <span className="text-xs text-white/50 ml-1">4.9</span>
+            </div>
           </div>
         </div>
       </section>
@@ -512,17 +515,17 @@ export default function ServicePage() {
               {t("service_pages.related_services")}
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
             {ALL_SERVICES.filter((s) => s.slug !== serviceSlug).map((service, i) => (
               <ScrollReveal key={service.slug} delay={i * 0.1}>
                 <Link
                   to={`/${prefix}/serveis/${service.slug}`}
-                  className="block bg-white rounded-lg shadow-md border border-slate-100 hover:border-brand/20 hover:shadow-lg transition-all p-6 text-center"
+                  className="block bg-white rounded-xl shadow-sm border border-slate-100 hover:border-brand/20 hover:shadow-md transition-all p-4 sm:p-6 text-center active:scale-[0.97]"
                 >
-                  <div className="flex items-center justify-center w-14 h-14 mx-auto mb-4 rounded-full bg-brand-light text-brand">
+                  <div className="flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-full bg-brand-light text-brand">
                     {service.icon}
                   </div>
-                  <h3 className="text-base font-semibold text-navy-800">
+                  <h3 className="text-xs sm:text-base font-semibold text-navy-800">
                     {t(service.navKey)}
                   </h3>
                 </Link>
@@ -534,33 +537,31 @@ export default function ServicePage() {
 
       {/* CTA */}
       <section className="relative py-24 sm:py-32 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at 50% 50%, rgba(232,101,43,0.3) 0%, transparent 60%)",
-            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full opacity-20"
+            style={{ background: "radial-gradient(circle, rgba(232,101,43,0.4) 0%, transparent 70%)" }}
           />
         </div>
-        <div className="relative max-w-3xl mx-auto px-4 text-center">
+        <div className="relative max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               {t("service_pages.cta_title")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <p className="mt-6 text-lg text-slate-400 font-light">
+            <p className="mt-5 text-base sm:text-lg text-slate-400 font-light">
               {t("service_pages.cta_desc")}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-10 px-10 py-4 bg-white text-navy-900 text-lg font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg pulse-glow-btn"
+              className="inline-block mt-10 px-10 py-4 bg-brand text-white text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30 pulse-glow-btn"
             >
               {t(ctaKey[serviceType])}
             </Link>
+            <p className="mt-3 text-sm text-slate-500">{t("cta.free_no_commitment")}</p>
           </ScrollReveal>
         </div>
       </section>

@@ -164,16 +164,11 @@ export default function FreeVisit() {
 
       {/* Hero */}
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 60% 30%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-            }}
-          />
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[15%] left-[15%] w-[200px] h-[200px] rounded-full bg-brand/8 blur-3xl" />
+          <div className="absolute bottom-[20%] right-[10%] w-[150px] h-[150px] rounded-full bg-emerald-500/8 blur-3xl" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand/20 border border-brand/30 rounded-full text-sm font-medium text-brand-light mb-6 animate-fadeIn">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

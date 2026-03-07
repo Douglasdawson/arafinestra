@@ -62,10 +62,13 @@ export default function Financing() {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-navy-800 to-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("financing.h1")}</h1>
-          <p className="mt-4 text-xl text-navy-200 max-w-2xl mx-auto">{t("financing.subtitle")}</p>
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[20%] left-[15%] w-[180px] h-[180px] rounded-full bg-emerald-500/8 blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("financing.h1")}</h1>
+          <p className="mt-5 text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-light">{t("financing.subtitle")}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
