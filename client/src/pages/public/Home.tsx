@@ -931,7 +931,7 @@ function EnergySavings({
                   <button
                     key={wt.id}
                     onClick={() => setOldType(wt.id)}
-                    className={`px-2 sm:px-3 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-3 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                       oldType === wt.id
                         ? "bg-navy-900 text-white shadow-md"
                         : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"
@@ -1321,7 +1321,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-24 sm:py-36 bg-navy-950 overflow-hidden flex items-center justify-center">
+      <section className="relative py-24 pb-32 sm:py-36 bg-navy-950 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full opacity-20"

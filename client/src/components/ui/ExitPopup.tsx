@@ -155,7 +155,7 @@ export default function ExitPopup() {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center rounded-lg text-white/70 hover:text-white text-2xl leading-none"
+            className="absolute top-3 right-3 w-12 h-12 flex items-center justify-center rounded-lg text-white/70 hover:text-white text-2xl leading-none"
             aria-label="Close"
           >
             &times;

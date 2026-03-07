@@ -70,7 +70,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="py-1 text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-2 text-sm text-slate-400 hover:text-white transition-colors link-underline"
                   >
                     {link.label}
                   </Link>
@@ -89,7 +89,7 @@ export default function Footer() {
                 <li key={city}>
                   <Link
                     to={`/${prefix}/zones/${city.toLowerCase()}`}
-                    className="py-1 text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-2 text-sm text-slate-400 hover:text-white transition-colors link-underline"
                   >
                     {city}
                   </Link>
@@ -108,7 +108,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="py-1 text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-2 text-sm text-slate-400 hover:text-white transition-colors link-underline"
                   >
                     {link.label}
                   </Link>

@@ -69,7 +69,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 pt-[env(safe-area-inset-top)] ${
           scrolled || !isHome
             ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100/50"
             : "bg-transparent"
@@ -186,7 +186,7 @@ export default function Header() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-3 rounded-lg transition-colors ${
+              className={`lg:hidden p-3.5 rounded-lg transition-colors ${
                 scrolled || !isHome
                   ? "text-slate-700 hover:bg-slate-100"
                   : "text-white hover:bg-white/10"
@@ -299,8 +299,8 @@ export default function Header() {
         </div>
       )}
 
-      {/* Spacer */}
-      <div className="h-16" />
+      {/* Spacer — accounts for header height + safe area (Dynamic Island) */}
+      <div className="h-16" style={{ paddingTop: "env(safe-area-inset-top)" }} />
     </>
   );
 }

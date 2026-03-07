@@ -253,7 +253,7 @@ export default function BlogList() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <nav className="flex justify-center items-center gap-2 mt-10" aria-label="Pagination">
+                <nav className="flex flex-wrap justify-center items-center gap-2 mt-10" aria-label="Pagination">
                   {/* Previous */}
                   <button
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
@@ -268,7 +268,7 @@ export default function BlogList() {
                     <button
                       key={n}
                       onClick={() => setPage(n)}
-                      className={`w-10 h-10 text-sm font-medium rounded-lg border transition-colors ${
+                      className={`w-11 h-11 text-sm font-medium rounded-lg border transition-colors ${
                         n === page
                           ? "bg-brand text-white border-brand"
                           : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
