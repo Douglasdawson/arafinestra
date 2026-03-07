@@ -46,7 +46,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackEvent("click", "whatsapp", "floating_button")}
-      className={`group fixed right-6 z-50 flex items-center justify-center h-14 bg-green-500 shadow-lg hover:scale-110 hover:bg-green-600 transition-all duration-300 animate-whatsapp-pulse w-14 rounded-full sm:w-auto sm:rounded-full sm:px-5 ${
+      className={`group fixed right-6 z-50 hidden md:flex items-center justify-center h-14 bg-green-500 shadow-lg hover:scale-110 hover:bg-green-600 transition-all duration-300 animate-whatsapp-pulse w-14 rounded-full sm:w-auto sm:rounded-full sm:px-5 ${
         cookieBannerVisible ? "bottom-24 sm:bottom-22" : "bottom-6"
       }`}
       aria-label={t("whatsapp_tooltip")}

@@ -19,10 +19,13 @@ export default function Footer() {
   ];
 
   const companyLinks = [
+    { to: `/${prefix}/qui-som`, label: t("nav.about") },
+    { to: `/${prefix}/visita-gratuita`, label: t("nav.free_visit") },
     { to: `/${prefix}/blog`, label: t("nav.blog") },
     { to: `/${prefix}/opinions`, label: t("nav.reviews") },
     { to: `/${prefix}/cortizo`, label: t("nav.cortizo") },
     { to: `/${prefix}/subvencions`, label: t("nav.subsidies") },
+    { to: `/${prefix}/financament`, label: t("nav_financing") },
     { to: `/${prefix}/proces`, label: t("nav.process") },
   ];
 

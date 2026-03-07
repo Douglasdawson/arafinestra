@@ -7,6 +7,7 @@ const Home = lazy(() => import("./pages/public/Home"));
 const ServicePage = lazy(() => import("./pages/public/ServicePage"));
 const Cortizo = lazy(() => import("./pages/public/Cortizo"));
 const Subvenciones = lazy(() => import("./pages/public/Subvenciones"));
+const Financing = lazy(() => import("./pages/public/Financing"));
 const Calculator = lazy(() => import("./pages/public/Calculator"));
 const Projects = lazy(() => import("./pages/public/Projects"));
 const PublicBlogList = lazy(() => import("./pages/public/BlogList"));
@@ -16,6 +17,8 @@ const Contact = lazy(() => import("./pages/public/Contact"));
 const ZonesList = lazy(() => import("./pages/public/ZonesList"));
 const Zone = lazy(() => import("./pages/public/Zone"));
 const Process = lazy(() => import("./pages/public/Process"));
+const AboutUs = lazy(() => import("./pages/public/AboutUs"));
+const FreeVisit = lazy(() => import("./pages/public/FreeVisit"));
 const Legal = lazy(() => import("./pages/public/Legal"));
 const NotFound = lazy(() => import("./pages/public/NotFound"));
 
@@ -42,6 +45,7 @@ export default function App() {
           <Route path="/:lang/serveis/:serviceSlug" element={<ServicePage />} />
           <Route path="/:lang/cortizo" element={<Cortizo />} />
           <Route path="/:lang/subvencions" element={<Subvenciones />} />
+          <Route path="/:lang/financament" element={<Financing />} />
           <Route path="/:lang/projectes" element={<Projects />} />
           <Route path="/:lang/pressupost" element={<Calculator />} />
           <Route path="/:lang/blog" element={<PublicBlogList />} />
@@ -51,6 +55,8 @@ export default function App() {
           <Route path="/:lang/zones" element={<ZonesList />} />
           <Route path="/:lang/zones/:slug" element={<Zone />} />
           <Route path="/:lang/proces" element={<Process />} />
+          <Route path="/:lang/qui-som" element={<AboutUs />} />
+          <Route path="/:lang/visita-gratuita" element={<FreeVisit />} />
           <Route path="/:lang/legal/:type" element={<Legal />} />
         </Route>
 

@@ -58,6 +58,7 @@ export default function Header() {
   const navLinks = [
     { to: `/${prefix}/pressupost`, label: t("nav.calculator") },
     { to: `/${prefix}/projectes`, label: t("nav.projects") },
+    { to: `/${prefix}/qui-som`, label: t("nav.about") },
     { to: `/${prefix}/blog`, label: t("nav.blog") },
     { to: `/${prefix}/contacte`, label: t("nav.contact") },
   ];
@@ -173,10 +174,10 @@ export default function Header() {
               </a>
               <LanguageSwitcher />
               <Link
-                to={`/${prefix}/pressupost`}
+                to={`/${prefix}/visita-gratuita`}
                 className="bg-brand text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-brand-dark transition-all"
               >
-                {t("cta.get_quote")}
+                {t("cta.free_visit")}
               </Link>
             </div>
 

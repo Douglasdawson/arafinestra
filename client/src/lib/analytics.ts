@@ -1,5 +1,5 @@
 // Google Analytics 4 — set VITE_GA4_ID in environment variables
-const GA_ID = import.meta.env.VITE_GA4_ID || "";
+const GA_ID = (import.meta as any).env?.VITE_GA4_ID || "";
 
 export function initAnalytics() {
   if (!GA_ID || typeof window === "undefined") return;
