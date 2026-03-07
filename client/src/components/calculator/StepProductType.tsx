@@ -45,31 +45,31 @@ export default function StepProductType({ selected, onSelect }: Props) {
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_product_desc")}</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
         {PRODUCT_TYPES.map(({ id, iconPath, descKey }) => {
           const isSelected = selected === id;
           return (
             <button
               key={id}
               onClick={() => onSelect(id)}
-              className={`relative p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
+              className={`relative p-4 sm:p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
                   ? "border-brand bg-brand-light shadow-md"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
               {isSelected && (
-                <div className="absolute top-3 right-3 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-5 h-5 sm:w-6 sm:h-6 bg-brand rounded-full flex items-center justify-center">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               )}
-              <svg className="w-12 h-12 text-navy-700 mb-3" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-10 h-10 sm:w-12 sm:h-12 text-navy-700 mb-2 sm:mb-3" fill="currentColor" viewBox="0 0 24 24">
                 <path d={iconPath} fillRule="evenodd" clipRule="evenodd" />
               </svg>
-              <h3 className="text-lg font-semibold text-navy-800">{t(NAME_KEYS[id])}</h3>
-              <p className="text-sm text-gray-500 mt-1 line-clamp-2">{t(descKey)}</p>
+              <h3 className="text-base sm:text-lg font-semibold text-navy-800">{t(NAME_KEYS[id])}</h3>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2">{t(descKey)}</p>
             </button>
           );
         })}

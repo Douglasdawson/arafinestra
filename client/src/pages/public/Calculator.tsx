@@ -156,16 +156,20 @@ export default function Calculator() {
 
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
-        <div className="bg-white border-b border-gray-100">
-          <div className="max-w-6xl mx-auto px-4 py-6">
-            <h1 className="text-3xl font-bold text-navy-900 text-center">
+        <div className="relative bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-[30%] right-[10%] w-[120px] h-[120px] rounded-full bg-brand/10 blur-3xl" />
+            <div className="absolute bottom-[20%] left-[15%] w-[100px] h-[100px] rounded-full bg-brand/6 blur-2xl" />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-4 py-8 sm:py-10 text-center">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               {t("calculator.title")}
             </h1>
-            <p className="text-gray-500 text-center mt-2">{t("calculator.subtitle")}</p>
+            <p className="text-slate-300 text-sm sm:text-base mt-2 font-light">{t("calculator.subtitle")}</p>
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="max-w-6xl mx-auto px-4 py-6 pb-24 sm:pb-6">
           {/* Progress */}
           {!isResult && <ProgressBar currentStep={state.step} />}
 
@@ -232,9 +236,9 @@ export default function Calculator() {
               )}
             </div>
 
-            {/* Live window preview — visible from step 2 onwards */}
+            {/* Live window preview — desktop only from step 2 onwards */}
             {!isResult && state.step > 1 && (
-              <div className="lg:w-72 flex-shrink-0">
+              <div className="hidden lg:block lg:w-72 flex-shrink-0">
                 <div className="sticky top-24 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
                   <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4 text-center">
                     {t("calculator.preview")}
@@ -290,44 +294,46 @@ export default function Calculator() {
             )}
           </div>
 
-          {/* Navigation buttons */}
+          {/* Navigation buttons — sticky on mobile */}
           {!isResult && (
-            <div className="flex justify-between mt-10 max-w-2xl mx-auto">
-              <button
-                onClick={goBack}
-                disabled={state.step <= 1}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  state.step <= 1
-                    ? "text-gray-300 cursor-not-allowed"
-                    : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-                }`}
-              >
-                <span className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                  {t("calculator.back")}
-                </span>
-              </button>
-
-              {state.step > 1 && (
+            <div className="fixed bottom-0 left-0 right-0 sm:static sm:mt-10 bg-white sm:bg-transparent border-t border-gray-200 sm:border-0 p-4 sm:p-0 z-20">
+              <div className="flex justify-between max-w-2xl mx-auto">
                 <button
-                  onClick={goNext}
-                  disabled={!canAdvance(state)}
-                  className={`px-8 py-3 rounded-lg font-semibold transition-all ${
-                    canAdvance(state)
-                      ? "bg-brand hover:bg-brand-dark text-white shadow-md hover:shadow-lg"
-                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  onClick={goBack}
+                  disabled={state.step <= 1}
+                  className={`px-5 py-3 rounded-lg font-medium transition-all ${
+                    state.step <= 1
+                      ? "text-gray-300 cursor-not-allowed"
+                      : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
                   }`}
                 >
                   <span className="flex items-center gap-2">
-                    {state.step === TOTAL_STEPS ? t("calculator.see_result") : t("calculator.next")}
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
+                    {t("calculator.back")}
                   </span>
                 </button>
-              )}
+
+                {state.step > 1 && (
+                  <button
+                    onClick={goNext}
+                    disabled={!canAdvance(state)}
+                    className={`px-8 py-3 rounded-lg font-semibold transition-all ${
+                      canAdvance(state)
+                        ? "bg-brand hover:bg-brand-dark text-white shadow-md hover:shadow-lg"
+                        : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {state.step === TOTAL_STEPS ? t("calculator.see_result") : t("calculator.next")}
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </button>
+                )}
+              </div>
             </div>
           )}
 
@@ -463,9 +469,9 @@ function CalculatorFaq() {
   return (
     <>
       <FaqSchema faqs={faqs} />
-      <section className="py-16 bg-white mt-12 rounded-2xl border border-gray-200 shadow-sm">
+      <section className="py-10 sm:py-16 bg-white mt-8 sm:mt-12 rounded-2xl border border-gray-200 shadow-sm mx-2 sm:mx-0">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-900 mb-8 sm:mb-12 text-center tracking-tight">
             {t("calculator.faq_title")}
           </h2>
           <div className="border-t border-slate-200">

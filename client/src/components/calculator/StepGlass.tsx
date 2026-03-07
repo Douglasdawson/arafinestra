@@ -26,44 +26,44 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
       </h2>
       <p className="text-gray-500 text-center">{t("calculator.select_glass_desc")}</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
         {glasses.map(({ id, stars }) => {
           const isSelected = selected === id;
           return (
             <button
               key={id}
               onClick={() => onSelect(id)}
-              className={`relative p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
+              className={`relative p-4 sm:p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
                   ? "border-brand bg-brand-light shadow-md"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
               {isSelected && (
-                <div className="absolute top-3 right-3 w-6 h-6 bg-brand rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-5 h-5 sm:w-6 sm:h-6 bg-brand rounded-full flex items-center justify-center">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               )}
 
               {/* Glass icon */}
-              <div className="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-3">
-                <svg className="w-6 h-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-brand-light rounded-lg flex items-center justify-center mb-2 sm:mb-3">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v18H3V3zm4 4h10v10H7V7z" />
                 </svg>
               </div>
 
-              <h3 className="font-semibold text-navy-800 mb-1">{t(`calculator.glass_${id}`)}</h3>
-              <p className="text-sm text-gray-500 mb-3">{t(`calculator.glass_${id}_desc`)}</p>
+              <h3 className="font-semibold text-navy-800 text-sm sm:text-base mb-1">{t(`calculator.glass_${id}`)}</h3>
+              <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">{t(`calculator.glass_${id}_desc`)}</p>
 
               {/* Star rating */}
-              <div className="flex items-center gap-1">
-                <span className="text-xs text-gray-500 mr-1">{t("calculator.insulation")}:</span>
+              <div className="flex items-center gap-0.5 sm:gap-1">
+                <span className="text-xs text-gray-500 mr-1 hidden sm:inline">{t("calculator.insulation")}:</span>
                 {Array.from({ length: 5 }).map((_, i) => (
                   <svg
                     key={i}
-                    className={`w-4 h-4 ${i < stars ? "text-amber-400" : "text-gray-200"}`}
+                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${i < stars ? "text-amber-400" : "text-gray-200"}`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >

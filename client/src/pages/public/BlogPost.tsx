@@ -221,7 +221,7 @@ export default function BlogPost() {
 
       {/* Hero image */}
       {post.imagen_portada && (
-        <section className="relative h-64 sm:h-80 lg:h-96 bg-navy-800">
+        <section className="relative h-48 sm:h-80 lg:h-96 bg-navy-800 overflow-hidden">
           <img
             src={post.imagen_portada}
             alt={title}

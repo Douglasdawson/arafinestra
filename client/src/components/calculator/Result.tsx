@@ -150,7 +150,7 @@ export default function Result({ state, onReset }: Props) {
           <p className="text-navy-100 text-sm uppercase tracking-wider mb-2">
             {t("calculator.result_from")}
           </p>
-          <p className="text-5xl sm:text-6xl font-bold tracking-tight animate-[fadeIn_0.6s_ease-out]">
+          <p className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight animate-[fadeIn_0.6s_ease-out]">
             {low.toLocaleString()}&euro; &mdash; {high.toLocaleString()}&euro;
           </p>
           {state.cantidad > 1 && (
