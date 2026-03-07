@@ -26,7 +26,8 @@
     "free_quote": "Free quote",
     "view_projects": "View projects",
     "get_quote": "Free quote",
-    "free_visit": "Free visit"
+    "free_visit": "Free visit",
+    "free_no_commitment": "Free, no commitment"
   },
   "hero": {
     "title": "PVC Windows in Girona and Maresme",
@@ -83,12 +84,14 @@
     "scroll_hint": "Discover more",
     "mask_title": "ARA FINESTRA",
     "mask_subtitle": "Opening a new world of comfort",
+    "stage1_badge": "The problem",
     "stage1_title": "Your old window",
     "stage1_sub": "Costs more than you think",
     "stage2_cost": "lost every year",
     "stage2_noise": "of unnecessary noise",
     "stage2_humidity": "of humidity at home",
     "stage3_transition": "But everything can change...",
+    "stage4_badge": "The solution",
     "stage4_title": "Now imagine this",
     "stage4_warm": "Comfort all year",
     "stage4_quiet": "Absolute silence",

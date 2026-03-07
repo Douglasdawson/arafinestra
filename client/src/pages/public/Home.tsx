@@ -58,30 +58,125 @@ function WindowMaskHero({
 
   if (isMobile) {
     return (
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-amber-100 to-orange-100 overflow-hidden">
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <h1
-            className="text-5xl sm:text-6xl font-bold text-navy-900 tracking-tight leading-none animate-fadeIn"
+      <section className="relative min-h-screen flex flex-col items-center justify-center bg-navy-950 overflow-hidden">
+        {/* Ambient glow effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] rounded-full opacity-30"
+            style={{
+              background: "radial-gradient(circle, rgba(232,101,43,0.5) 0%, transparent 70%)",
+              animation: "heroGlow 4s ease-in-out infinite alternate",
+            }}
+          />
+          <div
+            className="absolute bottom-[20%] left-[20%] w-[200px] h-[200px] rounded-full opacity-20"
+            style={{
+              background: "radial-gradient(circle, rgba(232,101,43,0.4) 0%, transparent 70%)",
+              animation: "heroGlow 4s ease-in-out 1s infinite alternate",
+            }}
+          />
+          <div
+            className="absolute top-[40%] right-[10%] w-[150px] h-[150px] rounded-full opacity-15"
+            style={{
+              background: "radial-gradient(circle, rgba(251,191,36,0.4) 0%, transparent 70%)",
+              animation: "heroGlow 5s ease-in-out 2s infinite alternate",
+            }}
+          />
+        </div>
+
+        {/* Geometric window silhouette */}
+        <div
+          className="absolute top-[12%] left-1/2 -translate-x-1/2 opacity-[0.07]"
+          style={{ animation: "heroWindowFloat 8s ease-in-out infinite" }}
+        >
+          <svg width="280" height="340" viewBox="0 0 280 340" fill="none">
+            <rect x="10" y="10" width="260" height="320" rx="4" stroke="white" strokeWidth="3" />
+            <line x1="140" y1="10" x2="140" y2="330" stroke="white" strokeWidth="2" />
+            <line x1="10" y1="170" x2="270" y2="170" stroke="white" strokeWidth="2" />
+            <rect x="20" y="20" width="110" height="140" rx="2" stroke="white" strokeWidth="1" opacity="0.5" />
+            <rect x="150" y="20" width="110" height="140" rx="2" stroke="white" strokeWidth="1" opacity="0.5" />
+            <rect x="20" y="180" width="110" height="140" rx="2" stroke="white" strokeWidth="1" opacity="0.5" />
+            <rect x="150" y="180" width="110" height="140" rx="2" stroke="white" strokeWidth="1" opacity="0.5" />
+          </svg>
+        </div>
+
+        {/* Main content */}
+        <div className="relative z-10 text-center px-6 max-w-lg mx-auto">
+          {/* Brand mark */}
+          <div
+            className="animate-fadeIn mb-3"
+            style={{ animationDuration: "0.6s" }}
           >
-            ARA FINESTRA
+            <span className="inline-block text-xs font-semibold tracking-[0.35em] uppercase text-brand/80 border border-brand/20 rounded-full px-4 py-1.5 backdrop-blur-sm">
+              Partner Cortizo
+            </span>
+          </div>
+
+          {/* Title */}
+          <h1
+            className="text-[3.25rem] sm:text-6xl font-bold tracking-tight leading-[0.95] animate-fadeIn"
+            style={{ animationDuration: "0.6s", animationDelay: "0.15s", animationFillMode: "backwards" }}
+          >
+            <span className="text-white">ARA</span>
+            <br />
+            <span
+              className="text-gradient"
+              style={{ backgroundImage: "linear-gradient(135deg, #e8652b 0%, #fbbf24 100%)" }}
+            >
+              FINESTRA
+            </span>
           </h1>
+
+          {/* Subtitle */}
           <p
-            className="mt-6 text-xl text-slate-600 font-light max-w-2xl mx-auto animate-fadeIn"
-            style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}
+            className="mt-5 text-base sm:text-lg text-slate-400 font-light leading-relaxed animate-fadeIn"
+            style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}
           >
             {t("home.mask_subtitle")}
           </p>
+
+          {/* Trust indicators */}
           <div
-            className="animate-fadeIn"
-            style={{ animationDelay: "0.4s", animationFillMode: "backwards" }}
+            className="mt-8 flex items-center justify-center gap-5 animate-fadeIn"
+            style={{ animationDelay: "0.45s", animationFillMode: "backwards" }}
+          >
+            <div className="flex items-center gap-1.5">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-sm font-semibold text-white">4.9</span>
+            </div>
+            <div className="w-px h-5 bg-slate-700" />
+            <div className="text-sm text-slate-400">
+              <span className="font-semibold text-white">500+</span> {t("stats.projects").toLowerCase()}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div
+            className="mt-10 animate-fadeIn"
+            style={{ animationDelay: "0.6s", animationFillMode: "backwards" }}
           >
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-10 px-10 py-4 bg-navy-900 text-white text-lg font-semibold rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
+              className="inline-block px-10 py-4 bg-brand text-white text-lg font-semibold rounded-xl shadow-lg shadow-brand/30 active:scale-[0.97] transition-transform duration-150 pulse-glow-btn"
             >
               {t("cta.calculate")}
             </Link>
+            <p className="mt-3 text-xs text-slate-500">{t("cta.free_no_commitment")}</p>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeIn" style={{ animationDelay: "1s", animationFillMode: "backwards" }}>
+          <span className="text-[10px] text-slate-600 tracking-[0.2em] uppercase">{t("home.scroll_hint")}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-slate-600 animate-bounce" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
       </section>
     );
@@ -253,59 +348,89 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
 
   if (isMobile) {
     return (
-      <div className="bg-navy-950">
-        <section className="min-h-[70vh] flex items-center justify-center px-4 py-16">
+      <div>
+        {/* Stage 1 — The Problem */}
+        <section className="relative min-h-[75vh] flex items-center justify-center px-6 py-20 bg-navy-950 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-[20%] right-[10%] w-[180px] h-[180px] rounded-full bg-red-500/10 blur-3xl" />
+          </div>
           <ScrollReveal>
-            <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <div className="relative text-center">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 mb-6">
+                <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+                <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">{t("home.stage1_badge")}</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
                 {t("home.stage1_title")}
               </h2>
-              <p className="mt-4 text-lg text-slate-400">{t("home.stage1_sub")}</p>
+              <p className="mt-5 text-base text-slate-400 leading-relaxed">{t("home.stage1_sub")}</p>
             </div>
           </ScrollReveal>
         </section>
-        <section className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-navy-900">
-          <div className="text-center space-y-8">
+
+        {/* Stage 2 — The Cost (pain points with numbers) */}
+        <section className="relative min-h-[75vh] flex items-center justify-center px-6 py-20 bg-navy-900 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute bottom-[15%] left-[15%] w-[200px] h-[200px] rounded-full bg-red-500/8 blur-3xl" />
+          </div>
+          <div className="relative text-center space-y-10 w-full max-w-sm mx-auto">
             <ScrollReveal>
               <p className="text-5xl sm:text-6xl font-bold text-red-400">
                 <Counter target={847} suffix=" EUR" />
               </p>
-              <p className="mt-2 text-xl text-slate-400">{t("home.stage2_cost")}</p>
+              <p className="mt-3 text-base text-slate-400">{t("home.stage2_cost")}</p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center mt-6">
-                <div>
-                  <p className="text-4xl font-bold text-red-400">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
+                  <p className="text-3xl font-bold text-red-400">
                     <Counter target={32} suffix=" dB" />
                   </p>
-                  <p className="mt-1 text-lg text-slate-400">{t("home.stage2_noise")}</p>
+                  <p className="mt-2 text-sm text-slate-400">{t("home.stage2_noise")}</p>
                 </div>
-                <div>
-                  <p className="text-4xl font-bold text-red-400">
+                <div className="p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
+                  <p className="text-3xl font-bold text-red-400">
                     <Counter target={85} suffix="%" />
                   </p>
-                  <p className="mt-1 text-lg text-slate-400">{t("home.stage2_humidity")}</p>
+                  <p className="mt-2 text-sm text-slate-400">{t("home.stage2_humidity")}</p>
                 </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
-        <section className="min-h-[40vh] flex items-center justify-center px-4 py-16 bg-amber-900">
+
+        {/* Stage 3 — Transition */}
+        <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, #0f2a4a 0%, #78350f 50%, #d97706 100%)" }}>
           <ScrollReveal>
-            <p className="text-2xl sm:text-3xl text-amber-100 font-light text-center italic">
-              {t("home.stage3_transition")}
-            </p>
+            <div className="relative text-center">
+              <div className="w-12 h-px bg-amber-400/40 mx-auto mb-6" />
+              <p className="text-2xl sm:text-3xl text-amber-100 font-light italic leading-relaxed">
+                {t("home.stage3_transition")}
+              </p>
+              <div className="w-12 h-px bg-amber-400/40 mx-auto mt-6" />
+            </div>
           </ScrollReveal>
         </section>
-        <section className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-amber-50">
-          <div className="text-center space-y-6">
+
+        {/* Stage 4 — The Solution */}
+        <section className="relative min-h-[70vh] flex items-center justify-center px-6 py-20 bg-gradient-to-b from-amber-50 to-white overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[250px] h-[250px] rounded-full bg-amber-200/40 blur-3xl" />
+          </div>
+          <div className="relative text-center space-y-8 w-full max-w-sm mx-auto">
             <ScrollReveal>
-              <h2 className="text-3xl sm:text-4xl font-bold text-navy-900">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
+                <svg className="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">{t("home.stage4_badge")}</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 leading-tight">
                 {t("home.stage4_title")}
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <div className="flex flex-col gap-4 mt-8">
+              <div className="flex flex-col gap-3">
                 <BenefitPill icon="sun" label={t("home.stage4_warm")} />
                 <BenefitPill icon="silence" label={t("home.stage4_quiet")} />
                 <BenefitPill icon="save" label={t("home.stage4_save")} />

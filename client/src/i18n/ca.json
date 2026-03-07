@@ -26,7 +26,8 @@
     "free_quote": "Pressupost gratuit",
     "view_projects": "Veure projectes",
     "get_quote": "Pressupost gratuït",
-    "free_visit": "Visita gratuïta"
+    "free_visit": "Visita gratuïta",
+    "free_no_commitment": "Gratuït i sense compromís"
   },
   "hero": {
     "title": "Finestres PVC a Girona i Maresme",
@@ -83,12 +84,14 @@
     "scroll_hint": "Descobreix mes",
     "mask_title": "ARA FINESTRA",
     "mask_subtitle": "Obrim un nou mon de confort",
+    "stage1_badge": "El problema",
     "stage1_title": "La teva finestra antiga",
     "stage1_sub": "Et costa mes del que penses",
     "stage2_cost": "perduts cada any",
     "stage2_noise": "de soroll innecessari",
     "stage2_humidity": "d'humitat a casa",
     "stage3_transition": "Pero tot pot canviar...",
+    "stage4_badge": "La solucio",
     "stage4_title": "Ara imagina aixo",
     "stage4_warm": "Confort tot l'any",
     "stage4_quiet": "Silenci absolut",

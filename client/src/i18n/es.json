@@ -26,7 +26,8 @@
     "free_quote": "Presupuesto gratuito",
     "view_projects": "Ver proyectos",
     "get_quote": "Presupuesto gratis",
-    "free_visit": "Visita gratuita"
+    "free_visit": "Visita gratuita",
+    "free_no_commitment": "Gratis y sin compromiso"
   },
   "hero": {
     "title": "Ventanas PVC en Girona y Maresme",
@@ -83,12 +84,14 @@
     "scroll_hint": "Descubre mas",
     "mask_title": "ARA FINESTRA",
     "mask_subtitle": "Abrimos un nuevo mundo de confort",
+    "stage1_badge": "El problema",
     "stage1_title": "Tu ventana antigua",
     "stage1_sub": "Te cuesta mas de lo que piensas",
     "stage2_cost": "perdidos cada ano",
     "stage2_noise": "de ruido innecesario",
     "stage2_humidity": "de humedad en casa",
     "stage3_transition": "Pero todo puede cambiar...",
+    "stage4_badge": "La solucion",
     "stage4_title": "Ahora imagina esto",
     "stage4_warm": "Confort todo el ano",
     "stage4_quiet": "Silencio absoluto",
