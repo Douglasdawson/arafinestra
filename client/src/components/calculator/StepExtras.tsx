@@ -67,7 +67,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
               </svg>
 
               <div className="flex-1 text-left">
-                <h3 className="font-semibold text-gray-800">
+                <h3 className="font-semibold text-navy-800">
                   {t(`calculator.${id}`)}
                 </h3>
                 <p className="text-sm text-gray-500">{t(`calculator.${id}_desc`)}</p>

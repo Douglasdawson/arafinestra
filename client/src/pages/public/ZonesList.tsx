@@ -50,7 +50,7 @@ export default function ZonesList() {
       />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("zones_page.title")}</h1>
           <p className="mt-4 text-xl text-brand-light">{t("zones_page.we_serve")}</p>

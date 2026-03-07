@@ -623,7 +623,7 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
           onTouchStart={() => setIsDragging(true)}
         >
           {/* COLD side */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950">
+          <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950">
             <div className="absolute top-[20%] left-[15%] w-32 h-32 rounded-full bg-cyan-500/20 blur-3xl" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 sm:w-48 h-36 sm:h-56 border-2 border-cyan-400/30 rounded-sm">
               <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-cyan-400/20" />

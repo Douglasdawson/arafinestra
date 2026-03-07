@@ -52,7 +52,7 @@ export default function WhatsAppButton() {
       aria-label={t("whatsapp_tooltip")}
     >
       {/* Tooltip */}
-      <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-2 text-sm text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+      <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-lg bg-navy-900 px-3 py-2 text-sm text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
         {t("whatsapp_tooltip")}
       </span>
       <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">

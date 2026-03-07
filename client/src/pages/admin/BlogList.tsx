@@ -80,7 +80,7 @@ export default function BlogList() {
             <tbody>
               {posts.map((post) => (
                 <tr key={post.id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="px-4 py-3 font-medium text-gray-900">{post.tituloEs}</td>
+                  <td className="px-4 py-3 font-medium text-navy-900">{post.tituloEs}</td>
                   <td className="px-4 py-3 text-gray-600">{post.categoria || "-"}</td>
                   <td className="px-4 py-3">
                     <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>

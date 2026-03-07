@@ -68,7 +68,7 @@ export default function StepProductType({ selected, onSelect }: Props) {
               <svg className="w-12 h-12 text-navy-700 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d={iconPath} />
               </svg>
-              <h3 className="text-lg font-semibold text-gray-800">{t(NAME_KEYS[id])}</h3>
+              <h3 className="text-lg font-semibold text-navy-800">{t(NAME_KEYS[id])}</h3>
               <p className="text-sm text-gray-500 mt-1 line-clamp-2">{t(descKey)}</p>
             </button>
           );

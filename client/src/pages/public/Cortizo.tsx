@@ -30,7 +30,7 @@ export default function Cortizo() {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-navy-900 to-blue-900">
+      <section className="py-20 bg-gradient-to-br from-navy-900 to-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">{t("cortizo.h1")}</h1>
           <p className="mt-4 text-xl text-brand-light max-w-2xl mx-auto">{t("cortizo.subtitle")}</p>

@@ -54,7 +54,7 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
                 </svg>
               </div>
 
-              <h3 className="font-semibold text-gray-800 mb-1">{t(`calculator.glass_${id}`)}</h3>
+              <h3 className="font-semibold text-navy-800 mb-1">{t(`calculator.glass_${id}`)}</h3>
               <p className="text-sm text-gray-500 mb-3">{t(`calculator.glass_${id}_desc`)}</p>
 
               {/* Star rating */}

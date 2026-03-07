@@ -92,7 +92,7 @@ export default function Projects() {
       ]} />
 
       {/* Hero */}
-      <section className="py-16 bg-gradient-to-br from-navy-800 to-blue-900">
+      <section className="py-16 bg-gradient-to-br from-navy-800 to-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">
             {t("portfolio.title")}
