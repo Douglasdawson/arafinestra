@@ -68,14 +68,14 @@ export default function Cortizo() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">{t("cortizo.specs_title")}</h2>
-          <div className="overflow-hidden rounded-lg border border-slate-200">
+          <div className="overflow-x-auto rounded-lg border border-slate-200">
             <table className="w-full">
               <thead>
                 <tr className="bg-slate-50">
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
                     {t("cortizo.spec_property")}
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
                     {t("cortizo.spec_value")}
                   </th>
                 </tr>
@@ -83,8 +83,8 @@ export default function Cortizo() {
               <tbody className="divide-y divide-slate-200">
                 {specs.map((spec, i) => (
                   <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
-                    <td className="px-6 py-4 text-sm text-slate-700">{spec.label}</td>
-                    <td className="px-6 py-4 text-sm font-medium text-slate-800">{spec.value}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-slate-700">{spec.label}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm font-medium text-slate-800">{spec.value}</td>
                   </tr>
                 ))}
               </tbody>
