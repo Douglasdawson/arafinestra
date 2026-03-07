@@ -159,7 +159,19 @@
     "cat_noticies": "News",
     "related_title": "Related articles",
     "service_cta": "Interested in upgrading your windows?",
-    "service_cta_btn": "Get a free quote"
+    "service_cta_btn": "Get a free quote",
+    "featured": "Featured",
+    "subscribe_title": "Subscribe to our blog",
+    "subscribe_desc": "Get the latest news on PVC windows and energy savings.",
+    "subscribe_button": "Subscribe",
+    "subscribe_success": "Thanks! We'll keep you informed.",
+    "subscribe_placeholder": "Your email",
+    "author_name": "ARA FINESTRA Team",
+    "author_bio": "Experts in Cortizo PVC window installation with over 15 years of experience in Catalonia.",
+    "share": "Share",
+    "copied": "Copied!",
+    "inline_cta_title": "Want to upgrade your windows?",
+    "inline_cta_desc": "Calculate your quote in less than 2 minutes with our online configurator."
   },
   "contact": {
     "title": "Contact us",
@@ -277,7 +289,17 @@
     "not_found": "Area not found",
     "back_to_zones": "Back to areas",
     "services_title": "Services in {{zone}}",
-    "before_after": "Before and after"
+    "before_after": "Before and after",
+    "subtitle": "We cover a 60 km radius from Blanes with professional Cortizo PVC window service",
+    "stats_projects": "500+ projects",
+    "stats_rating": "4.9/5 rating",
+    "stats_zones": "{{count}} zones",
+    "not_found_zone": "Can't find your area?",
+    "contact_us_cta": "Contact us anyway, we can probably help!",
+    "card_tagline": "Cortizo PVC Windows",
+    "hero_subtitle": "Professional Cortizo PVC window installation service in {{zone}}. Free quote and 10-year warranty.",
+    "hero_cta": "Get a free quote",
+    "reviews_title": "Customer reviews in {{zone}}"
   },
   "portfolio": {
     "title": "Completed projects",
@@ -286,7 +308,11 @@
     "all": "All",
     "filter_location": "Location",
     "filter_type": "Type",
-    "coming_soon": "We will soon showcase our projects."
+    "coming_soon": "We will soon showcase our projects.",
+    "request_similar": "I want a similar project",
+    "like_what_you_see": "Like what you see?",
+    "cta_desc": "Request a free quote and transform your home.",
+    "cta_button": "Get a quote"
   },
   "service_pages": {
     "benefits_title": "Benefits",

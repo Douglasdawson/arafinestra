@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
@@ -178,11 +178,18 @@ export default function Projects() {
                     <h3 className="text-sm font-semibold text-navy-800 group-hover:text-brand transition-colors">
                       {localize(p as unknown as Record<string, unknown>, "titulo", currentLang)}
                     </h3>
-                    {p.localidad && (
-                      <span className="mt-2 inline-block px-2 py-0.5 text-xs font-medium bg-brand-light text-brand rounded-full">
-                        {p.localidad}
-                      </span>
-                    )}
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {p.localidad && (
+                        <span className="inline-block px-2 py-0.5 text-xs font-medium bg-brand-light text-brand rounded-full">
+                          {p.localidad}
+                        </span>
+                      )}
+                      {p.productos_usados && (
+                        <span className="inline-block px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 rounded-full">
+                          {p.productos_usados}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </button>
               ))}
@@ -192,6 +199,25 @@ export default function Projects() {
               <p className="text-lg text-slate-500">{t("portfolio.coming_soon")}</p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-16 bg-brand-light">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-navy-800 mb-3">
+            {t("portfolio.like_what_you_see")}
+          </h2>
+          <p className="text-lg text-slate-600 mb-8">
+            {t("portfolio.cta_desc")}
+          </p>
+          <Link
+            to={`/${currentLang}/pressupost`}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg hover:shadow-xl"
+          >
+            {t("portfolio.cta_button")}
+            <span aria-hidden="true">&rarr;</span>
+          </Link>
         </div>
       </section>
 
@@ -277,6 +303,18 @@ export default function Projects() {
                     {selectedProject.localidad}
                   </span>
                 )}
+              </div>
+
+              {/* CTA */}
+              <div className="mt-6 pt-4 border-t border-slate-200">
+                <Link
+                  to={`/${currentLang}/pressupost`}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  {t("portfolio.request_similar")}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
             </div>
           </div>

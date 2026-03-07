@@ -159,7 +159,19 @@
     "cat_noticies": "Noticias",
     "related_title": "Articulos relacionados",
     "service_cta": "Interesado en mejorar tus ventanas?",
-    "service_cta_btn": "Pide presupuesto gratis"
+    "service_cta_btn": "Pide presupuesto gratis",
+    "featured": "Destacado",
+    "subscribe_title": "Suscríbete a nuestro blog",
+    "subscribe_desc": "Recibe las últimas novedades sobre ventanas PVC y ahorro energético.",
+    "subscribe_button": "Suscribirme",
+    "subscribe_success": "¡Gracias! Te mantendremos informado.",
+    "subscribe_placeholder": "Tu email",
+    "author_name": "Equipo ARA FINESTRA",
+    "author_bio": "Expertos en instalación de ventanas PVC Cortizo con más de 15 años de experiencia en Cataluña.",
+    "share": "Compartir",
+    "copied": "¡Copiado!",
+    "inline_cta_title": "¿Quieres mejorar tus ventanas?",
+    "inline_cta_desc": "Calcula tu presupuesto en menos de 2 minutos con nuestro configurador online."
   },
   "contact": {
     "title": "Contactanos",
@@ -277,7 +289,17 @@
     "not_found": "Zona no encontrada",
     "back_to_zones": "Volver a zonas",
     "services_title": "Servicios en {{zone}}",
-    "before_after": "Antes y después"
+    "before_after": "Antes y después",
+    "subtitle": "Cubrimos un radio de 60 km desde Blanes con servicio profesional de ventanas PVC Cortizo",
+    "stats_projects": "500+ proyectos",
+    "stats_rating": "4.9/5 valoración",
+    "stats_zones": "{{count}} zonas",
+    "not_found_zone": "¿No encuentras tu zona?",
+    "contact_us_cta": "¡Contáctanos igualmente, seguramente podemos ayudarte!",
+    "card_tagline": "Ventanas PVC Cortizo",
+    "hero_subtitle": "Servicio profesional de instalaci\u00f3n de ventanas PVC Cortizo en {{zone}}. Presupuesto gratuito y garant\u00eda de 10 a\u00f1os.",
+    "hero_cta": "Pide presupuesto gratuito",
+    "reviews_title": "Opiniones de clientes en {{zone}}"
   },
   "portfolio": {
     "title": "Proyectos realizados",
@@ -286,7 +308,11 @@
     "all": "Todos",
     "filter_location": "Localidad",
     "filter_type": "Tipo",
-    "coming_soon": "Proximamente mostraremos nuestros proyectos."
+    "coming_soon": "Proximamente mostraremos nuestros proyectos.",
+    "request_similar": "Quiero un proyecto similar",
+    "like_what_you_see": "\u00bfTe gusta lo que ves?",
+    "cta_desc": "Solicita un presupuesto gratuito y transforma tu hogar.",
+    "cta_button": "Calcular presupuesto"
   },
   "service_pages": {
     "benefits_title": "Ventajas",

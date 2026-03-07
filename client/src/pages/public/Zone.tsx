@@ -25,6 +25,16 @@ interface ZoneData {
   published: boolean;
 }
 
+interface TestimonialItem {
+  id: number;
+  nombre: string;
+  localidad: string | null;
+  puntuacion: number;
+  texto_ca: string | null;
+  texto_es: string | null;
+  texto_en: string | null;
+}
+
 interface PortfolioItem {
   id: number;
   titulo_ca: string;
@@ -43,6 +53,7 @@ export default function Zone() {
 
   const [zone, setZone] = useState<ZoneData | null>(null);
   const [projects, setProjects] = useState<PortfolioItem[]>([]);
+  const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -70,6 +81,17 @@ export default function Zone() {
               .then(setProjects)
               .catch(() => setProjects([]));
           }
+          // Fetch testimonials and filter client-side by zone locality
+          fetch("/api/testimonials?published=true")
+            .then((r) => (r.ok ? r.json() : []))
+            .then((all: TestimonialItem[]) => {
+              const zn = (data.nombre_ca || data.nombre_es || "").toLowerCase();
+              const matched = all.filter(
+                (t) => t.localidad && t.localidad.toLowerCase() === zn
+              );
+              setTestimonials(matched.slice(0, 3));
+            })
+            .catch(() => setTestimonials([]));
         }
       })
       .catch(() => {
@@ -142,6 +164,15 @@ export default function Zone() {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
             {t("zones_page.h1", { zone: nombre })}
           </h1>
+          <p className="mt-4 text-lg text-slate-200 max-w-2xl mx-auto">
+            {t("zones_page.hero_subtitle", { zone: nombre })}
+          </p>
+          <Link
+            to={`/${prefix}/pressupost`}
+            className="inline-flex items-center mt-6 px-6 py-3 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25"
+          >
+            {t("zones_page.hero_cta")} &rarr;
+          </Link>
         </div>
       </section>
 
@@ -218,6 +249,48 @@ export default function Zone() {
         </section>
         );
       })()}
+
+      {/* Zone Testimonials */}
+      {testimonials.length > 0 && (
+        <section className="py-12 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">
+              {t("zones_page.reviews_title", { zone: nombre })}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {testimonials.map((rev) => {
+                const tObj = rev as unknown as Record<string, unknown>;
+                const texto = localize(tObj, "texto", currentLang);
+                return (
+                  <div key={rev.id} className="bg-slate-50 rounded-lg p-6">
+                    <div className="flex gap-0.5 mb-3">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <svg
+                          key={i}
+                          className={`w-4 h-4 ${i <= rev.puntuacion ? "text-amber-400" : "text-slate-200"}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed italic">
+                      &ldquo;{texto}&rdquo;
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-slate-200">
+                      <p className="text-sm font-semibold text-navy-800">{rev.nombre}</p>
+                      {rev.localidad && (
+                        <p className="text-xs text-slate-500">{rev.localidad}</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Map */}
       {zone.latitud && zone.longitud && (

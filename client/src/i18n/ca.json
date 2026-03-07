@@ -159,7 +159,19 @@
     "cat_noticies": "Noticies",
     "related_title": "Articles relacionats",
     "service_cta": "Interessat en millorar les teves finestres?",
-    "service_cta_btn": "Demana pressupost gratuit"
+    "service_cta_btn": "Demana pressupost gratuit",
+    "featured": "Destacat",
+    "subscribe_title": "Subscriu-te al nostre blog",
+    "subscribe_desc": "Rep les últimes novetats sobre finestres PVC i estalvi energètic.",
+    "subscribe_button": "Subscriure'm",
+    "subscribe_success": "Gràcies! Et mantindrem informat.",
+    "subscribe_placeholder": "El teu email",
+    "author_name": "Equip ARA FINESTRA",
+    "author_bio": "Experts en instal·lació de finestres PVC Cortizo amb més de 15 anys d'experiència a Catalunya.",
+    "share": "Comparteix",
+    "copied": "Copiat!",
+    "inline_cta_title": "Vols millorar les teves finestres?",
+    "inline_cta_desc": "Calcula el teu pressupost en menys de 2 minuts amb el nostre configurador online."
   },
   "contact": {
     "title": "Contacta'ns",
@@ -277,7 +289,17 @@
     "not_found": "Zona no trobada",
     "back_to_zones": "Tornar a zones",
     "services_title": "Serveis a {{zone}}",
-    "before_after": "Abans i després"
+    "before_after": "Abans i després",
+    "subtitle": "Cobrim un radi de 60 km des de Blanes amb servei professional de finestres PVC Cortizo",
+    "stats_projects": "500+ projectes",
+    "stats_rating": "4.9/5 valoració",
+    "stats_zones": "{{count}} zones",
+    "not_found_zone": "No trobes la teva zona?",
+    "contact_us_cta": "Contacta'ns igualment, segurament et podem ajudar!",
+    "card_tagline": "Finestres PVC Cortizo",
+    "hero_subtitle": "Servei professional d'instal\u00b7laci\u00f3 de finestres PVC Cortizo a {{zone}}. Pressupost gratu\u00eft i garantia de 10 anys.",
+    "hero_cta": "Demana pressupost gratu\u00eft",
+    "reviews_title": "Opinions de clients a {{zone}}"
   },
   "portfolio": {
     "title": "Projectes realitzats",
@@ -286,7 +308,11 @@
     "all": "Tots",
     "filter_location": "Localitat",
     "filter_type": "Tipus",
-    "coming_soon": "Properament mostrarem els nostres projectes."
+    "coming_soon": "Properament mostrarem els nostres projectes.",
+    "request_similar": "Vull un projecte similar",
+    "like_what_you_see": "T'agrada el que veus?",
+    "cta_desc": "Sol\u00b7licita un pressupost gratu\u00eft i transforma casa teva.",
+    "cta_button": "Calcular pressupost"
   },
   "service_pages": {
     "benefits_title": "Avantatges",
