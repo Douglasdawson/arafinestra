@@ -3,7 +3,7 @@ import { blogPosts, zones } from "@shared/schema";
 import { eq, and } from "drizzle-orm";
 
 const DOMAIN = "https://arafinestra.com";
-const DEFAULT_OG_IMAGE = `${DOMAIN}/og-image.jpg`;
+const DEFAULT_OG_IMAGE = `${DOMAIN}/og-image.png`;
 
 export interface RouteMeta {
   title: string;
