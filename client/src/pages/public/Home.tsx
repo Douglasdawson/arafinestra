@@ -564,14 +564,24 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
 
   return (
     <section ref={ref} className="relative py-20 sm:py-28 bg-navy-950 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Ambient glow */}
+      <div className="absolute top-[20%] right-0 w-[200px] h-[200px] rounded-full bg-brand/5 blur-3xl pointer-events-none" />
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4 tracking-tight">
-            {t("home.acoustic_title")}
-          </h2>
-          <p className="text-lg sm:text-xl text-slate-400 text-center mb-16 max-w-2xl mx-auto">
-            {t("home.acoustic_sub")}
-          </p>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/20 mb-5">
+              <svg className="w-3.5 h-3.5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51" />
+              </svg>
+              <span className="text-xs font-semibold text-brand uppercase tracking-wider">{t("home.acoustic_badge")}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+              {t("home.acoustic_title")}
+            </h2>
+            <p className="mt-4 text-base sm:text-xl text-slate-400 max-w-2xl mx-auto">
+              {t("home.acoustic_sub")}
+            </p>
+          </div>
         </ScrollReveal>
 
         <div className="relative flex items-center justify-center gap-0">
@@ -731,14 +741,23 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
 
   return (
     <section className="relative py-20 sm:py-28 bg-navy-900 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute bottom-0 left-0 w-[250px] h-[250px] rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4 tracking-tight">
-            {t("home.thermal_title")}
-          </h2>
-          <p className="text-lg sm:text-xl text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-            {t("home.thermal_sub")}
-          </p>
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-5">
+              <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m-8-9H3m18 0h-1M5.636 5.636l.707.707m11.314 11.314l.707.707" />
+              </svg>
+              <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">{t("home.thermal_badge")}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+              {t("home.thermal_title")}
+            </h2>
+            <p className="mt-4 text-base sm:text-xl text-slate-400 max-w-2xl mx-auto">
+              {t("home.thermal_sub")}
+            </p>
+          </div>
         </ScrollReveal>
 
         <div
@@ -816,23 +835,23 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-10 sm:mt-12">
           <ScrollReveal>
-            <div className="text-center p-6 rounded-xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-3xl sm:text-4xl font-bold text-brand">70%</p>
-              <p className="mt-2 text-sm text-slate-400">{t("home.thermal_stat_heat")}</p>
+            <div className="text-center p-4 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-2xl sm:text-4xl font-bold text-brand">70%</p>
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.thermal_stat_heat")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <div className="text-center p-6 rounded-xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-400">40%</p>
-              <p className="mt-2 text-sm text-slate-400">{t("home.thermal_stat_bill")}</p>
+            <div className="text-center p-4 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-2xl sm:text-4xl font-bold text-emerald-400">40%</p>
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.thermal_stat_bill")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <div className="text-center p-6 rounded-xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-3xl sm:text-4xl font-bold text-amber-400">1.0</p>
-              <p className="mt-2 text-sm text-slate-400">{t("home.thermal_stat_uf")}</p>
+            <div className="text-center p-4 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
+              <p className="text-2xl sm:text-4xl font-bold text-amber-400">1.0</p>
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.thermal_stat_uf")}</p>
             </div>
           </ScrollReveal>
         </div>
@@ -882,14 +901,22 @@ function EnergySavings({
 
   return (
     <section className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 text-center mb-4 tracking-tight">
-            {t("home.energy_title")}
-          </h2>
-          <p className="text-lg sm:text-xl text-slate-500 text-center mb-12 max-w-2xl mx-auto">
-            {t("home.energy_sub")}
-          </p>
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-5">
+              <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m-8-9H3m18 0h-1M5.636 5.636l.707.707m11.314 11.314l.707.707" />
+              </svg>
+              <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">{t("home.energy_badge")}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 tracking-tight">
+              {t("home.energy_title")}
+            </h2>
+            <p className="mt-4 text-base sm:text-xl text-slate-500 max-w-2xl mx-auto">
+              {t("home.energy_sub")}
+            </p>
+          </div>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -1043,12 +1070,21 @@ function ServiceCard({
 }) {
   return (
     <Link to={link} className="block group">
-      <div className="bg-white rounded-2xl p-8 sm:p-10 border border-slate-100 shadow-sm hover:shadow-lg hover:border-brand/30 transition-all duration-300">
-        <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-light text-brand mb-6 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
-          {icon}
+      <div className="bg-white rounded-2xl p-6 sm:p-10 border border-slate-100 shadow-sm hover:shadow-lg hover:border-brand/30 transition-all duration-300 active:scale-[0.98]">
+        <div className="flex items-start gap-4 sm:block">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 flex items-center justify-center rounded-2xl bg-brand-light text-brand sm:mb-6 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+            {icon}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-navy-900">{title}</h3>
+              <svg className="w-4 h-4 text-slate-300 group-hover:text-brand group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+            <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-slate-500 leading-relaxed">{desc}</p>
+          </div>
         </div>
-        <h3 className="text-xl font-semibold text-navy-900 mb-2">{title}</h3>
-        <p className="text-slate-500 leading-relaxed">{desc}</p>
       </div>
     </Link>
   );
@@ -1127,19 +1163,34 @@ export default function Home() {
       <WindowMaskHero prefix={prefix} t={t} />
       <PinnedStorytelling t={t} />
       <AcousticDemo t={t} />
+      {/* Wave: navy-950 → navy-900 */}
+      <div className="relative h-12 sm:h-16 bg-navy-900 -mt-px">
+        <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 64" fill="none">
+          <path d="M0,0 C480,64 960,64 1440,0 L1440,0 L0,0 Z" fill="var(--color-navy-950)" />
+        </svg>
+      </div>
       <ThermalSplit t={t} />
+      {/* Wave: navy-900 → slate-50 */}
+      <div className="relative h-12 sm:h-16 bg-gradient-to-b from-slate-50 to-slate-50 -mt-px">
+        <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 64" fill="none">
+          <path d="M0,0 C480,64 960,64 1440,0 L1440,0 L0,0 Z" fill="var(--color-navy-900)" />
+        </svg>
+      </div>
       <EnergySavings t={t} prefix={prefix} />
 
       {/* Services Grid */}
       <section className="py-20 sm:py-28 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 text-center mb-16">
-              {t("services.title")}
-            </h2>
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 tracking-tight">
+                {t("services.title")}
+              </h2>
+              <div className="w-12 h-1 bg-brand rounded-full mx-auto mt-4" />
+            </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
             <ScrollReveal>
               <ServiceCard
                 icon={
@@ -1193,30 +1244,36 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-r from-brand via-brand-dark to-navy-800 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 text-center">
+      <section className="relative py-16 sm:py-28 bg-gradient-to-br from-brand via-brand-dark to-navy-800 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-[200px] h-[200px] rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-8 text-center">
             <ScrollReveal>
-              <p className="text-6xl sm:text-7xl font-bold text-white">
+              <p className="text-4xl sm:text-7xl font-bold text-white">
                 <Counter target={15} suffix="+" />
               </p>
-              <p className="mt-3 text-lg text-brand-light font-medium">
+              <p className="mt-2 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium">
                 {t("stats.experience")}
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <p className="text-6xl sm:text-7xl font-bold text-white">
-                <Counter target={500} suffix="+" />
-              </p>
-              <p className="mt-3 text-lg text-brand-light font-medium">
-                {t("stats.projects")}
-              </p>
+              <div className="border-x border-white/15 sm:border-0">
+                <p className="text-4xl sm:text-7xl font-bold text-white">
+                  <Counter target={500} suffix="+" />
+                </p>
+                <p className="mt-2 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium">
+                  {t("stats.projects")}
+                </p>
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
-              <p className="text-6xl sm:text-7xl font-bold text-white">
+              <p className="text-4xl sm:text-7xl font-bold text-white">
                 <Counter target={60} suffix="km" />
               </p>
-              <p className="mt-3 text-lg text-brand-light font-medium">
+              <p className="mt-2 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium">
                 {t("stats.coverage")}
               </p>
             </ScrollReveal>
@@ -1226,26 +1283,36 @@ export default function Home() {
 
       {/* Subsidies CTA */}
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-amber-500 via-orange-500 to-orange-600 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[10%] left-[10%] w-[150px] h-[150px] rounded-full bg-white/10 blur-2xl" />
+          <div className="absolute bottom-[10%] right-[5%] w-[200px] h-[200px] rounded-full bg-white/10 blur-3xl" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm mb-6">
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-xs font-semibold text-white uppercase tracking-wider">{t("home.subsidies_badge")}</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               {t("home.subsidies_title")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <p className="mt-6 text-5xl sm:text-6xl md:text-7xl font-bold text-white/90">
+            <p className="mt-5 text-4xl sm:text-6xl md:text-7xl font-bold text-white/95">
               {t("home.subsidies_headline")}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
-            <p className="mt-6 text-xl sm:text-2xl text-white/80 font-light">
+            <p className="mt-5 text-lg sm:text-2xl text-white/80 font-light leading-relaxed">
               {t("home.subsidies_sub")}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.4}>
             <Link
               to={`/${prefix}/subvencions`}
-              className="inline-block mt-10 px-10 py-4 bg-white text-orange-600 text-lg font-semibold rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
+              className="inline-block mt-10 px-10 py-4 bg-white text-orange-600 text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform duration-150 shadow-lg shadow-black/10"
             >
               {t("home.subsidies_cta")}
             </Link>
@@ -1254,21 +1321,38 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-28 sm:py-36 bg-navy-950 overflow-hidden flex items-center justify-center">
-        <div className="text-center px-4">
+      <section className="relative py-24 sm:py-36 bg-navy-950 overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full opacity-20"
+            style={{ background: "radial-gradient(circle, rgba(232,101,43,0.4) 0%, transparent 70%)" }}
+          />
+        </div>
+        <div className="relative text-center px-6">
           <ScrollReveal>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight">
               {t("home.final_title")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <div className="mt-12">
+            <div className="mt-10 sm:mt-12 flex flex-col items-center gap-4">
               <Link
                 to={`/${prefix}/pressupost`}
-                className="inline-block px-14 py-6 bg-white text-navy-900 text-xl font-semibold rounded-lg shadow-lg pulse-glow-btn btn-press"
+                className="inline-block px-12 py-5 sm:px-14 sm:py-6 bg-brand text-white text-lg sm:text-xl font-semibold rounded-xl shadow-lg shadow-brand/30 pulse-glow-btn active:scale-[0.97] transition-transform duration-150"
               >
                 {t("cta.calculate")}
               </Link>
+              <p className="text-sm text-slate-500">{t("cta.free_no_commitment")}</p>
+              <div className="mt-4 flex items-center gap-1.5">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-xs text-slate-500 ml-1">4.9 — 500+ {t("stats.projects").toLowerCase()}</span>
+              </div>
             </div>
           </ScrollReveal>
         </div>
