@@ -34,6 +34,34 @@ interface PortfolioItem {
   tipo: string | null;
 }
 
+interface BlogPost {
+  id: number;
+  slug: string;
+  titulo_ca: string;
+  titulo_es: string;
+  titulo_en: string;
+  extracto_ca: string | null;
+  extracto_es: string | null;
+  extracto_en: string | null;
+  imagen_portada: string | null;
+  categoria: string | null;
+}
+
+interface Zone {
+  id: number;
+  slug: string;
+  nombre_ca: string;
+  nombre_es: string;
+  nombre_en: string;
+}
+
+const SERVICE_BLOG_CATEGORIES: Record<ServiceType, string[]> = {
+  ventana: ["Ventanas", "Guies"],
+  puerta: ["Ventanas"],
+  persiana: ["Ventanas"],
+  mosquitera: ["Ventanas"],
+};
+
 function AccordionItem({
   question,
   answer,
@@ -89,18 +117,65 @@ export default function ServicePage() {
   const { gradient } = SERVICE_COLORS[serviceType];
 
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [zones, setZones] = useState<Zone[]>([]);
 
   useEffect(() => {
     fetch(`/api/portfolio?published=true&tipo=${serviceType}`)
       .then((r) => (r.ok ? r.json() : []))
       .then(setPortfolioItems)
       .catch(() => setPortfolioItems([]));
+
+    // Fetch blog posts matching service categories
+    const categories = SERVICE_BLOG_CATEGORIES[serviceType];
+    Promise.all(
+      categories.map((cat) =>
+        fetch(`/api/blog?published=true&categoria=${encodeURIComponent(cat)}&limit=2`)
+          .then((r) => (r.ok ? r.json() : { data: [] }))
+          .then((res) => res.data || [])
+          .catch(() => [])
+      )
+    ).then((results) => {
+      const all = results.flat() as BlogPost[];
+      // Deduplicate by id and take up to 2
+      const seen = new Set<number>();
+      const unique = all.filter((p) => {
+        if (seen.has(p.id)) return false;
+        seen.add(p.id);
+        return true;
+      });
+      setBlogPosts(unique.slice(0, 2));
+    });
+
+    // Fetch zones
+    fetch("/api/zones?published=true")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: Zone[]) => setZones(data.slice(0, 8)))
+      .catch(() => setZones([]));
   }, [serviceType]);
 
   const getTitle = (p: PortfolioItem) => {
     if (currentLang === "es") return p.titulo_es || p.titulo_ca || "";
     if (currentLang === "en") return p.titulo_en || p.titulo_ca || "";
     return p.titulo_ca || "";
+  };
+
+  const getBlogTitle = (p: BlogPost) => {
+    if (currentLang === "es") return p.titulo_es || p.titulo_ca;
+    if (currentLang === "en") return p.titulo_en || p.titulo_ca;
+    return p.titulo_ca;
+  };
+
+  const getBlogExcerpt = (p: BlogPost) => {
+    if (currentLang === "es") return p.extracto_es || p.extracto_ca || "";
+    if (currentLang === "en") return p.extracto_en || p.extracto_ca || "";
+    return p.extracto_ca || "";
+  };
+
+  const getZoneName = (z: Zone) => {
+    if (currentLang === "es") return z.nombre_es || z.nombre_ca;
+    if (currentLang === "en") return z.nombre_en || z.nombre_ca;
+    return z.nombre_ca;
   };
 
   const benefits: string[] = [];
@@ -216,6 +291,25 @@ export default function ServicePage() {
         </div>
       </section>
 
+      {/* Warranty */}
+      <section className="py-12 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100">
+              <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-full bg-brand-light">
+                <svg className="w-8 h-8 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-navy-900">{t("warranty.title")}</h3>
+                <p className="mt-1 text-sm text-slate-600">{t("warranty.description")}</p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Portfolio */}
       {portfolioItems.length > 0 && (
         <section className="py-20 sm:py-24 bg-slate-50">
@@ -241,8 +335,52 @@ export default function ServicePage() {
         </section>
       )}
 
+      {/* Related Articles */}
+      {blogPosts.length > 0 && (
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ScrollReveal>
+              <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
+                {t("service_pages.related_articles")}
+              </h2>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {blogPosts.map((post, i) => (
+                <ScrollReveal key={post.id} delay={i * 0.1}>
+                  <Link
+                    to={`/${prefix}/blog/${post.slug}`}
+                    className="block bg-slate-50 rounded-xl border border-slate-100 hover:border-brand/20 hover:shadow-md transition-all overflow-hidden"
+                  >
+                    {post.imagen_portada && (
+                      <img
+                        src={post.imagen_portada}
+                        alt={getBlogTitle(post)}
+                        className="w-full h-48 object-cover"
+                      />
+                    )}
+                    <div className="p-5">
+                      <h3 className="text-base font-semibold text-navy-900 mb-2 line-clamp-2">
+                        {getBlogTitle(post)}
+                      </h3>
+                      {getBlogExcerpt(post) && (
+                        <p className="text-sm text-slate-600 line-clamp-3">
+                          {getBlogExcerpt(post)}
+                        </p>
+                      )}
+                      <span className="inline-block mt-3 text-sm font-medium text-brand">
+                        {t("blog_section.read_more")} &rarr;
+                      </span>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
-      <section className="py-20 sm:py-24 bg-white">
+      <section className="py-20 sm:py-24 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 mb-12 text-center tracking-tight">
@@ -261,6 +399,32 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
+
+      {/* Zones */}
+      {zones.length > 0 && (
+        <section className="py-12 sm:py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <ScrollReveal>
+              <h3 className="text-xl font-bold text-navy-900 mb-6">
+                {t("service_pages.zones_title")}
+              </h3>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <div className="flex flex-wrap justify-center gap-2">
+                {zones.map((zone) => (
+                  <Link
+                    key={zone.id}
+                    to={`/${prefix}/zones/${zone.slug}`}
+                    className="px-4 py-2 text-sm font-medium text-navy-700 bg-slate-100 rounded-full hover:bg-brand-light hover:text-brand transition-colors"
+                  >
+                    {getZoneName(zone)}
+                  </Link>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="relative py-24 sm:py-32 bg-navy-950 overflow-hidden">

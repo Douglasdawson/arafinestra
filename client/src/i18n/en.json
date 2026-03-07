@@ -13,7 +13,8 @@
     "blog": "Blog",
     "reviews": "Reviews",
     "contact": "Contact",
-    "zones": "Areas"
+    "zones": "Areas",
+    "process": "How we work"
   },
   "cta": {
     "calculate": "Calculate your quote",
@@ -21,7 +22,8 @@
     "request_quote": "Request exact quote",
     "call_us": "Call us",
     "free_quote": "Free quote",
-    "view_projects": "View projects"
+    "view_projects": "View projects",
+    "get_quote": "Free quote"
   },
   "hero": {
     "title": "PVC Windows in Girona and Maresme",
@@ -151,7 +153,10 @@
     "cat_subvencions": "Subsidies",
     "cat_consells": "Tips",
     "cat_cortizo": "Cortizo",
-    "cat_noticies": "News"
+    "cat_noticies": "News",
+    "related_title": "Related articles",
+    "service_cta": "Interested in upgrading your windows?",
+    "service_cta_btn": "Get a free quote"
   },
   "contact": {
     "title": "Contact us",
@@ -264,6 +269,8 @@
     "faq_title": "Frequently asked questions",
     "cta_title": "Want a quote?",
     "cta_desc": "Calculate the price of your new windows online in less than 2 minutes.",
+    "related_articles": "Articles about this topic",
+    "zones_title": "Areas we cover",
     "ventana": {
       "title": "Cortizo PVC Windows",
       "description": "High-efficiency PVC windows with Cortizo profiles. Superior thermal and acoustic insulation for your home.",
@@ -367,6 +374,24 @@
     "cta_title": "Want Cortizo windows?",
     "cta_desc": "Calculate your quote with Cortizo profiles and discover how much you can save on energy."
   },
+  "process": {
+    "page_title": "How we work - Installation process",
+    "page_desc": "Discover our PVC window installation process in 5 simple steps. From free consultation to warranty and aftercare.",
+    "title": "How we work",
+    "subtitle": "From first contact to installation in 5 simple steps",
+    "step1_title": "Free consultation",
+    "step1_desc": "Contact us by phone, WhatsApp or web form. We advise you with no obligation on the best options for your home.",
+    "step2_title": "Visit and measurement",
+    "step2_desc": "A specialized technician visits your home to take exact measurements and assess the specific needs of your property.",
+    "step3_title": "Custom quote",
+    "step3_desc": "You will receive a detailed quote within 24-48 hours with all options and transparent pricing. No surprises.",
+    "step4_title": "Professional installation",
+    "step4_desc": "Our team of certified installers fits your new windows with care and cleanliness. Usually completed in 1-2 days.",
+    "step5_title": "Warranty and aftercare",
+    "step5_desc": "Enjoy the 10-year Cortizo warranty and our aftercare service. We are always at your disposal.",
+    "cta_title": "Start now",
+    "cta_desc": "Calculate your quote in less than 2 minutes"
+  },
   "errors": {
     "not_found": "Page not found",
     "not_found_desc": "The page you're looking for doesn't exist.",
@@ -398,6 +423,15 @@
     "amount_desc": "of the total cost of window and enclosure renovation",
     "cta_title": "Want to know if you qualify for subsidies?",
     "cta_desc": "Contact us and we'll inform you without obligation about the subsidies available for your home."
+  },
+  "trust": {
+    "secure": "Secure data",
+    "no_spam": "No spam",
+    "certified": "Official Cortizo partner"
+  },
+  "warranty": {
+    "title": "Full warranty",
+    "description": "10-year Cortizo factory warranty + 2-year installation warranty. Complete peace of mind."
   },
   "whatsapp_tooltip": "Message us on WhatsApp",
   "cookies_banner": {

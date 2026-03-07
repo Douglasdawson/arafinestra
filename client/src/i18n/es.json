@@ -13,7 +13,8 @@
     "blog": "Blog",
     "reviews": "Opiniones",
     "contact": "Contacto",
-    "zones": "Zonas"
+    "zones": "Zonas",
+    "process": "Como trabajamos"
   },
   "cta": {
     "calculate": "Calcula tu presupuesto",
@@ -21,7 +22,8 @@
     "request_quote": "Quiero presupuesto exacto",
     "call_us": "Llamanos",
     "free_quote": "Presupuesto gratuito",
-    "view_projects": "Ver proyectos"
+    "view_projects": "Ver proyectos",
+    "get_quote": "Presupuesto gratis"
   },
   "hero": {
     "title": "Ventanas PVC en Girona y Maresme",
@@ -151,7 +153,10 @@
     "cat_subvencions": "Subvenciones",
     "cat_consells": "Consejos",
     "cat_cortizo": "Cortizo",
-    "cat_noticies": "Noticias"
+    "cat_noticies": "Noticias",
+    "related_title": "Articulos relacionados",
+    "service_cta": "Interesado en mejorar tus ventanas?",
+    "service_cta_btn": "Pide presupuesto gratis"
   },
   "contact": {
     "title": "Contactanos",
@@ -264,6 +269,8 @@
     "faq_title": "Preguntas frecuentes",
     "cta_title": "Quieres un presupuesto?",
     "cta_desc": "Calcula el precio de tus nuevas ventanas online en menos de 2 minutos.",
+    "related_articles": "Artículos sobre este tema",
+    "zones_title": "Zonas donde trabajamos",
     "ventana": {
       "title": "Ventanas PVC Cortizo",
       "description": "Ventanas PVC de alta eficiencia con perfiles Cortizo. Aislamiento termico y acustico superior para tu hogar.",
@@ -367,6 +374,24 @@
     "cta_title": "Quieres ventanas Cortizo?",
     "cta_desc": "Calcula tu presupuesto con perfiles Cortizo y descubre cuanto puedes ahorrar en energia."
   },
+  "process": {
+    "page_title": "Como trabajamos - Proceso de instalacion",
+    "page_desc": "Descubre nuestro proceso de instalacion de ventanas PVC en 5 sencillos pasos. Desde la consulta gratuita hasta la garantia postventa.",
+    "title": "Como trabajamos",
+    "subtitle": "Del primer contacto a la instalacion en 5 sencillos pasos",
+    "step1_title": "Consulta gratuita",
+    "step1_desc": "Contactanos por telefono, WhatsApp o formulario web. Te asesoramos sin compromiso sobre las mejores opciones para tu hogar.",
+    "step2_title": "Visita y medicion",
+    "step2_desc": "Un tecnico especializado visita tu casa para tomar medidas exactas y evaluar las necesidades especificas de tu hogar.",
+    "step3_title": "Presupuesto personalizado",
+    "step3_desc": "Recibiras un presupuesto detallado en 24-48 horas con todas las opciones y precios transparentes. Sin sorpresas.",
+    "step4_title": "Instalacion profesional",
+    "step4_desc": "Nuestro equipo de instaladores certificados monta tus nuevas ventanas con cuidado y limpieza. Normalmente en 1-2 dias.",
+    "step5_title": "Garantia y postventa",
+    "step5_desc": "Disfrutas de la garantia Cortizo de 10 anos y nuestro servicio postventa. Estamos siempre a tu disposicion.",
+    "cta_title": "Empieza ahora",
+    "cta_desc": "Calcula tu presupuesto en menos de 2 minutos"
+  },
   "errors": {
     "not_found": "Pagina no encontrada",
     "not_found_desc": "La pagina que buscas no existe.",
@@ -398,6 +423,15 @@
     "amount_desc": "del coste total de la renovacion de ventanas y cerramientos",
     "cta_title": "Quieres saber si puedes acceder a las ayudas?",
     "cta_desc": "Contactanos y te informaremos sin compromiso sobre las subvenciones disponibles para tu hogar."
+  },
+  "trust": {
+    "secure": "Datos seguros",
+    "no_spam": "Sin spam",
+    "certified": "Partner Cortizo oficial"
+  },
+  "warranty": {
+    "title": "Garantía total",
+    "description": "10 años de garantía Cortizo de fábrica + 2 años de garantía de instalación. Tranquilidad absoluta."
   },
   "whatsapp_tooltip": "Escr\u00edbenos por WhatsApp",
   "cookies_banner": {

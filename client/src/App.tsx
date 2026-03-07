@@ -15,6 +15,7 @@ const PublicTestimonials = lazy(() => import("./pages/public/Testimonials"));
 const Contact = lazy(() => import("./pages/public/Contact"));
 const ZonesList = lazy(() => import("./pages/public/ZonesList"));
 const Zone = lazy(() => import("./pages/public/Zone"));
+const Process = lazy(() => import("./pages/public/Process"));
 const Legal = lazy(() => import("./pages/public/Legal"));
 const NotFound = lazy(() => import("./pages/public/NotFound"));
 
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/:lang/contacte" element={<Contact />} />
           <Route path="/:lang/zones" element={<ZonesList />} />
           <Route path="/:lang/zones/:slug" element={<Zone />} />
+          <Route path="/:lang/proces" element={<Process />} />
           <Route path="/:lang/legal/:type" element={<Legal />} />
         </Route>
 

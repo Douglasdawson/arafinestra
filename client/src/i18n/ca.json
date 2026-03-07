@@ -13,7 +13,8 @@
     "blog": "Blog",
     "reviews": "Opinions",
     "contact": "Contacte",
-    "zones": "Zones"
+    "zones": "Zones",
+    "process": "Com treballem"
   },
   "cta": {
     "calculate": "Calcula el teu pressupost",
@@ -21,7 +22,8 @@
     "request_quote": "Vull pressupost exacte",
     "call_us": "Truca'ns",
     "free_quote": "Pressupost gratuit",
-    "view_projects": "Veure projectes"
+    "view_projects": "Veure projectes",
+    "get_quote": "Pressupost gratu\u00eft"
   },
   "hero": {
     "title": "Finestres PVC a Girona i Maresme",
@@ -151,7 +153,10 @@
     "cat_subvencions": "Subvencions",
     "cat_consells": "Consells",
     "cat_cortizo": "Cortizo",
-    "cat_noticies": "Noticies"
+    "cat_noticies": "Noticies",
+    "related_title": "Articles relacionats",
+    "service_cta": "Interessat en millorar les teves finestres?",
+    "service_cta_btn": "Demana pressupost gratuit"
   },
   "contact": {
     "title": "Contacta'ns",
@@ -264,6 +269,8 @@
     "faq_title": "Preguntes frequents",
     "cta_title": "Vols un pressupost?",
     "cta_desc": "Calcula el preu de les teves noves finestres online en menys de 2 minuts.",
+    "related_articles": "Articles sobre aquest tema",
+    "zones_title": "Zones on treballem",
     "ventana": {
       "title": "Finestres PVC Cortizo",
       "description": "Finestres PVC d'alta eficiencia amb perfils Cortizo. Aillament termic i acustic superior per a la teva llar.",
@@ -367,6 +374,24 @@
     "cta_title": "Vols finestres Cortizo?",
     "cta_desc": "Calcula el teu pressupost amb perfils Cortizo i descobreix quant pots estalviar en energia."
   },
+  "process": {
+    "page_title": "Com treballem - Proces d'instal\u00b7lacio",
+    "page_desc": "Descobreix el nostre proces d'instal\u00b7lacio de finestres PVC en 5 passos senzills. Des de la consulta gratuita fins a la garantia postvenda.",
+    "title": "Com treballem",
+    "subtitle": "Del primer contacte a la instal\u00b7lacio en 5 passos senzills",
+    "step1_title": "Consulta gratuita",
+    "step1_desc": "Contacta'ns per telefon, WhatsApp o formulari web. T'assessorem sense compromis sobre les millors opcions per a casa teva.",
+    "step2_title": "Visita i mesurament",
+    "step2_desc": "Un tecnic especialitzat visita casa teva per prendre mides exactes i avaluar les necessitats especifiques de la teva llar.",
+    "step3_title": "Pressupost personalitzat",
+    "step3_desc": "Rebras un pressupost detallat en 24-48 hores amb totes les opcions i preus transparents. Sense sorpreses.",
+    "step4_title": "Instal\u00b7lacio professional",
+    "step4_desc": "El nostre equip d'instal\u00b7ladors certificats munta les teves noves finestres amb cura i netedat. Normalment en 1-2 dies.",
+    "step5_title": "Garantia i postvenda",
+    "step5_desc": "Gaudeixes de la garantia Cortizo de 10 anys i el nostre servei postvenda. Estem sempre a la teva disposicio.",
+    "cta_title": "Comenca ara",
+    "cta_desc": "Calcula el teu pressupost en menys de 2 minuts"
+  },
   "errors": {
     "not_found": "Pagina no trobada",
     "not_found_desc": "La pagina que busques no existeix.",
@@ -398,6 +423,15 @@
     "amount_desc": "del cost total de la renovacio de finestres i tancaments",
     "cta_title": "Vols saber si pots accedir a les ajudes?",
     "cta_desc": "Contacta'ns i t'informarem sense compromis sobre les subvencions disponibles per a la teva llar."
+  },
+  "trust": {
+    "secure": "Dades segures",
+    "no_spam": "Sense spam",
+    "certified": "Partner Cortizo oficial"
+  },
+  "warranty": {
+    "title": "Garantia total",
+    "description": "10 anys de garantia Cortizo de fàbrica + 2 anys de garantia d'instal·lació. Tranquil·litat absoluta."
   },
   "whatsapp_tooltip": "Escriu-nos per WhatsApp",
   "cookies_banner": {

@@ -23,6 +23,7 @@ export default function Footer() {
     { to: `/${prefix}/opinions`, label: t("nav.reviews") },
     { to: `/${prefix}/cortizo`, label: t("nav.cortizo") },
     { to: `/${prefix}/subvencions`, label: t("nav.subsidies") },
+    { to: `/${prefix}/proces`, label: t("nav.process") },
   ];
 
   return (

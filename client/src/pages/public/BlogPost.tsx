@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import PageHead from "../../components/seo/PageHead";
+import ScrollReveal from "../../components/ui/ScrollReveal";
 import { localize } from "../../lib/localize";
 
 interface Post {
@@ -52,6 +53,7 @@ export default function BlogPost() {
   const prefix = lang || i18n.language || "ca";
 
   const [post, setPost] = useState<Post | null>(null);
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -78,6 +80,13 @@ export default function BlogPost() {
         setLoading(false);
       });
   }, [slug]);
+
+  useEffect(() => {
+    fetch("/api/blog")
+      .then((r) => r.json())
+      .then((data) => setAllPosts(Array.isArray(data) ? data : []))
+      .catch(() => setAllPosts([]));
+  }, []);
 
   if (loading) {
     return (
@@ -178,7 +187,32 @@ export default function BlogPost() {
                 )}
               </div>
               <div className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-navy-800 prose-a:text-brand hover:prose-a:text-brand-dark">
-                <ReactMarkdown>{content}</ReactMarkdown>
+                <ReactMarkdown
+                  components={{
+                    a: ({ href, children, ...props }) => {
+                      if (href?.startsWith("/")) {
+                        return (
+                          <Link to={href} className="text-brand hover:text-brand-dark underline">
+                            {children}
+                          </Link>
+                        );
+                      }
+                      return (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-brand hover:text-brand-dark underline"
+                          {...props}
+                        >
+                          {children}
+                        </a>
+                      );
+                    },
+                  }}
+                >
+                  {content}
+                </ReactMarkdown>
               </div>
             </article>
 
@@ -198,6 +232,85 @@ export default function BlogPost() {
           </div>
         </div>
       </section>
+
+      {/* Related posts */}
+      {(() => {
+        const others = allPosts.filter((p) => p.slug !== post.slug);
+        let related = others.filter((p) => p.categoria && p.categoria === post.categoria);
+        if (related.length === 0) {
+          related = others.sort(
+            (a, b) =>
+              new Date(b.published_at || b.created_at).getTime() -
+              new Date(a.published_at || a.created_at).getTime()
+          );
+        }
+        const shown = related.slice(0, 3);
+        if (shown.length === 0) return null;
+        return (
+          <section className="py-12 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <ScrollReveal>
+                <h2 className="text-2xl font-bold text-navy-800 mb-8">{t("blog.related_title")}</h2>
+              </ScrollReveal>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {shown.map((rp, idx) => {
+                  const rpObj = rp as unknown as Record<string, unknown>;
+                  const rpTitle = localize(rpObj, "titulo", currentLang);
+                  const rpExcerpt = localize(rpObj, "extracto", currentLang);
+                  return (
+                    <ScrollReveal key={rp.slug} delay={idx * 0.1}>
+                      <Link
+                        to={`/${prefix}/blog/${rp.slug}`}
+                        className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full"
+                      >
+                        {rp.imagen_portada && (
+                          <img
+                            src={rp.imagen_portada}
+                            alt={rpTitle}
+                            className="w-full h-40 object-cover"
+                          />
+                        )}
+                        <div className="p-5">
+                          <h3 className="font-semibold text-navy-800 mb-2 line-clamp-2">{rpTitle}</h3>
+                          {rpExcerpt && (
+                            <p className="text-sm text-slate-500 line-clamp-3">{rpExcerpt}</p>
+                          )}
+                        </div>
+                      </Link>
+                    </ScrollReveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* Service CTA */}
+      {(() => {
+        const cat = (post.categoria || "").toLowerCase();
+        let serviceLink = `/${prefix}/serveis/finestres-pvc`;
+        if (cat.includes("subvencion") || cat.includes("subvenci")) {
+          serviceLink = `/${prefix}/subvencions`;
+        }
+        return (
+          <section className="py-12 bg-white">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <ScrollReveal>
+                <div className="bg-brand-light rounded-xl p-6 text-center">
+                  <p className="text-navy-800 font-medium">{t("blog.service_cta")}</p>
+                  <Link
+                    to={serviceLink}
+                    className="inline-block mt-3 px-6 py-2 bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors"
+                  >
+                    {t("blog.service_cta_btn")}
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+          </section>
+        );
+      })()}
     </>
   );
 }
