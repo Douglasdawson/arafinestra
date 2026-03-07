@@ -1,9 +1,11 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import session from "express-session";
 import passport from "./middleware/auth.js";
 import { registerRoutes } from "./routes.js";
+import { getMetaForRoute, injectMeta } from "./lib/seo-inject.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +20,10 @@ app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("X-XSS-Protection", "1; mode=block");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://api.whatsapp.com; frame-src https://www.google.com https://www.youtube.com;"
+  );
   next();
 });
 app.use(express.urlencoded({ extended: true }));
@@ -29,7 +35,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
     },
@@ -62,11 +68,27 @@ if (process.env.NODE_ENV === "development") {
 } else {
   // In production, serve static files
   const publicDir = path.resolve(__dirname, "public");
-  app.use(express.static(publicDir));
+  app.use(express.static(publicDir, {
+    maxAge: "1y",
+    immutable: true,
+  }));
 
-  // SPA catch-all
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(publicDir, "index.html"));
+  // Read HTML template once at startup
+  const htmlTemplate = fs.readFileSync(
+    path.join(publicDir, "index.html"),
+    "utf-8"
+  );
+
+  // SPA catch-all with server-side meta injection
+  app.get("*", async (req, res) => {
+    try {
+      const meta = await getMetaForRoute(req.path);
+      const html = injectMeta(htmlTemplate, meta);
+      res.send(html);
+    } catch (err) {
+      console.error("[seo] Error injecting meta:", err);
+      res.send(htmlTemplate);
+    }
   });
 
   app.listen(PORT, "0.0.0.0", () => {

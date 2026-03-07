@@ -20,6 +20,7 @@ export default defineConfig({
         manualChunks: {
           "framer-motion": ["framer-motion"],
           "react-vendor": ["react", "react-dom", "react-router-dom"],
+          "i18n": ["i18next", "react-i18next", "i18next-browser-languagedetector"],
         },
       },
     },

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 import PageHead from "../../components/seo/PageHead";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import { localize } from "../../lib/localize";
@@ -34,6 +33,77 @@ interface Post {
 function readingTime(text: string | null): number {
   if (!text) return 1;
   return Math.max(1, Math.round(text.split(/\s+/).length / 200));
+}
+
+/** Lightweight markdown-to-HTML converter for admin-controlled blog content. */
+function renderMarkdown(md: string | null): string {
+  if (!md) return "";
+  const escape = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  const lines = md.split("\n");
+  const html: string[] = [];
+  let inList = false;
+
+  for (const raw of lines) {
+    let line = raw;
+    // Close open list if line is not a list item
+    if (inList && !/^\s*[-*]\s/.test(line)) {
+      html.push("</ul>");
+      inList = false;
+    }
+
+    // Headings
+    const headingMatch = line.match(/^(#{1,4})\s+(.*)/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      html.push(`<h${level}>${inlineFormat(escape(headingMatch[2]))}</h${level}>`);
+      continue;
+    }
+
+    // List items
+    if (/^\s*[-*]\s/.test(line)) {
+      if (!inList) {
+        html.push("<ul>");
+        inList = true;
+      }
+      html.push(`<li>${inlineFormat(escape(line.replace(/^\s*[-*]\s+/, "")))}</li>`);
+      continue;
+    }
+
+    // Empty line → paragraph break
+    if (line.trim() === "") {
+      html.push("");
+      continue;
+    }
+
+    // Regular paragraph
+    html.push(`<p>${inlineFormat(escape(line))}</p>`);
+  }
+  if (inList) html.push("</ul>");
+
+  return html.join("\n");
+}
+
+function inlineFormat(text: string): string {
+  return (
+    text
+      // Images: ![alt](src)
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
+      // Links: [text](url)
+      .replace(
+        /\[([^\]]+)\]\((\/[^)]+)\)/g,
+        '<a href="$2" class="text-brand hover:text-brand-dark underline">$1</a>'
+      )
+      .replace(
+        /\[([^\]]+)\]\(([^)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-brand hover:text-brand-dark underline">$1</a>'
+      )
+      // Bold: **text**
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      // Italic: *text*
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+  );
 }
 
 function formatDate(dateStr: string | null, lang: string): string {
@@ -257,34 +327,10 @@ export default function BlogPost() {
                 )}
               </div>
 
-              <div className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-navy-800 prose-a:text-brand hover:prose-a:text-brand-dark">
-                <ReactMarkdown
-                  components={{
-                    a: ({ href, children, ...props }) => {
-                      if (href?.startsWith("/")) {
-                        return (
-                          <Link to={href} className="text-brand hover:text-brand-dark underline">
-                            {children}
-                          </Link>
-                        );
-                      }
-                      return (
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-brand hover:text-brand-dark underline"
-                          {...props}
-                        >
-                          {children}
-                        </a>
-                      );
-                    },
-                  }}
-                >
-                  {content}
-                </ReactMarkdown>
-              </div>
+              <div
+                className="prose prose-slate prose-sm sm:prose-base max-w-none prose-headings:text-navy-800 prose-a:text-brand hover:prose-a:text-brand-dark"
+                dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
+              />
 
               {/* Inline CTA */}
               <div className="mt-10 bg-brand-light rounded-xl p-8 text-center">
