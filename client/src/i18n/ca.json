@@ -136,6 +136,9 @@
     "title": "Que diuen els nostres clients",
     "no_testimonials": "Properament mostrarem les opinions dels nostres clients."
   },
+  "reviews": {
+    "filter_all": "Tots"
+  },
   "blog_section": {
     "title": "Ultimes publicacions",
     "read_more": "Llegir mes"
@@ -260,7 +263,10 @@
     "faq_q4": "Es pot demanar subvencio per canviar les finestres?",
     "faq_a4": "Si, les finestres PVC amb altes prestacions termiques poden optar a les ajudes Next Generation de la Unio Europea, amb subvencions de fins al 40% del cost total.",
     "faq_q5": "Cal permis d'obres per canviar finestres?",
-    "faq_a5": "En la majoria de casos no cal permis d'obres si es mantenen les mateixes dimensions i estetica de la facana. El nostre equip t'assessorara sobre la normativa del teu municipi."
+    "faq_a5": "En la majoria de casos no cal permis d'obres si es mantenen les mateixes dimensions i estetica de la facana. El nostre equip t'assessorara sobre la normativa del teu municipi.",
+    "save_progress": "Desa i continua mes tard",
+    "save_phone_placeholder": "El teu telefon",
+    "save_sent": "T'enviarem el pressupost!"
   },
   "zones_page": {
     "title": "Zones de servei",

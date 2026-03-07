@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import FilterBar from "../../components/ui/FilterBar";
@@ -90,6 +91,26 @@ export default function Projects() {
         { name: t("nav.home"), url: "/" },
         { name: t("nav.projects"), url: "/projectes" },
       ]} />
+      {projects.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ImageGallery",
+              "name": "ARA FINESTRA - Portfolio",
+              "about": "PVC window installations in Girona, Catalunya",
+              "image": projects
+                .filter((p) => p.fotos_despues && p.fotos_despues.length > 0)
+                .map((p) => ({
+                  "@type": "ImageObject",
+                  "name": localize(p as unknown as Record<string, unknown>, "titulo", currentLang),
+                  "contentUrl": p.fotos_despues[0],
+                  "description": localize(p as unknown as Record<string, unknown>, "descripcion", currentLang) || localize(p as unknown as Record<string, unknown>, "titulo", currentLang),
+                })),
+            })}
+          </script>
+        </Helmet>
+      )}
 
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-navy-800 to-navy-900">

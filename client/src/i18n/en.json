@@ -136,6 +136,9 @@
     "title": "What our clients say",
     "no_testimonials": "We will soon share our client reviews."
   },
+  "reviews": {
+    "filter_all": "All"
+  },
   "blog_section": {
     "title": "Latest posts",
     "read_more": "Read more"
@@ -260,7 +263,10 @@
     "faq_q4": "Can I apply for a subsidy to replace windows?",
     "faq_a4": "Yes, PVC windows with high thermal performance can qualify for Next Generation EU grants, with subsidies of up to 40% of the total cost.",
     "faq_q5": "Do I need a building permit to replace windows?",
-    "faq_a5": "In most cases no building permit is required if the same dimensions and facade aesthetics are maintained. Our team will advise you on your municipality's regulations."
+    "faq_a5": "In most cases no building permit is required if the same dimensions and facade aesthetics are maintained. Our team will advise you on your municipality's regulations.",
+    "save_progress": "Save & continue later",
+    "save_phone_placeholder": "Your phone",
+    "save_sent": "We'll send you the quote!"
   },
   "zones_page": {
     "title": "Service areas",

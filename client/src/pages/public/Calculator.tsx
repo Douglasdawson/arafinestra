@@ -110,6 +110,12 @@ export default function Calculator() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const isResult = state.step > TOTAL_STEPS;
 
+  // Save progress state
+  const [saveOpen, setSaveOpen] = useState(false);
+  const [savePhone, setSavePhone] = useState("");
+  const [saveSending, setSaveSending] = useState(false);
+  const [saveSent, setSaveSent] = useState(false);
+
   const goNext = useCallback(() => {
     if (state.step <= TOTAL_STEPS && canAdvance(state)) {
       dispatch({ type: "SET_STEP", step: state.step + 1 });
@@ -321,6 +327,80 @@ export default function Calculator() {
                     </svg>
                   </span>
                 </button>
+              )}
+            </div>
+          )}
+
+          {/* Save & Continue Later — steps 3+ only */}
+          {!isResult && state.step >= 3 && (
+            <div className="mt-4 text-center max-w-2xl mx-auto">
+              {!saveSent ? (
+                <>
+                  {!saveOpen ? (
+                    <button
+                      onClick={() => setSaveOpen(true)}
+                      className="text-sm text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors"
+                    >
+                      {t("calculator.save_progress")}
+                    </button>
+                  ) : (
+                    <form
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        if (!savePhone.trim() || saveSending) return;
+                        setSaveSending(true);
+                        try {
+                          const res = await fetch("/api/leads", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                              nombre: savePhone.trim(),
+                              telefono: savePhone.trim(),
+                              origen: "calculator_save",
+                              tipoCliente: "particular",
+                              presupuestoDatos: { ...state },
+                            }),
+                          });
+                          if (res.ok) setSaveSent(true);
+                        } catch {
+                          // silent fail
+                        } finally {
+                          setSaveSending(false);
+                        }
+                      }}
+                      className="inline-flex items-center gap-2 animate-[fadeIn_0.2s_ease-out]"
+                    >
+                      <input
+                        type="tel"
+                        value={savePhone}
+                        onChange={(e) => setSavePhone(e.target.value)}
+                        placeholder={t("calculator.save_phone_placeholder")}
+                        className="px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand/40 w-44"
+                        required
+                      />
+                      <button
+                        type="submit"
+                        disabled={saveSending || !savePhone.trim()}
+                        className="px-4 py-2 text-sm font-medium text-white bg-brand rounded-lg hover:bg-brand-dark disabled:opacity-50 transition-colors"
+                      >
+                        {saveSending ? "..." : t("calculator.save_progress").split(" ")[0]}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSaveOpen(false)}
+                        className="text-gray-300 hover:text-gray-500 transition-colors"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </form>
+                  )}
+                </>
+              ) : (
+                <p className="text-sm text-green-600 animate-[fadeIn_0.2s_ease-out]">
+                  {t("calculator.save_sent")}
+                </p>
               )}
             </div>
           )}

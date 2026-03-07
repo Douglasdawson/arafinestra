@@ -41,6 +41,20 @@ export default function Testimonials() {
 
   const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState<string>("all");
+
+  const FILTER_KEYWORDS: Record<string, string[]> = {
+    windows: ["finestra", "ventana", "window", "pvc"],
+    doors: ["porta", "puerta", "door", "corrediss"],
+    shutters: ["persiana", "shutter"],
+  };
+
+  const filters = [
+    { key: "all", label: t("reviews.filter_all") },
+    { key: "windows", label: t("nav.windows") },
+    { key: "doors", label: t("nav.sliding_doors") },
+    { key: "shutters", label: t("nav.shutters") },
+  ];
 
   useEffect(() => {
     fetch("/api/testimonials?published=true")
@@ -54,6 +68,21 @@ export default function Testimonials() {
         setLoading(false);
       });
   }, []);
+
+  const filteredTestimonials = useMemo(() => {
+    if (activeFilter === "all") return testimonials;
+    const keywords = FILTER_KEYWORDS[activeFilter] || [];
+    return testimonials.filter((item) => {
+      const text = (
+        (item.texto_ca || "") +
+        " " +
+        (item.texto_es || "") +
+        " " +
+        (item.texto_en || "")
+      ).toLowerCase();
+      return keywords.some((kw) => text.includes(kw));
+    });
+  }, [testimonials, activeFilter]);
 
   const aggregateRating = useMemo(() => {
     if (testimonials.length === 0) {
@@ -101,11 +130,30 @@ export default function Testimonials() {
       {/* Grid */}
       <section className="py-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Filter tabs */}
+          {!loading && testimonials.length > 0 && (
+            <div className="flex flex-wrap gap-2 justify-center mb-8">
+              {filters.map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setActiveFilter(f.key)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === f.key
+                      ? "bg-brand text-white"
+                      : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          )}
+
           {loading ? (
             <div className="text-center py-20 text-slate-500">...</div>
-          ) : testimonials.length > 0 ? (
+          ) : filteredTestimonials.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {testimonials.map((t_item) => {
+              {filteredTestimonials.map((t_item) => {
                 const text = localize(t_item as unknown as Record<string, unknown>, "texto", currentLang);
                 return (
                   <div key={t_item.id} className="bg-white rounded-lg shadow-md p-6">

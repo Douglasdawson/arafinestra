@@ -136,6 +136,9 @@
     "title": "Que dicen nuestros clientes",
     "no_testimonials": "Proximamente mostraremos las opiniones de nuestros clientes."
   },
+  "reviews": {
+    "filter_all": "Todos"
+  },
   "blog_section": {
     "title": "Ultimas publicaciones",
     "read_more": "Leer mas"
@@ -260,7 +263,10 @@
     "faq_q4": "¿Se puede pedir subvención para cambiar las ventanas?",
     "faq_a4": "Sí, las ventanas PVC con altas prestaciones térmicas pueden optar a las ayudas Next Generation de la Unión Europea, con subvenciones de hasta el 40% del coste total.",
     "faq_q5": "¿Hace falta permiso de obras para cambiar ventanas?",
-    "faq_a5": "En la mayoría de casos no hace falta permiso de obras si se mantienen las mismas dimensiones y estética de la fachada. Nuestro equipo te asesorará sobre la normativa de tu municipio."
+    "faq_a5": "En la mayoría de casos no hace falta permiso de obras si se mantienen las mismas dimensiones y estética de la fachada. Nuestro equipo te asesorará sobre la normativa de tu municipio.",
+    "save_progress": "Guardar y continuar despues",
+    "save_phone_placeholder": "Tu telefono",
+    "save_sent": "Te enviaremos el presupuesto!"
   },
   "zones_page": {
     "title": "Zonas de servicio",
