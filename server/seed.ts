@@ -7,6 +7,7 @@ import {
   siteConfig,
   testimonials,
   blogPosts,
+  portfolio,
 } from "@shared/schema";
 
 async function seed() {
@@ -1224,6 +1225,105 @@ For most homes in the Girona and Maresme regions, Cortizo PVC windows offer the 
 
   await db.insert(blogPosts).values(blogData5).onConflictDoNothing({ target: blogPosts.slug });
   console.log("  Blog Post 5 OK");
+
+  // ── 6 Portfolio Projects ────────────────────────────────────
+  const portfolioData = [
+    {
+      tituloCa: "Renovació completa de finestres PVC a Blanes",
+      tituloEs: "Renovación completa de ventanas PVC en Blanes",
+      tituloEn: "Complete PVC window renovation in Blanes",
+      descripcionCa: "Instal·lació de 6 finestres Cortizo A-70 amb vidre baix emissiu en un pis de 90m² a primera línia de mar. Reducció del soroll exterior en un 70%.",
+      descripcionEs: "Instalación de 6 ventanas Cortizo A-70 con vidrio bajo emisivo en un piso de 90m² en primera línea de mar. Reducción del ruido exterior en un 70%.",
+      descripcionEn: "Installation of 6 Cortizo A-70 windows with low-emissivity glass in a 90m² apartment on the seafront. 70% reduction in exterior noise.",
+      localidad: "Blanes",
+      tipoInmueble: "Pis",
+      productosUsados: "Cortizo A-70, Persiana compacta",
+      fotosAntes: [],
+      fotosDespues: ["https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"],
+      destacado: true,
+      published: true,
+    },
+    {
+      tituloCa: "Porta corredissa elevable a Lloret de Mar",
+      tituloEs: "Puerta corredera elevable en Lloret de Mar",
+      tituloEn: "Lift-and-slide door in Lloret de Mar",
+      descripcionCa: "Instal·lació d'una gran porta corredissa elevable de 3 metres amb vidre triple per a un saló amb vistes al jardí. Màxima lluminositat i aïllament.",
+      descripcionEs: "Instalación de una gran puerta corredera elevable de 3 metros con vidrio triple para un salón con vistas al jardín. Máxima luminosidad y aislamiento.",
+      descripcionEn: "Installation of a large 3-metre lift-and-slide door with triple glazing for a living room overlooking the garden. Maximum light and insulation.",
+      localidad: "Lloret de Mar",
+      tipoInmueble: "Casa",
+      productosUsados: "Cortizo Sliding Premium",
+      fotosAntes: [],
+      fotosDespues: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"],
+      destacado: true,
+      published: true,
+    },
+    {
+      tituloCa: "Persianes motoritzades a Girona centre",
+      tituloEs: "Persianas motorizadas en Girona centro",
+      tituloEn: "Motorised shutters in Girona city centre",
+      descripcionCa: "Substitució de persianes antigues per persianes motoritzades amb comandament a distància en un edifici del Barri Vell. 8 finestres renovades.",
+      descripcionEs: "Sustitución de persianas antiguas por persianas motorizadas con mando a distancia en un edificio del Barri Vell. 8 ventanas renovadas.",
+      descripcionEn: "Replacement of old shutters with remote-controlled motorised shutters in a Barri Vell building. 8 windows renovated.",
+      localidad: "Girona",
+      tipoInmueble: "Pis",
+      productosUsados: "Persiana motoritzada, Cortizo C-70",
+      fotosAntes: [],
+      fotosDespues: ["https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80"],
+      destacado: false,
+      published: true,
+    },
+    {
+      tituloCa: "Casa passiva amb finestres Cortizo E-170 a Figueres",
+      tituloEs: "Casa pasiva con ventanas Cortizo E-170 en Figueres",
+      tituloEn: "Passive house with Cortizo E-170 windows in Figueres",
+      descripcionCa: "Projecte de rehabilitació energètica amb finestres d'altes prestacions. Valor U de 0.8 W/m²K. Certificació energètica A.",
+      descripcionEs: "Proyecto de rehabilitación energética con ventanas de altas prestaciones. Valor U de 0.8 W/m²K. Certificación energética A.",
+      descripcionEn: "Energy renovation project with high-performance windows. U-value of 0.8 W/m²K. Energy certification A.",
+      localidad: "Figueres",
+      tipoInmueble: "Casa",
+      productosUsados: "Cortizo E-170, Vidre triple",
+      fotosAntes: [],
+      fotosDespues: ["https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?w=800&q=80"],
+      destacado: true,
+      published: true,
+    },
+    {
+      tituloCa: "Mosquiteres a mida per a xalet a Tossa de Mar",
+      tituloEs: "Mosquiteras a medida para chalet en Tossa de Mar",
+      tituloEn: "Custom mosquito screens for a villa in Tossa de Mar",
+      descripcionCa: "Instal·lació de 12 mosquiteres (corredisses i plissades) en un xalet amb jardí. Protecció total sense renunciar a la ventilació natural.",
+      descripcionEs: "Instalación de 12 mosquiteras (correderas y plisadas) en un chalet con jardín. Protección total sin renunciar a la ventilación natural.",
+      descripcionEn: "Installation of 12 mosquito screens (sliding and pleated) in a villa with garden. Full protection without sacrificing natural ventilation.",
+      localidad: "Tossa de Mar",
+      tipoInmueble: "Xalet",
+      productosUsados: "Mosquitera corredissa, Mosquitera plissada",
+      fotosAntes: [],
+      fotosDespues: ["https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"],
+      destacado: false,
+      published: true,
+    },
+    {
+      tituloCa: "Renovació integral de comunitat a Mataró",
+      tituloEs: "Renovación integral de comunidad en Mataró",
+      tituloEn: "Full community renovation in Mataró",
+      descripcionCa: "Projecte per a una comunitat de 24 veïns. 72 finestres, 48 persianes i 36 mosquiteres instal·lades en 3 setmanes. Estalvi energètic del 40%.",
+      descripcionEs: "Proyecto para una comunidad de 24 vecinos. 72 ventanas, 48 persianas y 36 mosquiteras instaladas en 3 semanas. Ahorro energético del 40%.",
+      descripcionEn: "Project for a 24-resident community. 72 windows, 48 shutters, and 36 mosquito screens installed in 3 weeks. 40% energy savings.",
+      localidad: "Mataró",
+      tipoInmueble: "Comunitat",
+      productosUsados: "Cortizo A-70, Persiana compacta, Mosquitera",
+      fotosAntes: [],
+      fotosDespues: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"],
+      destacado: true,
+      published: true,
+    },
+  ];
+
+  for (const p of portfolioData) {
+    await db.insert(portfolio).values(p).onConflictDoNothing();
+  }
+  console.log("  6 Portfolio Projects OK");
 
   console.log("Seed complete!");
   process.exit(0);
