@@ -70,7 +70,7 @@ export default function TestimonialCarousel({ testimonials, lang }: TestimonialC
         {testimonials.map((t) => (
           <div
             key={t.id}
-            className="flex-shrink-0 w-80 snap-start bg-white rounded-lg shadow-md p-6"
+            className="flex-shrink-0 w-[85vw] sm:w-80 snap-start bg-white rounded-lg shadow-md p-5 sm:p-6"
           >
             <StarRating stars={t.estrellas} />
             <p className="mt-3 text-sm text-slate-600 leading-relaxed line-clamp-4">

@@ -17,8 +17,8 @@ export default function StickyMobileBar() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Hide on admin pages
-  if (location.pathname.startsWith("/admin")) {
+  // Hide on admin pages and calculator (has its own sticky nav)
+  if (location.pathname.startsWith("/admin") || location.pathname.includes("/pressupost")) {
     return null;
   }
 

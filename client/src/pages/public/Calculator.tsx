@@ -296,7 +296,7 @@ export default function Calculator() {
 
           {/* Navigation buttons — sticky on mobile */}
           {!isResult && (
-            <div className="fixed bottom-0 left-0 right-0 sm:static sm:mt-10 bg-white sm:bg-transparent border-t border-gray-200 sm:border-0 p-4 sm:p-0 z-20">
+            <div className="fixed bottom-0 left-0 right-0 sm:static sm:mt-10 bg-white sm:bg-transparent border-t border-gray-200 sm:border-0 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:p-0 sm:pb-0 z-30">
               <div className="flex justify-between max-w-2xl mx-auto">
                 <button
                   onClick={goBack}
