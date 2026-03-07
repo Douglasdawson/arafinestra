@@ -80,6 +80,33 @@ export function registerLeadRoutes(app: Express) {
     }
   });
 
+  // GET /api/leads/export — CSV download
+  app.get("/api/leads/export", requireAuth, async (_req, res) => {
+    try {
+      const allLeads = await db.select().from(leads).orderBy(desc(leads.createdAt));
+
+      const header = "ID,Nombre,Email,Teléfono,Localidad,Tipo,Origen,Estado,Notas,Fecha";
+      const rows = allLeads.map((l) => {
+        const esc = (v: string | null | undefined) => {
+          if (!v) return "";
+          const s = v.replace(/"/g, '""');
+          return s.includes(",") || s.includes('"') || s.includes("\n") ? `"${s}"` : s;
+        };
+        const fecha = l.createdAt ? new Date(l.createdAt).toISOString().slice(0, 10) : "";
+        return [l.id, esc(l.nombre), esc(l.email), esc(l.telefono), esc(l.localidad), esc(l.tipoCliente), esc(l.origen), esc(l.estado), esc(l.notas), fecha].join(",");
+      });
+
+      const csv = [header, ...rows].join("\n");
+      const today = new Date().toISOString().slice(0, 10);
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename="leads-${today}.csv"`);
+      res.send(csv);
+    } catch (err) {
+      console.error("Error exporting leads:", err);
+      res.status(500).json({ error: "Error al exportar leads" });
+    }
+  });
+
   // GET /api/leads/:id
   app.get("/api/leads/:id", requireAuth, async (req, res) => {
     try {
