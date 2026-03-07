@@ -8,6 +8,7 @@ import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import ProjectCard from "../../components/ui/ProjectCard";
 import TestimonialCarousel from "../../components/ui/TestimonialCarousel";
+import ProgressiveImage from "../../components/ui/ProgressiveImage";
 
 type ServiceType = "ventana" | "puerta" | "persiana" | "mosquitera";
 
@@ -429,15 +430,16 @@ export default function ServicePage() {
                 <ScrollReveal key={post.id} delay={i * 0.1}>
                   <Link
                     to={`/${prefix}/blog/${post.slug}`}
-                    className="block bg-slate-50 rounded-xl border border-slate-100 hover:border-brand/20 hover:shadow-md transition-all overflow-hidden"
+                    className="block bg-slate-50 rounded-xl border border-slate-100 hover:border-brand/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                   >
                     {post.imagen_portada && (
-                      <img
-                        src={post.imagen_portada}
-                        alt={getBlogTitle(post)}
-                        className="w-full h-48 object-cover"
-                        loading="lazy"
-                      />
+                      <div className="h-48">
+                        <ProgressiveImage
+                          src={post.imagen_portada}
+                          alt={getBlogTitle(post)}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     )}
                     <div className="p-5">
                       <h3 className="text-base font-semibold text-navy-900 mb-2 line-clamp-2">
@@ -520,7 +522,7 @@ export default function ServicePage() {
               <ScrollReveal key={service.slug} delay={i * 0.1}>
                 <Link
                   to={`/${prefix}/serveis/${service.slug}`}
-                  className="block bg-white rounded-xl shadow-sm border border-slate-100 hover:border-brand/20 hover:shadow-md transition-all p-4 sm:p-6 text-center active:scale-[0.97]"
+                  className="block bg-white rounded-xl shadow-sm border border-slate-100 hover:border-brand/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-4 sm:p-6 text-center active:scale-[0.97]"
                 >
                   <div className="flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-full bg-brand-light text-brand">
                     {service.icon}

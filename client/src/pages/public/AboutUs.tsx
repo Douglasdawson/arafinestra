@@ -206,7 +206,7 @@ export default function AboutUs() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {VALUES.map((value, i) => (
               <ScrollReveal key={value.key} delay={i * 0.1}>
-                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow text-center h-full">
+                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center h-full">
                   <div className="w-14 h-14 bg-brand-light rounded-xl flex items-center justify-center text-brand mx-auto mb-4">
                     {value.icon}
                   </div>

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
 import ScrollReveal from "../../components/ui/ScrollReveal";
+import ProgressiveImage from "../../components/ui/ProgressiveImage";
 import { localize } from "../../lib/localize";
 
 interface Post {
@@ -222,7 +223,7 @@ export default function BlogPost() {
       {/* Hero image */}
       {post.imagen_portada && (
         <section className="relative h-48 sm:h-80 lg:h-96 bg-navy-800 overflow-hidden">
-          <img
+          <ProgressiveImage
             src={post.imagen_portada}
             alt={title}
             className="w-full h-full object-cover opacity-70"
@@ -390,15 +391,16 @@ export default function BlogPost() {
                     <ScrollReveal key={rp.slug} delay={idx * 0.1}>
                       <Link
                         to={`/${prefix}/blog/${rp.slug}`}
-                        className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full"
+                        className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full"
                       >
                         {rp.imagen_portada && (
-                          <img
-                            src={rp.imagen_portada}
-                            alt={rpTitle}
-                            className="w-full h-40 object-cover"
-                            loading="lazy"
-                          />
+                          <div className="h-40">
+                            <ProgressiveImage
+                              src={rp.imagen_portada}
+                              alt={rpTitle}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
                         )}
                         <div className="p-5">
                           <h3 className="font-semibold text-navy-800 mb-2 line-clamp-2">{rpTitle}</h3>

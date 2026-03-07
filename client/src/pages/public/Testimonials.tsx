@@ -159,7 +159,7 @@ export default function Testimonials() {
               {filteredTestimonials.map((t_item) => {
                 const text = localize(t_item as unknown as Record<string, unknown>, "texto", currentLang);
                 return (
-                  <div key={t_item.id} className="bg-white rounded-lg shadow-md p-6">
+                  <div key={t_item.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div className="flex items-center gap-4 mb-4">
                       {t_item.foto_url ? (
                         <img

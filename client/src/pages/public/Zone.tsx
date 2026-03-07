@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
 import BeforeAfterSlider from "../../components/ui/BeforeAfterSlider";
 import { localize } from "../../lib/localize";
+import ProgressiveImage from "../../components/ui/ProgressiveImage";
 
 interface ZoneData {
   id: number;
@@ -224,14 +225,13 @@ export default function Zone() {
                 const pObj = p as unknown as Record<string, unknown>;
                 const title = localize(pObj, "titulo", currentLang);
                 return (
-                  <div key={p.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <div key={p.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div className="aspect-[4/3] bg-slate-200 overflow-hidden">
                       {p.fotos_despues && p.fotos_despues.length > 0 ? (
-                        <img
+                        <ProgressiveImage
                           src={p.fotos_despues[0]}
                           alt={title}
                           className="w-full h-full object-cover"
-                          loading="lazy"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-slate-400">
@@ -373,7 +373,7 @@ export default function Zone() {
               <Link
                 key={svc.to}
                 to={svc.to}
-                className="flex flex-col items-center gap-3 p-6 bg-slate-50 rounded-xl hover:bg-brand-light hover:shadow-md transition-all text-center group"
+                className="flex flex-col items-center gap-3 p-6 bg-slate-50 rounded-xl hover:bg-brand-light hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center group"
               >
                 <span className="text-brand group-hover:text-brand-dark transition-colors">
                   {svc.icon}

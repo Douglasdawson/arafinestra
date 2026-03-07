@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
 import FilterBar from "../../components/ui/FilterBar";
 import { localize } from "../../lib/localize";
+import ProgressiveImage from "../../components/ui/ProgressiveImage";
 
 interface BlogPost {
   id: number;
@@ -75,7 +76,7 @@ function BlogCard({
   return (
     <Link
       to={`/${prefix}/blog/${post.slug}`}
-      className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 relative"
+      className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative"
     >
       {featured && (
         <span className="absolute top-4 left-4 z-10 px-3 py-1 bg-brand text-white text-xs font-bold rounded-full uppercase tracking-wide">
@@ -84,7 +85,7 @@ function BlogCard({
       )}
       {post.imagen_portada && (
         <div className={`${featured ? "aspect-[16/9]" : "aspect-[16/9]"} bg-slate-200 overflow-hidden`}>
-          <img
+          <ProgressiveImage
             src={post.imagen_portada}
             alt={title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

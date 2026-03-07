@@ -6,6 +6,8 @@ import StickyMobileBar from "../ui/StickyMobileBar";
 import CookieBanner from "../ui/CookieBanner";
 import ExitPopup from "../ui/ExitPopup";
 import ScrollToTop from "../ui/ScrollToTop";
+import ScrollProgressBar from "../ui/ScrollProgressBar";
+import PageTransition from "../ui/PageTransition";
 
 export default function PublicLayout() {
   return (
@@ -14,9 +16,12 @@ export default function PublicLayout() {
         Skip to content
       </a>
       <ScrollToTop />
+      <ScrollProgressBar />
       <Header />
       <main id="main-content" className="flex-1">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
       <WhatsAppButton />

@@ -8,6 +8,7 @@ import FilterBar from "../../components/ui/FilterBar";
 import Lightbox from "../../components/ui/Lightbox";
 import BeforeAfterSlider from "../../components/ui/BeforeAfterSlider";
 import { localize } from "../../lib/localize";
+import ProgressiveImage from "../../components/ui/ProgressiveImage";
 
 interface PortfolioItem {
   id: number;
@@ -159,15 +160,14 @@ export default function Projects() {
                 <button
                   key={p.id}
                   onClick={() => setSelectedProject(p)}
-                  className="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 text-left"
+                  className="group block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left"
                 >
                   <div className="aspect-[4/3] bg-slate-200 overflow-hidden">
                     {p.fotos_despues && p.fotos_despues.length > 0 ? (
-                      <img
+                      <ProgressiveImage
                         src={p.fotos_despues[0]}
                         alt={localize(p as unknown as Record<string, unknown>, "titulo", currentLang)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-400">

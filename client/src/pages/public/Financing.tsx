@@ -114,10 +114,10 @@ export default function Financing() {
             {plans.map((plan) => (
               <div
                 key={plan.months}
-                className={`rounded-xl p-4 sm:p-6 text-center border-2 transition-all ${
+                className={`rounded-xl p-4 sm:p-6 text-center border-2 transition-all duration-300 ${
                   plan.months === 12
                     ? "border-brand bg-orange-50 shadow-lg scale-105"
-                    : "border-slate-200 bg-white hover:border-slate-300"
+                    : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-md hover:-translate-y-1"
                 }`}
               >
                 <p className="text-sm text-slate-500 mb-1">{plan.months} {t("financing.months")}</p>
@@ -140,7 +140,7 @@ export default function Financing() {
           <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">{t("financing.how_title")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step) => (
-              <div key={step.num} className="text-center p-6 bg-white rounded-lg shadow-sm">
+              <div key={step.num} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center rounded-full bg-navy-100 text-navy-700">
                   {step.icon}
                 </div>
@@ -160,7 +160,7 @@ export default function Financing() {
           <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">{t("financing.methods_title")}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             {paymentMethods.map((m) => (
-              <div key={m.label} className="flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-5 rounded-lg border border-slate-200 hover:border-navy-300 transition-colors">
+              <div key={m.label} className="flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-5 rounded-lg border border-slate-200 hover:border-navy-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 <div className="w-12 h-12 flex items-center justify-center rounded-full bg-navy-50 text-navy-600">
                   {m.icon}
                 </div>

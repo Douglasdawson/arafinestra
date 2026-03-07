@@ -10,9 +10,11 @@ export default function Header() {
   const { lang } = useParams<{ lang?: string }>();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   const prefix = lang || i18n.language || "ca";
   const isHomePath = location.pathname === "/" || location.pathname === `/${prefix}`;
@@ -29,7 +31,17 @@ export default function Header() {
   const isHome = isHomePath && isWide;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      // Hide header on scroll down (after 80px), show on scroll up
+      if (y > 80 && y - lastScrollY.current > 5) {
+        setHidden(true);
+      } else if (lastScrollY.current - y > 5) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -69,11 +81,11 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 pt-[env(safe-area-inset-top)] ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 pt-[env(safe-area-inset-top)] ${
           scrolled || !isHome
             ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100/50"
             : "bg-transparent"
-        }`}
+        } ${hidden && !mobileOpen ? "-translate-y-full" : "translate-y-0"}`}
         style={{ animation: "slideDown 0.6s ease-out" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
