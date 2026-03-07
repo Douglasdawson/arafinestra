@@ -394,12 +394,21 @@ export default function Zone() {
           <p className="text-slate-600 mb-8 max-w-xl mx-auto">
             {t("service_pages.cta_desc")}
           </p>
-          <Link
-            to={`/${prefix}/pressupost`}
-            className="inline-flex items-center px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-lg"
-          >
-            {t("cta.calculate")}
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to={`/${prefix}/pressupost`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
+            >
+              {t("cta.calculate")}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link
+              to={`/${prefix}/visita-gratuita`}
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+            >
+              {t("cta.free_visit")}
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -214,13 +214,21 @@ export default function Projects() {
           <p className="text-lg text-slate-600 mb-8">
             {t("portfolio.cta_desc")}
           </p>
-          <Link
-            to={`/${currentLang}/pressupost`}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg hover:shadow-xl"
-          >
-            {t("portfolio.cta_button")}
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to={`/${currentLang}/pressupost`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
+            >
+              {t("portfolio.cta_button")}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link
+              to={`/${currentLang}/visita-gratuita`}
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+            >
+              {t("cta.free_visit")}
+            </Link>
+          </div>
         </div>
       </section>
 

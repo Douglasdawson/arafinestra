@@ -144,7 +144,9 @@
   },
   "testimonials": {
     "title": "Que diuen els nostres clients",
-    "no_testimonials": "Properament mostrarem les opinions dels nostres clients."
+    "no_testimonials": "Properament mostrarem les opinions dels nostres clients.",
+    "cta_title": "Vols resultats com els seus?",
+    "cta_desc": "Demana el teu pressupost gratuït i sense compromís avui mateix."
   },
   "reviews": {
     "filter_all": "Tots"
@@ -214,7 +216,8 @@
     "company": "Empresa",
     "contact": "Contacte",
     "rights": "Tots els drets reservats",
-    "about": "Sobre nosaltres"
+    "about": "Sobre nosaltres",
+    "cta_text": "Preparat per canviar les teves finestres? Calcula el pressupost en 2 minuts."
   },
   "calculator": {
     "title": "Calcula el teu pressupost",

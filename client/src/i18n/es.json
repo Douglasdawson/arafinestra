@@ -144,7 +144,9 @@
   },
   "testimonials": {
     "title": "Que dicen nuestros clientes",
-    "no_testimonials": "Proximamente mostraremos las opiniones de nuestros clientes."
+    "no_testimonials": "Proximamente mostraremos las opiniones de nuestros clientes.",
+    "cta_title": "¿Quieres resultados como los suyos?",
+    "cta_desc": "Pide tu presupuesto gratuito y sin compromiso hoy mismo."
   },
   "reviews": {
     "filter_all": "Todos"
@@ -214,7 +216,8 @@
     "company": "Empresa",
     "contact": "Contacto",
     "rights": "Todos los derechos reservados",
-    "about": "Sobre nosotros"
+    "about": "Sobre nosotros",
+    "cta_text": "¿Listo para cambiar tus ventanas? Calcula el presupuesto en 2 minutos."
   },
   "calculator": {
     "title": "Calcula tu presupuesto",

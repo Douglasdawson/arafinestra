@@ -555,12 +555,21 @@ export default function ServicePage() {
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
-            <Link
-              to={`/${prefix}/pressupost`}
-              className="inline-block mt-10 px-10 py-4 bg-brand text-white text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30 pulse-glow-btn"
-            >
-              {t(ctaKey[serviceType])}
-            </Link>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to={`/${prefix}/pressupost`}
+                className="inline-flex items-center gap-2 px-10 py-4 bg-brand text-white text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30 pulse-glow-btn"
+              >
+                {t(ctaKey[serviceType])}
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+              <Link
+                to={`/${prefix}/visita-gratuita`}
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl text-lg hover:bg-white/10 transition-colors"
+              >
+                {t("cta.free_visit")}
+              </Link>
+            </div>
             <p className="mt-3 text-sm text-slate-500">{t("cta.free_no_commitment")}</p>
           </ScrollReveal>
         </div>

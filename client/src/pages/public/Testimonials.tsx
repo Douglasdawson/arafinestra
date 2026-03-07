@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
@@ -191,6 +191,33 @@ export default function Testimonials() {
               <p className="text-lg text-slate-500">{t("testimonials.no_testimonials")}</p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Bottom CTA — Apple dual-CTA pattern */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-navy-800 mb-3">
+            {t("testimonials.cta_title")}
+          </h2>
+          <p className="text-lg text-slate-600 mb-8">
+            {t("testimonials.cta_desc")}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to={`/${currentLang}/pressupost`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
+            >
+              {t("cta.calculate")}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link
+              to={`/${currentLang}/visita-gratuita`}
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+            >
+              {t("cta.free_visit")}
+            </Link>
+          </div>
         </div>
       </section>
     </>

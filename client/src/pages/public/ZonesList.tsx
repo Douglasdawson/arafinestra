@@ -141,15 +141,21 @@ export default function ZonesList() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-navy-900">{t("zones_page.not_found_zone")}</h2>
           <p className="mt-3 text-lg text-navy-700">{t("zones_page.contact_us_cta")}</p>
-          <Link
-            to={`/${prefix}/contact`}
-            className="mt-6 inline-flex items-center gap-2 bg-brand text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand/90 transition-colors"
-          >
-            {t("cta.contact_us")}
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to={`/${prefix}/pressupost`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
+            >
+              {t("cta.calculate")}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link
+              to={`/${prefix}/visita-gratuita`}
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+            >
+              {t("cta.free_visit")}
+            </Link>
+          </div>
         </div>
       </section>
     </>

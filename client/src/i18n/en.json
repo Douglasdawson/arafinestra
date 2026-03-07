@@ -144,7 +144,9 @@
   },
   "testimonials": {
     "title": "What our clients say",
-    "no_testimonials": "We will soon share our client reviews."
+    "no_testimonials": "We will soon share our client reviews.",
+    "cta_title": "Want results like theirs?",
+    "cta_desc": "Get your free, no-obligation quote today."
   },
   "reviews": {
     "filter_all": "All"
@@ -214,7 +216,8 @@
     "company": "Company",
     "contact": "Contact",
     "rights": "All rights reserved",
-    "about": "About us"
+    "about": "About us",
+    "cta_text": "Ready to upgrade your windows? Get a quote in 2 minutes."
   },
   "calculator": {
     "title": "Calculate your quote",

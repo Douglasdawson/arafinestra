@@ -236,15 +236,16 @@ export default function Financing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-flex items-center justify-center px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors shadow-lg text-lg"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-lg pulse-glow-btn"
             >
               {t("cta.calculate")}
+              <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
-              to={`/${prefix}/contacte`}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-navy-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors border-2 border-navy-600 text-lg"
+              to={`/${prefix}/visita-gratuita`}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
             >
-              {t("cta.contact_us")}
+              {t("cta.free_visit")}
             </Link>
           </div>
         </div>

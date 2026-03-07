@@ -229,12 +229,21 @@ export default function Cortizo() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-navy-800 mb-4">{t("cortizo.cta_title")}</h2>
           <p className="text-slate-600 max-w-xl mx-auto mb-8">{t("cortizo.cta_desc")}</p>
-          <Link
-            to={`/${prefix}/pressupost`}
-            className="inline-flex items-center px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-lg"
-          >
-            {t("cta.calculate")}
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to={`/${prefix}/pressupost`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
+            >
+              {t("cta.calculate")}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link
+              to={`/${prefix}/visita-gratuita`}
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+            >
+              {t("cta.free_visit")}
+            </Link>
+          </div>
         </div>
       </section>
     </>

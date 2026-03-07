@@ -133,15 +133,16 @@ export default function Subvenciones() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-flex items-center justify-center px-8 py-4 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors shadow-lg text-lg"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors shadow-lg text-lg pulse-glow-btn"
             >
               {t("cta.calculate")}
+              <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
-              to={`/${prefix}/contacte`}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-emerald-700 font-semibold rounded-lg hover:bg-emerald-50 transition-colors border-2 border-emerald-600 text-lg"
+              to={`/${prefix}/visita-gratuita`}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-emerald-700 text-emerald-700 font-semibold rounded-lg text-lg hover:bg-emerald-700 hover:text-white transition-colors"
             >
-              {t("cta.contact_us")}
+              {t("cta.free_visit")}
             </Link>
           </div>
         </div>
