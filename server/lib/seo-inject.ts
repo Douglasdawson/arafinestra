@@ -112,6 +112,21 @@ const STATIC_ROUTES: Record<string, StaticRouteEntry> = {
     description:
       "Mosquiteres a mida per a finestres i portes. Protecció contra insectes sense renunciar a la ventilació. ARA FINESTRA.",
   },
+  "qui-som": {
+    title: "Qui Som | ARA FINESTRA — Instal·ladors de Finestres PVC a Girona",
+    description:
+      "Coneix l'equip d'ARA FINESTRA. Instal·ladors certificats Cortizo a Girona amb més de 500 projectes completats. Empresa local, servei professional.",
+  },
+  "visita-gratuita": {
+    title: "Visita Gratuïta a Domicili | ARA FINESTRA",
+    description:
+      "Demana una visita tècnica gratuïta. Un instal·lador certificat visitarà casa teva en 48h per prendre mides i fer-te un pressupost exacte sense compromís.",
+  },
+  financament: {
+    title: "Finançament Sense Interessos | ARA FINESTRA",
+    description:
+      "Finança les teves finestres PVC de 3 a 24 mesos sense interessos. Sense entrada, sense sorpreses. Combinable amb subvencions Next Generation.",
+  },
 };
 
 // Valid language prefixes

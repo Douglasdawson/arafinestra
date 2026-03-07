@@ -79,9 +79,41 @@ if (process.env.NODE_ENV === "development") {
     "utf-8"
   );
 
-  // SPA catch-all with server-side meta injection
-  app.get("*", async (req, res) => {
+  // Prerendered HTML directory
+  const prerenderDir = path.resolve(__dirname, "prerendered");
+  const hasPrerenderDir = fs.existsSync(prerenderDir);
+  let prerenderManifest: Set<string> = new Set();
+  if (hasPrerenderDir) {
     try {
+      const manifestPath = path.join(prerenderDir, "_manifest.json");
+      if (fs.existsSync(manifestPath)) {
+        const routes = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+        prerenderManifest = new Set(routes);
+        console.log(`[seo] Prerender cache: ${prerenderManifest.size} routes`);
+      }
+    } catch {}
+  }
+
+  // Bot user-agent detection
+  const BOT_UA = /googlebot|bingbot|yandexbot|duckduckbot|slurp|baiduspider|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegrambot|applebot|semrushbot|ahrefsbot|mj12bot|dotbot|petalbot|bytespider/i;
+
+  // SPA catch-all with server-side meta injection + prerendering for bots
+  app.get("/{*splat}", async (req, res) => {
+    try {
+      const ua = req.headers["user-agent"] || "";
+      const isBot = BOT_UA.test(ua);
+
+      // Serve prerendered HTML to bots if available
+      if (isBot && prerenderManifest.has(req.path)) {
+        const prePath = path.join(prerenderDir, `${req.path}.html`);
+        if (fs.existsSync(prePath)) {
+          const preHtml = fs.readFileSync(prePath, "utf-8");
+          res.setHeader("X-Prerendered", "true");
+          return res.send(preHtml);
+        }
+      }
+
+      // Fallback: SSR meta injection for all requests
       const meta = await getMetaForRoute(req.path);
       const html = injectMeta(htmlTemplate, meta);
       res.send(html);

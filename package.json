@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
     "build": "vite build --config vite.config.ts && esbuild server/index.ts --bundle --platform=node --format=esm --outdir=dist --packages=external",
+    "build:prerender": "npm run build && npm run start & sleep 5 && npx tsx scripts/prerender.ts && kill %1",
+    "prerender": "npx tsx scripts/prerender.ts",
     "start": "NODE_ENV=production node dist/index.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
