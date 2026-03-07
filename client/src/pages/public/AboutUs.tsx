@@ -178,11 +178,11 @@ export default function AboutUs() {
               {t("about_page.stats_title")}
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {STATS.map((stat, i) => (
               <ScrollReveal key={stat.key} delay={i * 0.1}>
                 <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-brand mb-2">
+                  <div className="text-2xl sm:text-4xl font-bold text-brand mb-2">
                     {stat.value}
                   </div>
                   <div className="text-sm text-slate-300">
@@ -262,10 +262,10 @@ export default function AboutUs() {
               {t("about_page.certs_title")}
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {CERTIFICATIONS.map((cert, i) => (
               <ScrollReveal key={cert.key} delay={i * 0.1}>
-                <div className="bg-white rounded-xl p-6 shadow-sm text-center">
+                <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm text-center">
                   <div className="w-12 h-12 bg-navy-900 rounded-lg flex items-center justify-center text-white mx-auto mb-3">
                     {cert.icon === "cortizo" && (
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -312,14 +312,14 @@ export default function AboutUs() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to={`/${prefix}/pressupost`}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-lg pulse-glow-btn"
+                className="inline-flex items-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-base sm:text-lg pulse-glow-btn"
               >
                 {t("cta.calculate")}
                 <span aria-hidden="true">&rarr;</span>
               </Link>
               <Link
                 to={`/${prefix}/visita-gratuita`}
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-base sm:text-lg hover:bg-navy-800 hover:text-white transition-colors"
               >
                 {t("cta.free_visit")}
               </Link>

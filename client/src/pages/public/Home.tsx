@@ -137,7 +137,7 @@ function WindowMaskHero({
 
           {/* Trust indicators */}
           <div
-            className="mt-8 flex items-center justify-center gap-5 animate-fadeIn"
+            className="mt-8 flex items-center justify-center gap-3 sm:gap-5 flex-wrap animate-fadeIn"
             style={{ animationDelay: "0.45s", animationFillMode: "backwards" }}
           >
             <div className="flex items-center gap-1.5">
@@ -163,7 +163,7 @@ function WindowMaskHero({
           >
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block px-10 py-4 bg-brand text-white text-lg font-semibold rounded-xl shadow-lg shadow-brand/30 active:scale-[0.97] transition-transform duration-150 pulse-glow-btn"
+              className="inline-block px-6 sm:px-10 py-3.5 sm:py-4 bg-brand text-white text-base sm:text-lg font-semibold rounded-xl shadow-lg shadow-brand/30 active:scale-[0.97] transition-transform duration-150 pulse-glow-btn"
             >
               {t("cta.calculate")}
             </Link>
@@ -678,7 +678,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
         <div className="flex justify-center mt-14">
           <button
             onClick={() => setIsPVC(!isPVC)}
-            className={`relative px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+            className={`relative px-5 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 ${
               isPVC
                 ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
                 : "bg-navy-800 text-slate-300 hover:bg-navy-700"
@@ -1043,7 +1043,7 @@ function EnergySavings({
 
             <Link
               to={`/${prefix}/pressupost`}
-              className="block w-full text-center px-8 py-4 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 transition-colors shadow-lg btn-press"
+              className="block w-full text-center px-6 sm:px-8 py-3.5 sm:py-4 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 transition-colors shadow-lg btn-press"
             >
               {t("cta.calculate")}
             </Link>
@@ -1312,7 +1312,7 @@ export default function Home() {
           <ScrollReveal delay={0.4}>
             <Link
               to={`/${prefix}/subvencions`}
-              className="inline-block mt-10 px-10 py-4 bg-white text-orange-600 text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform duration-150 shadow-lg shadow-black/10"
+              className="inline-block mt-10 px-6 sm:px-10 py-3.5 sm:py-4 bg-white text-orange-600 text-base sm:text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform duration-150 shadow-lg shadow-black/10"
             >
               {t("home.subsidies_cta")}
             </Link>
@@ -1338,7 +1338,7 @@ export default function Home() {
             <div className="mt-10 sm:mt-12 flex flex-col items-center gap-4">
               <Link
                 to={`/${prefix}/pressupost`}
-                className="inline-block px-10 py-4 sm:px-14 sm:py-6 bg-brand text-white text-base sm:text-xl font-semibold rounded-xl shadow-lg shadow-brand/30 pulse-glow-btn active:scale-[0.97] transition-transform duration-150"
+                className="inline-block px-8 py-3.5 sm:px-14 sm:py-6 bg-brand text-white text-base sm:text-xl font-semibold rounded-xl shadow-lg shadow-brand/30 pulse-glow-btn active:scale-[0.97] transition-transform duration-150"
               >
                 {t("cta.calculate")}
               </Link>

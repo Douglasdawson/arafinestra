@@ -110,18 +110,18 @@ export default function Financing() {
           </div>
 
           {/* Plans grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {plans.map((plan) => (
               <div
                 key={plan.months}
-                className={`rounded-xl p-6 text-center border-2 transition-all ${
+                className={`rounded-xl p-4 sm:p-6 text-center border-2 transition-all ${
                   plan.months === 12
                     ? "border-brand bg-orange-50 shadow-lg scale-105"
                     : "border-slate-200 bg-white hover:border-slate-300"
                 }`}
               >
                 <p className="text-sm text-slate-500 mb-1">{plan.months} {t("financing.months")}</p>
-                <p className="text-3xl font-bold text-navy-800">{formatEur(plan.monthly)}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-navy-800">{formatEur(plan.monthly)}</p>
                 <p className="text-sm text-slate-500">{t("financing.per_month")}</p>
                 <div className="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-medium">
                   0% {t("financing.interest")}
@@ -158,9 +158,9 @@ export default function Financing() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">{t("financing.methods_title")}</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             {paymentMethods.map((m) => (
-              <div key={m.label} className="flex flex-col items-center gap-3 p-5 rounded-lg border border-slate-200 hover:border-navy-300 transition-colors">
+              <div key={m.label} className="flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-5 rounded-lg border border-slate-200 hover:border-navy-300 transition-colors">
                 <div className="w-12 h-12 flex items-center justify-center rounded-full bg-navy-50 text-navy-600">
                   {m.icon}
                 </div>
@@ -236,14 +236,14 @@ export default function Financing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-lg pulse-glow-btn"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 text-base sm:text-lg pulse-glow-btn"
             >
               {t("cta.calculate")}
               <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
               to={`/${prefix}/visita-gratuita`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-base sm:text-lg hover:bg-navy-800 hover:text-white transition-colors"
             >
               {t("cta.free_visit")}
             </Link>

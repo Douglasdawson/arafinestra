@@ -311,7 +311,7 @@ export default function ServicePage() {
           <div className="animate-fadeIn" style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}>
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-block mt-8 px-8 py-4 bg-brand text-white font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30"
+              className="inline-block mt-8 px-6 sm:px-8 py-3.5 sm:py-4 bg-brand text-white font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30"
             >
               {t(ctaKey[serviceType])}
             </Link>
@@ -515,7 +515,7 @@ export default function ServicePage() {
               {t("service_pages.related_services")}
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
             {ALL_SERVICES.filter((s) => s.slug !== serviceSlug).map((service, i) => (
               <ScrollReveal key={service.slug} delay={i * 0.1}>
                 <Link
@@ -558,14 +558,14 @@ export default function ServicePage() {
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to={`/${prefix}/pressupost`}
-                className="inline-flex items-center gap-2 px-10 py-4 bg-brand text-white text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30 pulse-glow-btn"
+                className="inline-flex items-center gap-2 px-6 sm:px-10 py-3.5 sm:py-4 bg-brand text-white text-base sm:text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform shadow-lg shadow-brand/30 pulse-glow-btn"
               >
                 {t(ctaKey[serviceType])}
                 <span aria-hidden="true">&rarr;</span>
               </Link>
               <Link
                 to={`/${prefix}/visita-gratuita`}
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl text-lg hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-xl text-base sm:text-lg hover:bg-white/10 transition-colors"
               >
                 {t("cta.free_visit")}
               </Link>

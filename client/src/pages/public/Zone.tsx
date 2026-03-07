@@ -322,7 +322,7 @@ export default function Zone() {
           <h2 className="text-2xl font-bold text-navy-800 mb-8 text-center">
             {t("zones_page.services_title", { zone: nombre })}
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 to: `/${prefix}/serveis/finestres-pvc`,
@@ -397,14 +397,14 @@ export default function Zone() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-lg text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
+              className="inline-flex items-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 bg-brand text-white font-semibold rounded-lg text-base sm:text-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 pulse-glow-btn"
             >
               {t("cta.calculate")}
               <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
               to={`/${prefix}/visita-gratuita`}
-              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-lg hover:bg-navy-800 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 border-2 border-navy-800 text-navy-800 font-semibold rounded-lg text-base sm:text-lg hover:bg-navy-800 hover:text-white transition-colors"
             >
               {t("cta.free_visit")}
             </Link>
