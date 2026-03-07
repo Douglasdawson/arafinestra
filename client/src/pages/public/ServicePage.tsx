@@ -156,6 +156,13 @@ export default function ServicePage() {
   const serviceType = SLUG_TO_TYPE[serviceSlug || ""] || "ventana";
   const { gradient } = SERVICE_COLORS[serviceType];
 
+  const ctaKey: Record<ServiceType, string> = {
+    ventana: "service_pages.cta_ventana",
+    puerta: "service_pages.cta_puerta",
+    persiana: "service_pages.cta_persiana",
+    mosquitera: "service_pages.cta_mosquitera",
+  };
+
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [loadingPortfolio, setLoadingPortfolio] = useState(true);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
@@ -310,7 +317,7 @@ export default function ServicePage() {
               to={`/${prefix}/pressupost`}
               className="inline-block mt-8 px-8 py-3.5 bg-white text-navy-900 font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg"
             >
-              {t("cta.calculate")}
+              {t(ctaKey[serviceType])}
             </Link>
           </div>
         </div>
@@ -551,7 +558,7 @@ export default function ServicePage() {
               to={`/${prefix}/pressupost`}
               className="inline-block mt-10 px-10 py-4 bg-white text-navy-900 text-lg font-semibold rounded-xl hover:scale-105 transition-transform shadow-lg pulse-glow-btn"
             >
-              {t("cta.calculate")}
+              {t(ctaKey[serviceType])}
             </Link>
           </ScrollReveal>
         </div>

@@ -172,14 +172,12 @@ export default function Header() {
                 {PHONE}
               </a>
               <LanguageSwitcher />
-              {scrolled && (
-                <Link
-                  to={`/${prefix}/pressupost`}
-                  className="bg-brand text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-brand-dark transition-all"
-                >
-                  {t("cta.get_quote")}
-                </Link>
-              )}
+              <Link
+                to={`/${prefix}/pressupost`}
+                className="bg-brand text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-brand-dark transition-all"
+              >
+                {t("cta.get_quote")}
+              </Link>
             </div>
 
             {/* Mobile hamburger */}

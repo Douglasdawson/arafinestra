@@ -193,8 +193,10 @@
     "success": "Message sent successfully!",
     "error": "Error sending message",
     "response_time": "We respond in less than 2 hours",
-    "google_rating": "4.9/5 on Google Reviews",
-    "guarantee_badge": "10 years Cortizo warranty"
+    "google_rating": "4.9/5 from 47 reviews",
+    "guarantee_badge": "10 years Cortizo warranty",
+    "optional": "optional",
+    "success_detail": "We'll contact you within one hour. Check your phone."
   },
   "footer": {
     "services": "Services",
@@ -215,6 +217,7 @@
     "step_glass": "Glass",
     "step_extras": "Extras",
     "step_quantity": "Quantity",
+    "time_remaining": "~{{minutes}} min",
     "next": "Next",
     "back": "Back",
     "see_result": "See quote",
@@ -278,7 +281,10 @@
     "faq_a5": "In most cases no building permit is required if the same dimensions and facade aesthetics are maintained. Our team will advise you on your municipality's regulations.",
     "save_progress": "Save & continue later",
     "save_phone_placeholder": "Your phone",
-    "save_sent": "We'll send you the quote!"
+    "save_sent": "We'll send you the quote!",
+    "submit_quote": "Get personalized quote",
+    "sending_quote": "Sending quote...",
+    "your_config": "Your configuration:"
   },
   "zones_page": {
     "title": "Service areas",
@@ -323,6 +329,10 @@
     "related_articles": "Articles about this topic",
     "related_services": "Complementary Services",
     "zones_title": "Areas we cover",
+    "cta_ventana": "Calculate window quote",
+    "cta_puerta": "Calculate door quote",
+    "cta_persiana": "Calculate shutter quote",
+    "cta_mosquitera": "Calculate mosquito net quote",
     "ventana": {
       "title": "Cortizo PVC Windows",
       "description": "High-efficiency PVC windows with Cortizo profiles. Superior thermal and acoustic insulation for your home.",
@@ -526,7 +536,8 @@
     "text": "We use cookies to improve your experience.",
     "accept": "Accept",
     "reject": "Reject",
-    "link": "Cookie policy"
+    "link": "Cookie policy",
+    "explanation": "We use analytics cookies to improve our service."
   },
   "exit_popup": {
     "title": "Wait! Get 10% off",

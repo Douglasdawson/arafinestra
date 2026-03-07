@@ -153,6 +153,7 @@ export default function Result({ state, onReset }: Props) {
       </div>
 
       {/* Summary */}
+      <p className="text-sm font-medium text-gray-500 mb-2">{t("calculator.your_config")}</p>
       <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
         <SummaryRow label={t("calculator.step_product")} value={t(TIPO_LABELS[state.tipo] || state.tipo)} />
         <SummaryRow label={t("calculator.step_model")} value={state.modelo} />
@@ -186,6 +187,7 @@ export default function Result({ state, onReset }: Props) {
                 <input
                   type="text"
                   required
+                  autoComplete="name"
                   value={form.nombre}
                   onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
                   onBlur={() => setTouched((t) => ({ ...t, nombre: true }))}
@@ -202,6 +204,8 @@ export default function Result({ state, onReset }: Props) {
                 <input
                   type="tel"
                   required
+                  inputMode="tel"
+                  autoComplete="tel"
                   value={form.telefono}
                   onChange={(e) => setForm((f) => ({ ...f, telefono: e.target.value }))}
                   onBlur={() => setTouched((t) => ({ ...t, telefono: true }))}
@@ -217,6 +221,7 @@ export default function Result({ state, onReset }: Props) {
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t("contact.email")}</label>
                 <input
                   type="email"
+                  autoComplete="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
@@ -240,7 +245,7 @@ export default function Result({ state, onReset }: Props) {
               disabled={submitting}
               className="w-full py-3.5 bg-brand hover:bg-brand-dark disabled:opacity-60 text-white font-semibold rounded-lg transition-colors text-lg shadow-md hover:shadow-lg"
             >
-              {submitting ? t("calculator.sending") : t("cta.request_quote")}
+              {submitting ? t("calculator.sending_quote") : t("calculator.submit_quote")}
             </button>
           </form>
           <p className="text-xs text-slate-500 mt-3 text-center">

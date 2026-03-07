@@ -40,15 +40,20 @@ export default function CookieBanner() {
     >
       <div className="bg-navy-900 text-white px-4 py-4 sm:px-6 sm:py-5 shadow-2xl">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm sm:text-base text-center sm:text-left">
-            {t("cookies_banner.text")}{" "}
+          <div className="text-center sm:text-left">
+            <p className="text-xs text-white/60 mb-1">
+              {t("cookies_banner.explanation")}
+            </p>
+            <p className="text-sm sm:text-base">
+              {t("cookies_banner.text")}{" "}
             <Link
               to={`/${prefix}/legal/cookies`}
               className="underline hover:text-slate-300 transition-colors"
             >
               {t("cookies_banner.link")}
             </Link>
-          </p>
+            </p>
+          </div>
           <div className="flex items-center gap-3 flex-shrink-0">
             <button
               onClick={handleReject}

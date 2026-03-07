@@ -193,8 +193,10 @@
     "success": "Mensaje enviado correctamente!",
     "error": "Error al enviar el mensaje",
     "response_time": "Respondemos en menos de 2 horas",
-    "google_rating": "4.9/5 en Google Reviews",
-    "guarantee_badge": "10 años de garantía Cortizo"
+    "google_rating": "4.9/5 de 47 reseñas",
+    "guarantee_badge": "10 años de garantía Cortizo",
+    "optional": "opcional",
+    "success_detail": "Os contactaremos en menos de una hora. Revisad vuestro teléfono."
   },
   "footer": {
     "services": "Servicios",
@@ -215,6 +217,7 @@
     "step_glass": "Cristal",
     "step_extras": "Extras",
     "step_quantity": "Cantidad",
+    "time_remaining": "~{{minutes}} min",
     "next": "Siguiente",
     "back": "Anterior",
     "see_result": "Ver presupuesto",
@@ -278,7 +281,10 @@
     "faq_a5": "En la mayoría de casos no hace falta permiso de obras si se mantienen las mismas dimensiones y estética de la fachada. Nuestro equipo te asesorará sobre la normativa de tu municipio.",
     "save_progress": "Guardar y continuar despues",
     "save_phone_placeholder": "Tu telefono",
-    "save_sent": "Te enviaremos el presupuesto!"
+    "save_sent": "Te enviaremos el presupuesto!",
+    "submit_quote": "Obtener presupuesto personalizado",
+    "sending_quote": "Enviando presupuesto...",
+    "your_config": "Vuestra configuración:"
   },
   "zones_page": {
     "title": "Zonas de servicio",
@@ -323,6 +329,10 @@
     "related_articles": "Artículos sobre este tema",
     "related_services": "Servicios complementarios",
     "zones_title": "Zonas donde trabajamos",
+    "cta_ventana": "Calcular presupuesto de ventanas",
+    "cta_puerta": "Calcular presupuesto de puertas",
+    "cta_persiana": "Calcular presupuesto de persianas",
+    "cta_mosquitera": "Calcular presupuesto de mosquiteras",
     "ventana": {
       "title": "Ventanas PVC Cortizo",
       "description": "Ventanas PVC de alta eficiencia con perfiles Cortizo. Aislamiento termico y acustico superior para tu hogar.",
@@ -526,7 +536,8 @@
     "text": "Utilizamos cookies para mejorar tu experiencia.",
     "accept": "Aceptar",
     "reject": "Rechazar",
-    "link": "Politica de cookies"
+    "link": "Politica de cookies",
+    "explanation": "Usamos cookies de analitica para mejorar nuestro servicio."
   },
   "exit_popup": {
     "title": "¡Espera! Consigue un 10% de descuento",

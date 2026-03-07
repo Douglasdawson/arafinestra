@@ -193,8 +193,10 @@
     "success": "Missatge enviat correctament!",
     "error": "Error en enviar el missatge",
     "response_time": "Responem en menys de 2 hores",
-    "google_rating": "4.9/5 a Google Reviews",
-    "guarantee_badge": "10 anys de garantia Cortizo"
+    "google_rating": "4.9/5 de 47 ressenyes",
+    "guarantee_badge": "10 anys de garantia Cortizo",
+    "optional": "opcional",
+    "success_detail": "Vos contactarem en menys d'una hora. Reviseu el vostre telèfon."
   },
   "footer": {
     "services": "Serveis",
@@ -215,6 +217,7 @@
     "step_glass": "Vidre",
     "step_extras": "Extres",
     "step_quantity": "Quantitat",
+    "time_remaining": "~{{minutes}} min",
     "next": "Seguent",
     "back": "Anterior",
     "see_result": "Veure pressupost",
@@ -278,7 +281,10 @@
     "faq_a5": "En la majoria de casos no cal permis d'obres si es mantenen les mateixes dimensions i estetica de la facana. El nostre equip t'assessorara sobre la normativa del teu municipi.",
     "save_progress": "Desa i continua mes tard",
     "save_phone_placeholder": "El teu telefon",
-    "save_sent": "T'enviarem el pressupost!"
+    "save_sent": "T'enviarem el pressupost!",
+    "submit_quote": "Obtenir pressupost personalitzat",
+    "sending_quote": "Enviant pressupost...",
+    "your_config": "La vostra configuració:"
   },
   "zones_page": {
     "title": "Zones de servei",
@@ -323,6 +329,10 @@
     "related_articles": "Articles sobre aquest tema",
     "related_services": "Serveis complementaris",
     "zones_title": "Zones on treballem",
+    "cta_ventana": "Calcular pressupost de finestres",
+    "cta_puerta": "Calcular pressupost de portes",
+    "cta_persiana": "Calcular pressupost de persianes",
+    "cta_mosquitera": "Calcular pressupost de mosquiteres",
     "ventana": {
       "title": "Finestres PVC Cortizo",
       "description": "Finestres PVC d'alta eficiencia amb perfils Cortizo. Aillament termic i acustic superior per a la teva llar.",
@@ -526,7 +536,8 @@
     "text": "Utilitzem cookies per millorar la teva experiencia.",
     "accept": "Acceptar",
     "reject": "Rebutjar",
-    "link": "Politica de cookies"
+    "link": "Politica de cookies",
+    "explanation": "Usem cookies d'analitica per millorar el nostre servei."
   },
   "exit_popup": {
     "title": "Espera! Aconsegueix un 10% de descompte",

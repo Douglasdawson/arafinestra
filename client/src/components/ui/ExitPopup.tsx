@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 const STORAGE_KEY = "exit_popup_dismissed";
 const DISMISS_DAYS = 7;
-const MOBILE_DELAY_MS = 30_000; // 30 seconds on mobile
+const MOBILE_DELAY_MS = 15_000; // 15 seconds on mobile
 
 // Only show on these route patterns (home + service pages)
 const ALLOWED_PATTERNS = [
@@ -15,6 +15,9 @@ const ALLOWED_PATTERNS = [
   /^\/[a-z]{2}\/subvencions$/, // subvenciones
   /^\/[a-z]{2}\/zones/, // zones
   /^\/[a-z]{2}\/contacte$/, // contact
+  /^\/[a-z]{2}\/pressupost$/, // calculator
+  /^\/[a-z]{2}\/projectes$/, // projects
+  /^\/[a-z]{2}\/blog/, // blog
 ];
 
 function isAllowedRoute(pathname: string): boolean {

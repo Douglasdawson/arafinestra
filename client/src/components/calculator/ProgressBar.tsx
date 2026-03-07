@@ -14,11 +14,26 @@ interface ProgressBarProps {
   currentStep: number; // 1-7
 }
 
+function getTimeRemaining(step: number): string {
+  if (step <= 3) return "2";
+  if (step <= 5) return "1";
+  return "<1";
+}
+
 export default function ProgressBar({ currentStep }: ProgressBarProps) {
   const { t } = useTranslation();
+  const totalSteps = STEP_KEYS.length;
+  const percentage = Math.round(((currentStep - 1) / (totalSteps - 1)) * 100);
+  const timeRemaining = getTimeRemaining(currentStep);
 
   return (
     <div className="w-full py-6 px-2">
+      <div className="flex items-center justify-between mb-2 px-1">
+        <span className="text-xs font-medium text-brand">{percentage}%</span>
+        <span className="text-xs text-slate-400">
+          {t("calculator.time_remaining", { minutes: timeRemaining })}
+        </span>
+      </div>
       <div className="flex items-center justify-between relative">
         {/* Connecting line behind circles */}
         <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-200 z-0" />
