@@ -21,7 +21,7 @@ const ESTADOS = ["todos", "nuevo", "contactado", "presupuestado", "ganado", "per
 const ORIGENES = ["formulario", "calculadora", "telefono", "whatsapp", "referido"] as const;
 
 const estadoColors: Record<string, string> = {
-  nuevo: "bg-blue-100 text-blue-700",
+  nuevo: "bg-brand-light text-brand",
   contactado: "bg-yellow-100 text-yellow-700",
   presupuestado: "bg-orange-100 text-orange-700",
   ganado: "bg-green-100 text-green-700",
@@ -135,7 +135,7 @@ export default function Leads() {
         />
       )}
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Leads</h1>
+      <h1 className="text-2xl font-bold text-navy-900 mb-6">Leads</h1>
 
       {/* Filter bar */}
       <div className="flex flex-wrap gap-3 mb-4">
@@ -206,10 +206,10 @@ export default function Leads() {
                     key={lead.id}
                     onClick={() => selectLead(lead)}
                     className={`border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
-                      selected?.id === lead.id ? "bg-slate-50" : ""
+                      selected?.id === lead.id ? "bg-brand-light" : ""
                     }`}
                   >
-                    <td className="px-4 py-3 font-medium text-gray-900">{lead.nombre}</td>
+                    <td className="px-4 py-3 font-medium text-navy-900">{lead.nombre}</td>
                     <td className="px-4 py-3 text-gray-600">
                       {lead.email && <div>{lead.email}</div>}
                       {lead.telefono && <div>{lead.telefono}</div>}
@@ -274,7 +274,7 @@ export default function Leads() {
         {selected && (
           <div className="w-96 bg-white rounded-lg shadow-sm border border-gray-200 p-5 self-start">
             <div className="flex justify-between items-start mb-4">
-              <h2 className="font-semibold text-gray-900">{selected.nombre}</h2>
+              <h2 className="font-semibold text-navy-900">{selected.nombre}</h2>
               <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600">x</button>
             </div>
 
@@ -321,7 +321,7 @@ export default function Leads() {
               <button
                 onClick={saveLead}
                 disabled={saving}
-                className="w-full py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 disabled:opacity-50 transition-colors"
+                className="w-full py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors"
               >
                 {saving ? "Guardando..." : "Guardar cambios"}
               </button>

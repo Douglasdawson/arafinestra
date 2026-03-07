@@ -133,8 +133,8 @@ export default function Products() {
       )}
 
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Productos</h1>
-        <button onClick={() => openEdit()} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 transition-colors">
+        <h1 className="text-2xl font-bold text-navy-900">Productos</h1>
+        <button onClick={() => openEdit()} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark transition-colors">
           + Nuevo producto
         </button>
       </div>
@@ -146,7 +146,7 @@ export default function Products() {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab ? "border-b-2 border-slate-700 text-slate-800" : "text-gray-400 hover:text-gray-600"
+              activeTab === tab ? "border-b-2 border-brand text-brand" : "text-gray-400 hover:text-gray-600"
             }`}
           >
             {tab}
@@ -177,7 +177,7 @@ export default function Products() {
               {products.map((p) => (
                 <tr key={p.id} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="px-4 py-3 text-gray-600">{p.tipo}</td>
-                  <td className="px-4 py-3 font-medium text-gray-900">{p.gama || "-"}</td>
+                  <td className="px-4 py-3 font-medium text-navy-900">{p.gama || "-"}</td>
                   <td className="px-4 py-3 text-gray-600">{p.modelo || "-"}</td>
                   <td className="px-4 py-3 text-gray-600">{p.precioBase != null ? `${p.precioBase} EUR` : "-"}</td>
                   <td className="px-4 py-3 text-gray-600">{p.precioPorM2 != null ? `${p.precioPorM2} EUR` : "-"}</td>
@@ -190,7 +190,7 @@ export default function Products() {
                     </button>
                   </td>
                   <td className="px-4 py-3 flex gap-2">
-                    <button onClick={() => openEdit(p)} className="text-slate-600 hover:text-slate-800 text-xs">Editar</button>
+                    <button onClick={() => openEdit(p)} className="text-brand hover:text-brand-dark text-xs">Editar</button>
                     <button onClick={() => setDeleteId(p.id)} className="text-gray-400 hover:text-red-600 text-xs">Eliminar</button>
                   </td>
                 </tr>
@@ -204,7 +204,7 @@ export default function Products() {
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white rounded-lg shadow-xl p-6 max-w-lg w-full mx-4 max-h-[90vh] overflow-auto">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-navy-900 mb-4">
               {editing.id ? "Editar producto" : "Nuevo producto"}
             </h2>
 
@@ -262,7 +262,7 @@ export default function Products() {
                     <button onClick={() => setSpecRows(specRows.filter((_, j) => j !== i))} className="text-red-400 hover:text-red-600 text-xs">x</button>
                   </div>
                 ))}
-                <button onClick={() => setSpecRows([...specRows, { key: "", value: "" }])} className="text-sm text-slate-600 hover:text-slate-800">+ Anadir fila</button>
+                <button onClick={() => setSpecRows([...specRows, { key: "", value: "" }])} className="text-sm text-brand hover:text-brand-dark">+ Anadir fila</button>
               </div>
 
               <label className="flex items-center gap-2 text-sm">
@@ -273,7 +273,7 @@ export default function Products() {
 
             <div className="flex justify-end gap-3 mt-6">
               <button onClick={() => setEditing(null)} className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800">Cancelar</button>
-              <button onClick={saveProduct} disabled={saving} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 disabled:opacity-50 transition-colors">
+              <button onClick={saveProduct} disabled={saving} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors">
                 {saving ? "Guardando..." : "Guardar"}
               </button>
             </div>

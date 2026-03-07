@@ -55,8 +55,8 @@ export default function BlogList() {
       )}
 
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Blog</h1>
-        <button onClick={() => navigate("/admin/blog/new")} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 transition-colors">
+        <h1 className="text-2xl font-bold text-navy-900">Blog</h1>
+        <button onClick={() => navigate("/admin/blog/new")} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark transition-colors">
           + Nuevo articulo
         </button>
       </div>
@@ -91,7 +91,7 @@ export default function BlogList() {
                     {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("es") : new Date(post.createdAt).toLocaleDateString("es")}
                   </td>
                   <td className="px-4 py-3 flex gap-2">
-                    <button onClick={() => navigate(`/admin/blog/${post.id}`)} className="text-sm text-slate-600 hover:text-slate-800">Editar</button>
+                    <button onClick={() => navigate(`/admin/blog/${post.id}`)} className="text-sm text-brand hover:text-brand-dark">Editar</button>
                     <button onClick={() => setDeleteId(post.id)} className="text-sm text-gray-400 hover:text-red-600">Eliminar</button>
                   </td>
                 </tr>

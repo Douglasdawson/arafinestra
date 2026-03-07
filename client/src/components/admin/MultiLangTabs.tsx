@@ -29,7 +29,7 @@ export default function MultiLangTabs({ fieldName, values, onChange, textarea, r
             onClick={() => setActiveLang(lang.key)}
             className={`px-3 py-1.5 text-xs font-medium transition-colors ${
               activeLang === lang.key
-                ? "border-b-2 border-slate-700 text-slate-800"
+                ? "border-b-2 border-brand text-brand"
                 : "text-gray-400 hover:text-gray-600"
             }`}
           >
@@ -43,7 +43,7 @@ export default function MultiLangTabs({ fieldName, values, onChange, textarea, r
           value={values[activeLang.toLowerCase() as "ca" | "es" | "en"]}
           onChange={(e) => onChange(activeLang.toLowerCase() as "ca" | "es" | "en", e.target.value)}
           rows={rows}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 text-sm"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand text-sm"
         />
       ) : (
         <input
@@ -51,7 +51,7 @@ export default function MultiLangTabs({ fieldName, values, onChange, textarea, r
           id={`${fieldName}_${activeLang.toLowerCase()}`}
           value={values[activeLang.toLowerCase() as "ca" | "es" | "en"]}
           onChange={(e) => onChange(activeLang.toLowerCase() as "ca" | "es" | "en", e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 text-sm"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand text-sm"
         />
       )}
     </div>

@@ -83,7 +83,7 @@ export default function SiteConfig() {
     <div>
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Contenido / Configuracion</h1>
+      <h1 className="text-2xl font-bold text-navy-900 mb-6">Contenido / Configuracion</h1>
 
       <div className="space-y-4">
         {configs.map((item) => (
@@ -93,7 +93,7 @@ export default function SiteConfig() {
               <button
                 onClick={() => saveConfig(item)}
                 disabled={savingKey === item.key}
-                className="px-3 py-1.5 bg-slate-800 text-white rounded-md text-xs font-medium hover:bg-slate-700 disabled:opacity-50 transition-colors"
+                className="px-3 py-1.5 bg-brand text-white rounded-md text-xs font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors"
               >
                 {savingKey === item.key ? "..." : "Guardar"}
               </button>

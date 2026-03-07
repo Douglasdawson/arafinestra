@@ -105,8 +105,8 @@ export default function Testimonials() {
       )}
 
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Testimonios</h1>
-        <button onClick={() => setEditing(emptyItem())} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 transition-colors">
+        <h1 className="text-2xl font-bold text-navy-900">Testimonios</h1>
+        <button onClick={() => setEditing(emptyItem())} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark transition-colors">
           + Nuevo testimonio
         </button>
       </div>
@@ -121,7 +121,7 @@ export default function Testimonials() {
             <div key={item.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="font-medium text-gray-900">{item.nombre}</h3>
+                  <h3 className="font-medium text-navy-900">{item.nombre}</h3>
                   <p className="text-sm text-gray-500">{item.localidad || "-"}</p>
                 </div>
                 <span className={`px-2 py-0.5 rounded-full text-xs ${item.published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
@@ -131,7 +131,7 @@ export default function Testimonials() {
               {renderStars(item.puntuacion)}
               <p className="text-sm text-gray-600 mt-2 line-clamp-3">{item.textoEs || item.textoCa || "-"}</p>
               <div className="flex gap-2 mt-3">
-                <button onClick={() => setEditing(item)} className="text-sm text-slate-600 hover:text-slate-800">Editar</button>
+                <button onClick={() => setEditing(item)} className="text-sm text-brand hover:text-brand-dark">Editar</button>
                 <button onClick={() => setDeleteId(item.id)} className="text-sm text-gray-400 hover:text-red-600">Eliminar</button>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Testimonials() {
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white rounded-lg shadow-xl p-6 max-w-lg w-full mx-4 max-h-[90vh] overflow-auto">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-navy-900 mb-4">
               {editing.id ? "Editar testimonio" : "Nuevo testimonio"}
             </h2>
 
@@ -186,7 +186,7 @@ export default function Testimonials() {
 
             <div className="flex justify-end gap-3 mt-6">
               <button onClick={() => setEditing(null)} className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800">Cancelar</button>
-              <button onClick={saveItem} disabled={saving} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 disabled:opacity-50 transition-colors">
+              <button onClick={saveItem} disabled={saving} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors">
                 {saving ? "Guardando..." : "Guardar"}
               </button>
             </div>

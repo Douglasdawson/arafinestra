@@ -120,7 +120,7 @@ export default function BlogEditor() {
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-navy-900">
           {isNew ? "Nuevo articulo" : "Editar articulo"}
         </h1>
         <button onClick={() => navigate("/admin/blog")} className="text-sm text-gray-500 hover:text-gray-800">
@@ -207,7 +207,7 @@ export default function BlogEditor() {
           <button onClick={() => navigate("/admin/blog")} className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800">
             Cancelar
           </button>
-          <button onClick={savePost} disabled={saving} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium hover:bg-slate-700 disabled:opacity-50 transition-colors">
+          <button onClick={savePost} disabled={saving} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors">
             {saving ? "Guardando..." : "Guardar"}
           </button>
         </div>
