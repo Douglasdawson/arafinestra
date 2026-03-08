@@ -746,5 +746,21 @@
     "countdown": "Subsidies: {{days}} days left to apply. Limited spots.",
     "cta": "View subsidies"
   },
-  "sticky_cta": "Calculate quote"
+  "sticky_cta": "Calculate quote",
+  "future_self": {
+    "title": "Imagine...",
+    "item1": "Waking up on Sunday without hearing street traffic",
+    "item2": "Your electricity bill dropping 40% without lifting a finger",
+    "item3": "Opening your window with one finger, no effort",
+    "item4": "Never painting or maintaining your windows again"
+  },
+  "energy_loss": {
+    "prefix": "Right now it's",
+    "at": "in Girona.",
+    "losing": "With old windows, your home is losing",
+    "today": "today",
+    "in_heating": "in unnecessary heating.",
+    "each_day": "Every day with old windows, you're overpaying.",
+    "cta": "Calculate your real savings"
+  }
 }

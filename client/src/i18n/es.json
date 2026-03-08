@@ -746,5 +746,21 @@
     "countdown": "Subvenciones: {{days}} dias para solicitar. Plazas limitadas.",
     "cta": "Ver subvenciones"
   },
-  "sticky_cta": "Calcula presupuesto"
+  "sticky_cta": "Calcula presupuesto",
+  "future_self": {
+    "title": "Imagínate...",
+    "item1": "Despertarte un domingo sin oír el tráfico de la calle",
+    "item2": "Que tu factura de luz baje un 40% sin hacer nada",
+    "item3": "Abrir la ventana con un dedo, sin hacer fuerza",
+    "item4": "No volver a pintar ni mantener las ventanas nunca más"
+  },
+  "energy_loss": {
+    "prefix": "Ahora hace",
+    "at": "en Girona.",
+    "losing": "Con ventanas antiguas, tu hogar pierde",
+    "today": "hoy",
+    "in_heating": "en calefacción innecesaria.",
+    "each_day": "Cada día que pasas con ventanas antiguas, pagas de más.",
+    "cta": "Calcula tu ahorro real"
+  }
 }

@@ -1153,6 +1153,39 @@ function EnergySavings({
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   FUTURE SELF — Emotional visualization
+   ═══════════════════════════════════════════════════════════════ */
+function FutureSelfSection({ t }: { t: (k: string) => string }) {
+  const items = [
+    t("future_self.item1"),
+    t("future_self.item2"),
+    t("future_self.item3"),
+    t("future_self.item4"),
+  ];
+
+  return (
+    <section className="py-20 sm:py-28 bg-white">
+      <div className="max-w-3xl mx-auto px-6 text-center">
+        <ScrollReveal>
+          <h2 className="text-3xl sm:text-5xl font-bold text-navy-900 tracking-tight">
+            {t("future_self.title")}
+          </h2>
+        </ScrollReveal>
+        <div className="mt-10 sm:mt-14 space-y-6 sm:space-y-8">
+          {items.map((item, i) => (
+            <ScrollReveal key={i} delay={i * 0.12}>
+              <p className="text-xl sm:text-2xl text-slate-700 font-light leading-relaxed">
+                {item}
+              </p>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    SERVICE CARD (simplified, no tilt/perspective)
    ═══════════════════════════════════════════════════════════════ */
 function ServiceCard({
@@ -1275,6 +1308,8 @@ export default function Home() {
         </svg>
       </div>
       <EnergySavings t={t} prefix={prefix} />
+
+      <FutureSelfSection t={t} />
 
       {/* Services Grid */}
       <section className="py-20 sm:py-28 bg-slate-50">

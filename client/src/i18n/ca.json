@@ -746,5 +746,21 @@
     "countdown": "Subvencions: {{days}} dies per sol·licitar. Places limitades.",
     "cta": "Veure subvencions"
   },
-  "sticky_cta": "Calcula pressupost"
+  "sticky_cta": "Calcula pressupost",
+  "future_self": {
+    "title": "Imagina't...",
+    "item1": "Despertar-te un diumenge sense sentir el trànsit del carrer",
+    "item2": "Que la teva factura de llum baixi un 40% sense fer res",
+    "item3": "Obrir la finestra amb un dit, sense fer força",
+    "item4": "No tornar a pintar ni mantenir les finestres mai més"
+  },
+  "energy_loss": {
+    "prefix": "Ara fa",
+    "at": "a Girona.",
+    "losing": "Amb finestres antigues, la teva llar perd",
+    "today": "avui",
+    "in_heating": "en calefacció innecessària.",
+    "each_day": "Cada dia que passes amb finestres antigues, pagues de més.",
+    "cta": "Calcula el teu estalvi real"
+  }
 }
