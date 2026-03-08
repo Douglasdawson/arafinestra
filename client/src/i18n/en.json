@@ -723,12 +723,14 @@
     "cities": ["Blanes", "Lloret de Mar", "Tossa de Mar", "Girona", "Sant Feliu", "Pineda de Mar", "Calella", "Palafrugell", "Mataro", "Arenys de Mar"],
     "action_quote": "requested a quote for 4 windows",
     "action_visit": "booked a free home visit",
+    "action_install": "completed installation of 6 windows",
+    "action_zone": "2 installations scheduled in {{city}} this week",
     "time_ago": "{{minutes}} min ago"
   },
   "trust_bar": {
-    "cortizo": "Cortizo Partner",
+    "cortizo": "Cortizo Official",
     "warranty": "10-year warranty",
-    "projects": "500+ projects",
+    "projects": "427 installations",
     "response": "24h response"
   },
   "cta_microcopy": "No commitment · 24h response · 10-year warranty",

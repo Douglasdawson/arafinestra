@@ -723,13 +723,15 @@
     "cities": ["Blanes", "Lloret de Mar", "Tossa de Mar", "Girona", "Sant Feliu", "Pineda de Mar", "Calella", "Palafrugell", "Mataro", "Arenys de Mar"],
     "action_quote": "ha sol·licitat pressupost per a 4 finestres",
     "action_visit": "ha reservat visita gratuita a domicili",
+    "action_install": "ha completat la instal·lació de 6 finestres",
+    "action_zone": "2 instal·lacions programades a {{city}} aquesta setmana",
     "time_ago": "fa {{minutes}} min"
   },
   "trust_bar": {
-    "cortizo": "Partner Cortizo",
-    "warranty": "10 anys de garantia",
-    "projects": "+500 projectes",
-    "response": "Resposta en 24h"
+    "cortizo": "Cortizo Oficial",
+    "warranty": "10 anys garantia",
+    "projects": "427 instal·lacions",
+    "response": "Resposta 24h"
   },
   "cta_microcopy": "Sense compromis · Resposta en 24h · Garantia 10 anys",
   "guarantee": {
