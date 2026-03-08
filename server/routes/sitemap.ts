@@ -25,6 +25,10 @@ const STATIC_PATHS = [
   "qui-som",
   "visita-gratuita",
   "financament",
+  "legal/privacitat",
+  "legal/termes",
+  "legal/cookies",
+  "legal/avis-legal",
 ];
 
 function escapeXml(s: string): string {

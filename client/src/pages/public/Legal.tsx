@@ -2,19 +2,21 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import PageHead from "../../components/seo/PageHead";
 
-const LEGAL_TYPES = ["privacitat", "termes", "cookies"] as const;
+const LEGAL_TYPES = ["privacitat", "termes", "cookies", "avis-legal"] as const;
 type LegalType = (typeof LEGAL_TYPES)[number];
 
 const titleKeys: Record<LegalType, string> = {
   privacitat: "legal.privacy_title",
   termes: "legal.terms_title",
   cookies: "legal.cookies_title",
+  "avis-legal": "legal.aviso_legal_title",
 };
 
 const contentKeys: Record<LegalType, string> = {
   privacitat: "legal.privacy_content",
   termes: "legal.terms_content",
   cookies: "legal.cookies_content",
+  "avis-legal": "legal.aviso_legal_content",
 };
 
 export default function Legal() {

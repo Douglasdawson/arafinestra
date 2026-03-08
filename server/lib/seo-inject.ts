@@ -127,6 +127,26 @@ const STATIC_ROUTES: Record<string, StaticRouteEntry> = {
     description:
       "Finança les teves finestres PVC de 3 a 24 mesos sense interessos. Sense entrada, sense sorpreses. Combinable amb subvencions Next Generation.",
   },
+  "legal/privacitat": {
+    title: "Política de Privacitat | ARA FINESTRA",
+    description:
+      "Política de privacitat d'ARA FINESTRA (Renova't Costa Brava SL). Informació sobre el tractament de dades personals conforme al RGPD.",
+  },
+  "legal/termes": {
+    title: "Termes i Condicions | ARA FINESTRA",
+    description:
+      "Termes i condicions d'ús del lloc web arafinestra.com i dels serveis d'instal·lació de finestres PVC Cortizo.",
+  },
+  "legal/cookies": {
+    title: "Política de Cookies | ARA FINESTRA",
+    description:
+      "Informació sobre les cookies utilitzades al lloc web arafinestra.com i com gestionar-les.",
+  },
+  "legal/avis-legal": {
+    title: "Avís Legal | ARA FINESTRA",
+    description:
+      "Avís legal d'ARA FINESTRA (Renova't Costa Brava SL, CIF B42997049). Dades identificatives conforme a la LSSI-CE.",
+  },
 };
 
 // Valid language prefixes
