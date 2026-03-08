@@ -779,5 +779,9 @@
     "resume": "Continue",
     "dismiss": "Start over"
   },
-  "calculator_badge_popular": "Most popular"
+  "calculator_badge_popular": "Most popular",
+  "calculator_share": {
+    "button": "Share quote",
+    "whatsapp_text": "Check out this quote for Cortizo PVC windows:\n\n{{summary}}\n\nEstimated price: {{price}}\n\nMore info: https://arafinestra.com/en/pressupost"
+  }
 }

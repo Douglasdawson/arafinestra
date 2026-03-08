@@ -20,16 +20,25 @@ export default function SocialProofToast() {
   const generateMessage = useCallback(() => {
     const names = t("social_proof_toast.names", { returnObjects: true }) as string[];
     const cities = t("social_proof_toast.cities", { returnObjects: true }) as string[];
-    const actions = [
-      t("social_proof_toast.action_quote"),
-      t("social_proof_toast.action_visit"),
-    ];
     const name = names[Math.floor(Math.random() * names.length)];
     const city = cities[Math.floor(Math.random() * cities.length)];
-    const action = actions[Math.floor(Math.random() * actions.length)];
     const minutes = Math.floor(Math.random() * 25) + 3;
     const timeAgo = t("social_proof_toast.time_ago", { minutes });
-    return `${name} (${city}) ${action} — ${timeAgo}`;
+
+    const rand = Math.random();
+    let text: string;
+    if (rand < 0.3) {
+      text = `${name} (${city}) ${t("social_proof_toast.action_quote")}`;
+    } else if (rand < 0.6) {
+      text = `${name} (${city}) ${t("social_proof_toast.action_visit")}`;
+    } else if (rand < 0.75) {
+      text = `${name} (${city}) ${t("social_proof_toast.action_install")}`;
+    } else {
+      // Geographic FOMO — no name, zone activity
+      text = t("social_proof_toast.action_zone", { city });
+    }
+
+    return `${text} — ${timeAgo}`;
   }, [t]);
 
   useEffect(() => {

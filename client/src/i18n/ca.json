@@ -779,5 +779,9 @@
     "resume": "Continuar",
     "dismiss": "Començar de nou"
   },
-  "calculator_badge_popular": "Més popular"
+  "calculator_badge_popular": "Més popular",
+  "calculator_share": {
+    "button": "Compartir pressupost",
+    "whatsapp_text": "Mira el pressupost que m'han fet per a finestres PVC Cortizo:\n\n{{summary}}\n\nPreu estimat: {{price}}\n\nMés info: https://arafinestra.com/ca/pressupost"
+  }
 }

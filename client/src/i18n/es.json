@@ -779,5 +779,9 @@
     "resume": "Continuar",
     "dismiss": "Empezar de nuevo"
   },
-  "calculator_badge_popular": "Más popular"
+  "calculator_badge_popular": "Más popular",
+  "calculator_share": {
+    "button": "Compartir presupuesto",
+    "whatsapp_text": "Mira el presupuesto que me han hecho para ventanas PVC Cortizo:\n\n{{summary}}\n\nPrecio estimado: {{price}}\n\nMás info: https://arafinestra.com/es/pressupost"
+  }
 }
