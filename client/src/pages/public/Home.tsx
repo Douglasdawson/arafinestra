@@ -14,6 +14,7 @@ import ScrollReveal from "../../components/ui/ScrollReveal";
 import Counter from "../../components/ui/Counter";
 import TrustBar from "../../components/ui/TrustBar";
 import GuaranteeBlock from "../../components/ui/GuaranteeBlock";
+import EnergyLossWidget from "../../components/ui/EnergyLossWidget";
 
 /* ─── Helpers ─── */
 function useIsMobile() {
@@ -1308,6 +1309,12 @@ export default function Home() {
         </svg>
       </div>
       <EnergySavings t={t} prefix={prefix} />
+
+      <section className="py-12 sm:py-16 bg-slate-50">
+        <div className="px-6">
+          <EnergyLossWidget />
+        </div>
+      </section>
 
       <FutureSelfSection t={t} />
 
