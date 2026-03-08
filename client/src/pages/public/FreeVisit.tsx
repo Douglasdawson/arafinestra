@@ -76,7 +76,7 @@ export default function FreeVisit() {
   };
 
   const inputCls =
-    "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
+    "w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
 
   const freeVisitSchema = {
     "@context": "https://schema.org",
@@ -145,6 +145,9 @@ export default function FreeVisit() {
     { q: t("free_visit.faq1_q"), a: t("free_visit.faq1_a") },
     { q: t("free_visit.faq2_q"), a: t("free_visit.faq2_a") },
     { q: t("free_visit.faq3_q"), a: t("free_visit.faq3_a") },
+    { q: t("free_visit.faq4_q"), a: t("free_visit.faq4_a") },
+    { q: t("free_visit.faq5_q"), a: t("free_visit.faq5_a") },
+    { q: t("free_visit.faq6_q"), a: t("free_visit.faq6_a") },
   ];
 
   return (
@@ -175,7 +178,7 @@ export default function FreeVisit() {
             </svg>
             {t("free_visit.hero_badge")}
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight animate-fadeIn">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight animate-fadeIn">
             {t("free_visit.hero_title")}
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto animate-fadeIn">
@@ -443,7 +446,7 @@ export default function FreeVisit() {
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
               {COVERAGE_TOWNS.map((town) => (
                 <span
                   key={town}

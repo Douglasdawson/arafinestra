@@ -35,12 +35,16 @@ export default function StepDimensions({ ancho, alto, hojas, onChange }: Props) 
                 </div>
               ))}
             </div>
-            {/* Dimensions labels */}
-            <div className="absolute -bottom-7 left-0 right-0 text-center text-sm font-medium text-navy-700">
+            {/* Dimensions labels — hidden on very small screens to prevent overflow */}
+            <div className="absolute -bottom-7 left-0 right-0 text-center text-sm font-medium text-navy-700 hidden sm:block">
               {ancho} cm
             </div>
-            <div className="absolute -right-10 top-0 bottom-0 flex items-center">
+            <div className="absolute -right-10 top-0 bottom-0 hidden sm:flex items-center">
               <span className="text-sm font-medium text-navy-700 -rotate-90 whitespace-nowrap">{alto} cm</span>
+            </div>
+            {/* Inline fallback for mobile */}
+            <div className="sm:hidden absolute -bottom-6 left-0 right-0 text-center text-xs font-medium text-navy-700">
+              {ancho} x {alto} cm
             </div>
           </div>
         </div>

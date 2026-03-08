@@ -287,7 +287,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="p-4 border-t border-slate-100 space-y-3">
+            <div className="p-4 border-t border-slate-100 space-y-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               <Link
                 to={`/${prefix}/visita-gratuita`}
                 className="block text-center py-3 px-4 bg-brand text-white rounded-xl font-semibold hover:bg-brand-dark transition-colors"

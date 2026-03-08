@@ -127,7 +127,7 @@ export default function Testimonials() {
           <div className="absolute top-[25%] left-[10%] w-[150px] h-[150px] rounded-full bg-amber-500/8 blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("testimonials.title")}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("testimonials.title")}</h1>
         </div>
       </section>
 
@@ -141,7 +141,7 @@ export default function Testimonials() {
                 <button
                   key={f.key}
                   onClick={() => setActiveFilter(f.key)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     activeFilter === f.key
                       ? "bg-brand text-white"
                       : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"

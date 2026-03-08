@@ -347,7 +347,7 @@ export default function BlogPost() {
             </article>
 
             {/* Sidebar CTA */}
-            <aside className="lg:w-80 flex-shrink-0">
+            <aside className="hidden lg:block lg:w-80 flex-shrink-0">
               <div className="sticky top-24 bg-brand-light rounded-xl p-6">
                 <h3 className="text-lg font-bold text-navy-800 mb-2">{t("blog.cta_title")}</h3>
                 <p className="text-sm text-slate-600 mb-4">{t("blog.cta_desc")}</p>

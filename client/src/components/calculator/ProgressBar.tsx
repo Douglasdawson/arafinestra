@@ -86,7 +86,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
                   )}
                 </div>
                 <span
-                  className={`mt-2 text-xs font-medium text-center max-w-[80px] ${
+                  className={`mt-2 text-xs font-medium text-center max-w-[60px] lg:max-w-[80px] ${
                     isCurrent ? "text-brand" : isCompleted ? "text-green-600" : "text-gray-500"
                   }`}
                 >

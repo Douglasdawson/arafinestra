@@ -106,7 +106,7 @@ function BlogCard({
         <h2
           className={`${
             featured ? "text-2xl sm:text-3xl" : "text-lg"
-          } font-semibold text-navy-800 group-hover:text-brand transition-colors mb-2`}
+          } font-semibold text-navy-800 group-hover:text-brand transition-colors mb-2 line-clamp-2`}
         >
           {title}
         </h2>

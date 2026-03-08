@@ -301,12 +301,11 @@ export default function Zone() {
         <section className="py-12 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-navy-800 mb-6 text-center">{t("zones_page.map_title")}</h2>
-            <div className="rounded-xl overflow-hidden shadow-md">
+            <div className="rounded-xl overflow-hidden shadow-md h-[250px] sm:h-[300px] lg:h-[400px]">
               <iframe
                 title={nombre}
                 src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50000!2d${zone.longitud}!3d${zone.latitud}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sca!2ses!4v1`}
-                width="100%"
-                height="350"
+                className="w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
@@ -329,7 +328,7 @@ export default function Zone() {
                 to: `/${prefix}/serveis/finestres-pvc`,
                 label: t("nav.windows"),
                 icon: (
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                     <rect x="3" y="3" width="18" height="18" rx="1" />
                     <line x1="12" y1="3" x2="12" y2="21" />
                     <line x1="3" y1="12" x2="21" y2="12" />
@@ -340,7 +339,7 @@ export default function Zone() {
                 to: `/${prefix}/serveis/portes-corredisses`,
                 label: t("nav.sliding_doors"),
                 icon: (
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                     <rect x="2" y="3" width="20" height="18" rx="1" />
                     <line x1="12" y1="3" x2="12" y2="21" />
                     <path d="M8 12h-2M16 12h2" strokeLinecap="round" />
@@ -351,7 +350,7 @@ export default function Zone() {
                 to: `/${prefix}/serveis/persianes`,
                 label: t("nav.shutters"),
                 icon: (
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                     <rect x="4" y="2" width="16" height="20" rx="1" />
                     <line x1="4" y1="6" x2="20" y2="6" />
                     <line x1="4" y1="10" x2="20" y2="10" />
@@ -364,7 +363,7 @@ export default function Zone() {
                 to: `/${prefix}/serveis/mosquiteres`,
                 label: t("nav.mosquito_nets"),
                 icon: (
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                     <rect x="3" y="3" width="18" height="18" rx="1" />
                     <path d="M3 3l18 18M3 9l12 12M3 15l6 6M9 3l12 12M15 3l6 6" strokeOpacity="0.5" />
                   </svg>

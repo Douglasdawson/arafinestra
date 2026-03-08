@@ -47,7 +47,7 @@ export default function Subvenciones() {
           <div className="absolute top-[25%] right-[10%] w-[200px] h-[200px] rounded-full bg-emerald-400/10 blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("subsidies_page.h1")}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("subsidies_page.h1")}</h1>
           <p className="mt-5 text-base sm:text-xl text-emerald-100/80 max-w-2xl mx-auto font-light">{t("subsidies_page.subtitle")}</p>
         </div>
       </section>
@@ -161,7 +161,7 @@ function SubvencionesFaqItem({ question, answer }: { question: string; answer: s
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between py-5 text-left group"
+        className="w-full flex items-center justify-between py-5 min-h-[44px] text-left group"
       >
         <span className="text-base font-medium text-navy-800 group-hover:text-brand transition-colors pr-4">
           {question}

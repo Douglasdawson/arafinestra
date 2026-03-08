@@ -56,7 +56,7 @@ export default function ZonesList() {
           <div className="absolute top-[20%] left-[15%] w-[180px] h-[180px] rounded-full bg-brand/8 blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("zones_page.title")}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("zones_page.title")}</h1>
           <p className="mt-4 text-lg sm:text-xl text-brand-light">{t("zones_page.we_serve")}</p>
           <p className="mt-3 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-light">{t("zones_page.subtitle")}</p>
         </div>
@@ -104,7 +104,7 @@ export default function ZonesList() {
                   <Link
                     key={zone.id}
                     to={`/${prefix}/zones/${zone.slug}`}
-                    className="group bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md p-6 transition-all duration-300 hover:scale-[1.02]"
+                    className="group bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md p-6 transition-all duration-300 hover:scale-[1.02] h-full"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
