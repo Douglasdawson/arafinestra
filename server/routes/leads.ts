@@ -128,7 +128,30 @@ export function registerLeadRoutes(app: Express) {
       });
     }
     try {
-      const [lead] = await db.insert(leads).values(req.body).returning();
+      const { nombre, email, telefono, localidad, tipoCliente, origen, notas, configuracion } = req.body;
+
+      // Basic validation — at least one contact method required
+      if (!nombre && !telefono && !email) {
+        return res.status(400).json({ error: "Se requiere al menos nombre, teléfono o email." });
+      }
+
+      // Sanitize string fields (max lengths, trim)
+      const sanitize = (v: unknown, max = 500): string | null => {
+        if (typeof v !== "string" || !v.trim()) return null;
+        return v.trim().slice(0, max);
+      };
+
+      const values = {
+        nombre: sanitize(nombre, 100) || "Sin nombre",
+        email: sanitize(email, 200),
+        telefono: sanitize(telefono, 30),
+        localidad: sanitize(localidad, 100),
+        tipoCliente: sanitize(tipoCliente, 50),
+        origen: sanitize(origen, 50),
+        notas: sanitize(notas, 2000),
+      };
+
+      const [lead] = await db.insert(leads).values(values).returning();
       // Fire-and-forget email notification
       notifyNewLead({
         nombre: lead.nombre,
@@ -137,7 +160,7 @@ export function registerLeadRoutes(app: Express) {
         localidad: lead.localidad,
         origen: lead.origen,
         mensaje: lead.notas,
-        configuracion: req.body.configuracion,
+        configuracion: typeof configuracion === "string" ? configuracion.slice(0, 5000) : undefined,
       }).catch(() => {});
       res.status(201).json(lead);
     } catch (err) {

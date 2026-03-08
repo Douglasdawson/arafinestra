@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import session from "express-session";
+import compression from "compression";
 import passport from "./middleware/auth.js";
 import { registerRoutes } from "./routes.js";
 import { getMetaForRoute, injectMeta } from "./lib/seo-inject.js";
@@ -12,6 +13,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.set("trust proxy", 1);
+app.disable("x-powered-by");
+app.use(compression());
 app.use(express.json());
 
 // Security headers
@@ -20,6 +23,9 @@ app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("X-XSS-Protection", "1; mode=block");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  if (process.env.NODE_ENV === "production") {
+    res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  }
   res.setHeader(
     "Content-Security-Policy",
     "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://api.whatsapp.com; frame-src https://www.google.com https://www.youtube.com;"
@@ -38,6 +44,7 @@ app.use(
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      sameSite: "lax",
     },
     proxy: true,
   })
@@ -68,9 +75,13 @@ if (process.env.NODE_ENV === "development") {
 } else {
   // In production, serve static files
   const publicDir = path.resolve(__dirname, "public");
-  app.use(express.static(publicDir, {
+  // Hashed assets (JS/CSS) get long-term cache; other files get short cache
+  app.use("/assets", express.static(path.join(publicDir, "assets"), {
     maxAge: "1y",
     immutable: true,
+  }));
+  app.use(express.static(publicDir, {
+    maxAge: "1h",
   }));
 
   // Read HTML template once at startup
@@ -116,6 +127,7 @@ if (process.env.NODE_ENV === "development") {
       // Fallback: SSR meta injection for all requests
       const meta = await getMetaForRoute(req.path);
       const html = injectMeta(htmlTemplate, meta);
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
       res.send(html);
     } catch (err) {
       console.error("[seo] Error injecting meta:", err);
