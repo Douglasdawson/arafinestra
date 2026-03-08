@@ -762,5 +762,14 @@
     "in_heating": "in unnecessary heating.",
     "each_day": "Every day with old windows, you're overpaying.",
     "cta": "Calculate your real savings"
+  },
+  "calculator_anchoring": {
+    "daily_cost": "{{amount}}/day for 10 years. Less than a coffee.",
+    "roi_title": "Return on investment",
+    "roi_saving": "Estimated energy savings: {{amount}}/year",
+    "roi_payback": "Investment pays for itself in {{years}} years",
+    "roi_lifespan": "Windows last 50+ years",
+    "financing": "Or from {{amount}}/month with 0% financing",
+    "financing_link": "See financing options"
   }
 }

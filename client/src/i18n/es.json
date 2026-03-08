@@ -762,5 +762,14 @@
     "in_heating": "en calefacción innecesaria.",
     "each_day": "Cada día que pasas con ventanas antiguas, pagas de más.",
     "cta": "Calcula tu ahorro real"
+  },
+  "calculator_anchoring": {
+    "daily_cost": "{{amount}}/día durante 10 años. Menos que un café.",
+    "roi_title": "Retorno de la inversión",
+    "roi_saving": "Ahorro energético estimado: {{amount}}/año",
+    "roi_payback": "La inversión se recupera en {{years}} años",
+    "roi_lifespan": "Las ventanas duran 50+ años",
+    "financing": "O desde {{amount}}/mes con financiación 0%",
+    "financing_link": "Ver opciones de financiación"
   }
 }

@@ -762,5 +762,14 @@
     "in_heating": "en calefacció innecessària.",
     "each_day": "Cada dia que passes amb finestres antigues, pagues de més.",
     "cta": "Calcula el teu estalvi real"
+  },
+  "calculator_anchoring": {
+    "daily_cost": "{{amount}}/dia durant 10 anys. Menys que un cafè.",
+    "roi_title": "Retorn de la inversió",
+    "roi_saving": "Estalvi energètic estimat: {{amount}}/any",
+    "roi_payback": "La inversió es recupera en {{years}} anys",
+    "roi_lifespan": "Les finestres duren 50+ anys",
+    "financing": "O des de {{amount}}/mes amb finançament 0%",
+    "financing_link": "Veure opcions de finançament"
   }
 }

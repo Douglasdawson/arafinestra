@@ -161,6 +161,41 @@ export default function Result({ state, onReset }: Props) {
           )}
         </div>
 
+        {/* Anchoring: daily cost + ROI + financing */}
+        <div className="mt-6 space-y-3 text-center">
+          {/* Daily cost reframe */}
+          <p className="text-base text-slate-600">
+            <span className="font-bold text-navy-900">
+              {(low / 3650).toFixed(2)}€
+            </span>
+            {" "}{t("calculator_anchoring.daily_cost", { amount: `${(low / 3650).toFixed(2)}€` })}
+          </p>
+
+          {/* ROI calculation */}
+          <div className="bg-emerald-50 border border-emerald-200/60 rounded-xl p-4 space-y-2">
+            <p className="text-sm font-semibold text-emerald-800">{t("calculator_anchoring.roi_title")}</p>
+            <p className="text-sm text-emerald-700">
+              {t("calculator_anchoring.roi_saving", { amount: `${Math.round(low * 0.15)}€` })}
+            </p>
+            {/* ROI progress bar */}
+            <div className="relative h-2 bg-emerald-200 rounded-full overflow-hidden">
+              <div
+                className="absolute left-0 top-0 h-full bg-emerald-500 rounded-full transition-all duration-1000"
+                style={{ width: `${Math.min(100, (1 / Math.ceil(low / (low * 0.15))) * 100)}%` }}
+              />
+            </div>
+            <p className="text-sm font-medium text-emerald-800">
+              {t("calculator_anchoring.roi_payback", { years: Math.ceil(low / (low * 0.15)) })}
+              {" · "}{t("calculator_anchoring.roi_lifespan")}
+            </p>
+          </div>
+
+          {/* Financing option */}
+          <p className="text-base text-slate-600">
+            {t("calculator_anchoring.financing", { amount: `${Math.round(low / 36)}€` })}
+          </p>
+        </div>
+
         {/* Urgency message */}
         <div className="flex items-center justify-center gap-2 mt-4 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2.5">
           <svg className="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
