@@ -82,6 +82,8 @@ function reducer(state: CalculatorState, action: Action): CalculatorState {
   }
 }
 
+export const CALC_STORAGE_KEY = "arafinestra_calculator_state";
+
 const TOTAL_STEPS = 7;
 
 function canAdvance(state: CalculatorState): boolean {
@@ -109,6 +111,13 @@ export default function Calculator() {
   const { t } = useTranslation();
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const isResult = state.step > TOTAL_STEPS;
+
+  // Persist calculator state to localStorage for abandonment recovery
+  useEffect(() => {
+    if (state.step >= 2 && state.step <= 7) {
+      localStorage.setItem(CALC_STORAGE_KEY, JSON.stringify(state));
+    }
+  }, [state]);
 
   // Save progress state
   const [saveOpen, setSaveOpen] = useState(false);
@@ -231,7 +240,10 @@ export default function Calculator() {
               {isResult && (
                 <Result
                   state={state}
-                  onReset={() => dispatch({ type: "RESET" })}
+                  onReset={() => {
+                    localStorage.removeItem(CALC_STORAGE_KEY);
+                    dispatch({ type: "RESET" });
+                  }}
                 />
               )}
             </div>

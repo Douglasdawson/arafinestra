@@ -15,6 +15,7 @@ import Counter from "../../components/ui/Counter";
 import TrustBar from "../../components/ui/TrustBar";
 import GuaranteeBlock from "../../components/ui/GuaranteeBlock";
 import EnergyLossWidget from "../../components/ui/EnergyLossWidget";
+import CalculatorRecoveryBanner from "../../components/ui/CalculatorRecoveryBanner";
 
 /* ─── Helpers ─── */
 function useIsMobile() {
@@ -1500,6 +1501,7 @@ export default function Home() {
 
       {/* Inline Lead Form — captures visitors who won't click through */}
       <InlineLeadForm t={t} />
+      <CalculatorRecoveryBanner />
     </>
   );
 }
