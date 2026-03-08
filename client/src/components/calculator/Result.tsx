@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { trackEvent } from "../../lib/analytics";
+import GuaranteeBlock from "../ui/GuaranteeBlock";
 
 const WHATSAPP_NUMBER = "34611500372";
 const PHONE_NUMBER = "+34611500372";
@@ -181,6 +182,10 @@ export default function Result({ state, onReset }: Props) {
             <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
           </svg>
           {t("calculator.warranty_note")}
+        </div>
+
+        <div className="mt-4">
+          <GuaranteeBlock compact />
         </div>
 
         {/* Action buttons: Call + WhatsApp share */}

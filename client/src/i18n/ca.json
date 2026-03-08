@@ -732,6 +732,15 @@
     "response": "Resposta en 24h"
   },
   "cta_microcopy": "Sense compromis · Resposta en 24h · Garantia 10 anys",
+  "guarantee": {
+    "title": "La nostra triple garantia",
+    "price_title": "Preu tancat",
+    "price_desc": "El pressupost és el preu final. Sense sorpreses, sense costos ocults.",
+    "clean_title": "Instal·lació impecable",
+    "clean_desc": "Deixem casa teva més neta que com l'hem trobat. Si no, tornem gratis.",
+    "satisfaction_title": "Satisfacció 100%",
+    "satisfaction_desc": "Si no estàs content amb el resultat, ho solucionem sense cost addicional."
+  },
   "urgency_banner": {
     "text": "Subvencions Next Generation disponibles. Places limitades.",
     "countdown": "Subvencions: {{days}} dies per sol·licitar. Places limitades.",

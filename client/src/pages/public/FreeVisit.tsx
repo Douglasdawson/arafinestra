@@ -5,6 +5,7 @@ import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import { trackEvent } from "../../lib/analytics";
+import GuaranteeBlock from "../../components/ui/GuaranteeBlock";
 
 const COVERAGE_TOWNS = [
   "Blanes", "Lloret de Mar", "Tossa de Mar", "Girona", "Figueres",
@@ -460,6 +461,13 @@ export default function FreeVisit() {
               {t("free_visit.coverage_more")}
             </p>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Triple Guarantee — compact */}
+      <section className="py-10 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <GuaranteeBlock compact />
         </div>
       </section>
 

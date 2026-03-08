@@ -13,6 +13,7 @@ import PageHead from "../../components/seo/PageHead";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import Counter from "../../components/ui/Counter";
 import TrustBar from "../../components/ui/TrustBar";
+import GuaranteeBlock from "../../components/ui/GuaranteeBlock";
 
 /* ─── Helpers ─── */
 function useIsMobile() {
@@ -1445,6 +1446,13 @@ export default function Home() {
               </div>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Triple Guarantee */}
+      <section className="py-16 sm:py-20 bg-slate-50">
+        <div className="px-6">
+          <GuaranteeBlock />
         </div>
       </section>
 

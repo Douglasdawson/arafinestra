@@ -732,6 +732,15 @@
     "response": "24h response"
   },
   "cta_microcopy": "No commitment · 24h response · 10-year warranty",
+  "guarantee": {
+    "title": "Our triple guarantee",
+    "price_title": "Fixed price",
+    "price_desc": "The quote is the final price. No surprises, no hidden costs.",
+    "clean_title": "Spotless installation",
+    "clean_desc": "We leave your home cleaner than we found it. If not, we come back for free.",
+    "satisfaction_title": "100% satisfaction",
+    "satisfaction_desc": "If you're not happy with the result, we fix it at no extra cost."
+  },
   "urgency_banner": {
     "text": "Next Generation subsidies available. Limited spots.",
     "countdown": "Subsidies: {{days}} days left to apply. Limited spots.",
