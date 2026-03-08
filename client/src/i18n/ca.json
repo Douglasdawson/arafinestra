@@ -19,15 +19,15 @@
     "free_visit": "Visita gratuïta"
   },
   "cta": {
-    "calculate": "Calcula el teu pressupost",
-    "contact_us": "Contacta'ns",
-    "request_quote": "Vull pressupost exacte",
-    "call_us": "Truca'ns",
-    "free_quote": "Pressupost gratuit",
-    "view_projects": "Veure projectes",
-    "get_quote": "Pressupost gratuït",
-    "free_visit": "Visita gratuïta",
-    "free_no_commitment": "Gratuït i sense compromís"
+    "calculate": "Descobreix el teu preu en 2 min",
+    "contact_us": "Parla amb un expert",
+    "request_quote": "Veure el meu pressupost exacte",
+    "call_us": "Truca'ns ara",
+    "free_quote": "Veure el meu preu",
+    "view_projects": "Veure transformacions reals",
+    "get_quote": "Veure el meu preu gratis",
+    "free_visit": "Reservar visita gratuïta",
+    "free_no_commitment": "Gratuït · Sense compromís · Resposta en 24h"
   },
   "hero": {
     "title": "Finestres PVC a Girona i Maresme",
@@ -140,7 +140,16 @@
     "energy_annual_cost": "Cost energetic anual en calefaccio",
     "energy_now_in": "Ara mateix a",
     "energy_losing_now": "Perdua en curs",
-    "energy_realtime": "Perdua termica en temps real"
+    "energy_realtime": "Perdua termica en temps real",
+    "form_title": "Vols saber el preu per a casa teva?",
+    "form_subtitle": "Deixa'ns el teu nom i telèfon. Et truquem en menys de 24h amb un pressupost personalitzat.",
+    "form_name_placeholder": "El teu nom",
+    "form_phone_placeholder": "El teu telèfon",
+    "form_button": "Vull que em truquin gratis",
+    "form_legal": "Sense compromís. Les teves dades estan protegides.",
+    "form_success_title": "Perfecte!",
+    "form_success_desc": "Et trucarem en menys de 24 hores amb el teu pressupost personalitzat.",
+    "form_error": "Hi ha hagut un error. Torna-ho a provar o truca'ns al 611 500 372."
   },
   "testimonials": {
     "title": "Que diuen els nostres clients",
@@ -560,11 +569,11 @@
     "explanation": "Usem cookies d'analitica per millorar el nostre servei."
   },
   "exit_popup": {
-    "title": "Espera! Aconsegueix un 10% de descompte",
-    "subtitle": "Deixa'ns el teu email i t'enviarem un cupó de descompte per al teu pressupost.",
-    "placeholder": "El teu email",
-    "button": "Vull el descompte",
-    "success": "Gràcies! Rebràs el cupó al teu email."
+    "title": "Espera! Et truquem gratis",
+    "subtitle": "Deixa'ns el teu telèfon i un expert et trucarà en menys de 24h amb el teu pressupost personalitzat.",
+    "placeholder": "El teu telèfon (ex: 611 500 372)",
+    "button": "Vull que em truquin",
+    "success": "Perfecte! Et trucarem en menys de 24h."
   },
   "legal": {
     "privacy_title": "Politica de privacitat",
@@ -657,7 +666,13 @@
     "faq2_q": "Quant dura la visita?",
     "faq2_a": "La visita técnica dura entre 30 i 45 minuts. El tècnic pren mides, avalua l'estat actual de les finestres i t'assessora sobre les millors opcions.",
     "faq3_q": "Estic obligat a contractar després de la visita?",
-    "faq3_a": "No, absolutament cap obligació. La visita i el pressupost són gratuïts. Decides amb calma i sense pressions."
+    "faq3_a": "No, absolutament cap obligació. La visita i el pressupost són gratuïts. Decides amb calma i sense pressions.",
+    "faq4_q": "Es realment gratis o te algun cost ocult?",
+    "faq4_a": "La visita es 100% gratuita i sense compromis. Un tecnic certificat vindra a casa teva, pendra mides exactes i et donara un pressupost detallat. Si decideixes no seguir endavant, no pagues absolutament res.",
+    "faq5_q": "Quant es tarda a instal·lar les finestres?",
+    "faq5_a": "Una instal·lacio tipica de 4-6 finestres es completa en 1-2 dies laborables. Preparem tot amb antelacio per minimitzar les molesties. Casa teva estara llesta amb les noves finestres en menys del que penses.",
+    "faq6_q": "Les finestres PVC son realment millors que les d'alumini?",
+    "faq6_a": "Si. El PVC Cortizo ofereix un aillament termic fins a 3 vegades superior a l'alumini, reduint la teva factura de calefaccio fins a un 40%. A mes, no requereix manteniment, no es corroen i tenen una vida util de mes de 50 anys."
   },
   "financing": {
     "page_title": "Financament de finestres PVC - Sense interessos",
@@ -704,10 +719,10 @@
   },
   "nav_financing": "Financament",
   "social_proof_toast": {
-    "names": ["Maria", "Joan", "Anna", "Pere", "Marta", "Jordi", "Laia", "Marc", "Nuria", "Albert"],
-    "cities": ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa", "Palafrugell", "Sant Feliu"],
-    "action_quote": "ha sol·licitat pressupost",
-    "action_visit": "ha reservat visita gratuita",
+    "names": ["Maria G.", "Joan M.", "Montse R.", "Pere S.", "Nuria L.", "Jordi V.", "Anna C.", "Carles P.", "Marta F.", "Albert B."],
+    "cities": ["Blanes", "Lloret de Mar", "Tossa de Mar", "Girona", "Sant Feliu", "Pineda de Mar", "Calella", "Palafrugell", "Mataro", "Arenys de Mar"],
+    "action_quote": "ha sol·licitat pressupost per a 4 finestres",
+    "action_visit": "ha reservat visita gratuita a domicili",
     "time_ago": "fa {{minutes}} min"
   },
   "trust_bar": {
@@ -718,8 +733,9 @@
   },
   "cta_microcopy": "Sense compromis · Resposta en 24h · Garantia 10 anys",
   "urgency_banner": {
-    "text": "Subvencions 2026: Ultims mesos per sol·licitar",
-    "cta": "Calcula el teu estalvi"
+    "text": "Subvencions Next Generation disponibles. Places limitades.",
+    "countdown": "Subvencions: {{days}} dies per sol·licitar. Places limitades.",
+    "cta": "Veure subvencions"
   },
   "sticky_cta": "Calcula pressupost"
 }

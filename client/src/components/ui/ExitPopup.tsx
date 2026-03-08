@@ -56,13 +56,23 @@ export default function ExitPopup() {
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
+  const [telefono, setTelefono] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const phoneInputRef = useRef<HTMLInputElement>(null);
 
   const handleClose = useCallback(() => {
     setVisible(false);
     dismiss();
   }, []);
+
+  // Auto-focus phone input when popup opens
+  useEffect(() => {
+    if (visible && phoneInputRef.current) {
+      // Small delay to ensure the DOM is rendered
+      const timer = setTimeout(() => phoneInputRef.current?.focus(), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [visible]);
 
   // Close on Escape key
   useEffect(() => {
@@ -108,14 +118,14 @@ export default function ExitPopup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!telefono.trim()) return;
     setLoading(true);
     try {
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: email.trim(),
+          telefono: telefono.trim(),
           origen: "popup",
         }),
       });
@@ -132,7 +142,7 @@ export default function ExitPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 backdrop-blur-sm"
       onClick={handleClose}
     >
       <div
@@ -175,14 +185,16 @@ export default function ExitPopup() {
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
-                  type="email"
-                  inputMode="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  ref={phoneInputRef}
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  value={telefono}
+                  onChange={(e) => setTelefono(e.target.value)}
                   placeholder={t("exit_popup.placeholder")}
                   className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-brand)] focus:border-[var(--color-brand)] outline-none"
                   required
+                  pattern="[0-9+\s]{6,15}"
                 />
                 <button
                   type="submit"

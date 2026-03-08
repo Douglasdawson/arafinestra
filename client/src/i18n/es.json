@@ -19,15 +19,15 @@
     "free_visit": "Visita gratuita"
   },
   "cta": {
-    "calculate": "Calcula tu presupuesto",
-    "contact_us": "Contactanos",
-    "request_quote": "Quiero presupuesto exacto",
-    "call_us": "Llamanos",
-    "free_quote": "Presupuesto gratuito",
-    "view_projects": "Ver proyectos",
-    "get_quote": "Presupuesto gratis",
-    "free_visit": "Visita gratuita",
-    "free_no_commitment": "Gratis y sin compromiso"
+    "calculate": "Descubre tu precio en 2 min",
+    "contact_us": "Habla con un experto",
+    "request_quote": "Ver mi presupuesto exacto",
+    "call_us": "Llamanos ahora",
+    "free_quote": "Ver mi precio",
+    "view_projects": "Ver transformaciones reales",
+    "get_quote": "Ver mi precio gratis",
+    "free_visit": "Reservar visita gratuita",
+    "free_no_commitment": "Gratis · Sin compromiso · Respuesta en 24h"
   },
   "hero": {
     "title": "Ventanas PVC en Girona y Maresme",
@@ -140,7 +140,16 @@
     "energy_annual_cost": "Coste energetico anual en calefaccion",
     "energy_now_in": "Ahora mismo en",
     "energy_losing_now": "Perdida en curso",
-    "energy_realtime": "Perdida termica en tiempo real"
+    "energy_realtime": "Perdida termica en tiempo real",
+    "form_title": "¿Quieres saber el precio para tu casa?",
+    "form_subtitle": "Déjanos tu nombre y teléfono. Te llamamos en menos de 24h con un presupuesto personalizado.",
+    "form_name_placeholder": "Tu nombre",
+    "form_phone_placeholder": "Tu teléfono",
+    "form_button": "Quiero que me llamen gratis",
+    "form_legal": "Sin compromiso. Tus datos están protegidos.",
+    "form_success_title": "¡Perfecto!",
+    "form_success_desc": "Te llamaremos en menos de 24 horas con tu presupuesto personalizado.",
+    "form_error": "Ha habido un error. Inténtalo de nuevo o llámanos al 611 500 372."
   },
   "testimonials": {
     "title": "Que dicen nuestros clientes",
@@ -560,11 +569,11 @@
     "explanation": "Usamos cookies de analitica para mejorar nuestro servicio."
   },
   "exit_popup": {
-    "title": "¡Espera! Consigue un 10% de descuento",
-    "subtitle": "Déjanos tu email y te enviaremos un cupón de descuento para tu presupuesto.",
-    "placeholder": "Tu email",
-    "button": "Quiero el descuento",
-    "success": "¡Gracias! Recibirás el cupón en tu email."
+    "title": "¡Espera! Te llamamos gratis",
+    "subtitle": "Déjanos tu teléfono y un experto te llamará en menos de 24h con tu presupuesto personalizado.",
+    "placeholder": "Tu teléfono (ej: 611 500 372)",
+    "button": "Quiero que me llamen",
+    "success": "¡Perfecto! Te llamaremos en menos de 24h."
   },
   "legal": {
     "privacy_title": "Politica de privacidad",
@@ -701,13 +710,19 @@
     "faq2_q": "\u00bfCu\u00e1nto dura la visita?",
     "faq2_a": "La visita t\u00e9cnica dura entre 30 y 45 minutos. El t\u00e9cnico toma medidas, eval\u00faa el estado actual de las ventanas y te asesora sobre las mejores opciones.",
     "faq3_q": "\u00bfEstoy obligado a contratar despu\u00e9s de la visita?",
-    "faq3_a": "No, absolutamente ninguna obligaci\u00f3n. La visita y el presupuesto son gratuitos. Decides con calma y sin presiones."
+    "faq3_a": "No, absolutamente ninguna obligaci\u00f3n. La visita y el presupuesto son gratuitos. Decides con calma y sin presiones.",
+    "faq4_q": "\u00bfEs realmente gratis o tiene alg\u00fan coste oculto?",
+    "faq4_a": "La visita es 100% gratuita y sin compromiso. Un t\u00e9cnico certificado vendr\u00e1 a tu casa, tomar\u00e1 medidas exactas y te dar\u00e1 un presupuesto detallado. Si decides no seguir adelante, no pagas absolutamente nada.",
+    "faq5_q": "\u00bfCu\u00e1nto se tarda en instalar las ventanas?",
+    "faq5_a": "Una instalaci\u00f3n t\u00edpica de 4-6 ventanas se completa en 1-2 d\u00edas laborables. Preparamos todo con antelaci\u00f3n para minimizar las molestias. Tu casa estar\u00e1 lista con sus nuevas ventanas en menos de lo que piensas.",
+    "faq6_q": "\u00bfLas ventanas PVC son realmente mejores que las de aluminio?",
+    "faq6_a": "S\u00ed. El PVC Cortizo ofrece un aislamiento t\u00e9rmico hasta 3 veces superior al aluminio, reduciendo tu factura de calefacci\u00f3n hasta un 40%. Adem\u00e1s, no requiere mantenimiento, no se corroen y tienen una vida \u00fatil de m\u00e1s de 50 a\u00f1os."
   },
   "social_proof_toast": {
-    "names": ["Maria", "Juan", "Ana", "Pedro", "Marta", "Jorge", "Laura", "Marc", "Nuria", "Albert"],
-    "cities": ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa", "Palafrugell", "Sant Feliu"],
-    "action_quote": "ha solicitado presupuesto",
-    "action_visit": "ha reservado visita gratuita",
+    "names": ["Maria G.", "Joan M.", "Montse R.", "Pere S.", "Nuria L.", "Jordi V.", "Anna C.", "Carles P.", "Marta F.", "Albert B."],
+    "cities": ["Blanes", "Lloret de Mar", "Tossa de Mar", "Girona", "Sant Feliu", "Pineda de Mar", "Calella", "Palafrugell", "Mataro", "Arenys de Mar"],
+    "action_quote": "ha solicitado presupuesto para 4 ventanas",
+    "action_visit": "ha reservado visita gratuita a domicilio",
     "time_ago": "hace {{minutes}} min"
   },
   "trust_bar": {
@@ -718,8 +733,9 @@
   },
   "cta_microcopy": "Sin compromiso · Respuesta en 24h · Garantia 10 anos",
   "urgency_banner": {
-    "text": "Subvenciones 2026: Ultimos meses para solicitar",
-    "cta": "Calcula tu ahorro"
+    "text": "Subvenciones Next Generation disponibles. Plazas limitadas.",
+    "countdown": "Subvenciones: {{days}} dias para solicitar. Plazas limitadas.",
+    "cta": "Ver subvenciones"
   },
   "sticky_cta": "Calcula presupuesto"
 }

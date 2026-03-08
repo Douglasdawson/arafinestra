@@ -115,7 +115,7 @@ function WindowMaskHero({
 
           {/* Title */}
           <h1
-            className="text-[2.75rem] sm:text-6xl font-bold tracking-tight leading-[0.95] animate-fadeIn"
+            className="text-4xl sm:text-6xl font-bold tracking-tight leading-[0.95] animate-fadeIn"
             style={{ animationDuration: "0.6s", animationDelay: "0.15s", animationFillMode: "backwards" }}
           >
             <span className="text-white">ARA</span>
@@ -174,7 +174,7 @@ function WindowMaskHero({
 
         {/* Scroll indicator */}
         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeIn" style={{ animationDelay: "1s", animationFillMode: "backwards" }}>
-          <span className="text-[10px] text-slate-600 tracking-[0.2em] uppercase">{t("home.scroll_hint")}</span>
+          <span className="text-xs text-slate-600 tracking-[0.2em] uppercase">{t("home.scroll_hint")}</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-slate-600 animate-bounce" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
@@ -382,14 +382,14 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
               <p className="mt-3 text-sm sm:text-base text-slate-400">{t("home.stage2_cost")}</p>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="p-4 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                <div className="p-3 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
                   <p className="text-2xl sm:text-3xl font-bold text-red-400">
                     <Counter target={32} suffix=" dB" />
                   </p>
                   <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.stage2_noise")}</p>
                 </div>
-                <div className="p-4 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
+                <div className="p-3 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
                   <p className="text-2xl sm:text-3xl font-bold text-red-400">
                     <Counter target={85} suffix="%" />
                   </p>
@@ -544,12 +544,108 @@ function BenefitPill({ icon, label }: { icon: string; label: string }) {
   };
 
   return (
-    <div className="flex items-center gap-3 px-6 py-4 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100">
-      <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-amber-100 text-amber-600">
+    <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100">
+      <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl bg-amber-100 text-amber-600">
         {icons[icon]}
       </div>
-      <span className="text-lg font-semibold text-navy-800">{label}</span>
+      <span className="text-base sm:text-lg font-semibold text-navy-800">{label}</span>
     </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INLINE LEAD FORM — Captures visitors directly on homepage
+   ═══════════════════════════════════════════════════════════════ */
+function InlineLeadForm({ t }: { t: (k: string) => string }) {
+  const [formData, setFormData] = useState({ nombre: "", telefono: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.nombre.trim() || !formData.telefono.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: formData.nombre.trim(),
+          telefono: formData.telefono.trim(),
+          origen: "home_inline",
+        }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <section className="py-16 bg-emerald-50">
+        <div className="max-w-lg mx-auto px-6 text-center">
+          <div className="text-5xl mb-4">&#10003;</div>
+          <h3 className="text-2xl font-bold text-navy-800">{t("home.form_success_title")}</h3>
+          <p className="mt-2 text-slate-600">{t("home.form_success_desc")}</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="py-16 sm:py-20 bg-white">
+      <div className="max-w-xl mx-auto px-6">
+        <ScrollReveal>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-navy-800">
+              {t("home.form_title")}
+            </h2>
+            <p className="mt-3 text-slate-600">{t("home.form_subtitle")}</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={0.15}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="text"
+                autoComplete="name"
+                value={formData.nombre}
+                onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                placeholder={t("home.form_name_placeholder")}
+                className="flex-1 px-4 py-3.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none placeholder:text-slate-400"
+                required
+              />
+              <input
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                value={formData.telefono}
+                onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                placeholder={t("home.form_phone_placeholder")}
+                className="flex-1 px-4 py-3.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none placeholder:text-slate-400"
+                required
+                pattern="[0-9+\s]{6,15}"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full py-4 bg-brand text-white text-lg font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg shadow-brand/25 disabled:opacity-50 pulse-glow-btn"
+            >
+              {status === "loading" ? "..." : t("home.form_button")}
+            </button>
+            <p className="text-center text-xs text-slate-500">{t("home.form_legal")}</p>
+          </form>
+          {status === "error" && (
+            <p className="mt-3 text-center text-sm text-red-500">{t("home.form_error")}</p>
+          )}
+        </ScrollReveal>
+      </div>
+    </section>
   );
 }
 
@@ -588,14 +684,14 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
         <div className="relative flex items-center justify-center gap-0">
           {/* Outside */}
           <div className="flex-1 flex flex-col items-center min-w-0">
-            <p className="text-[10px] sm:text-sm uppercase tracking-widest text-slate-500 mb-4 sm:mb-6">
+            <p className="text-xs sm:text-sm uppercase tracking-widest text-slate-500 mb-4 sm:mb-6">
               {t("home.acoustic_outside")}
             </p>
-            <div className="flex items-end gap-[3px] sm:gap-1 h-24 sm:h-48">
+            <div className="flex items-end gap-0.5 sm:gap-1 h-24 sm:h-48">
               {BARS.map((h, i) => (
                 <div
                   key={i}
-                  className="w-[4px] sm:w-[10px] rounded-full bg-gradient-to-t from-red-500 to-orange-400"
+                  className="w-1 sm:w-1.5 md:w-2.5 rounded-full bg-gradient-to-t from-red-500 to-orange-400"
                   style={{
                     height: isInView ? `${h}%` : 0,
                     transition: `height 0.5s ease ${i * 0.04}s`,
@@ -606,14 +702,14 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
             </div>
             <div className="mt-4 sm:mt-6 text-center">
               <p className="text-2xl sm:text-5xl font-bold text-red-400">75 dB</p>
-              <p className="text-[10px] sm:text-sm text-slate-500 mt-1">
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
                 {t("home.acoustic_street")}
               </p>
             </div>
           </div>
 
           {/* Window divider */}
-          <div className="relative w-10 sm:w-24 flex flex-col items-center mx-1 sm:mx-4 shrink-0">
+          <div className="relative w-12 md:w-20 lg:w-24 flex flex-col items-center mx-1 sm:mx-4 shrink-0">
             <div className="w-full h-32 sm:h-56 relative">
               <div className="absolute inset-0 border-[3px] sm:border-4 border-slate-600 rounded-sm bg-navy-800/30">
                 <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-slate-600" />
@@ -621,7 +717,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
               </div>
               <div className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
                 <span
-                  className={`text-[10px] sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full transition-colors duration-300 ${
+                  className={`text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full transition-colors duration-300 ${
                     isPVC
                       ? "bg-brand/20 text-brand"
                       : "bg-navy-700 text-slate-500"
@@ -635,16 +731,16 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
 
           {/* Inside */}
           <div className="flex-1 flex flex-col items-center min-w-0">
-            <p className="text-[10px] sm:text-sm uppercase tracking-widest text-slate-500 mb-4 sm:mb-6">
+            <p className="text-xs sm:text-sm uppercase tracking-widest text-slate-500 mb-4 sm:mb-6">
               {t("home.acoustic_inside")}
             </p>
-            <div className="flex items-end gap-[3px] sm:gap-1 h-24 sm:h-48">
+            <div className="flex items-end gap-0.5 sm:gap-1 h-24 sm:h-48">
               {BARS.map((h, i) => {
                 const reduction = isPVC ? 0.12 : 0.55;
                 return (
                   <div
                     key={i}
-                    className={`w-[4px] sm:w-[10px] rounded-full bg-gradient-to-t transition-all duration-500 ${
+                    className={`w-1 sm:w-1.5 md:w-2.5 rounded-full bg-gradient-to-t transition-all duration-500 ${
                       isPVC
                         ? "from-emerald-500 to-emerald-300"
                         : "from-amber-500 to-yellow-400"
@@ -666,7 +762,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
               >
                 {isPVC ? "33 dB" : "55 dB"}
               </p>
-              <p className="text-[10px] sm:text-sm text-slate-500 mt-1">
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
                 {isPVC
                   ? t("home.acoustic_whisper")
                   : t("home.acoustic_conversation")}
@@ -840,19 +936,19 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
           <ScrollReveal>
             <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
               <p className="text-xl sm:text-4xl font-bold text-brand">70%</p>
-              <p className="mt-1 sm:mt-2 text-[10px] sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_heat")}</p>
+              <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_heat")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
               <p className="text-xl sm:text-4xl font-bold text-emerald-400">40%</p>
-              <p className="mt-1 sm:mt-2 text-[10px] sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_bill")}</p>
+              <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_bill")}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
               <p className="text-xl sm:text-4xl font-bold text-amber-400">1.0</p>
-              <p className="mt-1 sm:mt-2 text-[10px] sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_uf")}</p>
+              <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_uf")}</p>
             </div>
           </ScrollReveal>
         </div>
@@ -1256,7 +1352,7 @@ export default function Home() {
               <p className="text-3xl sm:text-7xl font-bold text-white">
                 <Counter target={15} suffix="+" />
               </p>
-              <p className="mt-1.5 sm:mt-3 text-[10px] sm:text-lg text-white/70 font-medium leading-tight">
+              <p className="mt-1.5 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium leading-tight">
                 {t("stats.experience")}
               </p>
             </ScrollReveal>
@@ -1265,7 +1361,7 @@ export default function Home() {
                 <p className="text-3xl sm:text-7xl font-bold text-white">
                   <Counter target={500} suffix="+" />
                 </p>
-                <p className="mt-1.5 sm:mt-3 text-[10px] sm:text-lg text-white/70 font-medium leading-tight">
+                <p className="mt-1.5 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium leading-tight">
                   {t("stats.projects")}
                 </p>
               </div>
@@ -1274,7 +1370,7 @@ export default function Home() {
               <p className="text-3xl sm:text-7xl font-bold text-white">
                 <Counter target={60} suffix="km" />
               </p>
-              <p className="mt-1.5 sm:mt-3 text-[10px] sm:text-lg text-white/70 font-medium leading-tight">
+              <p className="mt-1.5 sm:mt-3 text-xs sm:text-lg text-white/70 font-medium leading-tight">
                 {t("stats.coverage")}
               </p>
             </ScrollReveal>
@@ -1351,6 +1447,9 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Inline Lead Form — captures visitors who won't click through */}
+      <InlineLeadForm t={t} />
     </>
   );
 }

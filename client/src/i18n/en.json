@@ -19,15 +19,15 @@
     "free_visit": "Free visit"
   },
   "cta": {
-    "calculate": "Calculate your quote",
-    "contact_us": "Contact us",
-    "request_quote": "Request exact quote",
-    "call_us": "Call us",
-    "free_quote": "Free quote",
-    "view_projects": "View projects",
-    "get_quote": "Free quote",
-    "free_visit": "Free visit",
-    "free_no_commitment": "Free, no commitment"
+    "calculate": "See your price in 2 min",
+    "contact_us": "Talk to an expert",
+    "request_quote": "See my exact quote",
+    "call_us": "Call us now",
+    "free_quote": "See my price",
+    "view_projects": "See real transformations",
+    "get_quote": "See my free quote",
+    "free_visit": "Book free home visit",
+    "free_no_commitment": "Free · No commitment · Reply in 24h"
   },
   "hero": {
     "title": "PVC Windows in Girona and Maresme",
@@ -140,7 +140,16 @@
     "energy_annual_cost": "Annual heating energy cost",
     "energy_now_in": "Right now in",
     "energy_losing_now": "Current heat loss",
-    "energy_realtime": "Real-time heat loss"
+    "energy_realtime": "Real-time heat loss",
+    "form_title": "Want to know the price for your home?",
+    "form_subtitle": "Leave your name and phone. We'll call you within 24h with a personalized quote.",
+    "form_name_placeholder": "Your name",
+    "form_phone_placeholder": "Your phone",
+    "form_button": "Call me back for free",
+    "form_legal": "No commitment. Your data is protected.",
+    "form_success_title": "Perfect!",
+    "form_success_desc": "We'll call you within 24 hours with your personalized quote.",
+    "form_error": "There was an error. Try again or call us at 611 500 372."
   },
   "testimonials": {
     "title": "What our clients say",
@@ -560,11 +569,11 @@
     "explanation": "We use analytics cookies to improve our service."
   },
   "exit_popup": {
-    "title": "Wait! Get 10% off",
-    "subtitle": "Leave us your email and we'll send you a discount coupon for your quote.",
-    "placeholder": "Your email",
-    "button": "I want the discount",
-    "success": "Thanks! You'll receive the coupon in your email."
+    "title": "Wait! We'll call you for free",
+    "subtitle": "Leave your phone number and an expert will call you within 24h with your personalized quote.",
+    "placeholder": "Your phone (e.g. 611 500 372)",
+    "button": "Call me back",
+    "success": "Great! We'll call you within 24h."
   },
   "legal": {
     "privacy_title": "Privacy Policy",
@@ -701,13 +710,19 @@
     "faq2_q": "How long does the visit take?",
     "faq2_a": "The technical visit takes between 30 and 45 minutes. The technician takes measurements, assesses the current state of windows and advises on the best options.",
     "faq3_q": "Am I obligated to hire after the visit?",
-    "faq3_a": "No, absolutely no obligation. The visit and quote are free. You decide at your own pace and without any pressure."
+    "faq3_a": "No, absolutely no obligation. The visit and quote are free. You decide at your own pace and without any pressure.",
+    "faq4_q": "Is it really free or are there hidden costs?",
+    "faq4_a": "The visit is 100% free with no obligation. A certified technician will come to your home, take exact measurements and give you a detailed quote. If you decide not to proceed, you pay absolutely nothing.",
+    "faq5_q": "How long does the window installation take?",
+    "faq5_a": "A typical installation of 4-6 windows is completed in 1-2 working days. We prepare everything in advance to minimize disruption. Your home will be ready with its new windows sooner than you think.",
+    "faq6_q": "Are PVC windows really better than aluminium?",
+    "faq6_a": "Yes. Cortizo PVC offers thermal insulation up to 3 times better than aluminium, reducing your heating bill by up to 40%. Plus, they require no maintenance, don't corrode, and have a lifespan of over 50 years."
   },
   "social_proof_toast": {
-    "names": ["Maria", "Joan", "Anna", "Peter", "Marta", "George", "Laura", "Marc", "Nuria", "Albert"],
-    "cities": ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa", "Palafrugell", "Sant Feliu"],
-    "action_quote": "requested a quote",
-    "action_visit": "booked a free visit",
+    "names": ["Maria G.", "Joan M.", "Montse R.", "Pere S.", "Nuria L.", "Jordi V.", "Anna C.", "Carles P.", "Marta F.", "Albert B."],
+    "cities": ["Blanes", "Lloret de Mar", "Tossa de Mar", "Girona", "Sant Feliu", "Pineda de Mar", "Calella", "Palafrugell", "Mataro", "Arenys de Mar"],
+    "action_quote": "requested a quote for 4 windows",
+    "action_visit": "booked a free home visit",
     "time_ago": "{{minutes}} min ago"
   },
   "trust_bar": {
@@ -718,8 +733,9 @@
   },
   "cta_microcopy": "No commitment · 24h response · 10-year warranty",
   "urgency_banner": {
-    "text": "2026 Subsidies: Last months to apply",
-    "cta": "Calculate your savings"
+    "text": "Next Generation subsidies available. Limited spots.",
+    "countdown": "Subsidies: {{days}} days left to apply. Limited spots.",
+    "cta": "View subsidies"
   },
   "sticky_cta": "Calculate quote"
 }
