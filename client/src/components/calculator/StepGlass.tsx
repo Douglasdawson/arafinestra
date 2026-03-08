@@ -7,9 +7,9 @@ interface Props {
 }
 
 const GLASS_TYPES = [
-  { id: "doble", stars: 3 },
-  { id: "baix_emissiu", stars: 4 },
-  { id: "triple", stars: 5 },
+  { id: "doble", stars: 3, recommended: false },
+  { id: "baix_emissiu", stars: 4, recommended: true },
+  { id: "triple", stars: 5, recommended: false },
 ];
 
 export default function StepGlass({ selected, onSelect, compatibleGlasses }: Props) {
@@ -27,7 +27,7 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
       <p className="text-gray-500 text-center">{t("calculator.select_glass_desc")}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
-        {glasses.map(({ id, stars }) => {
+        {glasses.map(({ id, stars, recommended }) => {
           const isSelected = selected === id;
           return (
             <button
@@ -36,9 +36,16 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
               className={`relative p-4 sm:p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
                   ? "border-brand bg-brand-light shadow-md"
+                  : recommended
+                  ? "border-brand/40 bg-brand-light/30 hover:border-brand/60"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
+              {recommended && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-brand text-white text-xs font-bold rounded-full whitespace-nowrap shadow-sm z-10">
+                  {t("calculator_badge_popular")}
+                </div>
+              )}
               {isSelected && (
                 <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-5 h-5 sm:w-6 sm:h-6 bg-brand rounded-full flex items-center justify-center">
                   <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>

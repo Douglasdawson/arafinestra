@@ -771,5 +771,11 @@
     "roi_lifespan": "Windows last 50+ years",
     "financing": "Or from {{amount}}/month with 0% financing",
     "financing_link": "See financing options"
-  }
+  },
+  "calculator_recovery": {
+    "title": "You have an unfinished quote",
+    "resume": "Continue",
+    "dismiss": "Start over"
+  },
+  "calculator_badge_popular": "Most popular"
 }

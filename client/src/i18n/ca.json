@@ -771,5 +771,11 @@
     "roi_lifespan": "Les finestres duren 50+ anys",
     "financing": "O des de {{amount}}/mes amb finançament 0%",
     "financing_link": "Veure opcions de finançament"
-  }
+  },
+  "calculator_recovery": {
+    "title": "Tens un pressupost a mig fer",
+    "resume": "Continuar",
+    "dismiss": "Començar de nou"
+  },
+  "calculator_badge_popular": "Més popular"
 }

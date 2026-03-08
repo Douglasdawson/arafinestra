@@ -771,5 +771,11 @@
     "roi_lifespan": "Las ventanas duran 50+ años",
     "financing": "O desde {{amount}}/mes con financiación 0%",
     "financing_link": "Ver opciones de financiación"
-  }
+  },
+  "calculator_recovery": {
+    "title": "Tienes un presupuesto a medio hacer",
+    "resume": "Continuar",
+    "dismiss": "Empezar de nuevo"
+  },
+  "calculator_badge_popular": "Más popular"
 }
