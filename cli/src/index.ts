@@ -7,6 +7,7 @@ import { registerLeadsCommand } from "./commands/leads.js";
 import { registerBlogCommand } from "./commands/blog.js";
 import { registerSeoCommand } from "./commands/seo.js";
 import { registerPressupostCommand } from "./commands/pressupost.js";
+import { registerZonesCommand } from "./commands/zones.js";
 
 const program = new Command();
 
@@ -25,5 +26,6 @@ registerLeadsCommand(program);
 registerBlogCommand(program);
 registerSeoCommand(program);
 registerPressupostCommand(program);
+registerZonesCommand(program);
 
 program.parse();
