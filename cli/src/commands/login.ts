@@ -72,7 +72,7 @@ export async function loginCommand(): Promise<void> {
       redirect: "manual",
     });
 
-    if (res.ok || res.status === 200) {
+    if (res.ok || (res.status >= 300 && res.status < 400)) {
       const setCookie = res.headers.get("set-cookie");
       if (setCookie) {
         // Extract the session cookie (first part before any attributes)
