@@ -45,6 +45,9 @@ export default function BlogEditor() {
   const [saving, setSaving] = useState(false);
   const [slugManual, setSlugManual] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [aiTopic, setAiTopic] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
     if (isNew) return;
@@ -111,6 +114,52 @@ export default function BlogEditor() {
     }
   }
 
+  async function generateWithAI() {
+    if (!aiTopic.trim()) return;
+    setAiLoading(true);
+    try {
+      const res = await fetch("/api/ai/generate-blog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ topic: aiTopic }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: "Error al generar" }));
+        throw new Error(err.error || "Error al generar");
+      }
+      const data = await res.json();
+      setPost((prev) => ({
+        ...prev,
+        slug: data.slug || prev.slug,
+        tituloCa: data.tituloCa || prev.tituloCa,
+        tituloEs: data.tituloEs || prev.tituloEs,
+        tituloEn: data.tituloEn || prev.tituloEn,
+        contenidoCa: data.contenidoCa || prev.contenidoCa,
+        contenidoEs: data.contenidoEs || prev.contenidoEs,
+        contenidoEn: data.contenidoEn || prev.contenidoEn,
+        extractoCa: data.extractoCa || prev.extractoCa,
+        extractoEs: data.extractoEs || prev.extractoEs,
+        extractoEn: data.extractoEn || prev.extractoEn,
+        metaTitleCa: data.metaTitleCa || prev.metaTitleCa,
+        metaTitleEs: data.metaTitleEs || prev.metaTitleEs,
+        metaTitleEn: data.metaTitleEn || prev.metaTitleEn,
+        metaDescriptionCa: data.metaDescriptionCa || prev.metaDescriptionCa,
+        metaDescriptionEs: data.metaDescriptionEs || prev.metaDescriptionEs,
+        metaDescriptionEn: data.metaDescriptionEn || prev.metaDescriptionEn,
+        categoria: data.categoria || prev.categoria,
+      }));
+      setSlugManual(true);
+      setAiModalOpen(false);
+      setAiTopic("");
+      setToast({ message: "Article generat correctament", type: "success" });
+    } catch (err: any) {
+      setToast({ message: err.message || "Error al generar article", type: "error" });
+    } finally {
+      setAiLoading(false);
+    }
+  }
+
   if (loading) {
     return <div className="text-center text-gray-400 py-12">Cargando...</div>;
   }
@@ -127,6 +176,55 @@ export default function BlogEditor() {
           Volver a la lista
         </button>
       </div>
+
+      {isNew && (
+        <div className="mb-4">
+          <button
+            onClick={() => setAiModalOpen(true)}
+            className="bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          >
+            ✦ Generar amb IA
+          </button>
+        </div>
+      )}
+
+      {/* AI Generation Modal */}
+      {aiModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
+            <h2 className="text-lg font-bold text-navy-900 mb-4">Generar article amb IA</h2>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Tema de l'article</label>
+            <input
+              type="text"
+              value={aiTopic}
+              onChange={(e) => setAiTopic(e.target.value)}
+              placeholder="Ex: Avantatges del PVC vs alumini"
+              disabled={aiLoading}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm mb-4"
+              onKeyDown={(e) => { if (e.key === "Enter" && !aiLoading) generateWithAI(); }}
+            />
+            {aiLoading && (
+              <p className="text-sm text-brand mb-4 animate-pulse">Generant article amb Claude...</p>
+            )}
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => { setAiModalOpen(false); setAiTopic(""); }}
+                disabled={aiLoading}
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 disabled:opacity-50"
+              >
+                Cancel·lar
+              </button>
+              <button
+                onClick={generateWithAI}
+                disabled={aiLoading || !aiTopic.trim()}
+                className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors"
+              >
+                {aiLoading ? "Generant..." : "Generar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-5">
         <div>
