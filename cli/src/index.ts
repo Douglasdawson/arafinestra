@@ -3,6 +3,7 @@
 import { Command } from "commander";
 import { loginCommand } from "./commands/login.js";
 import { registerLeadsCommand } from "./commands/leads.js";
+import { registerSeoCommand } from "./commands/seo.js";
 
 const program = new Command();
 
@@ -17,5 +18,6 @@ program
   .action(loginCommand);
 
 registerLeadsCommand(program);
+registerSeoCommand(program);
 
 program.parse();
