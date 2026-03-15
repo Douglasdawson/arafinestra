@@ -38,6 +38,9 @@ export default function Zones() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
+  const [aiMunicipality, setAiMunicipality] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
 
   const fetchZones = useCallback(async () => {
     setLoading(true);
@@ -92,6 +95,43 @@ export default function Zones() {
     }
   }
 
+  async function generateAiZone() {
+    if (!aiMunicipality.trim()) return;
+    setAiLoading(true);
+    try {
+      const aiRes = await fetch("/api/ai/generate-zone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ municipality: aiMunicipality.trim() }),
+      });
+      if (!aiRes.ok) throw new Error("Error generant contingut amb IA");
+      const aiData = await aiRes.json();
+
+      const zoneRes = await fetch("/api/zones", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          ...aiData,
+          published: true,
+          latitud: aiData.latitud ?? null,
+          longitud: aiData.longitud ?? null,
+        }),
+      });
+      if (!zoneRes.ok) throw new Error("Error creant la zona");
+
+      setToast({ message: `Zona ${aiMunicipality.trim()} creada i publicada`, type: "success" });
+      setAiModalOpen(false);
+      setAiMunicipality("");
+      fetchZones();
+    } catch (err: any) {
+      setToast({ message: err.message || "Error al generar zona amb IA", type: "error" });
+    } finally {
+      setAiLoading(false);
+    }
+  }
+
   async function deleteZone() {
     if (deleteId === null) return;
     try {
@@ -113,9 +153,14 @@ export default function Zones() {
 
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-navy-900">Zonas</h1>
-        <button onClick={() => openEdit()} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark transition-colors">
-          + Nueva zona
-        </button>
+        <div className="flex gap-2">
+          <button onClick={() => setAiModalOpen(true)} className="bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+            ✦ Afegir amb IA
+          </button>
+          <button onClick={() => openEdit()} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark transition-colors">
+            + Nueva zona
+          </button>
+        </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -155,6 +200,40 @@ export default function Zones() {
           </div>
         )}
       </div>
+
+      {/* AI generation modal */}
+      {aiModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+            <h2 className="text-lg font-semibold text-navy-900 mb-4">Generar zona amb IA</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Nom del municipi</label>
+                <input
+                  type="text"
+                  value={aiMunicipality}
+                  onChange={(e) => setAiMunicipality(e.target.value)}
+                  placeholder="Ex: Palafrugell"
+                  disabled={aiLoading}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                  onKeyDown={(e) => { if (e.key === "Enter") generateAiZone(); }}
+                />
+              </div>
+              {aiLoading && (
+                <p className="text-sm text-brand animate-pulse">Generant landing page amb Claude...</p>
+              )}
+            </div>
+            <div className="flex justify-end gap-3 mt-6">
+              <button onClick={() => { setAiModalOpen(false); setAiMunicipality(""); }} disabled={aiLoading} className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 disabled:opacity-50">
+                Cancel·lar
+              </button>
+              <button onClick={generateAiZone} disabled={aiLoading || !aiMunicipality.trim()} className="px-4 py-2 bg-brand text-white rounded-md text-sm font-medium hover:bg-brand-dark disabled:opacity-50 transition-colors">
+                {aiLoading ? "Generant..." : "Generar i publicar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Edit modal */}
       {editing && (
