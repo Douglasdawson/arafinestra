@@ -91,15 +91,5 @@ ${urls}</urlset>`;
     }
   });
 
-  app.get("/robots.txt", (_req, res) => {
-    const txt = `User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-Sitemap: ${DOMAIN}/sitemap.xml
-`;
-    res.header("Content-Type", "text/plain");
-    res.send(txt);
-  });
+  // robots.txt is handled by sitemap.ts — removed duplicate here
 }

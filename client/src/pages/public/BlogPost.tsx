@@ -185,20 +185,6 @@ export default function BlogPost() {
   const minutes = readingTime(content);
   const date = formatDate(post.published_at || post.created_at, currentLang);
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
-    description: metaDesc,
-    image: post.imagen_portada || undefined,
-    author: post.autor ? { "@type": "Person", name: post.autor } : undefined,
-    publisher: {
-      "@type": "Organization",
-      name: "ARA FINESTRA",
-    },
-    datePublished: post.published_at || post.created_at,
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -215,7 +201,6 @@ export default function BlogPost() {
         description={metaDesc}
         path={`/blog/${post.slug}`}
         image={post.imagen_portada || undefined}
-        schema={articleSchema}
       />
       {/* Breadcrumb schema */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

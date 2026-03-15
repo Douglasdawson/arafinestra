@@ -42,12 +42,26 @@ export default function ZonesList() {
     return nameA.localeCompare(nameB);
   });
 
+  const itemListSchema = sortedZones.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": t("zones_page.title"),
+    "numberOfItems": sortedZones.length,
+    "itemListElement": sortedZones.map((zone, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": localize(zone as unknown as Record<string, unknown>, "nombre", currentLang),
+      "url": `https://arafinestra.com/${prefix}/zones/${zone.slug}`,
+    })),
+  } : undefined;
+
   return (
     <>
       <PageHead
         title={t("zones_page.title")}
         description={t("zones_page.subtitle")}
         path="/zones"
+        schema={itemListSchema}
       />
 
       {/* Hero */}

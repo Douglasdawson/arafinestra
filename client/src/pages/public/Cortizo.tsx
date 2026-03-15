@@ -23,12 +23,32 @@ export default function Cortizo() {
     { name: "E-170", desc: t("cortizo.series_e170") },
   ];
 
+  const cortizoSchema = {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    "name": "Cortizo",
+    "url": "https://www.cortizo.com",
+    "description": t("cortizo.page_desc"),
+    "makesOffer": series.map((s) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Product",
+        "name": `Cortizo ${s.name}`,
+        "description": s.desc,
+        "brand": { "@type": "Brand", "name": "Cortizo" },
+        "material": "PVC",
+        "category": "Ventanas PVC",
+      },
+    })),
+  };
+
   return (
     <>
       <PageHead
         title={t("cortizo.page_title")}
         description={t("cortizo.page_desc")}
         path="/cortizo"
+        schema={cortizoSchema}
       />
 
       {/* Hero */}

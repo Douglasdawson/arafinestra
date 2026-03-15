@@ -60,6 +60,18 @@ export default function Process() {
         title={t("process.page_title")}
         description={t("process.page_desc")}
         path="/proces"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": t("process.title"),
+          "description": t("process.page_desc"),
+          "step": STEPS.map((step, i) => ({
+            "@type": "HowToStep",
+            "position": i + 1,
+            "name": t(`process.${step.key}_title`),
+            "text": t(`process.${step.key}_desc`),
+          })),
+        }}
       />
       <BreadcrumbSchema
         items={[

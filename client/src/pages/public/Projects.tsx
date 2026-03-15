@@ -82,12 +82,26 @@ export default function Projects() {
     });
   }, [projects, typeFilter, locationFilter]);
 
+  const itemListSchema = projects.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": t("portfolio.title") + " - ARA FINESTRA",
+    "numberOfItems": projects.length,
+    "itemListElement": projects.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": localize(p as unknown as Record<string, unknown>, "titulo", currentLang),
+      "url": `https://arafinestra.com/${currentLang}/projectes`,
+    })),
+  } : undefined;
+
   return (
     <>
       <PageHead
         title={t("portfolio.title")}
         description={t("portfolio.title") + " - ARA FINESTRA"}
         path="/projectes"
+        schema={itemListSchema}
       />
       <BreadcrumbSchema items={[
         { name: t("nav.home"), url: "/" },

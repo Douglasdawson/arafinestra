@@ -192,12 +192,26 @@ export default function BlogList() {
     }
   }
 
+  const itemListSchema = posts.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Blog - ARA FINESTRA",
+    "numberOfItems": posts.length,
+    "itemListElement": posts.map((post, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": localize(post as unknown as Record<string, unknown>, "titulo", currentLang),
+      "url": `https://arafinestra.com/${prefix}/blog/${post.slug}`,
+    })),
+  } : undefined;
+
   return (
     <>
       <PageHead
         title="Blog"
         description={t("blog.seo_desc")}
         path="/blog"
+        schema={itemListSchema}
       />
 
       {/* Hero */}
