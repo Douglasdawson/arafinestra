@@ -11,6 +11,7 @@ import { registerConfigRoutes } from "./routes/config.js";
 import { registerSeoRoutes } from "./routes/seo.js";
 import { registerWeatherRoutes } from "./routes/weather.js";
 import { registerSitemapRoutes } from "./routes/sitemap.js";
+import { registerAiRoutes } from "./routes/ai.js";
 
 export function registerRoutes(app: Express) {
   app.get("/api/health", (_req, res) => {
@@ -60,4 +61,5 @@ export function registerRoutes(app: Express) {
   registerSeoRoutes(app);
   registerWeatherRoutes(app);
   registerSitemapRoutes(app);
+  registerAiRoutes(app);
 }
