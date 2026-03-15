@@ -2,6 +2,7 @@
 
 import { Command } from "commander";
 import { loginCommand } from "./commands/login.js";
+import { registerLeadsCommand } from "./commands/leads.js";
 
 const program = new Command();
 
@@ -14,5 +15,7 @@ program
   .command("login")
   .description("Authenticate with the ARA FINESTRA server")
   .action(loginCommand);
+
+registerLeadsCommand(program);
 
 program.parse();
