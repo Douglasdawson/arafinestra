@@ -34,6 +34,7 @@ const Testimonials = lazy(() => import("./pages/admin/Testimonials"));
 const Zones = lazy(() => import("./pages/admin/Zones"));
 const SiteConfig = lazy(() => import("./pages/admin/SiteConfig"));
 const SeoAudit = lazy(() => import("./pages/admin/SeoAudit"));
+const Pressupostos = lazy(() => import("./pages/admin/Pressupostos"));
 
 export default function App() {
   return (
@@ -75,6 +76,7 @@ export default function App() {
           <Route path="zonas" element={<Zones />} />
           <Route path="contenido" element={<SiteConfig />} />
           <Route path="seo" element={<SeoAudit />} />
+          <Route path="pressupostos" element={<Pressupostos />} />
         </Route>
 
         {/* 404 catch-all */}

@@ -12,6 +12,7 @@ const navItems = [
   { to: "/admin/zonas", label: "Zonas" },
   { to: "/admin/contenido", label: "Contenido" },
   { to: "/admin/seo", label: "SEO" },
+  { to: "/admin/pressupostos", label: "Pressupostos" },
 ];
 
 export default function AdminLayout() {
