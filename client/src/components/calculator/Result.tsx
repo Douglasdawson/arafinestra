@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { trackEvent } from "../../lib/analytics";
 import GuaranteeBlock from "../ui/GuaranteeBlock";
 
@@ -20,29 +20,47 @@ interface CalculatorState {
   cantidad: number;
 }
 
+interface ProductPricing {
+  precioBase: number;
+  precioPorM2: number;
+}
+
+// Default pricing per product type (fallback when no product found in DB)
+const DEFAULT_PRICING: Record<string, ProductPricing> = {
+  ventana: { precioBase: 180, precioPorM2: 160 },
+  puerta: { precioBase: 350, precioPorM2: 200 },
+  corredera: { precioBase: 350, precioPorM2: 200 },
+  persiana: { precioBase: 80, precioPorM2: 60 },
+  mosquitera: { precioBase: 40, precioPorM2: 30 },
+};
+
 interface Props {
   state: CalculatorState;
   onReset: () => void;
 }
 
-function calculatePrice(state: CalculatorState): { low: number; high: number; base: number } {
+function calculatePrice(
+  state: CalculatorState,
+  productPricing: ProductPricing | null,
+): { low: number; high: number; base: number } {
   const area = (state.ancho / 100) * (state.alto / 100);
 
-  // Default pricing if no product found
-  const precioBase = 200;
-  const precioPorM2 = 150;
+  // Use product-specific pricing from DB, or type-based defaults
+  const pricing = productPricing
+    || DEFAULT_PRICING[state.tipo]
+    || DEFAULT_PRICING.ventana;
 
-  let basePrice = precioBase + precioPorM2 * area;
+  let basePrice = pricing.precioBase + pricing.precioPorM2 * area;
 
-  // Multipliers
-  if (state.hojas > 2) basePrice *= 1.15;
-  if (state.vidrio === "baix_emissiu") basePrice *= 1.12;
-  if (state.vidrio === "triple") basePrice *= 1.25;
-  if (state.color !== "blanc") basePrice *= 1.08;
+  // Additive surcharges (€) instead of multiplicative
+  if (state.hojas > 2) basePrice += 40;
+  if (state.vidrio === "baix_emissiu") basePrice += 35;
+  if (state.vidrio === "triple") basePrice += 75;
+  if (state.color !== "blanc") basePrice += 25;
 
-  // Extras
-  if (state.extras.includes("persiana_integrada")) basePrice *= 1.15;
-  if (state.extras.includes("mosquitera_integrada")) basePrice *= 1.05;
+  // Extras — additive
+  if (state.extras.includes("persiana_integrada")) basePrice += 80;
+  if (state.extras.includes("mosquitera_integrada")) basePrice += 40;
 
   const total = basePrice * state.cantidad;
   return {
@@ -75,7 +93,31 @@ const TIPO_LABELS: Record<string, string> = {
 
 export default function Result({ state, onReset }: Props) {
   const { t } = useTranslation();
-  const { low, high } = calculatePrice(state);
+  const [productPricing, setProductPricing] = useState<ProductPricing | null>(null);
+
+  // Fetch real product pricing when modeloId is available
+  useEffect(() => {
+    if (state.modeloId && state.modeloId > 0) {
+      fetch(`/api/products?tipo=${state.tipo}&activo=true`)
+        .then((r) => r.json())
+        .then((data: Array<{ id: number; precioBase: number | null; precioPorM2: number | null }>) => {
+          const product = Array.isArray(data)
+            ? data.find((p) => p.id === state.modeloId)
+            : null;
+          if (product?.precioBase != null && product?.precioPorM2 != null) {
+            setProductPricing({
+              precioBase: product.precioBase,
+              precioPorM2: product.precioPorM2,
+            });
+          }
+        })
+        .catch(() => {
+          // fallback to defaults
+        });
+    }
+  }, [state.modeloId, state.tipo]);
+
+  const { low, high } = calculatePrice(state, productPricing);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");

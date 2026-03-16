@@ -9,6 +9,9 @@ interface PageHeadProps {
   schema?: object;
 }
 
+const OG_LOCALES: Record<string, string> = { ca: "ca_ES", es: "es_ES", en: "en_US" };
+const LANGS = ["ca", "es", "en"] as const;
+
 export default function PageHead({ title, description, path, image, schema }: PageHeadProps) {
   const { i18n } = useTranslation();
   const lang = i18n.language;
@@ -34,6 +37,10 @@ export default function PageHead({ title, description, path, image, schema }: Pa
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:locale" content={OG_LOCALES[lang] || "ca_ES"} />
+      {LANGS.filter(l => l !== lang).map(l => (
+        <meta key={l} property="og:locale:alternate" content={OG_LOCALES[l]} />
+      ))}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

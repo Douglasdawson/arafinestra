@@ -49,25 +49,32 @@ export function registerPressupostRoutes(app: Express) {
           const m2 = (item.width / 100) * (item.height / 100);
 
           // Try to find matching product by modelo
-          let pricePerM2 = 350;
+          let priceBase = 200;
+          let pricePerM2 = 190;
           try {
             const matchingProduct = await db
               .select()
               .from(products)
               .where(like(products.modelo, `%${item.type}%`))
               .limit(1);
-            if (matchingProduct.length > 0 && matchingProduct[0].precioPorM2) {
-              pricePerM2 = matchingProduct[0].precioPorM2;
+            if (matchingProduct.length > 0) {
+              if (matchingProduct[0].precioBase) {
+                priceBase = matchingProduct[0].precioBase;
+              }
+              if (matchingProduct[0].precioPorM2) {
+                pricePerM2 = matchingProduct[0].precioPorM2;
+              }
             }
           } catch {
             // fallback to default price
           }
 
-          const itemSubtotal = Math.round(m2 * pricePerM2 * 100) / 100;
+          const itemSubtotal = Math.round((priceBase + m2 * pricePerM2) * 100) / 100;
 
           return {
             ...item,
             m2: Math.round(m2 * 100) / 100,
+            priceBase,
             pricePerM2,
             subtotal: itemSubtotal,
           };

@@ -6,6 +6,7 @@ import LoadingSpinner from "./components/ui/LoadingSpinner";
 const Home = lazy(() => import("./pages/public/Home"));
 const ServicePage = lazy(() => import("./pages/public/ServicePage"));
 const Cortizo = lazy(() => import("./pages/public/Cortizo"));
+const Pricing = lazy(() => import("./pages/public/Pricing"));
 const Subvenciones = lazy(() => import("./pages/public/Subvenciones"));
 const Financing = lazy(() => import("./pages/public/Financing"));
 const Calculator = lazy(() => import("./pages/public/Calculator"));
@@ -46,6 +47,7 @@ export default function App() {
           <Route path="/:lang" element={<Home />} />
           <Route path="/:lang/serveis/:serviceSlug" element={<ServicePage />} />
           <Route path="/:lang/cortizo" element={<Cortizo />} />
+          <Route path="/:lang/preus" element={<Pricing />} />
           <Route path="/:lang/subvencions" element={<Subvenciones />} />
           <Route path="/:lang/financament" element={<Financing />} />
           <Route path="/:lang/projectes" element={<Projects />} />

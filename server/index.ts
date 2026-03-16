@@ -54,6 +54,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// X-Robots-Tag: noindex for admin routes (belt + suspenders with robots.txt)
+app.use("/admin", (_req, res, next) => {
+  res.setHeader("X-Robots-Tag", "noindex, nofollow");
+  next();
+});
+
 // Register API routes
 registerRoutes(app);
 
@@ -108,6 +114,25 @@ if (process.env.NODE_ENV === "development") {
   // Bot user-agent detection
   const BOT_UA = /googlebot|bingbot|yandexbot|duckduckbot|slurp|baiduspider|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegrambot|applebot|semrushbot|ahrefsbot|mj12bot|dotbot|petalbot|bytespider/i;
 
+  // Language redirect: / → /:lang/ based on Accept-Language
+  app.get("/", (req, res) => {
+    const acceptLang = req.headers["accept-language"] || "";
+    let lang = "ca";
+    if (/^es\b/i.test(acceptLang)) lang = "es";
+    else if (/^en\b/i.test(acceptLang)) lang = "en";
+    res.redirect(302, `/${lang}/`);
+  });
+
+  // Trailing slash normalization: redirect /path/ → /path (except root /:lang/)
+  app.use((req, res, next) => {
+    const p = req.path;
+    if (p !== "/" && p.endsWith("/") && !p.match(/^\/[a-z]{2}\/$/)) {
+      const query = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
+      return res.redirect(301, p.slice(0, -1) + query);
+    }
+    next();
+  });
+
   // SPA catch-all with server-side meta injection + prerendering for bots
   app.get("/{*splat}", async (req, res) => {
     try {
@@ -126,7 +151,7 @@ if (process.env.NODE_ENV === "development") {
 
       // Fallback: SSR meta injection for all requests
       const meta = await getMetaForRoute(req.path);
-      const html = injectMeta(htmlTemplate, meta);
+      const html = injectMeta(htmlTemplate, meta, req.path);
       res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
       res.send(html);
     } catch (err) {

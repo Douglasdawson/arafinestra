@@ -204,9 +204,9 @@ function WindowMaskHero({
           className="absolute inset-0 z-[5] flex flex-col items-center justify-center px-4"
           style={{ opacity: contentOpacity, scale: contentScale }}
         >
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-navy-900 tracking-tight leading-none text-center">
+          <p role="presentation" aria-hidden="true" className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-navy-900 tracking-tight leading-none text-center">
             ARA FINESTRA
-          </h1>
+          </p>
           <p className="mt-6 sm:mt-8 text-xl sm:text-2xl text-slate-600 font-light max-w-2xl mx-auto text-center">
             {t("home.mask_subtitle")}
           </p>

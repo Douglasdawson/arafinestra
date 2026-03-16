@@ -184,6 +184,59 @@ export default function Calculator() {
 
           {/* Main content: steps + live preview */}
           <div className={`mt-6 ${!isResult && state.step > 1 ? "flex flex-col lg:flex-row gap-8" : ""}`}>
+            {/* Mobile/tablet compact preview */}
+            {!isResult && state.step > 1 && (
+              <div className="lg:hidden bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center [&_svg]:max-w-full [&_svg]:max-h-full [&_svg]:w-auto [&_svg]:h-auto">
+                    <WindowPreview
+                      tipo={state.tipo}
+                      ancho={state.ancho}
+                      alto={state.alto}
+                      hojas={state.hojas}
+                      color={state.color}
+                      vidrio={state.vidrio}
+                      extras={state.extras}
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {state.tipo && (
+                      <span className="px-2 py-0.5 text-xs font-medium bg-navy-50 text-navy-700 rounded-full">
+                        {t(
+                          state.tipo === "ventana"
+                            ? "nav.windows"
+                            : state.tipo === "puerta"
+                              ? "nav.sliding_doors"
+                              : state.tipo === "persiana"
+                                ? "nav.shutters"
+                                : "nav.mosquito_nets"
+                        )}
+                      </span>
+                    )}
+                    {state.modelo && (
+                      <span className="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 rounded-full">
+                        {state.modelo}
+                      </span>
+                    )}
+                    {state.color !== "blanc" && (
+                      <span className="px-2 py-0.5 text-xs font-medium bg-amber-50 text-amber-700 rounded-full">
+                        {t(`calculator.color_${state.color}`)}
+                      </span>
+                    )}
+                    {state.extras.length > 0 &&
+                      state.extras.map((e) => (
+                        <span
+                          key={e}
+                          className="px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 rounded-full"
+                        >
+                          {t(`calculator.${e}`)}
+                        </span>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Step content */}
             <div className={`${!isResult && state.step > 1 ? "flex-1 min-w-0" : ""} animate-[fadeIn_0.3s_ease-out]`} key={state.step}>
               {state.step === 1 && (
@@ -468,7 +521,7 @@ function CalculatorFaq() {
   const { t } = useTranslation();
 
   const faqs = [];
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 8; i++) {
     const qKey = `calculator.faq_q${i}`;
     const aKey = `calculator.faq_a${i}`;
     const q = t(qKey);

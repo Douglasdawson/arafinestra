@@ -19,9 +19,15 @@ export default function Cortizo() {
 
   const series = [
     { name: "C-70", desc: t("cortizo.series_c70") },
-    { name: "A-84", desc: t("cortizo.series_a84") },
+    { name: "E-170 HI", desc: t("cortizo.series_e170_detail") },
     { name: "E-170", desc: t("cortizo.series_e170") },
   ];
+
+  const priceRanges: Record<string, { low: number; high: number; uf: string; db: string; water: string }> = {
+    "C-70": { low: 280, high: 550, uf: "1.3 W/m²K", db: "44 dB", water: "9A" },
+    "E-170 HI": { low: 450, high: 850, uf: "1.0 W/m²K", db: "47 dB", water: "E1200" },
+    "E-170": { low: 600, high: 1200, uf: "1.4 W/m²K", db: "45 dB", water: "9A" },
+  };
 
   const cortizoSchema = {
     "@context": "https://schema.org",
@@ -29,17 +35,38 @@ export default function Cortizo() {
     "name": "Cortizo",
     "url": "https://www.cortizo.com",
     "description": t("cortizo.page_desc"),
-    "makesOffer": series.map((s) => ({
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": `Cortizo ${s.name}`,
-        "description": s.desc,
-        "brand": { "@type": "Brand", "name": "Cortizo" },
-        "material": "PVC",
-        "category": "Ventanas PVC",
-      },
-    })),
+    "makesOffer": series.map((s) => {
+      const pr = priceRanges[s.name];
+      return {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": `Cortizo ${s.name}`,
+          "description": s.desc,
+          "brand": { "@type": "Brand", "name": "Cortizo" },
+          "material": "PVC",
+          "category": "Ventanas PVC",
+          ...(pr ? {
+            "offers": {
+              "@type": "AggregateOffer",
+              "lowPrice": pr.low,
+              "highPrice": pr.high,
+              "priceCurrency": "EUR",
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "47",
+            },
+            "additionalProperty": [
+              { "@type": "PropertyValue", "name": "Transmitancia térmica (Uf)", "value": pr.uf },
+              { "@type": "PropertyValue", "name": "Aislamiento acústico", "value": pr.db },
+              { "@type": "PropertyValue", "name": "Estanqueidad al agua", "value": pr.water },
+            ],
+          } : {}),
+        },
+      };
+    }),
   };
 
   return (

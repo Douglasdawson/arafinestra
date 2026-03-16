@@ -26,6 +26,7 @@ export default function Footer() {
     { to: `/${prefix}/cortizo`, label: t("nav.cortizo") },
     { to: `/${prefix}/subvencions`, label: t("nav.subsidies") },
     { to: `/${prefix}/financament`, label: t("nav_financing") },
+    { to: `/${prefix}/preus`, label: t("nav.pricing") },
     { to: `/${prefix}/proces`, label: t("nav.process") },
   ];
 

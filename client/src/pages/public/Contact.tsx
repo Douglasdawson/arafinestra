@@ -86,6 +86,11 @@ export default function Contact() {
       latitude: 41.9794,
       longitude: 2.8214,
     },
+    openingHours: "Mo-Fr 08:00-18:00, Sa 09:00-14:00",
+    priceRange: "€€",
+    paymentAccepted: "Efectiu, Targeta, Transferència",
+    currenciesAccepted: "EUR",
+    image: "https://arafinestra.com/og-image.png",
   };
 
   const inputCls =

@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 
 const DOMAIN = "https://arafinestra.com";
 const LANGS = ["ca", "es", "en"];
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
 
 // Static routes (mirrors seo-inject.ts STATIC_ROUTES keys + homepage)
 const STATIC_PATHS = [
@@ -25,6 +26,7 @@ const STATIC_PATHS = [
   "qui-som",
   "visita-gratuita",
   "financament",
+  "preus",
   "legal/privacitat",
   "legal/termes",
   "legal/cookies",
@@ -50,13 +52,17 @@ export function registerSitemapRoutes(app: Express) {
           const fullPath = path ? `/${lang}/${path}` : `/${lang}`;
           const url = `${DOMAIN}${fullPath}`;
           const priority = path === "" ? "1.0" : "0.8";
-          const alternates = LANGS.map(
-            (l) =>
-              `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}${path ? `/${path}` : ""}" />`
-          ).join("\n");
+          const alternates = [
+            ...LANGS.map(
+              (l) =>
+                `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}${path ? `/${path}` : ""}" />`
+            ),
+            `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca${path ? `/${path}` : ""}" />`,
+          ].join("\n");
 
           urls.push(`  <url>
     <loc>${escapeXml(url)}</loc>
+    <lastmod>${BUILD_DATE}</lastmod>
     <changefreq>${path === "" ? "weekly" : "monthly"}</changefreq>
     <priority>${priority}</priority>
 ${alternates}
@@ -64,22 +70,38 @@ ${alternates}
         }
       }
 
-      // Dynamic: published blog posts
+      // Dynamic: published blog posts (with image extensions)
       const posts = await db
-        .select({ slug: blogPosts.slug, publishedAt: blogPosts.publishedAt })
+        .select({
+          slug: blogPosts.slug,
+          publishedAt: blogPosts.publishedAt,
+          imagenPortada: blogPosts.imagenPortada,
+        })
         .from(blogPosts)
         .where(eq(blogPosts.published, true));
 
       for (const post of posts) {
+        const lastmod = post.publishedAt
+          ? new Date(post.publishedAt).toISOString().slice(0, 10)
+          : BUILD_DATE;
+        const imageTag = post.imagenPortada
+          ? `\n    <image:image>\n      <image:loc>${escapeXml(post.imagenPortada)}</image:loc>\n    </image:image>`
+          : "";
+        const blogAlternates = [
+          ...LANGS.map(
+            (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}/blog/${post.slug}" />`
+          ),
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca/blog/${post.slug}" />`,
+        ].join("\n");
+
         for (const lang of LANGS) {
           const url = `${DOMAIN}/${lang}/blog/${post.slug}`;
-          const lastmod = post.publishedAt
-            ? new Date(post.publishedAt).toISOString().slice(0, 10)
-            : "";
           urls.push(`  <url>
-    <loc>${escapeXml(url)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}
+    <loc>${escapeXml(url)}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+${blogAlternates}${imageTag}
   </url>`);
         }
       }
@@ -91,19 +113,29 @@ ${alternates}
         .where(eq(zones.published, true));
 
       for (const zone of allZones) {
+        const zoneAlternates = [
+          ...LANGS.map(
+            (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}/zones/${zone.slug}" />`
+          ),
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca/zones/${zone.slug}" />`,
+        ].join("\n");
+
         for (const lang of LANGS) {
           const url = `${DOMAIN}/${lang}/zones/${zone.slug}`;
           urls.push(`  <url>
     <loc>${escapeXml(url)}</loc>
+    <lastmod>${BUILD_DATE}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+${zoneAlternates}
   </url>`);
         }
       }
 
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.join("\n")}
 </urlset>`;
 

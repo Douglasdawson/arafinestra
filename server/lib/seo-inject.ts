@@ -11,6 +11,8 @@ export interface RouteMeta {
   ogImage: string;
   canonicalUrl: string;
   jsonLd?: Record<string, unknown>;
+  ogType?: string; // "website" | "article"
+  articleMeta?: { publishedTime?: string; modifiedTime?: string; author?: string };
 }
 
 const DEFAULT_META: RouteMeta = {
@@ -45,107 +47,112 @@ interface StaticRouteEntry {
   description: string;
 }
 
-// Static route meta — keyed by path segment (without lang prefix)
-const STATIC_ROUTES: Record<string, StaticRouteEntry> = {
+// Static route meta — keyed by path segment, then by language
+const STATIC_ROUTES: Record<string, Record<string, StaticRouteEntry>> = {
   cortizo: {
-    title: "Cortizo - Partner Oficial | ARA FINESTRA",
-    description:
-      "ARA FINESTRA és distribuïdor oficial de Cortizo a Catalunya. Sistemes de finestres PVC d'alta qualitat amb garantia de fàbrica.",
+    ca: { title: "Perfils PVC Cortizo — Partner Oficial a Girona | ARA FINESTRA", description: "ARA FINESTRA és distribuïdor oficial de Cortizo a Catalunya. Sistemes de finestres PVC d'alta qualitat amb garantia de fàbrica." },
+    es: { title: "Perfiles PVC Cortizo — Partner Oficial en Girona | ARA FINESTRA", description: "ARA FINESTRA es distribuidor oficial de Cortizo en Cataluña. Sistemas de ventanas PVC de alta calidad con garantía de fábrica." },
+    en: { title: "Cortizo PVC Profiles — Official Partner in Girona | ARA FINESTRA", description: "ARA FINESTRA is an official Cortizo distributor in Catalonia. High-quality PVC window systems with factory warranty." },
   },
   subvencions: {
-    title: "Subvencions per Finestres PVC | ARA FINESTRA",
-    description:
-      "Descobreix les subvencions disponibles per a la renovació de finestres PVC a Catalunya. T'ajudem amb la tramitació completa.",
+    ca: { title: "Subvencions per Finestres PVC | ARA FINESTRA", description: "Descobreix les subvencions disponibles per a la renovació de finestres PVC a Catalunya. T'ajudem amb la tramitació completa." },
+    es: { title: "Subvenciones para Ventanas PVC | ARA FINESTRA", description: "Descubre las subvenciones disponibles para la renovación de ventanas PVC en Cataluña. Te ayudamos con la tramitación completa." },
+    en: { title: "PVC Window Subsidies | ARA FINESTRA", description: "Discover available subsidies for PVC window renovation in Catalonia. We help you with the complete application process." },
   },
   pressupost: {
-    title: "Calculadora de Pressupost | ARA FINESTRA",
-    description:
-      "Calcula el pressupost per a les teves finestres PVC Cortizo en línia. Preu orientatiu immediat i sense compromís.",
+    ca: { title: "Calculadora Online de Pressupost Finestres PVC | ARA FINESTRA", description: "Calcula el pressupost per a les teves finestres PVC Cortizo en línia. Preu orientatiu immediat i sense compromís." },
+    es: { title: "Calculadora Online de Presupuesto Ventanas PVC | ARA FINESTRA", description: "Calcula el presupuesto para tus ventanas PVC Cortizo online. Precio orientativo inmediato y sin compromiso." },
+    en: { title: "Online PVC Window Budget Calculator | ARA FINESTRA", description: "Calculate your Cortizo PVC window budget online. Immediate indicative price with no obligation." },
   },
   projectes: {
-    title: "Projectes Realitzats | ARA FINESTRA",
-    description:
-      "Descobreix els nostres projectes d'instal·lació de finestres PVC Cortizo a Catalunya. Fotos reals de treballs acabats.",
+    ca: { title: "Projectes de Finestres PVC Cortizo a Girona | ARA FINESTRA", description: "Descobreix els nostres projectes d'instal·lació de finestres PVC Cortizo a Catalunya. Fotos reals de treballs acabats." },
+    es: { title: "Proyectos de Ventanas PVC Cortizo en Girona | ARA FINESTRA", description: "Descubre nuestros proyectos de instalación de ventanas PVC Cortizo en Cataluña. Fotos reales de trabajos terminados." },
+    en: { title: "Cortizo PVC Window Projects in Girona | ARA FINESTRA", description: "Discover our Cortizo PVC window installation projects in Catalonia. Real photos of finished work." },
   },
   blog: {
-    title: "Blog | ARA FINESTRA",
-    description:
-      "Articles i consells sobre finestres PVC, eficiència energètica, subvencions i reformes. Mantén-te informat amb ARA FINESTRA.",
+    ca: { title: "Blog sobre Finestres PVC i Eficiència Energètica | ARA FINESTRA", description: "Articles i consells sobre finestres PVC, eficiència energètica, subvencions i reformes. Mantén-te informat amb ARA FINESTRA." },
+    es: { title: "Blog sobre Ventanas PVC y Eficiencia Energética | ARA FINESTRA", description: "Artículos y consejos sobre ventanas PVC, eficiencia energética, subvenciones y reformas. Mantente informado con ARA FINESTRA." },
+    en: { title: "PVC Windows & Energy Efficiency Blog | ARA FINESTRA", description: "Articles and tips about PVC windows, energy efficiency, subsidies, and renovations. Stay informed with ARA FINESTRA." },
   },
   opinions: {
-    title: "Opinions de Clients | ARA FINESTRA",
-    description:
-      "Llegeix les opinions reals dels nostres clients. Descobreix per què confien en ARA FINESTRA per a les seves finestres PVC Cortizo.",
+    ca: { title: "Opinions i Valoracions de Clients Reals | ARA FINESTRA", description: "Llegeix les opinions reals dels nostres clients. Descobreix per què confien en ARA FINESTRA per a les seves finestres PVC Cortizo." },
+    es: { title: "Opiniones y Valoraciones de Clientes Reales | ARA FINESTRA", description: "Lee las opiniones reales de nuestros clientes. Descubre por qué confían en ARA FINESTRA para sus ventanas PVC Cortizo." },
+    en: { title: "Real Customer Reviews & Ratings | ARA FINESTRA", description: "Read real customer reviews. Discover why they trust ARA FINESTRA for their Cortizo PVC windows." },
   },
   contacte: {
-    title: "Contacte | ARA FINESTRA",
-    description:
-      "Contacta amb ARA FINESTRA. Demana pressupost sense compromís per a finestres PVC Cortizo a Catalunya.",
+    ca: { title: "Contacta — Pressupost Gratuït Finestres PVC Girona | ARA FINESTRA", description: "Contacta amb ARA FINESTRA. Demana pressupost sense compromís per a finestres PVC Cortizo a Catalunya." },
+    es: { title: "Contacto — Presupuesto Gratis Ventanas PVC Girona | ARA FINESTRA", description: "Contacta con ARA FINESTRA. Pide presupuesto sin compromiso para ventanas PVC Cortizo en Cataluña." },
+    en: { title: "Contact — Free PVC Window Quote in Girona | ARA FINESTRA", description: "Contact ARA FINESTRA. Request a free quote for Cortizo PVC windows in Catalonia." },
   },
   zones: {
-    title: "Zones de Servei | ARA FINESTRA",
-    description:
-      "ARA FINESTRA ofereix serveis d'instal·lació de finestres PVC Cortizo a tota Catalunya. Consulta la teva zona.",
+    ca: { title: "Zones de Servei — Finestres PVC a Girona i Maresme | ARA FINESTRA", description: "ARA FINESTRA ofereix serveis d'instal·lació de finestres PVC Cortizo a tota Catalunya. Consulta la teva zona." },
+    es: { title: "Zonas de Servicio — Ventanas PVC en Girona y Maresme | ARA FINESTRA", description: "ARA FINESTRA ofrece servicios de instalación de ventanas PVC Cortizo en toda Cataluña. Consulta tu zona." },
+    en: { title: "Service Areas — PVC Windows in Girona & Maresme | ARA FINESTRA", description: "ARA FINESTRA offers Cortizo PVC window installation services throughout Catalonia. Check your area." },
   },
   proces: {
-    title: "El Nostre Procés | ARA FINESTRA",
-    description:
-      "Coneix el procés d'instal·lació de finestres PVC Cortizo amb ARA FINESTRA. Des de la consulta inicial fins a la instal·lació final.",
+    ca: { title: "Procés d'Instal·lació de Finestres PVC — 5 Passos | ARA FINESTRA", description: "Coneix el procés d'instal·lació de finestres PVC Cortizo amb ARA FINESTRA. Des de la consulta inicial fins a la instal·lació final." },
+    es: { title: "Proceso de Instalación de Ventanas PVC — 5 Pasos | ARA FINESTRA", description: "Conoce el proceso de instalación de ventanas PVC Cortizo con ARA FINESTRA. Desde la consulta inicial hasta la instalación final." },
+    en: { title: "PVC Window Installation Process — 5 Steps | ARA FINESTRA", description: "Learn about the Cortizo PVC window installation process with ARA FINESTRA. From initial consultation to final installation." },
   },
   "serveis/finestres-pvc": {
-    title: "Finestres PVC Cortizo | ARA FINESTRA",
-    description:
-      "Finestres PVC Cortizo d'alta qualitat. Aïllament tèrmic i acústic superior. Instal·lació professional a Catalunya.",
+    ca: { title: "Finestres PVC Cortizo | ARA FINESTRA", description: "Finestres PVC Cortizo d'alta qualitat. Aïllament tèrmic i acústic superior. Instal·lació professional a Catalunya." },
+    es: { title: "Ventanas PVC Cortizo | ARA FINESTRA", description: "Ventanas PVC Cortizo de alta calidad. Aislamiento térmico y acústico superior. Instalación profesional en Cataluña." },
+    en: { title: "Cortizo PVC Windows | ARA FINESTRA", description: "High-quality Cortizo PVC windows. Superior thermal and acoustic insulation. Professional installation in Catalonia." },
   },
   "serveis/portes-corredisses": {
-    title: "Portes Corredisses PVC | ARA FINESTRA",
-    description:
-      "Portes corredisses PVC Cortizo. Estalvia espai amb sistemes lliscants d'alta qualitat. Instal·lació a Catalunya.",
+    ca: { title: "Portes Corredisses PVC | ARA FINESTRA", description: "Portes corredisses PVC Cortizo. Estalvia espai amb sistemes lliscants d'alta qualitat. Instal·lació a Catalunya." },
+    es: { title: "Puertas Correderas PVC | ARA FINESTRA", description: "Puertas correderas PVC Cortizo. Ahorra espacio con sistemas deslizantes de alta calidad. Instalación en Cataluña." },
+    en: { title: "PVC Sliding Doors | ARA FINESTRA", description: "Cortizo PVC sliding doors. Save space with high-quality sliding systems. Installation in Catalonia." },
   },
   "serveis/persianes": {
-    title: "Persianes PVC | ARA FINESTRA",
-    description:
-      "Persianes PVC Cortizo per a la teva llar. Aïllament, seguretat i durabilitat. Instal·lació professional a Catalunya.",
+    ca: { title: "Persianes PVC | ARA FINESTRA", description: "Persianes PVC Cortizo per a la teva llar. Aïllament, seguretat i durabilitat. Instal·lació professional a Catalunya." },
+    es: { title: "Persianas PVC | ARA FINESTRA", description: "Persianas PVC Cortizo para tu hogar. Aislamiento, seguridad y durabilidad. Instalación profesional en Cataluña." },
+    en: { title: "PVC Shutters | ARA FINESTRA", description: "Cortizo PVC shutters for your home. Insulation, security, and durability. Professional installation in Catalonia." },
   },
   "serveis/mosquiteres": {
-    title: "Mosquiteres | ARA FINESTRA",
-    description:
-      "Mosquiteres a mida per a finestres i portes. Protecció contra insectes sense renunciar a la ventilació. ARA FINESTRA.",
+    ca: { title: "Mosquiteres | ARA FINESTRA", description: "Mosquiteres a mida per a finestres i portes. Protecció contra insectes sense renunciar a la ventilació. ARA FINESTRA." },
+    es: { title: "Mosquiteras | ARA FINESTRA", description: "Mosquiteras a medida para ventanas y puertas. Protección contra insectos sin renunciar a la ventilación. ARA FINESTRA." },
+    en: { title: "Mosquito Nets | ARA FINESTRA", description: "Custom mosquito nets for windows and doors. Insect protection without sacrificing ventilation. ARA FINESTRA." },
   },
   "qui-som": {
-    title: "Qui Som | ARA FINESTRA — Instal·ladors de Finestres PVC a Girona",
-    description:
-      "Coneix l'equip d'ARA FINESTRA. Instal·ladors certificats Cortizo a Girona amb més de 500 projectes completats. Empresa local, servei professional.",
+    ca: { title: "Qui Som | ARA FINESTRA — Instal·ladors de Finestres PVC a Girona", description: "Coneix l'equip d'ARA FINESTRA. Instal·ladors certificats Cortizo a Girona amb més de 500 projectes completats. Empresa local, servei professional." },
+    es: { title: "Quiénes Somos | ARA FINESTRA — Instaladores de Ventanas PVC en Girona", description: "Conoce al equipo de ARA FINESTRA. Instaladores certificados Cortizo en Girona con más de 500 proyectos completados. Empresa local, servicio profesional." },
+    en: { title: "About Us | ARA FINESTRA — PVC Window Installers in Girona", description: "Meet the ARA FINESTRA team. Certified Cortizo installers in Girona with over 500 completed projects. Local company, professional service." },
   },
   "visita-gratuita": {
-    title: "Visita Gratuïta a Domicili | ARA FINESTRA",
-    description:
-      "Demana una visita tècnica gratuïta. Un instal·lador certificat visitarà casa teva en 48h per prendre mides i fer-te un pressupost exacte sense compromís.",
+    ca: { title: "Visita Gratuïta a Domicili | ARA FINESTRA", description: "Demana una visita tècnica gratuïta. Un instal·lador certificat visitarà casa teva en 48h per prendre mides i fer-te un pressupost exacte sense compromís." },
+    es: { title: "Visita Gratuita a Domicilio | ARA FINESTRA", description: "Solicita una visita técnica gratuita. Un instalador certificado visitará tu casa en 48h para tomar medidas y hacerte un presupuesto exacto sin compromiso." },
+    en: { title: "Free Home Visit | ARA FINESTRA", description: "Request a free technical visit. A certified installer will visit your home within 48h to take measurements and provide an exact no-obligation quote." },
   },
   financament: {
-    title: "Finançament Sense Interessos | ARA FINESTRA",
-    description:
-      "Finança les teves finestres PVC de 3 a 24 mesos sense interessos. Sense entrada, sense sorpreses. Combinable amb subvencions Next Generation.",
+    ca: { title: "Finançament Sense Interessos | ARA FINESTRA", description: "Finança les teves finestres PVC de 3 a 24 mesos sense interessos. Sense entrada, sense sorpreses. Combinable amb subvencions Next Generation." },
+    es: { title: "Financiación Sin Intereses | ARA FINESTRA", description: "Financia tus ventanas PVC de 3 a 24 meses sin intereses. Sin entrada, sin sorpresas. Combinable con subvenciones Next Generation." },
+    en: { title: "Interest-Free Financing | ARA FINESTRA", description: "Finance your PVC windows from 3 to 24 months interest-free. No down payment, no surprises. Combinable with Next Generation subsidies." },
+  },
+  preus: {
+    ca: { title: "Preus Finestres PVC Cortizo | ARA FINESTRA", description: "Consulta els preus de finestres PVC Cortizo a Girona. Des de 280€ per finestra. Taula de preus per model, subvencions i finançament disponibles." },
+    es: { title: "Precios Ventanas PVC Cortizo | ARA FINESTRA", description: "Consulta los precios de ventanas PVC Cortizo en Girona. Desde 280€ por ventana. Tabla de precios por modelo, subvenciones y financiación disponibles." },
+    en: { title: "Cortizo PVC Window Prices | ARA FINESTRA", description: "Check Cortizo PVC window prices in Girona. From €280 per window. Price table by model, subsidies and financing available." },
   },
   "legal/privacitat": {
-    title: "Política de Privacitat | ARA FINESTRA",
-    description:
-      "Política de privacitat d'ARA FINESTRA (Renova't Costa Brava SL). Informació sobre el tractament de dades personals conforme al RGPD.",
+    ca: { title: "Política de Privacitat | ARA FINESTRA", description: "Política de privacitat d'ARA FINESTRA (Renova't Costa Brava SL). Informació sobre el tractament de dades personals conforme al RGPD." },
+    es: { title: "Política de Privacidad | ARA FINESTRA", description: "Política de privacidad de ARA FINESTRA (Renova't Costa Brava SL). Información sobre el tratamiento de datos personales conforme al RGPD." },
+    en: { title: "Privacy Policy | ARA FINESTRA", description: "ARA FINESTRA privacy policy (Renova't Costa Brava SL). Information about personal data processing in accordance with GDPR." },
   },
   "legal/termes": {
-    title: "Termes i Condicions | ARA FINESTRA",
-    description:
-      "Termes i condicions d'ús del lloc web arafinestra.com i dels serveis d'instal·lació de finestres PVC Cortizo.",
+    ca: { title: "Termes i Condicions | ARA FINESTRA", description: "Termes i condicions d'ús del lloc web arafinestra.com i dels serveis d'instal·lació de finestres PVC Cortizo." },
+    es: { title: "Términos y Condiciones | ARA FINESTRA", description: "Términos y condiciones de uso del sitio web arafinestra.com y de los servicios de instalación de ventanas PVC Cortizo." },
+    en: { title: "Terms and Conditions | ARA FINESTRA", description: "Terms and conditions of use for the arafinestra.com website and Cortizo PVC window installation services." },
   },
   "legal/cookies": {
-    title: "Política de Cookies | ARA FINESTRA",
-    description:
-      "Informació sobre les cookies utilitzades al lloc web arafinestra.com i com gestionar-les.",
+    ca: { title: "Política de Cookies | ARA FINESTRA", description: "Informació sobre les cookies utilitzades al lloc web arafinestra.com i com gestionar-les." },
+    es: { title: "Política de Cookies | ARA FINESTRA", description: "Información sobre las cookies utilizadas en el sitio web arafinestra.com y cómo gestionarlas." },
+    en: { title: "Cookie Policy | ARA FINESTRA", description: "Information about cookies used on the arafinestra.com website and how to manage them." },
   },
   "legal/avis-legal": {
-    title: "Avís Legal | ARA FINESTRA",
-    description:
-      "Avís legal d'ARA FINESTRA (Renova't Costa Brava SL, CIF B42997049). Dades identificatives conforme a la LSSI-CE.",
+    ca: { title: "Avís Legal | ARA FINESTRA", description: "Avís legal d'ARA FINESTRA (Renova't Costa Brava SL, CIF B42997049). Dades identificatives conforme a la LSSI-CE." },
+    es: { title: "Aviso Legal | ARA FINESTRA", description: "Aviso legal de ARA FINESTRA (Renova't Costa Brava SL, CIF B42997049). Datos identificativos conforme a la LSSI-CE." },
+    en: { title: "Legal Notice | ARA FINESTRA", description: "ARA FINESTRA legal notice (Renova't Costa Brava SL, CIF B42997049). Identification data in accordance with LSSI-CE." },
   },
 };
 
@@ -191,6 +198,7 @@ function buildBlogJsonLd(post: {
   image?: string;
   author?: string;
   publishedAt?: Date | null;
+  updatedAt?: Date | null;
 }): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
@@ -212,6 +220,16 @@ function buildBlogJsonLd(post: {
     ...(post.publishedAt
       ? { datePublished: post.publishedAt.toISOString() }
       : {}),
+    ...(post.updatedAt
+      ? { dateModified: post.updatedAt.toISOString() }
+      : post.publishedAt
+        ? { dateModified: post.publishedAt.toISOString() }
+        : {}),
+    about: [
+      { "@type": "Thing", name: "Ventanas PVC" },
+      { "@type": "Thing", name: "Aislamiento térmico" },
+    ],
+    mainEntityOfPage: { "@type": "WebPage", "@id": post.url },
   };
 }
 
@@ -234,17 +252,37 @@ function getStaticMeta(lang: string, routePath: string): RouteMeta | null {
       canonicalUrl: url,
       jsonLd: {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        name: "ARA FINESTRA",
-        url: DOMAIN,
-        description: home.description,
-        logo: `${DOMAIN}/logo.png`,
-        areaServed: { "@type": "Place", name: "Catalunya" },
-        contactPoint: {
-          "@type": "ContactPoint",
-          contactType: "sales",
-          availableLanguage: ["Catalan", "Spanish", "English"],
-        },
+        "@graph": [
+          {
+            "@type": "Organization",
+            name: "ARA FINESTRA",
+            url: DOMAIN,
+            description: home.description,
+            logo: `${DOMAIN}/logo.png`,
+            areaServed: { "@type": "Place", name: "Catalunya" },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "sales",
+              telephone: "+34611500372",
+              availableLanguage: ["Catalan", "Spanish", "English"],
+            },
+            sameAs: [
+              "https://instagram.com/arafinestra",
+              "https://facebook.com/arafinestra",
+            ],
+          },
+          {
+            "@type": "WebSite",
+            name: "ARA FINESTRA",
+            url: DOMAIN,
+            inLanguage: ["ca", "es", "en"],
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${DOMAIN}/ca/blog?q={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+          },
+        ],
       },
     };
     staticMetaCache.set(cacheKey, meta);
@@ -252,8 +290,9 @@ function getStaticMeta(lang: string, routePath: string): RouteMeta | null {
   }
 
   // Known static routes
-  const entry = STATIC_ROUTES[routePath];
-  if (entry) {
+  const langEntries = STATIC_ROUTES[routePath];
+  if (langEntries) {
+    const entry = langEntries[lang] || langEntries.ca;
     const url = `${DOMAIN}/${lang}/${routePath}`;
     const meta: RouteMeta = {
       title: entry.title,
@@ -290,6 +329,7 @@ async function getBlogPostMeta(lang: string, slug: string): Promise<RouteMeta | 
         imagenPortada: blogPosts.imagenPortada,
         autor: blogPosts.autor,
         publishedAt: blogPosts.publishedAt,
+        createdAt: blogPosts.createdAt,
       })
       .from(blogPosts)
       .where(and(eq(blogPosts.slug, slug), eq(blogPosts.published, true)))
@@ -311,6 +351,12 @@ async function getBlogPostMeta(lang: string, slug: string): Promise<RouteMeta | 
       description,
       ogImage: post.imagenPortada || DEFAULT_OG_IMAGE,
       canonicalUrl: url,
+      ogType: "article",
+      articleMeta: {
+        publishedTime: post.publishedAt?.toISOString(),
+        modifiedTime: (post.publishedAt || post.createdAt)?.toISOString(),
+        author: post.autor || "ARA FINESTRA",
+      },
       jsonLd: buildBlogJsonLd({
         title,
         description,
@@ -318,6 +364,7 @@ async function getBlogPostMeta(lang: string, slug: string): Promise<RouteMeta | 
         image: post.imagenPortada || undefined,
         author: post.autor || undefined,
         publishedAt: post.publishedAt,
+        updatedAt: post.createdAt,
       }),
     };
   } catch (err) {
@@ -409,15 +456,23 @@ export async function getMetaForRoute(reqPath: string): Promise<RouteMeta> {
   };
 }
 
+// OG locale mapping
+const OG_LOCALE_MAP: Record<string, string> = { ca: "ca_ES", es: "es_ES", en: "en_US" };
+
 /**
  * Inject meta tags into the HTML template string.
  */
-export function injectMeta(template: string, meta: RouteMeta): string {
+export function injectMeta(template: string, meta: RouteMeta, reqPath?: string): string {
   // Replace <title>
   let html = template.replace(
     /<title>[^<]*<\/title>/,
     `<title>${escapeHtml(meta.title)}</title>`
   );
+
+  // Extract lang from canonical URL or request path for hreflang/og:locale
+  const { lang, routePath } = parsePath(reqPath || meta.canonicalUrl.replace(DOMAIN, ""));
+  const ogType = meta.ogType || "website";
+  const ogLocale = OG_LOCALE_MAP[lang] || "ca_ES";
 
   // Build meta tags to insert after </title>
   const metaTags = [
@@ -426,14 +481,45 @@ export function injectMeta(template: string, meta: RouteMeta): string {
     `<meta property="og:description" content="${escapeAttr(meta.description)}" />`,
     `<meta property="og:url" content="${escapeAttr(meta.canonicalUrl)}" />`,
     `<meta property="og:image" content="${escapeAttr(meta.ogImage)}" />`,
-    `<meta property="og:type" content="website" />`,
+    `<meta property="og:type" content="${ogType}" />`,
     `<meta property="og:site_name" content="ARA FINESTRA" />`,
+    `<meta property="og:locale" content="${ogLocale}" />`,
+  ];
+
+  // og:locale:alternate for the other two languages
+  for (const l of VALID_LANGS) {
+    if (l !== lang) {
+      metaTags.push(`<meta property="og:locale:alternate" content="${OG_LOCALE_MAP[l] || l}" />`);
+    }
+  }
+
+  // Article-specific OG tags for blog posts
+  if (ogType === "article" && meta.articleMeta) {
+    if (meta.articleMeta.publishedTime) {
+      metaTags.push(`<meta property="article:published_time" content="${meta.articleMeta.publishedTime}" />`);
+    }
+    if (meta.articleMeta.modifiedTime) {
+      metaTags.push(`<meta property="article:modified_time" content="${meta.articleMeta.modifiedTime}" />`);
+    }
+    if (meta.articleMeta.author) {
+      metaTags.push(`<meta property="article:author" content="${escapeAttr(meta.articleMeta.author)}" />`);
+    }
+  }
+
+  metaTags.push(
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(meta.title)}" />`,
     `<meta name="twitter:description" content="${escapeAttr(meta.description)}" />`,
     `<meta name="twitter:image" content="${escapeAttr(meta.ogImage)}" />`,
     `<link rel="canonical" href="${escapeAttr(meta.canonicalUrl)}" />`,
-  ];
+  );
+
+  // Hreflang alternate links (server-side — critical for crawlers)
+  const pathSuffix = routePath ? `/${routePath}` : "";
+  for (const l of VALID_LANGS) {
+    metaTags.push(`<link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}${pathSuffix}" />`);
+  }
+  metaTags.push(`<link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca${pathSuffix}" />`);
 
   if (meta.jsonLd) {
     metaTags.push(

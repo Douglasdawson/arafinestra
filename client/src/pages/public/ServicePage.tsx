@@ -246,7 +246,7 @@ export default function ServicePage() {
   }
 
   const faqs: { question: string; answer: string }[] = [];
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 8; i++) {
     const qKey = `service_pages.${serviceType}.faq_${i}_q`;
     const aKey = `service_pages.${serviceType}.faq_${i}_a`;
     const q = t(qKey);
