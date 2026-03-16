@@ -71,7 +71,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="py-2 text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-2 text-sm text-slate-300 hover:text-white transition-colors link-underline"
                   >
                     {link.label}
                   </Link>
@@ -90,7 +90,7 @@ export default function Footer() {
                 <li key={city}>
                   <Link
                     to={`/${prefix}/zones/${city.toLowerCase()}`}
-                    className="py-2 text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-2 text-sm text-slate-300 hover:text-white transition-colors link-underline"
                   >
                     {city}
                   </Link>
@@ -109,7 +109,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="py-2 text-sm text-slate-400 hover:text-white transition-colors link-underline"
+                    className="py-2 text-sm text-slate-300 hover:text-white transition-colors link-underline"
                   >
                     {link.label}
                   </Link>
@@ -123,7 +123,7 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-100 mb-4">
               {t("footer.contact")}
             </h3>
-            <ul className="space-y-2 text-sm text-slate-400">
+            <ul className="space-y-2 text-sm text-slate-300">
               <li>
                 <a
                   href={`tel:${PHONE.replace(/\s/g, "")}`}
@@ -140,10 +140,10 @@ export default function Footer() {
                   {EMAIL}
                 </a>
               </li>
-              <li className="text-slate-400">
+              <li className="text-slate-300">
                 {t("contact.address")}: Girona, Catalunya
               </li>
-              <li className="text-slate-400">
+              <li className="text-slate-300">
                 {t("contact.hours")}: Dl-Dv 9:00-18:00
               </li>
             </ul>
@@ -154,11 +154,11 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-navy-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <Link to="/admin/login" className="text-xs text-slate-400 hover:text-slate-300 transition-colors">
+          <Link to="/admin/login" className="text-xs text-slate-300 hover:text-slate-300 transition-colors">
             &copy; 2026 Renova't Costa Brava SL. {t("footer.rights")}.
           </Link>
 
-          <div className="flex items-center gap-4 text-xs text-slate-400">
+          <div className="flex items-center gap-4 text-xs text-slate-300">
             <Link to={`/${prefix}/legal/privacitat`} className="py-2 hover:text-slate-300 transition-colors">
               {t("legal.privacy_title")}
             </Link>
@@ -174,13 +174,13 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="text-xs text-slate-400">Partner Cortizo</span>
+            <span className="text-xs text-slate-300">Partner Cortizo</span>
             {/* Instagram */}
             <a
               href="https://instagram.com/arafinestra"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-slate-400 hover:text-white transition-colors"
+              className="p-3 text-slate-300 hover:text-white transition-colors"
               aria-label="Instagram"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -192,7 +192,7 @@ export default function Footer() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-slate-400 hover:text-white transition-colors"
+              className="p-3 text-slate-300 hover:text-white transition-colors"
               aria-label="Facebook"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

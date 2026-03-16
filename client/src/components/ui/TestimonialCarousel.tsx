@@ -17,7 +17,7 @@ interface TestimonialCarouselProps {
 
 function StarRating({ stars }: { stars: number }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex gap-0.5" role="img" aria-label={`${stars} / 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <svg
           key={i}
@@ -54,7 +54,7 @@ export default function TestimonialCarousel({ testimonials, lang }: TestimonialC
     <div className="relative">
       <button
         onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-slate-600 hover:text-brand transition-colors hidden md:flex"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center text-slate-600 hover:text-brand transition-colors hidden md:flex"
         aria-label="Previous"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,7 +88,7 @@ export default function TestimonialCarousel({ testimonials, lang }: TestimonialC
 
       <button
         onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-slate-600 hover:text-brand transition-colors hidden md:flex"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center text-slate-600 hover:text-brand transition-colors hidden md:flex"
         aria-label="Next"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

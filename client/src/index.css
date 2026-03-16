@@ -168,6 +168,12 @@ html {
   word-break: break-word;
 }
 
+/* Touch feedback for interactive elements */
+button:active:not(:disabled),
+a[role="button"]:active {
+  transform: scale(0.97);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

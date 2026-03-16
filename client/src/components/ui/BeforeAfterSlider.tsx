@@ -33,8 +33,8 @@ export default function BeforeAfterSlider({
       );
     };
     const onUp = () => setIsDragging(false);
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("mouseup", onUp);
     window.addEventListener("touchend", onUp);
     return () => {
@@ -98,7 +98,7 @@ export default function BeforeAfterSlider({
         style={{ left: `${splitPos}%`, transform: "translateX(-50%)" }}
       >
         <div className="w-[2px] h-full bg-white shadow-sm" />
-        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center">
+        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center">
           <svg
             width="18"
             height="18"

@@ -94,7 +94,7 @@ export default function SocialProofToast() {
 
   return (
     <div
-      className="fixed bottom-28 md:bottom-6 left-4 z-[45] max-w-xs animate-slideInToast"
+      className="fixed bottom-28 md:bottom-6 left-4 right-4 sm:right-auto z-[45] max-w-xs animate-slideInToast"
       role="status"
       aria-live="polite"
     >
@@ -107,7 +107,7 @@ export default function SocialProofToast() {
         <p className="text-sm text-slate-700 leading-snug">{message}</p>
         <button
           onClick={handleDismiss}
-          className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 rounded-full"
+          className="absolute top-2 right-2 w-9 h-9 flex items-center justify-center text-slate-500 hover:text-slate-700 active:text-slate-800 rounded-full"
           aria-label="Close"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>

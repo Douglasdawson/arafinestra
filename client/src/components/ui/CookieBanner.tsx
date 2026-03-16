@@ -20,6 +20,16 @@ export default function CookieBanner() {
     }
   }, []);
 
+  // Lock body scroll when banner is visible
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [visible]);
+
   const handleAccept = () => {
     localStorage.setItem(CONSENT_KEY, "accepted");
     setVisible(false);
@@ -54,16 +64,16 @@ export default function CookieBanner() {
             </Link>
             </p>
           </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 flex-shrink-0 w-full sm:w-auto">
             <button
               onClick={handleReject}
-              className="px-5 py-3 text-sm font-medium border border-white/40 rounded-lg hover:bg-white/10 transition-colors"
+              className="px-5 py-3.5 text-sm font-medium border border-white/40 rounded-lg hover:bg-white/10 active:bg-white/20 transition-colors text-center"
             >
               {t("cookies_banner.reject")}
             </button>
             <button
               onClick={handleAccept}
-              className="px-5 py-3 text-sm font-medium bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors"
+              className="px-5 py-3.5 text-sm font-medium bg-brand text-white rounded-lg hover:bg-brand-dark active:bg-brand-dark transition-colors text-center"
             >
               {t("cookies_banner.accept")}
             </button>

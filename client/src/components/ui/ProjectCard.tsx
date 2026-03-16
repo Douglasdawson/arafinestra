@@ -21,6 +21,8 @@ export default function ProjectCard({ photo, title, location, link }: ProjectCar
           <img
             src={photo}
             alt={title}
+            width={400}
+            height={300}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
             onError={() => setImgError(true)}

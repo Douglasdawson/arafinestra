@@ -84,6 +84,16 @@ export default function ExitPopup() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [visible, handleClose]);
 
+  // Lock body scroll when popup is visible
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [visible]);
+
   useEffect(() => {
     if (isDismissed()) return;
     if (!isAllowedRoute(location.pathname)) return;
@@ -165,7 +175,7 @@ export default function ExitPopup() {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute top-3 right-3 w-12 h-12 flex items-center justify-center rounded-lg text-white/70 hover:text-white text-2xl leading-none"
+            className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center rounded-lg text-white/70 hover:text-white active:text-white text-2xl leading-none"
             aria-label="Close"
           >
             &times;

@@ -5,7 +5,7 @@ export default function LoadingSpinner() {
         <div className="absolute inset-0 border-2 border-slate-200 rounded-full" />
         <div className="absolute inset-0 border-2 border-transparent border-t-navy-900 rounded-full animate-spin" />
       </div>
-      <span className="text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase">
+      <span className="text-sm font-semibold tracking-[0.2em] text-slate-500 uppercase">
         ARA FINESTRA
       </span>
     </div>

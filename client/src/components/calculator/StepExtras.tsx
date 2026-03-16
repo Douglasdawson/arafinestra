@@ -79,6 +79,8 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
                 </span>
                 {/* Toggle switch */}
                 <div
+                  role="switch"
+                  aria-checked={isActive}
                   className={`w-12 h-7 rounded-full transition-colors duration-200 relative ${
                     isActive ? "bg-brand" : "bg-gray-300"
                   }`}

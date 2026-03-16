@@ -188,7 +188,7 @@ function WindowMaskHero({
 
   return (
     <section ref={sectionRef} className="relative h-[180vh]">
-      <div className="sticky top-0 h-screen overflow-hidden" style={{ perspective: "1200px" }}>
+      <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ perspective: "1200px" }}>
         {/* Background — bright landscape behind the window */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100 z-0">
           <div
@@ -449,7 +449,7 @@ function PinnedStorytelling({ t }: { t: (k: string) => string }) {
   return (
     <div ref={outerRef} className="relative h-[300vh]">
       <motion.div
-        className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+        className="sticky top-0 h-[100svh] flex items-center justify-center overflow-hidden"
         style={{ backgroundColor: bgColor }}
       >
         {/* Stage 1 */}

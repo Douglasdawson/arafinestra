@@ -71,7 +71,7 @@ export default function UrgencyBanner() {
         </Link>
         <button
           onClick={handleDismiss}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 text-white/70 hover:text-white"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white active:text-white"
           aria-label="Close"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>

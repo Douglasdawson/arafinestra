@@ -178,7 +178,7 @@ export default function Calculator() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 py-6 pb-24 sm:pb-6">
+        <div className="max-w-6xl mx-auto px-4 py-6 pb-32 sm:pb-6">
           {/* Progress */}
           {!isResult && <ProgressBar currentStep={state.step} />}
 
@@ -368,8 +368,8 @@ export default function Calculator() {
                   disabled={state.step <= 1}
                   className={`px-5 py-3 rounded-lg font-medium transition-all ${
                     state.step <= 1
-                      ? "text-gray-300 cursor-not-allowed"
-                      : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "text-gray-600 hover:text-gray-800 hover:bg-gray-100 active:bg-gray-200 active:scale-[0.97]"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -387,7 +387,7 @@ export default function Calculator() {
                     className={`px-8 py-3 rounded-lg font-semibold transition-all ${
                       canAdvance(state)
                         ? "bg-brand hover:bg-brand-dark text-white shadow-md hover:shadow-lg"
-                        : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        : "bg-gray-200 text-gray-500 cursor-not-allowed"
                     }`}
                   >
                     <span className="flex items-center gap-2">
@@ -461,7 +461,7 @@ export default function Calculator() {
                       <button
                         type="button"
                         onClick={() => setSaveOpen(false)}
-                        className="p-2 text-gray-300 hover:text-gray-500 transition-colors"
+                        className="p-3 text-gray-400 hover:text-gray-600 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -492,6 +492,7 @@ function FaqAccordionItem({ question, answer }: { question: string; answer: stri
     <div className="border-b border-slate-200">
       <button
         onClick={() => setOpen(!open)}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(!open); } }}
         aria-expanded={open}
         className="w-full flex items-center justify-between py-5 text-left group"
       >

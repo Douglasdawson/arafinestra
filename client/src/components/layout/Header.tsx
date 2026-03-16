@@ -60,6 +60,16 @@ export default function Header() {
     setMobileOpen(false);
   }, [location.pathname]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   const serviceLinks = [
     { to: `/${prefix}/serveis/finestres-pvc`, label: t("nav.windows") },
     { to: `/${prefix}/serveis/portes-corredisses`, label: t("nav.sliding_doors") },
@@ -111,6 +121,10 @@ export default function Header() {
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setServicesOpen(!servicesOpen)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setServicesOpen(false);
+                    if (e.key === "ArrowDown" && !servicesOpen) { e.preventDefault(); setServicesOpen(true); }
+                  }}
                   aria-expanded={servicesOpen}
                   aria-haspopup="true"
                   className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
@@ -198,7 +212,7 @@ export default function Header() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-3.5 rounded-lg transition-colors ${
+              className={`lg:hidden p-4 rounded-lg transition-colors ${
                 scrolled || !isHome
                   ? "text-slate-700 hover:bg-slate-100"
                   : "text-white hover:bg-white/10"
