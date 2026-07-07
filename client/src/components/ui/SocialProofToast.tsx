@@ -11,6 +11,13 @@ export default function SocialProofToast() {
   const location = useLocation();
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState("");
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return sessionStorage.getItem(DISMISSED_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
 
   // Don't show on admin or calculator pages
   const isAllowed =
@@ -71,7 +78,7 @@ export default function SocialProofToast() {
   }, [visible, message]);
 
   useEffect(() => {
-    if (visible || !isAllowed) return;
+    if (visible || !isAllowed || dismissed) return;
     if (!message) return; // hasn't shown first one yet
 
     // Show next toast after HIDE_DURATION
@@ -81,10 +88,11 @@ export default function SocialProofToast() {
     }, HIDE_DURATION);
 
     return () => clearTimeout(nextTimer);
-  }, [visible, isAllowed, message, generateMessage]);
+  }, [visible, isAllowed, message, dismissed, generateMessage]);
 
   const handleDismiss = () => {
     setVisible(false);
+    setDismissed(true);
     try {
       sessionStorage.setItem(DISMISSED_KEY, "1");
     } catch { /* ignore */ }

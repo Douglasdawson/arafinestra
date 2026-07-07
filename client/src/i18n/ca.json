@@ -875,7 +875,7 @@
     "cta": "Calcula el teu estalvi real"
   },
   "calculator_anchoring": {
-    "daily_cost": "{{amount}}/dia durant 10 anys. Menys que un cafè.",
+    "daily_cost": "/dia durant 10 anys. Menys que un cafè.",
     "roi_title": "Retorn de la inversió",
     "roi_saving": "Estalvi energètic estimat: {{amount}}/any",
     "roi_payback": "La inversió es recupera en {{years}} anys",

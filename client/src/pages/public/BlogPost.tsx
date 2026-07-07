@@ -7,29 +7,30 @@ import ProgressiveImage from "../../components/ui/ProgressiveImage";
 import { localize } from "../../lib/localize";
 import { safeJsonLd } from "../../lib/jsonld";
 
+// La API (Drizzle) serializa las columnas en camelCase, no snake_case.
 interface Post {
   id: number;
   slug: string;
-  titulo_ca: string;
-  titulo_es: string;
-  titulo_en: string;
-  contenido_ca: string | null;
-  contenido_es: string | null;
-  contenido_en: string | null;
-  extracto_ca: string | null;
-  extracto_es: string | null;
-  extracto_en: string | null;
+  tituloCa: string;
+  tituloEs: string;
+  tituloEn: string;
+  contenidoCa: string | null;
+  contenidoEs: string | null;
+  contenidoEn: string | null;
+  extractoCa: string | null;
+  extractoEs: string | null;
+  extractoEn: string | null;
   categoria: string | null;
   autor: string | null;
-  imagen_portada: string | null;
-  meta_title_ca: string | null;
-  meta_title_es: string | null;
-  meta_title_en: string | null;
-  meta_description_ca: string | null;
-  meta_description_es: string | null;
-  meta_description_en: string | null;
-  published_at: string | null;
-  created_at: string;
+  imagenPortada: string | null;
+  metaTitleCa: string | null;
+  metaTitleEs: string | null;
+  metaTitleEn: string | null;
+  metaDescriptionCa: string | null;
+  metaDescriptionEs: string | null;
+  metaDescriptionEn: string | null;
+  publishedAt: string | null;
+  createdAt: string;
 }
 
 function readingTime(text: string | null): number {
@@ -173,9 +174,11 @@ export default function BlogPost() {
   }, [slug]);
 
   useEffect(() => {
-    fetch("/api/blog")
+    // La API pagina y devuelve { data, total, ... } — no un array. Además pedimos
+    // solo publicados y un límite pequeño (los "artículos relacionados").
+    fetch("/api/blog?published=true&limit=6")
       .then((r) => r.json())
-      .then((data) => setAllPosts(Array.isArray(data) ? data : []))
+      .then((payload) => setAllPosts(Array.isArray(payload?.data) ? payload.data : []))
       .catch(() => setAllPosts([]));
   }, []);
 
@@ -202,7 +205,7 @@ export default function BlogPost() {
   const metaTitle = localize(obj, "meta_title", currentLang) || title;
   const metaDesc = localize(obj, "meta_description", currentLang) || localize(obj, "extracto", currentLang);
   const minutes = readingTime(content);
-  const date = formatDate(post.published_at || post.created_at, currentLang);
+  const date = formatDate(post.publishedAt || post.createdAt, currentLang);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -219,16 +222,16 @@ export default function BlogPost() {
         title={metaTitle}
         description={metaDesc}
         path={`/blog/${post.slug}`}
-        image={post.imagen_portada || undefined}
+        image={post.imagenPortada || undefined}
       />
       {/* Breadcrumb schema */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }} />
 
       {/* Hero image */}
-      {post.imagen_portada && (
+      {post.imagenPortada && (
         <section className="relative h-48 sm:h-80 lg:h-96 bg-navy-800 overflow-hidden">
           <ProgressiveImage
-            src={post.imagen_portada}
+            src={post.imagenPortada}
             alt={title}
             className="w-full h-full object-cover opacity-70"
             loading="eager"
@@ -374,8 +377,8 @@ export default function BlogPost() {
         if (related.length === 0) {
           related = others.sort(
             (a, b) =>
-              new Date(b.published_at || b.created_at).getTime() -
-              new Date(a.published_at || a.created_at).getTime()
+              new Date(b.publishedAt || b.createdAt).getTime() -
+              new Date(a.publishedAt || a.createdAt).getTime()
           );
         }
         const shown = related.slice(0, 3);
@@ -397,10 +400,10 @@ export default function BlogPost() {
                         to={`/${prefix}/blog/${rp.slug}`}
                         className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full"
                       >
-                        {rp.imagen_portada && (
+                        {rp.imagenPortada && (
                           <div className="h-40">
                             <ProgressiveImage
-                              src={rp.imagen_portada}
+                              src={rp.imagenPortada}
                               alt={rpTitle}
                               className="w-full h-full object-cover"
                             />

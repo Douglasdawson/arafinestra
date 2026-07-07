@@ -7,21 +7,22 @@ import { localize } from "../../lib/localize";
 import ProgressiveImage from "../../components/ui/ProgressiveImage";
 import TrustBar from "../../components/ui/TrustBar";
 
+// La API (Drizzle) serializa las columnas en camelCase, no snake_case.
 interface ZoneData {
   id: number;
   slug: string;
-  nombre_ca: string;
-  nombre_es: string;
-  nombre_en: string;
-  contenido_ca: string | null;
-  contenido_es: string | null;
-  contenido_en: string | null;
-  meta_title_ca: string | null;
-  meta_title_es: string | null;
-  meta_title_en: string | null;
-  meta_description_ca: string | null;
-  meta_description_es: string | null;
-  meta_description_en: string | null;
+  nombreCa: string;
+  nombreEs: string;
+  nombreEn: string;
+  contenidoCa: string | null;
+  contenidoEs: string | null;
+  contenidoEn: string | null;
+  metaTitleCa: string | null;
+  metaTitleEs: string | null;
+  metaTitleEn: string | null;
+  metaDescriptionCa: string | null;
+  metaDescriptionEs: string | null;
+  metaDescriptionEn: string | null;
   latitud: number | null;
   longitud: number | null;
   published: boolean;
@@ -32,19 +33,19 @@ interface TestimonialItem {
   nombre: string;
   localidad: string | null;
   puntuacion: number;
-  texto_ca: string | null;
-  texto_es: string | null;
-  texto_en: string | null;
+  textoCa: string | null;
+  textoEs: string | null;
+  textoEn: string | null;
 }
 
 interface PortfolioItem {
   id: number;
-  titulo_ca: string;
-  titulo_es: string;
-  titulo_en: string;
+  tituloCa: string;
+  tituloEs: string;
+  tituloEn: string;
   localidad: string | null;
-  fotos_antes: string[];
-  fotos_despues: string[];
+  fotosAntes: string[];
+  fotosDespues: string[];
 }
 
 export default function Zone() {
@@ -61,45 +62,65 @@ export default function Zone() {
 
   useEffect(() => {
     if (!slug) return;
+    // Guardia de carrera: al navegar rápido entre zonas, ignorar respuestas
+    // de un slug anterior que lleguen tarde y pisen el contenido correcto.
+    let cancelled = false;
     setLoading(true);
+    setNotFound(false);
+    setZone(null);
+    setProjects([]);
+    setTestimonials([]);
     fetch(`/api/zones/${slug}`)
       .then((r) => {
         if (!r.ok) {
-          setNotFound(true);
-          setLoading(false);
+          if (!cancelled) {
+            setNotFound(true);
+            setLoading(false);
+          }
           return null;
         }
         return r.json();
       })
       .then((data) => {
-        if (data) {
-          setZone(data);
-          setLoading(false);
-          // Fetch portfolio for this zone's locality
-          const zoneName = data.nombre_ca || data.nombre_es || "";
-          if (zoneName) {
-            fetch(`/api/portfolio?published=true&localidad=${encodeURIComponent(zoneName)}`)
-              .then((r) => (r.ok ? r.json() : []))
-              .then(setProjects)
-              .catch(() => setProjects([]));
-          }
-          // Fetch testimonials and filter client-side by zone locality
-          fetch("/api/testimonials?published=true")
+        if (!data || cancelled) return;
+        setZone(data);
+        setLoading(false);
+        // Fetch portfolio for this zone's locality
+        const zoneName = data.nombreCa || data.nombreEs || "";
+        if (zoneName) {
+          fetch(`/api/portfolio?published=true&localidad=${encodeURIComponent(zoneName)}`)
             .then((r) => (r.ok ? r.json() : []))
-            .then((all: TestimonialItem[]) => {
-              const zn = (data.nombre_ca || data.nombre_es || "").toLowerCase();
-              const matched = all.filter(
-                (t) => t.localidad && t.localidad.toLowerCase() === zn
-              );
-              setTestimonials(matched.slice(0, 3));
+            .then((rows) => {
+              if (!cancelled) setProjects(rows);
             })
-            .catch(() => setTestimonials([]));
+            .catch(() => {
+              if (!cancelled) setProjects([]);
+            });
         }
+        // Fetch testimonials and filter client-side by zone locality
+        fetch("/api/testimonials?published=true")
+          .then((r) => (r.ok ? r.json() : []))
+          .then((all: TestimonialItem[]) => {
+            if (cancelled) return;
+            const zn = zoneName.toLowerCase();
+            const matched = all.filter(
+              (t) => t.localidad && t.localidad.toLowerCase() === zn
+            );
+            setTestimonials(matched.slice(0, 3));
+          })
+          .catch(() => {
+            if (!cancelled) setTestimonials([]);
+          });
       })
       .catch(() => {
-        setNotFound(true);
-        setLoading(false);
+        if (!cancelled) {
+          setNotFound(true);
+          setLoading(false);
+        }
       });
+    return () => {
+      cancelled = true;
+    };
   }, [slug]);
 
   if (loading) {
@@ -201,8 +222,8 @@ export default function Zone() {
       {projects.length > 0 && (() => {
         const showcaseProject = projects.find(
           (p) =>
-            p.fotos_antes && p.fotos_antes.length > 0 &&
-            p.fotos_despues && p.fotos_despues.length > 0
+            p.fotosAntes && p.fotosAntes.length > 0 &&
+            p.fotosDespues && p.fotosDespues.length > 0
         );
         return (
         <section className="py-12 bg-slate-50">
@@ -218,8 +239,8 @@ export default function Zone() {
                   {t("zones_page.before_after")}
                 </h3>
                 <BeforeAfterSlider
-                  beforeSrc={showcaseProject.fotos_antes[0]}
-                  afterSrc={showcaseProject.fotos_despues[0]}
+                  beforeSrc={showcaseProject.fotosAntes[0]}
+                  afterSrc={showcaseProject.fotosDespues[0]}
                   beforeLabel={t("portfolio.before")}
                   afterLabel={t("portfolio.after")}
                 />
@@ -233,9 +254,9 @@ export default function Zone() {
                 return (
                   <div key={p.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div className="aspect-[4/3] bg-slate-200 overflow-hidden">
-                      {p.fotos_despues && p.fotos_despues.length > 0 ? (
+                      {p.fotosDespues && p.fotosDespues.length > 0 ? (
                         <ProgressiveImage
-                          src={p.fotos_despues[0]}
+                          src={p.fotosDespues[0]}
                           alt={title}
                           className="w-full h-full object-cover"
                         />

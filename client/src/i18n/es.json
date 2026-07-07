@@ -875,7 +875,7 @@
     "cta": "Calcula tu ahorro real"
   },
   "calculator_anchoring": {
-    "daily_cost": "{{amount}}/día durante 10 años. Menos que un café.",
+    "daily_cost": "/día durante 10 años. Menos que un café.",
     "roi_title": "Retorno de la inversión",
     "roi_saving": "Ahorro energético estimado: {{amount}}/año",
     "roi_payback": "La inversión se recupera en {{years}} años",

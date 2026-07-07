@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useEffect, useState } from "react";
+import { useReducer, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PageHead from "../../components/seo/PageHead";
 import BreadcrumbSchema from "../../components/seo/BreadcrumbSchema";
@@ -58,7 +58,10 @@ function reducer(state: CalculatorState, action: Action): CalculatorState {
     case "SET_STEP":
       return { ...state, step: action.step };
     case "SET_TIPO":
-      return { ...state, tipo: action.tipo, step: 2 };
+      // Cambiar de tipo invalida el modelo y los extras (eran de otro producto).
+      // Si es el mismo tipo (volver atrás y reelegir), no se pierde nada.
+      if (action.tipo === state.tipo) return { ...state, step: 2 };
+      return { ...state, tipo: action.tipo, modelo: "", modeloId: null, extras: [], step: 2 };
     case "SET_MODEL":
       return { ...state, modelo: action.modelo, modeloId: action.modeloId };
     case "SET_DIMENSION":
@@ -86,6 +89,22 @@ export const CALC_STORAGE_KEY = "arafinestra_calculator_state";
 
 const TOTAL_STEPS = 7;
 
+// Restaura el estado guardado (recuperación de abandono) validando su forma.
+function initState(init: CalculatorState): CalculatorState {
+  try {
+    const raw = localStorage.getItem(CALC_STORAGE_KEY);
+    if (raw) {
+      const s = JSON.parse(raw);
+      if (s && typeof s.step === "number" && s.step >= 2 && s.step <= 7 && s.tipo) {
+        return { ...init, ...s };
+      }
+    }
+  } catch {
+    // localStorage bloqueado o JSON corrupto → estado inicial
+  }
+  return init;
+}
+
 function canAdvance(state: CalculatorState): boolean {
   switch (state.step) {
     case 1:
@@ -109,13 +128,17 @@ function canAdvance(state: CalculatorState): boolean {
 
 export default function Calculator() {
   const { t } = useTranslation();
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE, initState);
   const isResult = state.step > TOTAL_STEPS;
 
   // Persist calculator state to localStorage for abandonment recovery
   useEffect(() => {
     if (state.step >= 2 && state.step <= 7) {
-      localStorage.setItem(CALC_STORAGE_KEY, JSON.stringify(state));
+      try {
+        localStorage.setItem(CALC_STORAGE_KEY, JSON.stringify(state));
+      } catch {
+        // Safari en modo privado / storage lleno → ignorar, no romper la calculadora
+      }
     }
   }, [state]);
 
@@ -137,19 +160,29 @@ export default function Calculator() {
     }
   }, [state.step]);
 
-  // Browser back button support
+  // Browser back button support.
+  // El step actual se lee desde un ref para que el efecto se monte UNA sola vez
+  // (antes se re-ejecutaba en cada cambio de step, apilando entradas de historial
+  // y dejando el botón atrás atrapado en la calculadora).
+  const stepRef = useRef(state.step);
   useEffect(() => {
+    stepRef.current = state.step;
+  }, [state.step]);
+
+  useEffect(() => {
+    // Centinela único al montar
+    window.history.pushState(null, "", window.location.href);
     const handlePop = () => {
-      if (state.step > 1) {
-        dispatch({ type: "SET_STEP", step: state.step - 1 });
+      if (stepRef.current > 1) {
+        dispatch({ type: "SET_STEP", step: stepRef.current - 1 });
+        // Reponer el centinela para capturar el siguiente "atrás"
         window.history.pushState(null, "", window.location.href);
       }
+      // En el paso 1 no se repone → el siguiente "atrás" sale de la calculadora
     };
-
-    window.history.pushState(null, "", window.location.href);
     window.addEventListener("popstate", handlePop);
     return () => window.removeEventListener("popstate", handlePop);
-  }, [state.step]);
+  }, []);
 
   return (
     <>

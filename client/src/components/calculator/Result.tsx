@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState, useMemo, useEffect } from "react";
 import { trackEvent } from "../../lib/analytics";
+import { CALC_STORAGE_KEY } from "../../pages/public/Calculator";
 import GuaranteeBlock from "../ui/GuaranteeBlock";
 
 const WHATSAPP_NUMBER = "34611500372";
@@ -156,6 +157,13 @@ export default function Result({ state, onReset }: Props) {
 
       if (!res.ok) throw new Error();
       trackEvent("complete", "calculator");
+      // Lead convertido: limpiar el estado guardado para que el banner de
+      // recuperación de abandono no reaparezca en la Home.
+      try {
+        localStorage.removeItem(CALC_STORAGE_KEY);
+      } catch {
+        // storage bloqueado → ignorar
+      }
       setSubmitted(true);
     } catch {
       setError(t("calculator.form_error"));
@@ -210,7 +218,7 @@ export default function Result({ state, onReset }: Props) {
             <span className="font-bold text-navy-900">
               {(low / 3650).toFixed(2)}€
             </span>
-            {" "}{t("calculator_anchoring.daily_cost", { amount: `${(low / 3650).toFixed(2)}€` })}
+            {t("calculator_anchoring.daily_cost")}
           </p>
 
           {/* ROI calculation */}
