@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import UrgencyBanner from "../ui/UrgencyBanner";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 const PHONE = "+34 611 500 372";
 
@@ -48,21 +49,17 @@ export default function Header() {
 
   const isHome = isHomePath && isWide;
 
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 20);
-      // Hide header on scroll down (after 80px), show on scroll up
-      if (y > 80 && y - lastScrollY.current > 5) {
-        setHidden(true);
-      } else if (lastScrollY.current - y > 5) {
-        setHidden(false);
-      }
-      lastScrollY.current = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+  const onScroll = useCallback((y: number) => {
+    setScrolled(y > 20);
+    // Hide header on scroll down (after 80px), show on scroll up
+    if (y > 80 && y - lastScrollY.current > 5) {
+      setHidden(true);
+    } else if (lastScrollY.current - y > 5) {
+      setHidden(false);
+    }
+    lastScrollY.current = y;
   }, []);
+  useScrollPosition(onScroll);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {

@@ -22,12 +22,14 @@ export default function CookieBanner() {
 
   const handleAccept = () => {
     localStorage.setItem(CONSENT_KEY, "accepted");
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setVisible(false);
     initAnalytics();
   };
 
   const handleReject = () => {
     localStorage.setItem(CONSENT_KEY, "rejected");
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setVisible(false);
   };
 

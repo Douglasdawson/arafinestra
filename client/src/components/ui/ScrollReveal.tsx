@@ -47,7 +47,9 @@ export default function ScrollReveal({
         opacity: prefersReducedMotion || visible ? 1 : 0,
         transform: prefersReducedMotion || visible ? "translateY(0)" : "translateY(20px)",
         transition: prefersReducedMotion ? "none" : `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
-        willChange: prefersReducedMotion ? "auto" : "transform, opacity",
+        // release the compositor layer once revealed — dozens of these
+        // mount per page and each held layer costs memory on mobile
+        willChange: prefersReducedMotion || visible ? "auto" : "transform, opacity",
       }}
     >
       {children}

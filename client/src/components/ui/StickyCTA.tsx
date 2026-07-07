@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useTranslation } from "react-i18next";
 import { Link, useParams, useLocation } from "react-router-dom";
 
@@ -17,15 +18,9 @@ export default function StickyCTA() {
     !location.pathname.includes("/contacte") &&
     !location.pathname.includes("/legal");
 
-  useEffect(() => {
-    if (!isAllowed) return;
-    const onScroll = () => {
-      // Show after scrolling past ~600px (past the hero)
-      setVisible(window.scrollY > 600);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isAllowed]);
+  // Show after scrolling past ~600px (past the hero)
+  const onScroll = useCallback((y: number) => setVisible(y > 600), []);
+  useScrollPosition(onScroll);
 
   if (!isAllowed || !visible) return null;
 

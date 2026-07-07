@@ -13,23 +13,14 @@ export default function WhatsAppButton() {
   const [cookieBannerVisible, setCookieBannerVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem(CONSENT_KEY);
-    setCookieBannerVisible(!consent);
-
-    const handleStorage = () => {
-      setCookieBannerVisible(!localStorage.getItem(CONSENT_KEY));
-    };
-    window.addEventListener("storage", handleStorage);
-
-    // Poll briefly to catch same-tab consent changes
-    const interval = setInterval(() => {
-      const current = localStorage.getItem(CONSENT_KEY);
-      setCookieBannerVisible(!current);
-    }, 2000);
-
+    const update = () => setCookieBannerVisible(!localStorage.getItem(CONSENT_KEY));
+    update();
+    // cross-tab changes + same-tab custom event fired by CookieBanner
+    window.addEventListener("storage", update);
+    window.addEventListener("cookie-consent-changed", update);
     return () => {
-      window.removeEventListener("storage", handleStorage);
-      clearInterval(interval);
+      window.removeEventListener("storage", update);
+      window.removeEventListener("cookie-consent-changed", update);
     };
   }, []);
 
@@ -46,7 +37,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackEvent("click", "whatsapp", "floating_button")}
-      className={`group fixed right-6 z-50 hidden md:flex items-center justify-center h-14 bg-green-500 shadow-lg hover:scale-110 hover:bg-green-600 transition-all duration-300 animate-whatsapp-pulse w-14 rounded-full sm:w-auto sm:rounded-full sm:px-5 ${
+      className={`group fixed right-6 z-50 hidden md:flex items-center justify-center h-14 bg-whatsapp shadow-lg hover:scale-110 hover:bg-whatsapp-dark transition-all duration-300 animate-whatsapp-pulse w-14 rounded-full sm:w-auto sm:rounded-full sm:px-5 ${
         cookieBannerVisible ? "bottom-24 sm:bottom-22" : "bottom-6"
       }`}
       aria-label={t("whatsapp_tooltip")}

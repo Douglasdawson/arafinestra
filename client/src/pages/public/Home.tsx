@@ -19,10 +19,13 @@ import CalculatorRecoveryBanner from "../../components/ui/CalculatorRecoveryBann
 
 /* ─── Helpers ─── */
 function useIsMobile() {
-  const [mobile, setMobile] = useState(false);
+  // Synchronous initial value: mobile must NOT first mount the heavy
+  // desktop 3D hero and then swap (wasted render + layout shift).
+  const [mobile, setMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches,
+  );
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
-    setMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setMobile(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
@@ -700,7 +703,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
                   style={{
                     height: isInView ? `${h}%` : 0,
                     transition: `height 0.5s ease ${i * 0.04}s`,
-                    animation: isInView ? `barPulse 1.8s ease-in-out ${i * 0.08}s infinite alternate` : "none",
+                    animation: isInView ? `barPulse 1.8s ease-in-out ${i * 0.08}s 8 alternate` : "none",
                   }}
                 />
               ))}
@@ -753,7 +756,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
                     style={{
                       height: isInView ? `${h * reduction}%` : 0,
                       transition: `height 0.5s ease ${i * 0.04}s`,
-                      animation: isInView ? `barPulse 1.8s ease-in-out ${i * 0.08}s infinite alternate` : "none",
+                      animation: isInView ? `barPulse 1.8s ease-in-out ${i * 0.08}s 8 alternate` : "none",
                     }}
                   />
                 );
