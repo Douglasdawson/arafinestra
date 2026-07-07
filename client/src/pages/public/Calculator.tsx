@@ -434,7 +434,6 @@ export default function Calculator() {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                              nombre: savePhone.trim(),
                               telefono: savePhone.trim(),
                               origen: "calculator_save",
                               tipoCliente: "particular",

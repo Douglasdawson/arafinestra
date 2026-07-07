@@ -128,12 +128,7 @@ export function registerLeadRoutes(app: Express) {
       });
     }
     try {
-      const { nombre, email, telefono, localidad, tipoCliente, origen, notas, configuracion } = req.body;
-
-      // Basic validation — at least one contact method required
-      if (!nombre && !telefono && !email) {
-        return res.status(400).json({ error: "Se requiere al menos nombre, teléfono o email." });
-      }
+      const { nombre, email, telefono, localidad, tipoCliente, origen, notas, presupuestoDatos } = req.body;
 
       // Sanitize string fields (max lengths, trim)
       const sanitize = (v: unknown, max = 500): string | null => {
@@ -141,17 +136,42 @@ export function registerLeadRoutes(app: Express) {
         return v.trim().slice(0, max);
       };
 
+      // Allowlist de orígenes reales del frontend (mantener al añadir widgets de captación)
+      const ORIGENES = new Set([
+        "presupuestador", "formulario", "popup", "blog_newsletter",
+        "calculator_save", "home_inline", "visita_gratuita", "admin",
+      ]);
+      const rawOrigen = sanitize(origen, 50);
+      const origenValue = rawOrigen && ORIGENES.has(rawOrigen) ? rawOrigen : "formulario";
+
+      // Acotar el jsonb de configuración de la calculadora
+      let presupuesto: Record<string, unknown> | null = null;
+      if (presupuestoDatos && typeof presupuestoDatos === "object" && !Array.isArray(presupuestoDatos)) {
+        if (JSON.stringify(presupuestoDatos).length <= 10000) {
+          presupuesto = presupuestoDatos as Record<string, unknown>;
+        }
+      }
+
       const values = {
-        nombre: sanitize(nombre, 100) || "Sin nombre",
+        nombre: sanitize(nombre, 100),
         email: sanitize(email, 200),
         telefono: sanitize(telefono, 30),
         localidad: sanitize(localidad, 100),
-        tipoCliente: sanitize(tipoCliente, 50),
-        origen: sanitize(origen, 50),
+        tipoCliente: sanitize(tipoCliente, 50) || "particular",
+        origen: origenValue,
         notas: sanitize(notas, 2000),
+        presupuestoDatos: presupuesto,
       };
 
-      const [lead] = await db.insert(leads).values(values).returning();
+      // Validar SOBRE los valores saneados — al menos un método de contacto real
+      if (!values.nombre && !values.telefono && !values.email) {
+        return res.status(400).json({ error: "Se requiere al menos nombre, teléfono o email." });
+      }
+
+      const [lead] = await db
+        .insert(leads)
+        .values({ ...values, nombre: values.nombre || "Sin nombre" })
+        .returning();
       // Fire-and-forget email notification
       notifyNewLead({
         nombre: lead.nombre,
@@ -160,7 +180,7 @@ export function registerLeadRoutes(app: Express) {
         localidad: lead.localidad,
         origen: lead.origen,
         mensaje: lead.notas,
-        configuracion: typeof configuracion === "string" ? configuracion.slice(0, 5000) : undefined,
+        presupuestoDatos: lead.presupuestoDatos,
       }).catch(() => {});
       res.status(201).json(lead);
     } catch (err) {
