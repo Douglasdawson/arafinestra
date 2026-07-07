@@ -114,7 +114,7 @@ function WindowMaskHero({
             className="animate-fadeIn mb-3"
             style={{ animationDuration: "0.6s" }}
           >
-            <span className="inline-block text-xs font-semibold tracking-[0.35em] uppercase text-brand-dark border border-brand/20 rounded-full px-4 py-1.5 backdrop-blur-sm">
+            <span className="inline-block text-xs font-semibold tracking-[0.35em] uppercase text-slate-300 border border-white/15 rounded-full px-4 py-1.5">
               Partner Cortizo
             </span>
           </div>
@@ -126,12 +126,7 @@ function WindowMaskHero({
           >
             <span className="text-white">ARA</span>
             <br />
-            <span
-              className="text-gradient"
-              style={{ backgroundImage: "linear-gradient(135deg, #e8652b 0%, #fbbf24 100%)" }}
-            >
-              FINESTRA
-            </span>
+            <span className="text-brand">FINESTRA</span>
           </h1>
 
           {/* Subtitle */}
@@ -181,7 +176,7 @@ function WindowMaskHero({
         {/* Scroll indicator */}
         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeIn" style={{ animationDelay: "1s", animationFillMode: "backwards" }}>
           <span className="text-xs text-slate-600 tracking-[0.2em] uppercase">{t("home.scroll_hint")}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-slate-600 animate-bounce" strokeWidth="2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-slate-600 animate-scrollHint" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -207,9 +202,9 @@ function WindowMaskHero({
           className="absolute inset-0 z-[5] flex flex-col items-center justify-center px-4"
           style={{ opacity: contentOpacity, scale: contentScale }}
         >
-          <p role="presentation" aria-hidden="true" className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-navy-900 tracking-tight leading-none text-center">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-navy-900 tracking-tight leading-none text-center">
             ARA FINESTRA
-          </p>
+          </h1>
           <p className="mt-6 sm:mt-8 text-xl sm:text-2xl text-slate-600 font-light max-w-2xl mx-auto text-center">
             {t("home.mask_subtitle")}
           </p>
@@ -320,242 +315,13 @@ function WindowMaskHero({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            className="text-white/60 animate-bounce"
+            className="text-white/60 animate-scrollHint"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
       </div>
     </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   EFFECT 2 — Pinned Multi-Stage Storytelling (optimized)
-   ═══════════════════════════════════════════════════════════════ */
-function PinnedStorytelling({ t }: { t: (k: string) => string }) {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-
-  const { scrollYProgress } = useScroll({
-    target: outerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const bgColor = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    ["rgb(15,23,42)", "rgb(30,41,59)", "rgb(120,53,15)", "rgb(217,119,6)", "rgb(254,243,199)"]
-  );
-
-  const s1Opacity = useTransform(scrollYProgress, [0, 0.08, 0.2, 0.25], [0, 1, 1, 0]);
-  const s2Opacity = useTransform(scrollYProgress, [0.2, 0.3, 0.45, 0.5], [0, 1, 1, 0]);
-  const s3Opacity = useTransform(scrollYProgress, [0.45, 0.55, 0.65, 0.72], [0, 1, 1, 0]);
-  const s4Opacity = useTransform(scrollYProgress, [0.68, 0.78, 0.95, 1], [0, 1, 1, 1]);
-
-  if (isMobile) {
-    return (
-      <div>
-        {/* Stage 1 — The Problem */}
-        <section className="relative min-h-[75vh] flex items-center justify-center px-6 py-20 bg-navy-950 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-[20%] right-[10%] w-[180px] h-[180px] rounded-full bg-red-500/10 blur-3xl" />
-          </div>
-          <ScrollReveal>
-            <div className="relative text-center">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 mb-6">
-                <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-                <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">{t("home.stage1_badge")}</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
-                {t("home.stage1_title")}
-              </h2>
-              <p className="mt-5 text-base text-slate-400 leading-relaxed">{t("home.stage1_sub")}</p>
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* Stage 2 — The Cost (pain points with numbers) */}
-        <section className="relative min-h-[75vh] flex items-center justify-center px-6 py-20 bg-navy-900 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute bottom-[15%] left-[15%] w-[200px] h-[200px] rounded-full bg-red-500/8 blur-3xl" />
-          </div>
-          <div className="relative text-center space-y-8 sm:space-y-10 w-full max-w-sm mx-auto">
-            <ScrollReveal>
-              <p className="text-4xl sm:text-6xl font-bold text-red-400">
-                <Counter target={847} suffix=" EUR" />
-              </p>
-              <p className="mt-3 text-sm sm:text-base text-slate-400">{t("home.stage2_cost")}</p>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                <div className="p-3 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
-                  <p className="text-2xl sm:text-3xl font-bold text-red-400">
-                    <Counter target={32} suffix=" dB" />
-                  </p>
-                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.stage2_noise")}</p>
-                </div>
-                <div className="p-3 sm:p-5 rounded-2xl bg-navy-800/60 border border-navy-700/50">
-                  <p className="text-2xl sm:text-3xl font-bold text-red-400">
-                    <Counter target={85} suffix="%" />
-                  </p>
-                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-400">{t("home.stage2_humidity")}</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* Stage 3 — Transition */}
-        <section className="relative py-20 px-6 overflow-hidden" style={{ background: "linear-gradient(180deg, #0f2a4a 0%, #78350f 50%, #d97706 100%)" }}>
-          <ScrollReveal>
-            <div className="relative text-center">
-              <div className="w-12 h-px bg-amber-400/40 mx-auto mb-6" />
-              <p className="text-2xl sm:text-3xl text-amber-100 font-light italic leading-relaxed">
-                {t("home.stage3_transition")}
-              </p>
-              <div className="w-12 h-px bg-amber-400/40 mx-auto mt-6" />
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* Stage 4 — The Solution */}
-        <section className="relative min-h-[70vh] flex items-center justify-center px-6 py-20 bg-gradient-to-b from-amber-50 to-white overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[250px] h-[250px] rounded-full bg-amber-200/40 blur-3xl" />
-          </div>
-          <div className="relative text-center space-y-8 w-full max-w-sm mx-auto">
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
-                <svg className="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">{t("home.stage4_badge")}</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 leading-tight">
-                {t("home.stage4_title")}
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <div className="flex flex-col gap-3">
-                <BenefitPill icon="sun" label={t("home.stage4_warm")} />
-                <BenefitPill icon="silence" label={t("home.stage4_quiet")} />
-                <BenefitPill icon="save" label={t("home.stage4_save")} />
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-      </div>
-    );
-  }
-
-  return (
-    <div ref={outerRef} className="relative h-[300vh]">
-      <motion.div
-        className="sticky top-0 h-[100svh] flex items-center justify-center overflow-hidden"
-        style={{ backgroundColor: bgColor }}
-      >
-        {/* Stage 1 */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center z-10 px-4"
-          style={{ opacity: s1Opacity }}
-        >
-          <div className="text-center max-w-3xl">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">
-              {t("home.stage1_title")}
-            </h2>
-            <p className="mt-6 text-xl sm:text-2xl text-slate-400 font-light">
-              {t("home.stage1_sub")}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Stage 2 */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center z-10 px-4"
-          style={{ opacity: s2Opacity }}
-        >
-          <div className="text-center max-w-4xl space-y-10">
-            <div>
-              <p className="text-6xl sm:text-7xl md:text-8xl font-bold text-red-400">
-                <Counter target={847} suffix=" EUR" />
-              </p>
-              <p className="mt-2 text-xl sm:text-2xl text-slate-300">{t("home.stage2_cost")}</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 justify-center">
-              <div>
-                <p className="text-4xl sm:text-5xl font-bold text-red-400">
-                  <Counter target={32} suffix=" dB" />
-                </p>
-                <p className="mt-2 text-lg text-slate-400">{t("home.stage2_noise")}</p>
-              </div>
-              <div>
-                <p className="text-4xl sm:text-5xl font-bold text-red-400">
-                  <Counter target={85} suffix="%" />
-                </p>
-                <p className="mt-2 text-lg text-slate-400">{t("home.stage2_humidity")}</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Stage 3 */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center z-10 px-4"
-          style={{ opacity: s3Opacity }}
-        >
-          <p className="text-3xl sm:text-4xl md:text-5xl text-amber-100 font-light text-center italic max-w-2xl">
-            {t("home.stage3_transition")}
-          </p>
-        </motion.div>
-
-        {/* Stage 4 */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center z-10 px-4"
-          style={{ opacity: s4Opacity }}
-        >
-          <div className="text-center max-w-3xl">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 tracking-tight">
-              {t("home.stage4_title")}
-            </h2>
-            <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center">
-              <BenefitPill icon="sun" label={t("home.stage4_warm")} />
-              <BenefitPill icon="silence" label={t("home.stage4_quiet")} />
-              <BenefitPill icon="save" label={t("home.stage4_save")} />
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
-}
-
-function BenefitPill({ icon, label }: { icon: string; label: string }) {
-  const icons: Record<string, JSX.Element> = {
-    sun: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m-8-9H3m18 0h-1m-2.636-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-      </svg>
-    ),
-    silence: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
-      </svg>
-    ),
-    save: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-      </svg>
-    ),
-  };
-
-  return (
-    <div className="flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100">
-      <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl bg-amber-100 text-amber-600">
-        {icons[icon]}
-      </div>
-      <span className="text-base sm:text-lg font-semibold text-navy-800">{label}</span>
-    </div>
   );
 }
 
@@ -674,12 +440,6 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
       <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/20 mb-5">
-              <svg className="w-3.5 h-3.5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51" />
-              </svg>
-              <span className="text-xs font-semibold text-brand uppercase tracking-wider">{t("home.acoustic_badge")}</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               {t("home.acoustic_title")}
             </h2>
@@ -850,12 +610,6 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
       <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-5">
-              <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m-8-9H3m18 0h-1M5.636 5.636l.707.707m11.314 11.314l.707.707" />
-              </svg>
-              <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">{t("home.thermal_badge")}</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               {t("home.thermal_title")}
             </h2>
@@ -1009,12 +763,6 @@ function EnergySavings({
       <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-5">
-              <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m-8-9H3m18 0h-1M5.636 5.636l.707.707m11.314 11.314l.707.707" />
-              </svg>
-              <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">{t("home.energy_badge")}</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 tracking-tight">
               {t("home.energy_title")}
             </h2>
@@ -1160,39 +908,6 @@ function EnergySavings({
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FUTURE SELF — Emotional visualization
-   ═══════════════════════════════════════════════════════════════ */
-function FutureSelfSection({ t }: { t: (k: string) => string }) {
-  const items = [
-    t("future_self.item1"),
-    t("future_self.item2"),
-    t("future_self.item3"),
-    t("future_self.item4"),
-  ];
-
-  return (
-    <section className="py-20 sm:py-28 bg-white">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <ScrollReveal>
-          <h2 className="text-3xl sm:text-5xl font-bold text-navy-900 tracking-tight">
-            {t("future_self.title")}
-          </h2>
-        </ScrollReveal>
-        <div className="mt-10 sm:mt-14 space-y-6 sm:space-y-8">
-          {items.map((item, i) => (
-            <ScrollReveal key={i} delay={i * 0.12}>
-              <p className="text-xl sm:text-2xl text-slate-700 font-light leading-relaxed">
-                {item}
-              </p>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
    SERVICE CARD (simplified, no tilt/perspective)
    ═══════════════════════════════════════════════════════════════ */
 function ServiceCard({
@@ -1299,30 +1014,6 @@ export default function Home() {
       </Helmet>
 
       <WindowMaskHero prefix={prefix} t={t} />
-      <PinnedStorytelling t={t} />
-      <AcousticDemo t={t} />
-      {/* Wave: navy-950 → navy-900 */}
-      <div className="relative h-12 sm:h-16 bg-navy-900 -mt-px">
-        <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 64" fill="none">
-          <path d="M0,0 C480,64 960,64 1440,0 L1440,0 L0,0 Z" fill="var(--color-navy-950)" />
-        </svg>
-      </div>
-      <ThermalSplit t={t} />
-      {/* Wave: navy-900 → slate-50 */}
-      <div className="relative h-12 sm:h-16 bg-gradient-to-b from-slate-50 to-slate-50 -mt-px">
-        <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 64" fill="none">
-          <path d="M0,0 C480,64 960,64 1440,0 L1440,0 L0,0 Z" fill="var(--color-navy-900)" />
-        </svg>
-      </div>
-      <EnergySavings t={t} prefix={prefix} />
-
-      <section className="py-12 sm:py-16 bg-slate-50">
-        <div className="px-6">
-          <EnergyLossWidget />
-        </div>
-      </section>
-
-      <FutureSelfSection t={t} />
 
       {/* Services Grid */}
       <section className="py-20 sm:py-28 bg-slate-50">
@@ -1389,6 +1080,29 @@ export default function Home() {
         </div>
       </section>
 
+
+      <AcousticDemo t={t} />
+      {/* Wave: navy-950 → navy-900 */}
+      <div className="relative h-12 sm:h-16 bg-navy-900 -mt-px">
+        <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 64" fill="none">
+          <path d="M0,0 C480,64 960,64 1440,0 L1440,0 L0,0 Z" fill="var(--color-navy-950)" />
+        </svg>
+      </div>
+      <ThermalSplit t={t} />
+      {/* Wave: navy-900 → slate-50 */}
+      <div className="relative h-12 sm:h-16 bg-gradient-to-b from-slate-50 to-slate-50 -mt-px">
+        <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 64" fill="none">
+          <path d="M0,0 C480,64 960,64 1440,0 L1440,0 L0,0 Z" fill="var(--color-navy-900)" />
+        </svg>
+      </div>
+      <EnergySavings t={t} prefix={prefix} />
+
+      <section className="py-12 sm:py-16 bg-slate-50">
+        <div className="px-6">
+          <EnergyLossWidget />
+        </div>
+      </section>
+
       {/* Stats Bar */}
       <section className="relative py-16 sm:py-28 bg-gradient-to-br from-brand via-brand-dark to-navy-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -1428,19 +1142,13 @@ export default function Home() {
       </section>
 
       {/* Subsidies CTA */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-amber-500 via-orange-500 to-orange-600 overflow-hidden">
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[10%] left-[10%] w-[150px] h-[150px] rounded-full bg-white/10 blur-2xl" />
           <div className="absolute bottom-[10%] right-[5%] w-[200px] h-[200px] rounded-full bg-white/10 blur-3xl" />
         </div>
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm mb-6">
-              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="text-xs font-semibold text-white uppercase tracking-wider">{t("home.subsidies_badge")}</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               {t("home.subsidies_title")}
             </h2>
@@ -1458,13 +1166,21 @@ export default function Home() {
           <ScrollReveal delay={0.4}>
             <Link
               to={`/${prefix}/subvencions`}
-              className="inline-block mt-10 px-6 sm:px-10 py-3.5 sm:py-4 bg-white text-orange-600 text-base sm:text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform duration-150 shadow-lg shadow-black/10"
+              className="inline-block mt-10 px-6 sm:px-10 py-3.5 sm:py-4 bg-brand text-white text-base sm:text-lg font-semibold rounded-xl active:scale-[0.97] transition-transform duration-150 shadow-lg shadow-black/10"
             >
               {t("home.subsidies_cta")}
             </Link>
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Triple Guarantee */}
+      <section className="py-16 sm:py-20 bg-slate-50">
+        <div className="px-6">
+          <GuaranteeBlock />
+        </div>
+      </section>
+
 
       {/* Final CTA */}
       <section className="relative py-24 pb-32 sm:py-36 bg-navy-950 overflow-hidden flex items-center justify-center">
@@ -1494,13 +1210,6 @@ export default function Home() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Triple Guarantee */}
-      <section className="py-16 sm:py-20 bg-slate-50">
-        <div className="px-6">
-          <GuaranteeBlock />
         </div>
       </section>
 
