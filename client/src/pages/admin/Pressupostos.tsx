@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 interface ClientData {
   name: string;
@@ -42,10 +42,13 @@ export default function Pressupostos() {
   const [items, setItems] = useState<WindowItem[]>([createItem()]);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const showToast = (message: string, type: "success" | "error") => {
+    // Cancelar el timer anterior para que un toast viejo no cierre el nuevo antes de tiempo
+    if (toastTimer.current) clearTimeout(toastTimer.current);
     setToast({ message, type });
-    setTimeout(() => setToast(null), 4000);
+    toastTimer.current = setTimeout(() => setToast(null), 4000);
   };
 
   const updateItem = (index: number, field: keyof WindowItem, value: string | number) => {

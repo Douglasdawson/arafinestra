@@ -52,30 +52,32 @@ export default function BlogEditor() {
   useEffect(() => {
     if (isNew) return;
     setLoading(true);
-    // Fetch by ID — we need to find it. The API uses slug for public GET, but we have the id.
-    // We'll fetch the list and find by id, or try a direct approach.
-    fetch(`/api/blog`, { credentials: "include" })
-      .then((r) => r.json())
-      .then((data) => {
-        const found = (data.data || []).find((p: any) => String(p.id) === id);
-        if (found) {
-          setPost({
-            id: found.id,
-            slug: found.slug || "",
-            tituloCa: found.tituloCa || "", tituloEs: found.tituloEs || "", tituloEn: found.tituloEn || "",
-            contenidoCa: found.contenidoCa || "", contenidoEs: found.contenidoEs || "", contenidoEn: found.contenidoEn || "",
-            extractoCa: found.extractoCa || "", extractoEs: found.extractoEs || "", extractoEn: found.extractoEn || "",
-            categoria: found.categoria || "Ventanas", autor: found.autor || "", imagenPortada: found.imagenPortada || "",
-            metaTitleCa: found.metaTitleCa || "", metaTitleEs: found.metaTitleEs || "", metaTitleEn: found.metaTitleEn || "",
-            metaDescriptionCa: found.metaDescriptionCa || "", metaDescriptionEs: found.metaDescriptionEs || "", metaDescriptionEn: found.metaDescriptionEn || "",
-            published: found.published || false,
-          });
-          setSlugManual(true);
-        }
+    // Carga directa por id (funciona con cualquier post, no solo los 20 recientes)
+    fetch(`/api/blog/id/${id}`, { credentials: "include" })
+      .then((r) => {
+        if (!r.ok) throw new Error("not found");
+        return r.json();
       })
-      .catch(() => setToast({ message: "Error al cargar post", type: "error" }))
+      .then((found) => {
+        setPost({
+          id: found.id,
+          slug: found.slug || "",
+          tituloCa: found.tituloCa || "", tituloEs: found.tituloEs || "", tituloEn: found.tituloEn || "",
+          contenidoCa: found.contenidoCa || "", contenidoEs: found.contenidoEs || "", contenidoEn: found.contenidoEn || "",
+          extractoCa: found.extractoCa || "", extractoEs: found.extractoEs || "", extractoEn: found.extractoEn || "",
+          categoria: found.categoria || "Ventanas", autor: found.autor || "", imagenPortada: found.imagenPortada || "",
+          metaTitleCa: found.metaTitleCa || "", metaTitleEs: found.metaTitleEs || "", metaTitleEn: found.metaTitleEn || "",
+          metaDescriptionCa: found.metaDescriptionCa || "", metaDescriptionEs: found.metaDescriptionEs || "", metaDescriptionEn: found.metaDescriptionEn || "",
+          published: found.published || false,
+        });
+        setSlugManual(true);
+      })
+      .catch(() => {
+        setToast({ message: "Error al cargar post", type: "error" });
+        navigate("/admin/blog", { replace: true });
+      })
       .finally(() => setLoading(false));
-  }, [id, isNew]);
+  }, [id, isNew, navigate]);
 
   function updateField(field: string, value: string | boolean) {
     setPost((prev) => {

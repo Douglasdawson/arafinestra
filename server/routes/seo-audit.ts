@@ -3,11 +3,13 @@ import { requireAuth } from "../middleware/auth.js";
 
 const DOMAIN = "https://arafinestra.com";
 
+// Mantener sincronizado con STATIC_PATHS de server/routes/sitemap.ts
 const STATIC_PATHS = [
   "",
   "cortizo",
   "subvencions",
   "pressupost",
+  "preus",
   "projectes",
   "blog",
   "opinions",
@@ -29,18 +31,27 @@ const STATIC_PATHS = [
 
 interface PageAudit {
   path: string;
+  url: string;
   title: boolean;
   description: boolean;
   h1: boolean;
   canonical: boolean;
   schema: boolean;
   score: number;
+  status: number;
+  error: boolean;
 }
 
 async function auditPage(path: string): Promise<PageAudit> {
-  const url = `${DOMAIN}/ca/${path}`;
+  const url = `/ca/${path}`;
+  const fullUrl = `${DOMAIN}${url}`;
+  const empty = { path, url, title: false, description: false, h1: false, canonical: false, schema: false, score: 0 };
   try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+    const res = await fetch(fullUrl, { signal: AbortSignal.timeout(10_000) });
+    // Página inaccesible (4xx/5xx): no tiene sentido escanear el HTML de error
+    if (!res.ok) {
+      return { ...empty, status: res.status, error: true };
+    }
     const html = await res.text();
 
     const title = /<title[\s>]/i.test(html);
@@ -51,9 +62,9 @@ async function auditPage(path: string): Promise<PageAudit> {
 
     const score = [title, description, h1, canonical, schema].filter(Boolean).length;
 
-    return { path, title, description, h1, canonical, schema, score };
+    return { path, url, title, description, h1, canonical, schema, score, status: res.status, error: false };
   } catch {
-    return { path, title: false, description: false, h1: false, canonical: false, schema: false, score: 0 };
+    return { ...empty, status: 0, error: true };
   }
 }
 

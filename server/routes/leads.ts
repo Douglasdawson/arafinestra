@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
 import { leads } from "@shared/schema";
-import { eq, and, or, like, desc, sql, count } from "drizzle-orm";
+import { eq, and, or, ilike, desc, count } from "drizzle-orm";
 import { notifyNewLead } from "../lib/notify.js";
 import { parseId } from "../lib/parseId.js";
 
@@ -46,7 +46,7 @@ export function registerLeadRoutes(app: Express) {
       if (tipoCliente) conditions.push(eq(leads.tipoCliente, tipoCliente as string));
       if (search) {
         const s = `%${search}%`;
-        conditions.push(or(like(leads.nombre, s), like(leads.email, s)));
+        conditions.push(or(ilike(leads.nombre, s), ilike(leads.email, s)));
       }
 
       const where = conditions.length > 0 ? and(...conditions) : undefined;
@@ -201,9 +201,11 @@ export function registerLeadRoutes(app: Express) {
     try {
       const id = parseId(req.params.id);
       if (id === null) return res.status(400).json({ error: "id inválido" });
+      const { id: _id, createdAt: _c, updatedAt: _u, ...data } = req.body;
+      if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
       const [updated] = await db
         .update(leads)
-        .set({ ...req.body, updatedAt: new Date() })
+        .set({ ...data, updatedAt: new Date() })
         .where(eq(leads.id, id))
         .returning();
       if (!updated) return res.status(404).json({ error: "Lead no encontrado" });

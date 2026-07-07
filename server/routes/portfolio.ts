@@ -56,7 +56,9 @@ export function registerPortfolioRoutes(app: Express) {
     try {
       const id = parseId(req.params.id);
       if (id === null) return res.status(400).json({ error: "id inválido" });
-      const [updated] = await db.update(portfolio).set(req.body).where(eq(portfolio.id, id)).returning();
+      const { id: _id, createdAt: _c, ...data } = req.body;
+      if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
+      const [updated] = await db.update(portfolio).set(data).where(eq(portfolio.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Proyecto no encontrado" });
       res.json(updated);
     } catch (err) {

@@ -57,29 +57,32 @@ export default function Dashboard() {
       try {
         const [leadsRes, portfolioRes, blogRes, leadStatsRes] =
           await Promise.all([
-            fetch("/api/leads", { credentials: "include" }),
-            fetch("/api/portfolio"),
-            fetch("/api/blog"),
+            // limit=100 para que los cálculos por fecha tengan datos suficientes
+            fetch("/api/leads?limit=100", { credentials: "include" }),
+            fetch("/api/portfolio", { credentials: "include" }),
+            fetch("/api/blog", { credentials: "include" }),
             fetch("/api/leads/stats", { credentials: "include" }),
           ]);
 
-        const leads = leadsRes.ok ? await leadsRes.json() : [];
+        // /api/leads y /api/blog devuelven { data, total, ... } paginado
+        const leadsPayload = leadsRes.ok ? await leadsRes.json() : { data: [], total: 0 };
         const portfolio = portfolioRes.ok ? await portfolioRes.json() : [];
-        const blog = blogRes.ok ? await blogRes.json() : [];
+        const blogPayload = blogRes.ok ? await blogRes.json() : { data: [], total: 0 };
         const leadStatsData: LeadStatsData = leadStatsRes.ok
           ? await leadStatsRes.json()
           : { byEstado: [], byOrigen: [] };
 
-        const leadsArr: Lead[] = Array.isArray(leads) ? leads : [];
+        const leadsArr: Lead[] = Array.isArray(leadsPayload.data) ? leadsPayload.data : [];
+        const totalLeads = leadsPayload.total ?? leadsArr.length;
         const newLeads = leadsArr.filter(
           (l) => l.estado === "nuevo"
         ).length;
 
         setStats({
-          totalLeads: leadsArr.length,
+          totalLeads,
           newLeads,
           portfolioCount: Array.isArray(portfolio) ? portfolio.length : 0,
-          blogCount: Array.isArray(blog) ? blog.length : 0,
+          blogCount: blogPayload.total ?? (Array.isArray(blogPayload.data) ? blogPayload.data.length : 0),
         });
 
         setLeadStats(leadStatsData);

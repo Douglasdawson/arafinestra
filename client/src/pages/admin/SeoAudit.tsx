@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 interface AuditResult {
+  path: string;
   url: string;
   title: boolean;
   description: boolean;
@@ -8,11 +9,13 @@ interface AuditResult {
   canonical: boolean;
   schema: boolean;
   score: number;
+  status: number;
+  error: boolean;
 }
 
 interface AuditResponse {
   pages: AuditResult[];
-  totalScore: number;
+  summary: { total: number; avgScore: number };
 }
 
 export default function SeoAudit() {
@@ -106,9 +109,14 @@ export default function SeoAudit() {
                 </thead>
                 <tbody>
                   {results.pages.map((page) => (
-                    <tr key={page.url} className="border-b border-gray-100">
+                    <tr key={page.path} className="border-b border-gray-100">
                       <td className="px-4 py-3 font-medium text-navy-800 max-w-xs truncate">
                         {page.url}
+                        {page.error && (
+                          <span className="ml-2 text-xs text-red-600 font-semibold">
+                            inaccesible{page.status ? ` (${page.status})` : ""}
+                          </span>
+                        )}
                       </td>
                       <td className="px-4 py-3 text-center">{check(page.title)}</td>
                       <td className="px-4 py-3 text-center">{check(page.description)}</td>
@@ -126,8 +134,8 @@ export default function SeoAudit() {
           </div>
 
           <div className="mt-4 text-sm text-gray-600">
-            Pàgines analitzades: {results.pages.length} | Puntuació global:{" "}
-            <span className="font-bold">{results.totalScore}/10</span>
+            Pàgines analitzades: {results.summary.total} | Puntuació global:{" "}
+            <span className="font-bold">{results.summary.avgScore}/10</span>
           </div>
         </>
       )}

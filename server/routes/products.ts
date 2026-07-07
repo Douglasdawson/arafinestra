@@ -50,7 +50,9 @@ export function registerProductRoutes(app: Express) {
     try {
       const id = parseId(req.params.id);
       if (id === null) return res.status(400).json({ error: "id inválido" });
-      const [updated] = await db.update(products).set(req.body).where(eq(products.id, id)).returning();
+      const { id: _id, ...data } = req.body;
+      if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
+      const [updated] = await db.update(products).set(data).where(eq(products.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Producto no encontrado" });
       res.json(updated);
     } catch (err) {

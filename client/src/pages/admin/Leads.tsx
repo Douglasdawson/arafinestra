@@ -37,6 +37,7 @@ export default function Leads() {
   const [estado, setEstado] = useState("todos");
   const [origen, setOrigen] = useState("");
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [selected, setSelected] = useState<Lead | null>(null);
   const [editNotas, setEditNotas] = useState("");
   const [editEstado, setEditEstado] = useState("");
@@ -44,26 +45,40 @@ export default function Leads() {
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [deleteId, setDeleteId] = useState<number | null>(null);
 
-  const fetchLeads = useCallback(async () => {
+  // Debounce de la búsqueda: no dispara una request por cada tecla
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(t);
+  }, [search]);
+
+  const fetchLeads = useCallback(async (signal?: AbortSignal) => {
     setLoading(true);
     try {
       const params = new URLSearchParams({ page: String(page), limit: "20" });
       if (estado !== "todos") params.set("estado", estado);
       if (origen) params.set("origen", origen);
-      if (search) params.set("search", search);
-      const res = await fetch(`/api/leads?${params}`, { credentials: "include" });
+      if (debouncedSearch) params.set("search", debouncedSearch);
+      const res = await fetch(`/api/leads?${params}`, { credentials: "include", signal });
+      if (!res.ok) return; // no pisar la lista con datos inválidos
       const data = await res.json();
       setLeads(data.data);
       setTotal(data.total);
       setTotalPages(data.totalPages);
-    } catch {
+    } catch (err) {
+      if ((err as Error)?.name === "AbortError") return; // request cancelada: no es un error
       setToast({ message: "Error al cargar leads", type: "error" });
     } finally {
       setLoading(false);
     }
-  }, [page, estado, origen, search]);
+  }, [page, estado, origen, debouncedSearch]);
 
-  useEffect(() => { fetchLeads(); }, [fetchLeads]);
+  // AbortController: una request obsoleta (búsqueda/paginación anterior) no pisa
+  // los resultados buenos ni el estado tras un PATCH/DELETE.
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchLeads(controller.signal);
+    return () => controller.abort();
+  }, [fetchLeads]);
 
   function selectLead(lead: Lead) {
     setSelected(lead);

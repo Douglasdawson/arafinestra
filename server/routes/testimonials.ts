@@ -36,7 +36,9 @@ export function registerTestimonialRoutes(app: Express) {
     try {
       const id = parseId(req.params.id);
       if (id === null) return res.status(400).json({ error: "id inválido" });
-      const [updated] = await db.update(testimonials).set(req.body).where(eq(testimonials.id, id)).returning();
+      const { id: _id, createdAt: _c, ...data } = req.body;
+      if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
+      const [updated] = await db.update(testimonials).set(data).where(eq(testimonials.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Testimonio no encontrado" });
       res.json(updated);
     } catch (err) {

@@ -33,6 +33,20 @@ export function registerBlogRoutes(app: Express) {
     }
   });
 
+  // GET /api/blog/id/:id — single by id (admin editor). Registrada ANTES de
+  // /api/blog/:slug para que ":slug" no capture "id".
+  app.get("/api/blog/id/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
+      const post = await db.query.blogPosts.findFirst({ where: eq(blogPosts.id, id) });
+      if (!post) return res.status(404).json({ error: "Post no encontrado" });
+      res.json(post);
+    } catch (err) {
+      res.status(500).json({ error: "Error al obtener post" });
+    }
+  });
+
   // GET /api/blog/:slug — single by slug (public)
   app.get("/api/blog/:slug", async (req, res) => {
     try {
@@ -65,7 +79,11 @@ export function registerBlogRoutes(app: Express) {
     try {
       const id = parseId(req.params.id);
       if (id === null) return res.status(400).json({ error: "id inválido" });
-      const [updated] = await db.update(blogPosts).set(req.body).where(eq(blogPosts.id, id)).returning();
+      // Excluir campos inmutables: createdAt llega como string y revienta el UPDATE;
+      // id no debe reasignarse (mass assignment).
+      const { id: _id, createdAt: _c, ...data } = req.body;
+      if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
+      const [updated] = await db.update(blogPosts).set(data).where(eq(blogPosts.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Post no encontrado" });
       res.json(updated);
     } catch (err) {
