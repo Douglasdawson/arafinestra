@@ -8,10 +8,14 @@ export function localize(
   field: string,
   lang: string,
 ): string {
-  const suffix = "_" + lang;
-  const value = obj[field + suffix];
-  if (typeof value === "string" && value.length > 0) return value;
-  // Fallback to Catalan
-  const fallback = obj[field + "_ca"];
-  return typeof fallback === "string" ? fallback : "";
+  // Drizzle serializes columns in camelCase (nombreCa), but accept legacy
+  // snake_case (nombre_ca) too in case a raw-SQL endpoint returns it.
+  const read = (l: string): string | undefined => {
+    const camel = obj[field.replace(/_(\w)/g, (_, c) => c.toUpperCase()) + l.charAt(0).toUpperCase() + l.slice(1)];
+    if (typeof camel === "string" && camel.length > 0) return camel;
+    const snake = obj[field + "_" + l];
+    if (typeof snake === "string" && snake.length > 0) return snake;
+    return undefined;
+  };
+  return read(lang) ?? read("ca") ?? "";
 }

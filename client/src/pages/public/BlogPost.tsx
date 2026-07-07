@@ -239,7 +239,7 @@ export default function BlogPost() {
                   <>
                     <span className="text-slate-300">|</span>
                     <span className="px-2 py-0.5 bg-brand-light text-brand rounded-full text-xs font-medium">
-                      {t(`blog.cat_${post.categoria}`)}
+                      {t(`blog.cat_${post.categoria}`, { defaultValue: post.categoria })}
                     </span>
                   </>
                 )}

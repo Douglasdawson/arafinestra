@@ -22,4 +22,15 @@ i18n
     },
   });
 
+// Keep <html lang> in sync with the active language (SEO on prerendered
+// snapshots + correct screen-reader pronunciation on SPA language switches).
+i18n.on("languageChanged", (lng) => {
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = lng;
+  }
+});
+if (typeof document !== "undefined" && i18n.language) {
+  document.documentElement.lang = i18n.language;
+}
+
 export default i18n;

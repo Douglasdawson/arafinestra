@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
+import UrgencyBanner from "../ui/UrgencyBanner";
 
 const PHONE = "+34 611 500 372";
 
@@ -14,7 +15,21 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const [spacerH, setSpacerH] = useState(64);
   const lastScrollY = useRef(0);
+
+  // The banner lives inside the fixed header, so the flow spacer must match
+  // the real rendered height (banner visible/dismissed, text wrapping, etc.).
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const update = () => setSpacerH(el.offsetHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const prefix = lang || i18n.language || "ca";
   const isHomePath = location.pathname === "/" || location.pathname === `/${prefix}`;
@@ -91,6 +106,7 @@ export default function Header() {
   return (
     <>
       <header
+        ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 pt-[env(safe-area-inset-top)] ${
           scrolled || !isHome
             ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100/50"
@@ -98,6 +114,7 @@ export default function Header() {
         } ${hidden && !mobileOpen ? "-translate-y-full" : "translate-y-0"}`}
         style={{ animation: "slideDown 0.6s ease-out" }}
       >
+        <UrgencyBanner />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className={`flex items-center justify-between transition-all duration-300 ${
@@ -325,8 +342,8 @@ export default function Header() {
         </div>
       )}
 
-      {/* Spacer — accounts for header height + safe area (Dynamic Island) */}
-      <div className="h-16" style={{ paddingTop: "env(safe-area-inset-top)" }} />
+      {/* Spacer — mirrors the real fixed-header height (banner + nav + safe area) */}
+      <div style={{ height: spacerH }} />
     </>
   );
 }

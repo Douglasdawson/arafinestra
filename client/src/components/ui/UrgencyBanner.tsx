@@ -54,8 +54,8 @@ export default function UrgencyBanner() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white relative z-[41]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center gap-2 sm:gap-4 text-center">
+    <div className="bg-brand text-white relative">
+      <div className="max-w-7xl mx-auto pl-4 pr-12 sm:px-6 lg:px-8 py-2 flex items-center justify-center gap-2 sm:gap-4 text-center">
         <svg className="w-4 h-4 flex-shrink-0 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
         </svg>
@@ -72,7 +72,7 @@ export default function UrgencyBanner() {
         <button
           onClick={handleDismiss}
           className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white active:text-white"
-          aria-label="Close"
+          aria-label={t("common.close", { defaultValue: "Cerrar" })}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

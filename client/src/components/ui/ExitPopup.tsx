@@ -4,9 +4,10 @@ import { useTranslation } from "react-i18next";
 
 const STORAGE_KEY = "exit_popup_dismissed";
 const DISMISS_DAYS = 7;
-const MOBILE_DELAY_MS = 15_000; // 15 seconds on mobile
+const MOBILE_DELAY_MS = 45_000; // mobile fallback timer; generous so it never races an active visitor
 
-// Only show on these route patterns (home + service pages)
+// Only show on browse/info pages. NEVER on conversion flows the user is already
+// inside (/pressupost wizard, /contacte form) — interrupting those loses leads.
 const ALLOWED_PATTERNS = [
   /^\/[a-z]{2}$/, // home /:lang
   /^\/$/, // root
@@ -14,8 +15,6 @@ const ALLOWED_PATTERNS = [
   /^\/[a-z]{2}\/cortizo$/, // cortizo
   /^\/[a-z]{2}\/subvencions$/, // subvenciones
   /^\/[a-z]{2}\/zones/, // zones
-  /^\/[a-z]{2}\/contacte$/, // contact
-  /^\/[a-z]{2}\/pressupost$/, // calculator
   /^\/[a-z]{2}\/projectes$/, // projects
   /^\/[a-z]{2}\/blog/, // blog
 ];

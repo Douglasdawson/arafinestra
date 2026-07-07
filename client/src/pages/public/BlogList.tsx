@@ -61,7 +61,7 @@ function BlogCard({
   currentLang: string;
   prefix: string;
   featured?: boolean;
-  t: (key: string) => string;
+  t: (key: string, options?: { defaultValue?: string }) => string;
 }) {
   const title = localize(post as unknown as Record<string, unknown>, "titulo", currentLang);
   const extracto = localize(post as unknown as Record<string, unknown>, "extracto", currentLang);
@@ -97,7 +97,7 @@ function BlogCard({
         <div className="flex items-center gap-3 text-xs text-slate-500 mb-2">
           {post.categoria && (
             <span className="px-2 py-0.5 bg-brand-light text-brand rounded-full font-medium">
-              {t(`blog.cat_${post.categoria}`)}
+              {t(`blog.cat_${post.categoria}`, { defaultValue: post.categoria })}
             </span>
           )}
           <span>{date}</span>

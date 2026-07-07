@@ -471,6 +471,9 @@ export function injectMeta(template: string, meta: RouteMeta, reqPath?: string):
 
   // Extract lang from canonical URL or request path for hreflang/og:locale
   const { lang, routePath } = parsePath(reqPath || meta.canonicalUrl.replace(DOMAIN, ""));
+
+  // <html lang> must match the route language (SEO + screen reader pronunciation)
+  html = html.replace(/<html([^>]*)\slang="[^"]*"/, `<html$1 lang="${lang}"`);
   const ogType = meta.ogType || "website";
   const ogLocale = OG_LOCALE_MAP[lang] || "ca_ES";
 
