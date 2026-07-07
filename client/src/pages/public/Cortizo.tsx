@@ -210,7 +210,7 @@ export default function Cortizo() {
                         <span className="block text-xs text-slate-600 mt-0.5">{row.pvcLabel}</span>
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className="text-slate-400 text-sm">{row.alu}</span>
+                        <span className="text-slate-500 text-sm">{row.alu}</span>
                         <span className="block text-xs text-slate-600 mt-0.5">{row.aluLabel}</span>
                       </td>
                       <td className="px-6 py-4 text-center">
@@ -253,7 +253,7 @@ export default function Cortizo() {
                     <div className="flex items-center justify-between px-4 py-3">
                       <span className="text-sm font-medium text-slate-700">{t("cortizo.comp_aluminium")}</span>
                       <div className="text-right">
-                        <span className="text-slate-400 text-sm">{row.alu}</span>
+                        <span className="text-slate-500 text-sm">{row.alu}</span>
                         <span className="block text-xs text-slate-600">{row.aluLabel}</span>
                       </div>
                     </div>

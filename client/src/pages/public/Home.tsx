@@ -111,7 +111,7 @@ function WindowMaskHero({
             className="animate-fadeIn mb-3"
             style={{ animationDuration: "0.6s" }}
           >
-            <span className="inline-block text-xs font-semibold tracking-[0.35em] uppercase text-brand/80 border border-brand/20 rounded-full px-4 py-1.5 backdrop-blur-sm">
+            <span className="inline-block text-xs font-semibold tracking-[0.35em] uppercase text-brand-dark border border-brand/20 rounded-full px-4 py-1.5 backdrop-blur-sm">
               Partner Cortizo
             </span>
           </div>
@@ -147,7 +147,7 @@ function WindowMaskHero({
             <div className="flex items-center gap-1.5">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg key={i} className="w-4 h-4 text-star" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
@@ -616,20 +616,22 @@ function InlineLeadForm({ t }: { t: (k: string) => string }) {
               <input
                 type="text"
                 autoComplete="name"
+                aria-label={t("home.form_name_placeholder")}
                 value={formData.nombre}
                 onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
                 placeholder={t("home.form_name_placeholder")}
-                className="flex-1 px-4 py-3.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none placeholder:text-slate-400"
+                className="flex-1 px-4 py-3.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none placeholder:text-slate-500"
                 required
               />
               <input
                 type="tel"
                 inputMode="tel"
                 autoComplete="tel"
+                aria-label={t("home.form_phone_placeholder")}
                 value={formData.telefono}
                 onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
                 placeholder={t("home.form_phone_placeholder")}
-                className="flex-1 px-4 py-3.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none placeholder:text-slate-400"
+                className="flex-1 px-4 py-3.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none placeholder:text-slate-500"
                 required
                 pattern="[0-9+\s]{6,15}"
               />
@@ -644,7 +646,7 @@ function InlineLeadForm({ t }: { t: (k: string) => string }) {
             <p className="text-center text-xs text-slate-500">{t("home.form_legal")}</p>
           </form>
           {status === "error" && (
-            <p className="mt-3 text-center text-sm text-red-500">{t("home.form_error")}</p>
+            <p role="alert" className="mt-3 text-center text-sm text-red-600">{t("home.form_error")}</p>
           )}
         </ScrollReveal>
       </div>
@@ -760,7 +762,7 @@ function AcousticDemo({ t }: { t: (k: string) => string }) {
             <div className="mt-4 sm:mt-6 text-center">
               <p
                 className={`text-2xl sm:text-5xl font-bold transition-colors duration-300 ${
-                  isPVC ? "text-emerald-400" : "text-amber-400"
+                  isPVC ? "text-emerald-400" : "text-star"
                 }`}
               >
                 {isPVC ? "33 dB" : "55 dB"}
@@ -903,11 +905,11 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
                 <div className="absolute inset-2 bg-amber-500/10 rounded-sm" />
               </div>
               <div className="absolute top-4 right-4 sm:top-8 sm:right-8 text-right">
-                <p className="text-xs sm:text-sm uppercase tracking-widest text-amber-400/60">
+                <p className="text-xs sm:text-sm uppercase tracking-widest text-star/60">
                   {t("home.thermal_after")}
                 </p>
                 <p className="text-2xl sm:text-4xl font-bold text-amber-300 mt-1">21°C</p>
-                <p className="text-xs sm:text-sm text-amber-400/50 mt-1">
+                <p className="text-xs sm:text-sm text-star/50 mt-1">
                   {t("home.thermal_warm_desc")}
                 </p>
               </div>
@@ -915,7 +917,7 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
                 <p className="text-sm sm:text-xl font-bold text-amber-300">
                   {t("home.thermal_no_loss")}
                 </p>
-                <p className="text-xs sm:text-sm text-amber-400/60">Uf = 1.0 W/m²K</p>
+                <p className="text-xs sm:text-sm text-star/60">Uf = 1.0 W/m²K</p>
               </div>
             </div>
           </div>
@@ -950,7 +952,7 @@ function ThermalSplit({ t }: { t: (k: string) => string }) {
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <div className="text-center p-3 sm:p-6 rounded-2xl bg-navy-800/50 border border-navy-700/50">
-              <p className="text-xl sm:text-4xl font-bold text-amber-400">1.0</p>
+              <p className="text-xl sm:text-4xl font-bold text-star">1.0</p>
               <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-slate-400 leading-tight">{t("home.thermal_stat_uf")}</p>
             </div>
           </ScrollReveal>

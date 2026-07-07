@@ -47,7 +47,7 @@ export default function Legal() {
       {/* Content */}
       <section className="py-12 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-slate max-w-none whitespace-pre-line break-words text-gray-700 leading-relaxed">
+          <div className="prose prose-slate max-w-none whitespace-pre-line break-words text-slate-700 leading-relaxed">
             {content}
           </div>
         </div>

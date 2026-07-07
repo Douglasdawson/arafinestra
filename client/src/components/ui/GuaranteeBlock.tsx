@@ -48,7 +48,7 @@ export default function GuaranteeBlock({ compact = false, variant = "light" }: P
           <div key={item.titleKey} className="flex items-center gap-2">
             <item.icon
               className={`w-5 h-5 flex-shrink-0 ${
-                variant === "dark" ? "text-brand-light" : "text-brand"
+                variant === "dark" ? "text-brand-light" : "text-brand-dark"
               }`}
             />
             <span
@@ -85,7 +85,7 @@ export default function GuaranteeBlock({ compact = false, variant = "light" }: P
           >
             <div
               className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center rounded-2xl ${
-                variant === "dark" ? "bg-brand/20 text-brand-light" : "bg-brand-light text-brand"
+                variant === "dark" ? "bg-brand/20 text-brand-light" : "bg-brand-light text-brand-dark"
               }`}
             >
               <item.icon className="w-7 h-7" />

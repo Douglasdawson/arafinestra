@@ -43,7 +43,7 @@ export default function StepProductType({ selected, onSelect }: Props) {
       <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_product")}
       </h2>
-      <p className="text-gray-500 text-center">{t("calculator.select_product_desc")}</p>
+      <p className="text-slate-500 text-center">{t("calculator.select_product_desc")}</p>
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
         {PRODUCT_TYPES.map(({ id, iconPath, descKey }) => {
@@ -55,7 +55,7 @@ export default function StepProductType({ selected, onSelect }: Props) {
               className={`relative p-4 sm:p-6 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md ${
                 isSelected
                   ? "border-brand bg-brand-light shadow-md"
-                  : "border-gray-200 bg-white hover:border-gray-300"
+                  : "border-slate-200 bg-white hover:border-slate-300"
               }`}
             >
               {isSelected && (
@@ -69,7 +69,7 @@ export default function StepProductType({ selected, onSelect }: Props) {
                 <path d={iconPath} fillRule="evenodd" clipRule="evenodd" />
               </svg>
               <h3 className="text-base sm:text-lg font-semibold text-navy-800">{t(NAME_KEYS[id])}</h3>
-              <p className="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2">{t(descKey)}</p>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1 line-clamp-2">{t(descKey)}</p>
             </button>
           );
         })}

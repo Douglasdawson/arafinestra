@@ -118,7 +118,7 @@ export default function Contact() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight animate-fadeIn">
             {t("contact.title")}
           </h1>
-          <p className="mt-3 text-sm text-white/50 animate-fadeIn" style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}>
+          <p className="mt-3 text-sm text-white/80 animate-fadeIn" style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}>
             {t("contact.response_time")}
           </p>
         </div>
@@ -137,13 +137,13 @@ export default function Contact() {
               </ScrollReveal>
 
               {success && (
-                <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-sm font-medium flex items-center gap-3 animate-fadeIn">
+                <div className="mb-6 p-4 bg-success-light border border-success/30 text-success rounded-xl text-sm font-medium flex items-center gap-3 animate-fadeIn">
                   <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <div>
                     <p>{t("contact.success")}</p>
-                    <p className="mt-1 text-emerald-600 text-xs font-normal">{t("contact.success_detail")}</p>
+                    <p className="mt-1 text-success text-xs font-normal">{t("contact.success_detail")}</p>
                   </div>
                 </div>
               )}
@@ -154,7 +154,7 @@ export default function Contact() {
               )}
 
               {/* Response time badge */}
-              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-lg text-sm font-medium text-emerald-700">
+              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-success-light border border-success/30 rounded-lg text-sm font-medium text-success">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -165,11 +165,12 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      <label htmlFor="contact-nombre" className="block text-sm font-medium text-slate-700 mb-1.5">
                         {t("contact.name")} *
                       </label>
                       <input
                         type="text"
+                        id="contact-nombre"
                         name="nombre"
                         autoComplete="name"
                         value={form.nombre}
@@ -179,11 +180,12 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      <label htmlFor="contact-telefono" className="block text-sm font-medium text-slate-700 mb-1.5">
                         {t("contact.phone")} *
                       </label>
                       <input
                         type="tel"
+                        id="contact-telefono"
                         name="telefono"
                         inputMode="tel"
                         autoComplete="tel"
@@ -197,11 +199,12 @@ export default function Contact() {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      <label htmlFor="contact-email" className="block text-sm font-medium text-slate-700 mb-1.5">
                         {t("contact.email")} <span className="text-slate-400 font-normal">({t("contact.optional")})</span>
                       </label>
                       <input
                         type="email"
+                        id="contact-email"
                         name="email"
                         inputMode="email"
                         autoComplete="email"
@@ -211,10 +214,11 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      <label htmlFor="contact-tipo" className="block text-sm font-medium text-slate-700 mb-1.5">
                         {t("contact.client_type")}
                       </label>
                       <select
+                        id="contact-tipo"
                         name="tipoCliente"
                         value={form.tipoCliente}
                         onChange={handleChange}
@@ -227,10 +231,11 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                    <label htmlFor="contact-mensaje" className="block text-sm font-medium text-slate-700 mb-1.5">
                       {t("contact.message")}
                     </label>
                     <textarea
+                      id="contact-mensaje"
                       name="mensaje"
                       value={form.mensaje}
                       onChange={handleChange}
@@ -268,7 +273,7 @@ export default function Contact() {
                   {/* Trust conversion badges */}
                   <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-lg text-sm font-medium text-navy-800">
-                      <span className="text-amber-400 tracking-tight">★★★★★</span>
+                      <span className="text-star tracking-tight">★★★★★</span>
                       {t("contact.google_rating")}
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium text-navy-800">
@@ -355,19 +360,19 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackEvent("click", "whatsapp", "contact_page")}
-                    className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100 hover:border-emerald-200 transition-colors group"
+                    className="flex items-center gap-4 p-4 bg-success-light rounded-xl border border-success/20 hover:border-success/30 transition-colors group"
                   >
-                    <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                    <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-success-light text-success">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
                         <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-3.073.913.913-3.073-.163-.26A7.962 7.962 0 014 12a8 8 0 1116 0 8 8 0 01-8 8z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-emerald-800">
+                      <p className="text-sm font-semibold text-success-dark">
                         WhatsApp
                       </p>
-                      <p className="text-sm text-emerald-600 group-hover:text-emerald-700">
+                      <p className="text-sm text-success group-hover:text-success">
                         {t("contact.whatsapp_cta")}
                       </p>
                     </div>

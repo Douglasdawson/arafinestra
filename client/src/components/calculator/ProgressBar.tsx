@@ -38,7 +38,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
             ~{timeRemaining} min
           </span>
         </div>
-        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
           <div
             className="h-full bg-brand rounded-full transition-all duration-500"
             style={{ width: `${percentage}%` }}
@@ -55,7 +55,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
           </span>
         </div>
         <div className="flex items-center justify-between relative">
-          <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-200 z-0" />
+          <div className="absolute top-4 left-0 right-0 h-0.5 bg-slate-200 z-0" />
           <div
             className="absolute top-4 left-0 h-0.5 bg-brand z-0 transition-all duration-500"
             style={{ width: `${((currentStep - 1) / 6) * 100}%` }}
@@ -74,7 +74,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
                       ? "bg-green-500 text-white"
                       : isCurrent
                         ? "bg-brand text-white ring-4 ring-brand-light"
-                        : "bg-gray-200 text-gray-500"
+                        : "bg-slate-200 text-slate-500"
                   }`}
                 >
                   {isCompleted ? (
@@ -87,7 +87,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
                 </div>
                 <span
                   className={`mt-2 text-xs font-medium text-center max-w-[60px] lg:max-w-[80px] ${
-                    isCurrent ? "text-brand" : isCompleted ? "text-green-600" : "text-gray-500"
+                    isCurrent ? "text-brand" : isCompleted ? "text-green-600" : "text-slate-500"
                   }`}
                 >
                   {t(key)}

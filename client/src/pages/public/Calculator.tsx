@@ -163,7 +163,7 @@ export default function Calculator() {
         { name: t("nav.calculator"), url: "/pressupost" },
       ]} />
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-slate-50">
         {/* Header */}
         <div className="relative bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
@@ -179,6 +179,15 @@ export default function Calculator() {
         </div>
 
         <div className="max-w-6xl mx-auto px-4 py-6 pb-32 sm:pb-6">
+          {/* Announce step changes to screen readers */}
+          <p aria-live="polite" className="sr-only">
+            {!isResult &&
+              t("calculator.step_announce", {
+                defaultValue: "Paso {{step}} de {{total}}",
+                step: state.step,
+                total: TOTAL_STEPS,
+              })}
+          </p>
           {/* Progress */}
           {!isResult && <ProgressBar currentStep={state.step} />}
 
@@ -186,7 +195,7 @@ export default function Calculator() {
           <div className={`mt-6 ${!isResult && state.step > 1 ? "flex flex-col lg:flex-row gap-8" : ""}`}>
             {/* Mobile/tablet compact preview */}
             {!isResult && state.step > 1 && (
-              <div className="lg:hidden bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+              <div className="lg:hidden bg-white rounded-xl border border-slate-200 p-3 shadow-sm">
                 <div className="flex items-center gap-3">
                   <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center [&_svg]:max-w-full [&_svg]:max-h-full [&_svg]:w-auto [&_svg]:h-auto">
                     <WindowPreview
@@ -304,8 +313,8 @@ export default function Calculator() {
             {/* Live window preview — desktop only from step 2 onwards */}
             {!isResult && state.step > 1 && (
               <div className="hidden lg:block lg:w-72 flex-shrink-0">
-                <div className="sticky top-24 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                  <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4 text-center">
+                <div className="sticky top-24 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                  <p className="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-4 text-center">
                     {t("calculator.preview")}
                   </p>
                   <div className="flex justify-center">
@@ -361,15 +370,15 @@ export default function Calculator() {
 
           {/* Navigation buttons — sticky on mobile */}
           {!isResult && (
-            <div className="fixed bottom-0 left-0 right-0 sm:static sm:mt-10 bg-white sm:bg-transparent border-t border-gray-200 sm:border-0 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:p-0 sm:pb-0 z-30">
+            <div className="fixed bottom-0 left-0 right-0 sm:static sm:mt-10 bg-white sm:bg-transparent border-t border-slate-200 sm:border-0 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:p-0 sm:pb-0 z-30">
               <div className="flex justify-between max-w-2xl mx-auto">
                 <button
                   onClick={goBack}
                   disabled={state.step <= 1}
                   className={`px-5 py-3 rounded-lg font-medium transition-all ${
                     state.step <= 1
-                      ? "text-gray-400 cursor-not-allowed"
-                      : "text-gray-600 hover:text-gray-800 hover:bg-gray-100 active:bg-gray-200 active:scale-[0.97]"
+                      ? "text-slate-400 cursor-not-allowed"
+                      : "text-slate-600 hover:text-slate-800 hover:bg-slate-100 active:bg-slate-200 active:scale-[0.97]"
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -387,7 +396,7 @@ export default function Calculator() {
                     className={`px-8 py-3 rounded-lg font-semibold transition-all ${
                       canAdvance(state)
                         ? "bg-brand hover:bg-brand-dark text-white shadow-md hover:shadow-lg"
-                        : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        : "bg-slate-200 text-slate-500 cursor-not-allowed"
                     }`}
                   >
                     <span className="flex items-center gap-2">
@@ -410,7 +419,7 @@ export default function Calculator() {
                   {!saveOpen ? (
                     <button
                       onClick={() => setSaveOpen(true)}
-                      className="text-sm text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors"
+                      className="text-sm text-slate-500 hover:text-slate-700 underline underline-offset-2 transition-colors"
                     >
                       {t("calculator.save_progress")}
                     </button>
@@ -439,16 +448,17 @@ export default function Calculator() {
                           setSaveSending(false);
                         }
                       }}
-                      className="inline-flex items-center gap-2 animate-[fadeIn_0.2s_ease-out]"
+                      className="inline-flex flex-wrap justify-center items-center gap-2 animate-[fadeIn_0.2s_ease-out]"
                     >
                       <input
                         type="tel"
+                        aria-label={t("calculator.save_phone_placeholder")}
                         value={savePhone}
                         onChange={(e) => setSavePhone(e.target.value)}
                         placeholder={t("calculator.save_phone_placeholder")}
                         inputMode="tel"
                         autoComplete="tel"
-                        className="px-3 py-2 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand/40 w-44"
+                        className="px-3 py-2 text-base border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand/40 w-44"
                         required
                       />
                       <button
@@ -461,7 +471,8 @@ export default function Calculator() {
                       <button
                         type="button"
                         onClick={() => setSaveOpen(false)}
-                        className="p-3 text-gray-400 hover:text-gray-600 transition-colors"
+                        aria-label={t("common.close", { defaultValue: "Cerrar" })}
+                        className="p-3 text-slate-500 hover:text-slate-700 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -535,7 +546,7 @@ function CalculatorFaq() {
   return (
     <>
       <FaqSchema faqs={faqs} />
-      <section className="py-10 sm:py-16 bg-white mt-8 sm:mt-12 rounded-2xl border border-gray-200 shadow-sm mx-2 sm:mx-0">
+      <section className="py-10 sm:py-16 bg-white mt-8 sm:mt-12 rounded-2xl border border-slate-200 shadow-sm mx-2 sm:mx-0">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-900 mb-8 sm:mb-12 text-center tracking-tight">
             {t("calculator.faq_title")}

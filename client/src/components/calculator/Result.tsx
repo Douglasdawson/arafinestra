@@ -293,8 +293,8 @@ export default function Result({ state, onReset }: Props) {
       </div>
 
       {/* Summary */}
-      <p className="text-sm font-medium text-gray-500 mb-2">{t("calculator.your_config")}</p>
-      <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+      <p className="text-sm font-medium text-slate-500 mb-2">{t("calculator.your_config")}</p>
+      <div className="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
         <SummaryRow label={t("calculator.step_product")} value={t(TIPO_LABELS[state.tipo] || state.tipo)} />
         <SummaryRow label={t("calculator.step_model")} value={state.modelo} />
         <SummaryRow
@@ -314,73 +314,81 @@ export default function Result({ state, onReset }: Props) {
 
       {/* Lead capture */}
       {!submitted ? (
-        <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
           <div className="text-center">
             <h3 className="text-xl font-bold text-navy-900">{t("calculator.want_exact")}</h3>
-            <p className="text-gray-500 text-sm mt-1">{t("calculator.exact_desc")}</p>
+            <p className="text-slate-500 text-sm mt-1">{t("calculator.exact_desc")}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t("contact.name")} *</label>
+                <label htmlFor="calc-nombre" className="block text-sm font-medium text-slate-700 mb-1">{t("contact.name")} *</label>
                 <input
+                  id="calc-nombre"
                   type="text"
                   required
+                  aria-invalid={touched.nombre && !form.nombre ? true : undefined}
+                  aria-describedby={touched.nombre && !form.nombre ? "calc-nombre-error" : undefined}
                   autoComplete="name"
                   value={form.nombre}
                   onChange={(e) => setForm((f) => ({ ...f, nombre: e.target.value }))}
                   onBlur={() => setTouched((t) => ({ ...t, nombre: true }))}
                   className={`w-full px-4 py-2.5 text-base border rounded-lg focus:ring-2 focus:ring-brand focus:border-brand transition-colors ${
-                    touched.nombre && !form.nombre ? "border-red-400 bg-red-50" : "border-gray-300"
+                    touched.nombre && !form.nombre ? "border-red-400 bg-red-50" : "border-slate-300"
                   }`}
                 />
                 {touched.nombre && !form.nombre && (
-                  <p className="text-red-500 text-xs mt-1">{t("contact.name")} *</p>
+                  <p id="calc-nombre-error" className="text-red-600 text-xs mt-1">{t("calculator.required_field", { defaultValue: "Campo obligatorio" })}</p>
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t("contact.phone")} *</label>
+                <label htmlFor="calc-telefono" className="block text-sm font-medium text-slate-700 mb-1">{t("contact.phone")} *</label>
                 <input
+                  id="calc-telefono"
                   type="tel"
                   required
+                  aria-invalid={touched.telefono && !form.telefono ? true : undefined}
+                  aria-describedby={touched.telefono && !form.telefono ? "calc-telefono-error" : undefined}
                   inputMode="tel"
                   autoComplete="tel"
                   value={form.telefono}
                   onChange={(e) => setForm((f) => ({ ...f, telefono: e.target.value }))}
                   onBlur={() => setTouched((t) => ({ ...t, telefono: true }))}
                   className={`w-full px-4 py-2.5 text-base border rounded-lg focus:ring-2 focus:ring-brand focus:border-brand transition-colors ${
-                    touched.telefono && !form.telefono ? "border-red-400 bg-red-50" : "border-gray-300"
+                    touched.telefono && !form.telefono ? "border-red-400 bg-red-50" : "border-slate-300"
                   }`}
                 />
                 {touched.telefono && !form.telefono && (
-                  <p className="text-red-500 text-xs mt-1">{t("contact.phone")} *</p>
+                  <p id="calc-telefono-error" className="text-red-600 text-xs mt-1">{t("calculator.required_field", { defaultValue: "Campo obligatorio" })}</p>
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t("contact.email")}</label>
+                <label htmlFor="calc-email" className="block text-sm font-medium text-slate-700 mb-1">{t("contact.email")}</label>
                 <input
+                  id="calc-email"
                   type="email"
                   inputMode="email"
                   autoComplete="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="w-full px-4 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
+                  className="w-full px-4 py-2.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t("calculator.locality")}</label>
+                <label htmlFor="calc-localidad" className="block text-sm font-medium text-slate-700 mb-1">{t("calculator.locality")}</label>
                 <input
+                  id="calc-localidad"
                   type="text"
                   autoComplete="address-level2"
                   value={form.localidad}
                   onChange={(e) => setForm((f) => ({ ...f, localidad: e.target.value }))}
-                  className="w-full px-4 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
+                  className="w-full px-4 py-2.5 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand"
                 />
               </div>
             </div>
 
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+            {error && <p role="alert" className="text-red-600 text-sm text-center">{error}</p>}
 
             <div className="flex flex-col sm:flex-row gap-3">
               <button
@@ -434,7 +442,7 @@ export default function Result({ state, onReset }: Props) {
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between px-5 py-3">
-      <span className="text-gray-500 text-sm">{label}</span>
+      <span className="text-slate-500 text-sm">{label}</span>
       <span className="text-navy-900 font-medium text-sm text-right">{value}</span>
     </div>
   );

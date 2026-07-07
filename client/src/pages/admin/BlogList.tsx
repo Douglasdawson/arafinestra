@@ -84,7 +84,7 @@ export default function BlogList() {
                   <td className="px-4 py-3 font-medium text-navy-900">{post.tituloEs}</td>
                   <td className="px-4 py-3 text-gray-600">{post.categoria || "-"}</td>
                   <td className="px-4 py-3">
-                    <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                    <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-600"}`}>
                       {post.published ? "Publicado" : "Borrador"}
                     </span>
                   </td>

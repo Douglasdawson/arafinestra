@@ -65,21 +65,21 @@ export default function Financing() {
       {/* Hero */}
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[20%] left-[15%] w-[180px] h-[180px] rounded-full bg-emerald-500/8 blur-3xl" />
+          <div className="absolute top-[20%] left-[15%] w-[180px] h-[180px] rounded-full bg-success/10 blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight">{t("financing.h1")}</h1>
           <p className="mt-5 text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-light">{t("financing.subtitle")}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-success/20 text-success-light rounded-full text-sm font-medium">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
               {t("financing.badge_no_entry")}
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-success/20 text-success-light rounded-full text-sm font-medium">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
               {t("financing.badge_no_interest")}
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-success/20 text-success-light rounded-full text-sm font-medium">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
               {t("financing.badge_no_surprises")}
             </span>
@@ -117,14 +117,14 @@ export default function Financing() {
                 key={plan.months}
                 className={`rounded-xl p-4 sm:p-6 text-center border-2 transition-all duration-300 ${
                   plan.months === 12
-                    ? "border-brand bg-orange-50 shadow-lg scale-105"
+                    ? "border-brand bg-brand-light shadow-lg scale-105"
                     : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-md hover:-translate-y-1"
                 }`}
               >
                 <p className="text-sm text-slate-500 mb-1">{plan.months} {t("financing.months")}</p>
                 <p className="text-2xl sm:text-3xl font-bold text-navy-800">{formatEur(plan.monthly)}</p>
                 <p className="text-sm text-slate-500">{t("financing.per_month")}</p>
-                <div className="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-medium">
+                <div className="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-success-light text-success rounded text-xs font-medium">
                   0% {t("financing.interest")}
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function Financing() {
       </section>
 
       {/* Financing + Subsidies */}
-      <section className="py-16 bg-emerald-50">
+      <section className="py-16 bg-success-light">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-navy-800 mb-4 text-center">{t("financing.combo_title")}</h2>
           <p className="text-slate-600 text-center max-w-2xl mx-auto mb-8">{t("financing.combo_desc")}</p>
@@ -184,24 +184,24 @@ export default function Financing() {
                 <span className="text-slate-600">{t("financing.combo_original")}</span>
                 <span className="text-lg font-semibold text-navy-800">{formatEur(amount)} EUR</span>
               </div>
-              <div className="flex justify-between items-center text-emerald-600">
+              <div className="flex justify-between items-center text-success">
                 <span>- 40% {t("financing.combo_subsidy")}</span>
                 <span className="font-semibold">-{formatEur(amount * subsidyPct)} EUR</span>
               </div>
               <div className="border-t border-slate-200 pt-3 flex justify-between items-center">
                 <span className="font-semibold text-navy-800">{t("financing.combo_final")}</span>
-                <span className="text-2xl font-bold text-emerald-600">{formatEur(afterSubsidy)} EUR</span>
+                <span className="text-2xl font-bold text-success">{formatEur(afterSubsidy)} EUR</span>
               </div>
-              <div className="bg-emerald-50 rounded-lg p-3 text-center">
+              <div className="bg-success-light rounded-lg p-3 text-center">
                 <p className="text-sm text-slate-600">
-                  12 {t("financing.months")} x <span className="font-bold text-emerald-700">{formatEur(afterSubsidyMonthly12)} EUR/{t("financing.month_short")}</span> — 0% {t("financing.interest")}
+                  12 {t("financing.months")} x <span className="font-bold text-success">{formatEur(afterSubsidyMonthly12)} EUR/{t("financing.month_short")}</span> — 0% {t("financing.interest")}
                 </p>
               </div>
             </div>
             <div className="mt-4 text-center">
               <Link
                 to={`/${prefix}/subvencions`}
-                className="text-sm text-emerald-600 hover:text-emerald-700 font-medium underline"
+                className="text-sm text-success hover:text-success font-medium underline"
               >
                 {t("financing.combo_link")}
               </Link>

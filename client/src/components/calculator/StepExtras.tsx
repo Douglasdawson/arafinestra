@@ -37,7 +37,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
     return (
       <div className="space-y-6 text-center">
         <h2 className="text-2xl font-bold text-navy-900">{t("calculator.step_extras")}</h2>
-        <p className="text-gray-500">{t("calculator.no_extras")}</p>
+        <p className="text-slate-500">{t("calculator.no_extras")}</p>
       </div>
     );
   }
@@ -47,7 +47,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
       <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_extras")}
       </h2>
-      <p className="text-gray-500 text-center">{t("calculator.select_extras_desc")}</p>
+      <p className="text-slate-500 text-center">{t("calculator.select_extras_desc")}</p>
 
       <div className="space-y-4 max-w-lg mx-auto">
         {options.map(({ id, icon, surcharge }) => {
@@ -59,7 +59,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
               className={`w-full flex items-center gap-4 p-5 rounded-xl border-2 transition-all duration-200 ${
                 isActive
                   ? "border-brand bg-brand-light"
-                  : "border-gray-200 bg-white hover:border-gray-300"
+                  : "border-slate-200 bg-white hover:border-slate-300"
               }`}
             >
               <svg className="w-10 h-10 text-navy-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -70,7 +70,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
                 <h3 className="font-semibold text-navy-800">
                   {t(`calculator.${id}`)}
                 </h3>
-                <p className="text-sm text-gray-500">{t(`calculator.${id}_desc`)}</p>
+                <p className="text-sm text-slate-500">{t(`calculator.${id}_desc`)}</p>
               </div>
 
               <div className="flex items-center gap-3 flex-shrink-0">
@@ -82,7 +82,7 @@ export default function StepExtras({ tipo, extras, onToggle }: Props) {
                   role="switch"
                   aria-checked={isActive}
                   className={`w-12 h-7 rounded-full transition-colors duration-200 relative ${
-                    isActive ? "bg-brand" : "bg-gray-300"
+                    isActive ? "bg-brand" : "bg-slate-300"
                   }`}
                 >
                   <div

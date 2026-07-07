@@ -1,13 +1,13 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { localize } from "../../lib/localize";
 
 interface Testimonial {
   id: number;
   nombre: string;
   localidad: string | null;
   estrellas: number;
-  texto_ca: string | null;
-  texto_es: string | null;
-  texto_en: string | null;
+  [key: string]: unknown; // localized texto_* / textoXx fields resolved via localize()
 }
 
 interface TestimonialCarouselProps {
@@ -21,7 +21,7 @@ function StarRating({ stars }: { stars: number }) {
       {[1, 2, 3, 4, 5].map((i) => (
         <svg
           key={i}
-          className={`w-4 h-4 ${i <= stars ? "text-amber-400" : "text-slate-200"}`}
+          className={`w-4 h-4 ${i <= stars ? "text-star" : "text-slate-200"}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -34,12 +34,10 @@ function StarRating({ stars }: { stars: number }) {
 
 export default function TestimonialCarousel({ testimonials, lang }: TestimonialCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t: i18nT } = useTranslation();
 
-  const getText = (t: Testimonial) => {
-    if (lang === "es") return t.texto_es || t.texto_ca || "";
-    if (lang === "en") return t.texto_en || t.texto_ca || "";
-    return t.texto_ca || "";
-  };
+  const getText = (t: Testimonial) =>
+    localize(t as Record<string, unknown>, "texto", lang);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -51,11 +49,16 @@ export default function TestimonialCarousel({ testimonials, lang }: TestimonialC
   };
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={i18nT("testimonials.title", { defaultValue: "Opiniones" })}
+    >
       <button
         onClick={() => scroll("left")}
         className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center text-slate-600 hover:text-brand transition-colors hidden md:flex"
-        aria-label="Previous"
+        aria-label={i18nT("common.previous", { defaultValue: "Anterior" })}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -64,7 +67,8 @@ export default function TestimonialCarousel({ testimonials, lang }: TestimonialC
 
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
+        tabIndex={0}
+        className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4 focus-visible:ring-2 focus-visible:ring-brand rounded-lg"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {testimonials.map((t) => (
@@ -89,7 +93,7 @@ export default function TestimonialCarousel({ testimonials, lang }: TestimonialC
       <button
         onClick={() => scroll("right")}
         className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center text-slate-600 hover:text-brand transition-colors hidden md:flex"
-        aria-label="Next"
+        aria-label={i18nT("common.next", { defaultValue: "Siguiente" })}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

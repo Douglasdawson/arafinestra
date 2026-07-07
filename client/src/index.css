@@ -24,6 +24,14 @@
   --color-brand: #e8652b;
   --color-brand-dark: #d4571f;
   --color-brand-light: #fef3ee;
+
+  /* Semantic tokens */
+  --color-success: #059669; /* confirmations, "incluido" checks */
+  --color-success-dark: #065f46;
+  --color-success-light: #ecfdf5;
+  --color-star: #fbbf24; /* review stars only */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1da851;
 }
 
 body {
@@ -156,10 +164,12 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus ring for accessibility */
+/* Focus ring for accessibility — navy ring + white halo, visible on white,
+   orange CTAs and navy sections alike */
 :focus-visible {
-  outline: 2px solid rgba(232, 101, 43, 0.6);
+  outline: 2px solid var(--color-navy-700);
   outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.7);
   border-radius: 4px;
 }
 

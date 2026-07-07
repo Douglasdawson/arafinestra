@@ -21,12 +21,12 @@ export default function NotFound() {
       <p className="mt-4 text-2xl font-semibold text-navy-900">
         {t("errors.not_found", "Pagina no trobada")}
       </p>
-      <p className="mt-2 text-lg text-gray-500">
+      <p className="mt-2 text-lg text-slate-500">
         {t("errors.not_found_desc", "La pagina que busques no existeix.")}
       </p>
       <Link
         to={`/${prefix}`}
-        className="mt-8 inline-block rounded-lg bg-orange-500 px-6 py-3 text-white font-semibold hover:bg-orange-600 transition-colors"
+        className="mt-8 inline-block rounded-lg bg-brand px-6 py-3 text-white font-semibold hover:bg-brand-dark transition-colors"
       >
         {t("errors.go_home", "Tornar a l'inici")}
       </Link>

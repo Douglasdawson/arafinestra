@@ -302,13 +302,20 @@ export default function Projects() {
                     ? selectedProject.fotos_despues
                     : selectedProject.fotos_antes
                   ).map((src, i) => (
-                    <img
+                    <button
                       key={i}
-                      src={src}
-                      alt={`${t("portfolio.title")} ${i + 1}`}
-                      className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                      type="button"
                       onClick={() => setLightboxImg(src)}
-                    />
+                      className="block w-full rounded-lg focus-visible:ring-2 focus-visible:ring-brand"
+                      aria-label={`${t("portfolio.title")} ${i + 1}`}
+                    >
+                      <img
+                        src={src}
+                        alt={`${t("portfolio.title")} ${i + 1}`}
+                        loading="lazy"
+                        className="w-full rounded-lg hover:opacity-90 transition-opacity"
+                      />
+                    </button>
                   ))}
                 </div>
               ) : null}

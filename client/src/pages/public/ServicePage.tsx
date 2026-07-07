@@ -61,9 +61,9 @@ const SLUG_TO_TYPE: Record<string, ServiceType> = {
 
 const SERVICE_COLORS: Record<ServiceType, { gradient: string; accent: string }> = {
   ventana: { gradient: "from-navy-700 via-navy-800 to-navy-950", accent: "sky" },
-  puerta: { gradient: "from-teal-800 via-navy-800 to-navy-950", accent: "teal" },
+  puerta: { gradient: "from-navy-700 via-navy-800 to-navy-950", accent: "teal" },
   persiana: { gradient: "from-navy-600 via-navy-800 to-navy-950", accent: "slate" },
-  mosquitera: { gradient: "from-emerald-800 via-navy-800 to-navy-950", accent: "emerald" },
+  mosquitera: { gradient: "from-navy-600 via-navy-800 to-navy-950", accent: "emerald" },
 };
 
 interface PortfolioItem {
@@ -126,7 +126,7 @@ function AccordionItem({
             {question}
           </span>
           <svg
-            className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            className={`w-5 h-5 text-slate-500 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -323,7 +323,7 @@ export default function ServicePage() {
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
-              <span className="text-xs text-white/50 ml-1">4.9</span>
+              <span className="text-xs text-white/80 ml-1">4.9</span>
             </div>
           </div>
         </div>
@@ -553,7 +553,7 @@ export default function ServicePage() {
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <p className="mt-5 text-base sm:text-lg text-slate-400 font-light">
+            <p className="mt-5 text-base sm:text-lg text-slate-500 font-light">
               {t("service_pages.cta_desc")}
             </p>
           </ScrollReveal>
@@ -573,7 +573,7 @@ export default function ServicePage() {
                 {t("cta.free_visit")}
               </Link>
             </div>
-            <p className="mt-3 text-sm text-slate-400">{t("cta_microcopy")}</p>
+            <p className="mt-3 text-sm text-slate-500">{t("cta_microcopy")}</p>
             <div className="mt-5">
               <TrustBar variant="dark" />
             </div>

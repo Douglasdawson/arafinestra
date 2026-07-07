@@ -276,7 +276,7 @@ export default function Zone() {
                       {[1, 2, 3, 4, 5].map((i) => (
                         <svg
                           key={i}
-                          className={`w-4 h-4 ${i <= rev.puntuacion ? "text-amber-400" : "text-slate-200"}`}
+                          className={`w-4 h-4 ${i <= rev.puntuacion ? "text-star" : "text-slate-200"}`}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >

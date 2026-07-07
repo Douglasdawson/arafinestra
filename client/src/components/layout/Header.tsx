@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useParams, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import UrgencyBanner from "../ui/UrgencyBanner";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 const PHONE = "+34 611 500 372";
 
@@ -16,8 +17,10 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const [spacerH, setSpacerH] = useState(64);
   const lastScrollY = useRef(0);
+  useFocusTrap(mobileMenuRef, mobileOpen);
 
   // The banner lives inside the fixed header, so the flow spacer must match
   // the real rendered height (banner visible/dismissed, text wrapping, etc.).
@@ -133,7 +136,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav aria-label={t("common.menu", { defaultValue: "Menú" })} className="hidden lg:flex items-center gap-1">
               {/* Services dropdown */}
               <div ref={dropdownRef} className="relative">
                 <button
@@ -234,7 +237,7 @@ export default function Header() {
                   ? "text-slate-700 hover:bg-slate-100"
                   : "text-white hover:bg-white/10"
               }`}
-              aria-label="Menu"
+              aria-label={t("common.menu", { defaultValue: "Menú" })}
               aria-expanded={mobileOpen}
             >
               <div className="w-5 h-4 flex flex-col justify-between">
@@ -267,6 +270,10 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
           />
           <div
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("common.menu", { defaultValue: "Menú" })}
             className="absolute top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl flex flex-col"
             style={{ animation: "slideInRight 0.3s ease-out" }}
           >
@@ -275,7 +282,7 @@ export default function Header() {
               <button
                 onClick={() => setMobileOpen(false)}
                 className="p-3 rounded-lg text-slate-500 hover:bg-slate-100"
-                aria-label="Tancar menú"
+                aria-label={t("common.close", { defaultValue: "Cerrar" })}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

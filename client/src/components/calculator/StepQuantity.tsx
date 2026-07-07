@@ -18,16 +18,16 @@ export default function StepQuantity({ cantidad, onChange }: Props) {
       <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_quantity")}
       </h2>
-      <p className="text-gray-500 text-center">{t("calculator.select_quantity_desc")}</p>
+      <p className="text-slate-500 text-center">{t("calculator.select_quantity_desc")}</p>
 
       {/* Large counter */}
       <div className="flex items-center justify-center gap-6">
         <button
           onClick={decrement}
           disabled={cantidad <= 1}
-          className="w-14 h-14 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+          className="w-14 h-14 rounded-full bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
         >
-          <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="w-6 h-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M20 12H4" />
           </svg>
         </button>
@@ -39,9 +39,9 @@ export default function StepQuantity({ cantidad, onChange }: Props) {
         <button
           onClick={increment}
           disabled={cantidad >= 20}
-          className="w-14 h-14 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+          className="w-14 h-14 rounded-full bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
         >
-          <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="w-6 h-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
           </svg>
         </button>
@@ -56,7 +56,7 @@ export default function StepQuantity({ cantidad, onChange }: Props) {
             className={`w-12 h-12 rounded-xl text-sm font-semibold transition-all ${
               cantidad === n
                 ? "bg-brand text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
             }`}
           >
             {n}

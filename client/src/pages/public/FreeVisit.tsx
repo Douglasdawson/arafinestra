@@ -170,7 +170,7 @@ export default function FreeVisit() {
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[15%] left-[15%] w-[200px] h-[200px] rounded-full bg-brand/8 blur-3xl" />
-          <div className="absolute bottom-[20%] right-[10%] w-[150px] h-[150px] rounded-full bg-emerald-500/8 blur-3xl" />
+          <div className="absolute bottom-[20%] right-[10%] w-[150px] h-[150px] rounded-full bg-success/10 blur-3xl" />
         </div>
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand/20 border border-brand/30 rounded-full text-sm font-medium text-brand-light mb-6 animate-fadeIn">
@@ -229,13 +229,13 @@ export default function FreeVisit() {
               </ScrollReveal>
 
               {success && (
-                <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-sm font-medium flex items-center gap-3 animate-fadeIn">
+                <div className="mb-6 p-4 bg-success-light border border-success/30 text-success rounded-xl text-sm font-medium flex items-center gap-3 animate-fadeIn">
                   <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <div>
                     <p>{t("free_visit.success")}</p>
-                    <p className="mt-1 text-emerald-600 text-xs font-normal">{t("free_visit.success_detail")}</p>
+                    <p className="mt-1 text-success text-xs font-normal">{t("free_visit.success_detail")}</p>
                   </div>
                 </div>
               )}
@@ -283,7 +283,7 @@ export default function FreeVisit() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                        {t("contact.email")} <span className="text-slate-400 font-normal">({t("contact.optional")})</span>
+                        {t("contact.email")} <span className="text-slate-500 font-normal">({t("contact.optional")})</span>
                       </label>
                       <input
                         type="email"
@@ -329,7 +329,7 @@ export default function FreeVisit() {
 
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      {t("free_visit.description")} <span className="text-slate-400 font-normal">({t("contact.optional")})</span>
+                      {t("free_visit.description")} <span className="text-slate-500 font-normal">({t("contact.optional")})</span>
                     </label>
                     <textarea
                       name="descripcion"
@@ -380,7 +380,7 @@ export default function FreeVisit() {
                   {/* Google rating */}
                   <div className="p-5 bg-amber-50 rounded-xl border border-amber-200">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-amber-400 text-lg tracking-tight">★★★★★</span>
+                      <span className="text-star text-lg tracking-tight">★★★★★</span>
                       <span className="text-sm font-bold text-navy-800">{t("contact.google_rating")}</span>
                     </div>
                     <p className="text-xs text-slate-600">Google Reviews</p>

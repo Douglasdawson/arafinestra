@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Header from "./Header";
 import Footer from "./Footer";
 import WhatsAppButton from "../ui/WhatsAppButton";
@@ -12,10 +13,11 @@ import SocialProofToast from "../ui/SocialProofToast";
 import StickyCTA from "../ui/StickyCTA";
 
 export default function PublicLayout() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-[100svh] flex flex-col">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand focus:text-white focus:rounded-lg focus:text-sm">
-        Skip to content
+        {t("common.skip_to_content", { defaultValue: "Saltar al contenido" })}
       </a>
       <ScrollToTop />
       <ScrollProgressBar />

@@ -318,7 +318,9 @@
     "share_whatsapp_msg": "He calculado el presupuesto de mis ventanas en ARA FINESTRA: {{price}}. Configuración: {{summary}}. Más info: https://arafinestra.com/es/presupuesto",
     "call_now": "Llamar ahora",
     "urgency_slots": "Disponibilidad limitada — 3 plazas de instalación disponibles este mes",
-    "social_proof_count": "Más de 500 familias ya han calculado su presupuesto con nosotros"
+    "social_proof_count": "Más de 500 familias ya han calculado su presupuesto con nosotros",
+    "required_field": "Campo obligatorio",
+    "step_announce": "Paso {{step}} de {{total}}"
   },
   "pricing": {
     "h1": "Precios ventanas PVC Cortizo en Girona",
@@ -890,5 +892,12 @@
   "calculator_share": {
     "button": "Compartir presupuesto",
     "whatsapp_text": "Mira el presupuesto que me han hecho para ventanas PVC Cortizo:\n\n{{summary}}\n\nPrecio estimado: {{price}}\n\nMás info: https://arafinestra.com/es/pressupost"
+  },
+  "common": {
+    "close": "Cerrar",
+    "skip_to_content": "Saltar al contenido",
+    "menu": "Menú",
+    "previous": "Anterior",
+    "next": "Siguiente"
   }
 }

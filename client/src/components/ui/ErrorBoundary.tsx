@@ -45,7 +45,7 @@ export default class ErrorBoundary extends Component<Props, State> {
           <h1 className="text-4xl font-bold text-navy-900 mb-4">
             {msg.title}
           </h1>
-          <p className="text-lg text-gray-500 mb-8">
+          <p className="text-lg text-slate-500 mb-8">
             {msg.desc}
           </p>
           <button

@@ -318,7 +318,9 @@
     "share_whatsapp_msg": "He calculat el pressupost de les meves finestres a ARA FINESTRA: {{price}}. Configuració: {{summary}}. Mes info: https://arafinestra.com/ca/pressupost",
     "call_now": "Trucar ara",
     "urgency_slots": "Disponibilitat limitada — 3 places d'instal·lació disponibles aquest mes",
-    "social_proof_count": "Mes de 500 families ja han calculat el seu pressupost amb nosaltres"
+    "social_proof_count": "Mes de 500 families ja han calculat el seu pressupost amb nosaltres",
+    "required_field": "Camp obligatori",
+    "step_announce": "Pas {{step}} de {{total}}"
   },
   "pricing": {
     "h1": "Preus finestres PVC Cortizo a Girona",
@@ -890,5 +892,12 @@
   "calculator_share": {
     "button": "Compartir pressupost",
     "whatsapp_text": "Mira el pressupost que m'han fet per a finestres PVC Cortizo:\n\n{{summary}}\n\nPreu estimat: {{price}}\n\nMés info: https://arafinestra.com/ca/pressupost"
+  },
+  "common": {
+    "close": "Tancar",
+    "skip_to_content": "Salta al contingut",
+    "menu": "Menú",
+    "previous": "Anterior",
+    "next": "Següent"
   }
 }

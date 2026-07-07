@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -57,6 +58,8 @@ export default function ExitPopup() {
   const [loading, setLoading] = useState(false);
   const [telefono, setTelefono] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, visible);
   const phoneInputRef = useRef<HTMLInputElement>(null);
 
   const handleClose = useCallback(() => {
@@ -155,6 +158,7 @@ export default function ExitPopup() {
       onClick={handleClose}
     >
       <div
+        ref={dialogRef}
         className="relative rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden"
         role="dialog"
         aria-modal="true"
@@ -163,7 +167,7 @@ export default function ExitPopup() {
       >
         {/* Navy header band */}
         <div className="bg-[var(--color-navy-900)] px-8 pt-8 pb-4 text-center">
-          <span className="inline-block text-5xl mb-2">%</span>
+          <span aria-hidden="true" className="inline-block text-5xl mb-2 text-white">%</span>
           <h3 className="text-2xl font-bold text-white">
             {t("exit_popup.title")}
           </h3>
@@ -175,33 +179,34 @@ export default function ExitPopup() {
           <button
             onClick={handleClose}
             className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center rounded-lg text-white/70 hover:text-white active:text-white text-2xl leading-none"
-            aria-label="Close"
+            aria-label={t("common.close", { defaultValue: "Cerrar" })}
           >
             &times;
           </button>
 
           {submitted ? (
             <div className="text-center py-4">
-              <div className="text-4xl mb-3 text-[var(--color-brand)]">&#10003;</div>
+              <div aria-hidden="true" className="text-4xl mb-3 text-[var(--color-brand)]">&#10003;</div>
               <p className="text-[var(--color-navy-800)] font-medium text-lg">
                 {t("exit_popup.success")}
               </p>
             </div>
           ) : (
             <>
-              <p className="text-gray-600 text-center mb-5">
+              <p className="text-slate-600 text-center mb-5">
                 {t("exit_popup.subtitle")}
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   ref={phoneInputRef}
+                  aria-label={t("exit_popup.placeholder")}
                   type="tel"
                   inputMode="tel"
                   autoComplete="tel"
                   value={telefono}
                   onChange={(e) => setTelefono(e.target.value)}
                   placeholder={t("exit_popup.placeholder")}
-                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-brand)] focus:border-[var(--color-brand)] outline-none"
+                  className="w-full px-4 py-3 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-[var(--color-brand)] focus:border-[var(--color-brand)] outline-none"
                   required
                   pattern="[0-9+\s]{6,15}"
                 />

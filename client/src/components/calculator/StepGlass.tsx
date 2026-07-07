@@ -24,7 +24,7 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
       <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_glass")}
       </h2>
-      <p className="text-gray-500 text-center">{t("calculator.select_glass_desc")}</p>
+      <p className="text-slate-500 text-center">{t("calculator.select_glass_desc")}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
         {glasses.map(({ id, stars, recommended }) => {
@@ -38,7 +38,7 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
                   ? "border-brand bg-brand-light shadow-md"
                   : recommended
                   ? "border-brand/40 bg-brand-light/30 hover:border-brand/60"
-                  : "border-gray-200 bg-white hover:border-gray-300"
+                  : "border-slate-200 bg-white hover:border-slate-300"
               }`}
             >
               {recommended && (
@@ -62,15 +62,15 @@ export default function StepGlass({ selected, onSelect, compatibleGlasses }: Pro
               </div>
 
               <h3 className="font-semibold text-navy-800 text-sm sm:text-base mb-1">{t(`calculator.glass_${id}`)}</h3>
-              <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">{t(`calculator.glass_${id}_desc`)}</p>
+              <p className="text-xs sm:text-sm text-slate-500 mb-2 sm:mb-3">{t(`calculator.glass_${id}_desc`)}</p>
 
               {/* Star rating */}
               <div className="flex items-center gap-0.5 sm:gap-1">
-                <span className="text-xs text-gray-500 mr-1 hidden sm:inline">{t("calculator.insulation")}:</span>
+                <span className="text-xs text-slate-500 mr-1 hidden sm:inline">{t("calculator.insulation")}:</span>
                 {Array.from({ length: 5 }).map((_, i) => (
                   <svg
                     key={i}
-                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${i < stars ? "text-amber-400" : "text-gray-200"}`}
+                    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${i < stars ? "text-amber-400" : "text-slate-200"}`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >

@@ -98,7 +98,18 @@ export default function BeforeAfterSlider({
         style={{ left: `${splitPos}%`, transform: "translateX(-50%)" }}
       >
         <div className="w-[2px] h-full bg-white shadow-sm" />
-        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center">
+        <div
+          role="slider"
+          tabIndex={0}
+          aria-label={`${beforeLabel} / ${afterLabel}`}
+          aria-valuenow={Math.round(splitPos)}
+          aria-valuemin={5}
+          aria-valuemax={95}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") setSplitPos((p) => Math.max(5, p - 5));
+            if (e.key === "ArrowRight") setSplitPos((p) => Math.min(95, p + 5));
+          }}
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center focus-visible:ring-2 focus-visible:ring-brand focus:outline-none">
           <svg
             width="18"
             height="18"

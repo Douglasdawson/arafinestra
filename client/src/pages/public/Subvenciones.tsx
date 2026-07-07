@@ -42,13 +42,13 @@ export default function Subvenciones() {
       />
 
       {/* Hero */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-emerald-700 via-teal-800 to-teal-900 overflow-hidden">
+      <section className="relative py-20 sm:py-28 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[25%] right-[10%] w-[200px] h-[200px] rounded-full bg-emerald-400/10 blur-3xl" />
+          <div className="absolute top-[25%] right-[10%] w-[200px] h-[200px] rounded-full bg-brand/10 blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">{t("subsidies_page.h1")}</h1>
-          <p className="mt-5 text-base sm:text-xl text-emerald-100/80 max-w-2xl mx-auto font-light">{t("subsidies_page.subtitle")}</p>
+          <p className="mt-5 text-base sm:text-xl text-navy-100/90 max-w-2xl mx-auto font-light">{t("subsidies_page.subtitle")}</p>
         </div>
       </section>
 
@@ -68,7 +68,7 @@ export default function Subvenciones() {
           <ul className="space-y-4">
             {requirements.map((req, i) => (
               <li key={i} className="flex gap-3 items-start">
-                <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-success-light text-success mt-0.5">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -88,7 +88,7 @@ export default function Subvenciones() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step) => (
               <div key={step.num} className="text-center p-6 bg-slate-50 rounded-lg">
-                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-lg font-bold">
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-success-light text-success text-lg font-bold">
                   {step.num}
                 </div>
                 <p className="text-sm text-slate-700 leading-relaxed">{step.text}</p>
@@ -99,10 +99,10 @@ export default function Subvenciones() {
       </section>
 
       {/* Amount Info */}
-      <section className="py-16 bg-emerald-50">
+      <section className="py-16 bg-success-light">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-navy-800 mb-4">{t("subsidies_page.amount_title")}</h2>
-          <p className="text-4xl font-bold text-emerald-600 mb-4">{t("subsidies_page.amount_value")}</p>
+          <p className="text-4xl font-bold text-success mb-4">{t("subsidies_page.amount_value")}</p>
           <p className="text-slate-600">{t("subsidies_page.amount_desc")}</p>
         </div>
       </section>
@@ -134,14 +134,14 @@ export default function Subvenciones() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to={`/${prefix}/pressupost`}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors shadow-lg text-base sm:text-lg pulse-glow-btn"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 bg-success text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-lg text-base sm:text-lg pulse-glow-btn"
             >
               {t("cta.calculate")}
               <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
               to={`/${prefix}/visita-gratuita`}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 border-2 border-emerald-700 text-emerald-700 font-semibold rounded-lg text-base sm:text-lg hover:bg-emerald-700 hover:text-white transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3.5 sm:py-4 border-2 border-success text-success font-semibold rounded-lg text-base sm:text-lg hover:bg-success hover:text-white transition-colors"
             >
               {t("cta.free_visit")}
             </Link>

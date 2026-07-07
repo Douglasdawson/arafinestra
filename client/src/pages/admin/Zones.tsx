@@ -185,7 +185,7 @@ export default function Zones() {
                   <td className="px-4 py-3 font-medium text-navy-900">{zone.nombreEs || zone.nombreCa}</td>
                   <td className="px-4 py-3 text-gray-500 font-mono text-xs">{zone.slug}</td>
                   <td className="px-4 py-3">
-                    <span className={`px-2 py-0.5 rounded-full text-xs ${zone.published ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                    <span className={`px-2 py-0.5 rounded-full text-xs ${zone.published ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-600"}`}>
                       {zone.published ? "Publicada" : "Borrador"}
                     </span>
                   </td>

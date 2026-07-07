@@ -26,7 +26,7 @@ export default function StepColor({ selected, onSelect, availableColors }: Props
       <h2 className="text-2xl font-bold text-navy-900 text-center">
         {t("calculator.step_color")}
       </h2>
-      <p className="text-gray-500 text-center">{t("calculator.select_color_desc")}</p>
+      <p className="text-slate-500 text-center">{t("calculator.select_color_desc")}</p>
 
       <div className="flex flex-wrap justify-center gap-6 max-w-lg mx-auto py-4">
         {colors.map((color) => {
@@ -42,12 +42,12 @@ export default function StepColor({ selected, onSelect, availableColors }: Props
                   isSelected
                     ? "ring-4 ring-brand ring-offset-2 scale-110"
                     : "ring-1 ring-gray-300 group-hover:ring-2 group-hover:ring-gray-400"
-                } ${color.border ? "border border-gray-200" : ""}`}
+                } ${color.border ? "border border-slate-200" : ""}`}
                 style={{ backgroundColor: color.hex }}
               />
               <span
                 className={`text-sm font-medium ${
-                  isSelected ? "text-brand" : "text-gray-600"
+                  isSelected ? "text-brand" : "text-slate-600"
                 }`}
               >
                 {t(`calculator.color_${color.id}`)}
