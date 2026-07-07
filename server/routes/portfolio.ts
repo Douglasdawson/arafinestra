@@ -3,19 +3,22 @@ import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
 import { parseId } from "../lib/parseId.js";
 import { portfolio } from "@shared/schema";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, ilike } from "drizzle-orm";
 
 export function registerPortfolioRoutes(app: Express) {
   // GET /api/portfolio — list, ?published, ?localidad, ?tipoInmueble, ?destacado
   app.get("/api/portfolio", async (req, res) => {
     try {
-      const { published, localidad, tipoInmueble, destacado } = req.query;
+      const { published, localidad, tipoInmueble, destacado, tipo } = req.query;
       const isAdmin = req.isAuthenticated?.() === true;
       const conditions = [];
       if (!isAdmin || published === "true") conditions.push(eq(portfolio.published, true));
       if (localidad) conditions.push(eq(portfolio.localidad, localidad as string));
       if (tipoInmueble) conditions.push(eq(portfolio.tipoInmueble, tipoInmueble as string));
       if (destacado === "true") conditions.push(eq(portfolio.destacado, true));
+      // Filtro por tipo de servicio (best-effort sobre productosUsados; sin columna
+      // dedicada). Las páginas de servicio caen a proyectos generales si no hay match.
+      if (tipo) conditions.push(ilike(portfolio.productosUsados, `%${tipo}%`));
       const where = conditions.length > 0 ? and(...conditions) : undefined;
       const data = await db.select().from(portfolio).where(where).orderBy(desc(portfolio.createdAt));
       res.json(data);

@@ -7,12 +7,31 @@ import { zones } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 export function registerZoneRoutes(app: Express) {
-  // GET /api/zones — list, ?published
+  // GET /api/zones — list, ?published, ?fields=list (payload ligero para hot paths)
   app.get("/api/zones", async (req, res) => {
     try {
-      const { published } = req.query;
+      const { published, fields } = req.query;
       const isAdmin = req.isAuthenticated?.() === true;
       const where = !isAdmin || published === "true" ? eq(zones.published, true) : undefined;
+
+      if (fields === "list") {
+        // Solo lo necesario para listados: evita enviar contenido_* (500-800 palabras
+        // × 3 idiomas) por cada zona en páginas públicas de alto tráfico.
+        const data = await db
+          .select({
+            id: zones.id,
+            slug: zones.slug,
+            nombreCa: zones.nombreCa,
+            nombreEs: zones.nombreEs,
+            nombreEn: zones.nombreEn,
+            published: zones.published,
+          })
+          .from(zones)
+          .where(where);
+        res.setHeader("Cache-Control", "public, max-age=300");
+        return res.json(data);
+      }
+
       const data = await db.select().from(zones).where(where);
       res.json(data);
     } catch (err) {

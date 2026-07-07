@@ -24,7 +24,7 @@ export default function ZonesList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/zones?published=true")
+    fetch("/api/zones?published=true&fields=list")
       .then((r) => (r.ok ? r.json() : []))
       .then((data) => {
         setZones(data);

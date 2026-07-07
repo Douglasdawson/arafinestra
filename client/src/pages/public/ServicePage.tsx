@@ -66,35 +66,36 @@ const SERVICE_COLORS: Record<ServiceType, { gradient: string; accent: string }> 
   mosquitera: { gradient: "from-navy-600 via-navy-800 to-navy-950", accent: "emerald" },
 };
 
+// La API (Drizzle) serializa las columnas en camelCase, no snake_case.
 interface PortfolioItem {
   id: number;
-  titulo_ca: string | null;
-  titulo_es: string | null;
-  titulo_en: string | null;
+  tituloCa: string | null;
+  tituloEs: string | null;
+  tituloEn: string | null;
   localidad: string | null;
-  foto_despues: string | null;
-  tipo: string | null;
+  fotosDespues: string[] | null;
+  productosUsados: string | null;
 }
 
 interface BlogPost {
   id: number;
   slug: string;
-  titulo_ca: string;
-  titulo_es: string;
-  titulo_en: string;
-  extracto_ca: string | null;
-  extracto_es: string | null;
-  extracto_en: string | null;
-  imagen_portada: string | null;
+  tituloCa: string;
+  tituloEs: string;
+  tituloEn: string;
+  extractoCa: string | null;
+  extractoEs: string | null;
+  extractoEn: string | null;
+  imagenPortada: string | null;
   categoria: string | null;
 }
 
 interface Zone {
   id: number;
   slug: string;
-  nombre_ca: string;
-  nombre_es: string;
-  nombre_en: string;
+  nombreCa: string;
+  nombreEs: string;
+  nombreEn: string;
 }
 
 const SERVICE_BLOG_CATEGORIES: Record<ServiceType, string[]> = {
@@ -173,12 +174,26 @@ export default function ServicePage() {
   const [testimonials, setTestimonials] = useState<{ id: number; nombre: string; localidad: string | null; estrellas: number; texto_ca: string | null; texto_es: string | null; texto_en: string | null }[]>([]);
 
   useEffect(() => {
+    let cancelled = false;
     setLoadingPortfolio(true);
-    fetch(`/api/portfolio?published=true&tipo=${serviceType}`)
+    fetch(`/api/portfolio?published=true&tipo=${encodeURIComponent(serviceType)}`)
       .then((r) => (r.ok ? r.json() : []))
-      .then(setPortfolioItems)
-      .catch(() => setPortfolioItems([]))
-      .finally(() => setLoadingPortfolio(false));
+      .then(async (rows: PortfolioItem[]) => {
+        // Fallback: si no hay proyectos de este tipo, mostrar proyectos generales
+        // (evita que la página de servicio quede vacía hasta clasificar el portfolio).
+        if (Array.isArray(rows) && rows.length > 0) return rows;
+        const general = await fetch(`/api/portfolio?published=true`).then((r) => (r.ok ? r.json() : []));
+        return Array.isArray(general) ? general : [];
+      })
+      .then((rows) => {
+        if (!cancelled) setPortfolioItems(rows);
+      })
+      .catch(() => {
+        if (!cancelled) setPortfolioItems([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingPortfolio(false);
+      });
 
     // Fetch blog posts matching service categories
     const categories = SERVICE_BLOG_CATEGORIES[serviceType];
@@ -207,35 +222,39 @@ export default function ServicePage() {
       .then(setTestimonials)
       .catch(() => setTestimonials([]));
 
-    // Fetch zones
-    fetch("/api/zones?published=true")
+    // Fetch zones (fields=list: solo slug + nombres, sin el contenido multiidioma)
+    fetch("/api/zones?published=true&fields=list")
       .then((r) => (r.ok ? r.json() : []))
       .then((data: Zone[]) => setZones(data.slice(0, 8)))
       .catch(() => setZones([]));
+
+    return () => {
+      cancelled = true;
+    };
   }, [serviceType]);
 
   const getTitle = (p: PortfolioItem) => {
-    if (currentLang === "es") return p.titulo_es || p.titulo_ca || "";
-    if (currentLang === "en") return p.titulo_en || p.titulo_ca || "";
-    return p.titulo_ca || "";
+    if (currentLang === "es") return p.tituloEs || p.tituloCa || "";
+    if (currentLang === "en") return p.tituloEn || p.tituloCa || "";
+    return p.tituloCa || "";
   };
 
   const getBlogTitle = (p: BlogPost) => {
-    if (currentLang === "es") return p.titulo_es || p.titulo_ca;
-    if (currentLang === "en") return p.titulo_en || p.titulo_ca;
-    return p.titulo_ca;
+    if (currentLang === "es") return p.tituloEs || p.tituloCa;
+    if (currentLang === "en") return p.tituloEn || p.tituloCa;
+    return p.tituloCa;
   };
 
   const getBlogExcerpt = (p: BlogPost) => {
-    if (currentLang === "es") return p.extracto_es || p.extracto_ca || "";
-    if (currentLang === "en") return p.extracto_en || p.extracto_ca || "";
-    return p.extracto_ca || "";
+    if (currentLang === "es") return p.extractoEs || p.extractoCa || "";
+    if (currentLang === "en") return p.extractoEn || p.extractoCa || "";
+    return p.extractoCa || "";
   };
 
   const getZoneName = (z: Zone) => {
-    if (currentLang === "es") return z.nombre_es || z.nombre_ca;
-    if (currentLang === "en") return z.nombre_en || z.nombre_ca;
-    return z.nombre_ca;
+    if (currentLang === "es") return z.nombreEs || z.nombreCa;
+    if (currentLang === "en") return z.nombreEn || z.nombreCa;
+    return z.nombreCa;
   };
 
   const benefits: string[] = [];
@@ -396,7 +415,7 @@ export default function ServicePage() {
                 : portfolioItems.map((p, i) => (
                     <ScrollReveal key={p.id} delay={i * 0.1}>
                       <ProjectCard
-                        photo={p.foto_despues}
+                        photo={p.fotosDespues?.[0] ?? null}
                         title={getTitle(p)}
                         location={p.localidad}
                         link={`/${prefix}/projectes`}
@@ -433,10 +452,10 @@ export default function ServicePage() {
                     to={`/${prefix}/blog/${post.slug}`}
                     className="block bg-slate-50 rounded-xl border border-slate-100 hover:border-brand/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                   >
-                    {post.imagen_portada && (
+                    {post.imagenPortada && (
                       <div className="h-48">
                         <ProgressiveImage
-                          src={post.imagen_portada}
+                          src={post.imagenPortada}
                           alt={getBlogTitle(post)}
                           className="w-full h-full object-cover"
                         />
