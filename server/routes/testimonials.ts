@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
+import { parseId } from "../lib/parseId.js";
 import { testimonials } from "@shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 
@@ -33,7 +34,8 @@ export function registerTestimonialRoutes(app: Express) {
   // PATCH /api/testimonials/:id
   app.patch("/api/testimonials/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const [updated] = await db.update(testimonials).set(req.body).where(eq(testimonials.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Testimonio no encontrado" });
       res.json(updated);
@@ -45,7 +47,8 @@ export function registerTestimonialRoutes(app: Express) {
   // DELETE /api/testimonials/:id
   app.delete("/api/testimonials/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const [deleted] = await db.delete(testimonials).where(eq(testimonials.id, id)).returning();
       if (!deleted) return res.status(404).json({ error: "Testimonio no encontrado" });
       res.json({ ok: true });

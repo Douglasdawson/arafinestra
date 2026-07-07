@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
+import { parseId } from "../lib/parseId.js";
 import { portfolio } from "@shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 
@@ -26,7 +27,8 @@ export function registerPortfolioRoutes(app: Express) {
   // GET /api/portfolio/:id
   app.get("/api/portfolio/:id", async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const project = await db.query.portfolio.findFirst({ where: eq(portfolio.id, id) });
       const isAdmin = req.isAuthenticated?.() === true;
       if (!project || (!project.published && !isAdmin)) {
@@ -52,7 +54,8 @@ export function registerPortfolioRoutes(app: Express) {
   // PATCH /api/portfolio/:id
   app.patch("/api/portfolio/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const [updated] = await db.update(portfolio).set(req.body).where(eq(portfolio.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Proyecto no encontrado" });
       res.json(updated);
@@ -64,7 +67,8 @@ export function registerPortfolioRoutes(app: Express) {
   // DELETE /api/portfolio/:id
   app.delete("/api/portfolio/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const [deleted] = await db.delete(portfolio).where(eq(portfolio.id, id)).returning();
       if (!deleted) return res.status(404).json({ error: "Proyecto no encontrado" });
       res.json({ ok: true });

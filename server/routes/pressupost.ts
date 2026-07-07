@@ -3,7 +3,7 @@ import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
 import { products, leads } from "@shared/schema";
 import PDFDocument from "pdfkit";
-import { like } from "drizzle-orm";
+import { like, or, eq } from "drizzle-orm";
 
 interface QuoteClient {
   name: string;
@@ -36,50 +36,51 @@ export function registerPressupostRoutes(app: Express) {
       if (!items || !Array.isArray(items) || items.length === 0) {
         return res.status(400).json({ error: "At least one item is required" });
       }
+      if (items.length > 100) {
+        return res.status(400).json({ error: "Too many items (max 100)" });
+      }
+      // Validar dimensiones: números finitos y positivos (evita NaN/Infinity en el precio)
+      for (const item of items) {
+        if (!Number.isFinite(item.width) || item.width <= 0 || !Number.isFinite(item.height) || item.height <= 0) {
+          return res.status(400).json({ error: "Invalid item dimensions" });
+        }
+      }
 
-      // Generate quote number
       const now = new Date();
       const year = now.getFullYear();
-      const last4 = String(Date.now()).slice(-4);
-      const quoteNum = `P-${year}-${last4}`;
+
+      // Precios: una sola query para todos los tipos (evita N+1) → Map tipo→producto
+      const uniqueTypes = [...new Set(items.map((i) => i.type))];
+      const productRows = uniqueTypes.length
+        ? await db
+            .select()
+            .from(products)
+            .where(or(...uniqueTypes.map((t) => like(products.modelo, `%${t}%`))))
+        : [];
+      const productByType = new Map<string, (typeof productRows)[number]>();
+      for (const t of uniqueTypes) {
+        const match = productRows.find(
+          (p) => p.modelo && p.modelo.toLowerCase().includes(t.toLowerCase())
+        );
+        if (match) productByType.set(t, match);
+      }
 
       // Calculate pricing for each item
-      const calculatedItems = await Promise.all(
-        items.map(async (item) => {
-          const m2 = (item.width / 100) * (item.height / 100);
-
-          // Try to find matching product by modelo
-          let priceBase = 200;
-          let pricePerM2 = 190;
-          try {
-            const matchingProduct = await db
-              .select()
-              .from(products)
-              .where(like(products.modelo, `%${item.type}%`))
-              .limit(1);
-            if (matchingProduct.length > 0) {
-              if (matchingProduct[0].precioBase) {
-                priceBase = matchingProduct[0].precioBase;
-              }
-              if (matchingProduct[0].precioPorM2) {
-                pricePerM2 = matchingProduct[0].precioPorM2;
-              }
-            }
-          } catch {
-            // fallback to default price
-          }
-
-          const itemSubtotal = Math.round((priceBase + m2 * pricePerM2) * 100) / 100;
-
-          return {
-            ...item,
-            m2: Math.round(m2 * 100) / 100,
-            priceBase,
-            pricePerM2,
-            subtotal: itemSubtotal,
-          };
-        })
-      );
+      const calculatedItems = items.map((item) => {
+        const m2 = (item.width / 100) * (item.height / 100);
+        const product = productByType.get(item.type);
+        // != null: un precioBase o precioPorM2 de 0 es válido y NO debe caer al default
+        const priceBase = product?.precioBase != null ? product.precioBase : 200;
+        const pricePerM2 = product?.precioPorM2 != null ? product.precioPorM2 : 190;
+        const itemSubtotal = Math.round((priceBase + m2 * pricePerM2) * 100) / 100;
+        return {
+          ...item,
+          m2: Math.round(m2 * 100) / 100,
+          priceBase,
+          pricePerM2,
+          subtotal: itemSubtotal,
+        };
+      });
 
       const subtotal = Math.round(calculatedItems.reduce((sum, i) => sum + i.subtotal, 0) * 100) / 100;
       const iva = Math.round(subtotal * 0.21 * 100) / 100;
@@ -96,6 +97,28 @@ export function registerPressupostRoutes(app: Express) {
         month: "2-digit",
         year: "numeric",
       });
+
+      // Insertar el lead ANTES de generar el PDF: si falla, 500 sin entregar PDF.
+      // Así nunca se entrega un presupuesto sin registro en el CRM (y el número
+      // deriva del id → único y atómico, sin colisiones por Date.now()).
+      const [lead] = await db
+        .insert(leads)
+        .values({
+          nombre: client.name,
+          telefono: client.phone,
+          email: client.email || null,
+          localidad: client.city || null,
+          origen: "admin",
+          estado: "presupuestado",
+        })
+        .returning();
+      const quoteNum = `P-${year}-${String(lead.id).padStart(4, "0")}`;
+
+      // Guardar el detalle calculado del presupuesto en el lead ya creado
+      await db
+        .update(leads)
+        .set({ presupuestoDatos: { quoteNum, items: calculatedItems, subtotal, iva, total } })
+        .where(eq(leads.id, lead.id));
 
       // Create PDF
       const doc = new PDFDocument({ size: "A4", margin: 50 });
@@ -198,8 +221,9 @@ export function registerPressupostRoutes(app: Express) {
       doc.text(`${total.toFixed(2)} €`, 430, yPos, { width: 80, align: "right" });
 
       // --- Footer terms ---
-      yPos = 720;
-      if (yPos > 700) {
+      // Colocar los términos tras los totales; solo añadir página si no caben (~130px)
+      yPos += 40;
+      if (yPos > 690) {
         doc.addPage();
         yPos = 50;
       }
@@ -221,23 +245,6 @@ export function registerPressupostRoutes(app: Express) {
         );
 
       doc.end();
-
-      // Insert lead into DB after PDF is generated
-      doc.on("end", async () => {
-        try {
-          await db.insert(leads).values({
-            nombre: client.name,
-            telefono: client.phone,
-            email: client.email || null,
-            localidad: client.city || null,
-            origen: "admin",
-            estado: "presupuestado",
-            presupuestoDatos: { quoteNum, items: calculatedItems, subtotal, iva, total },
-          });
-        } catch (dbErr) {
-          console.error("Error inserting lead from pressupost:", dbErr);
-        }
-      });
     } catch (err) {
       console.error("Error generating pressupost PDF:", err);
       if (!res.headersSent) {
