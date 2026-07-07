@@ -9,8 +9,9 @@ export function registerPortfolioRoutes(app: Express) {
   app.get("/api/portfolio", async (req, res) => {
     try {
       const { published, localidad, tipoInmueble, destacado } = req.query;
+      const isAdmin = req.isAuthenticated?.() === true;
       const conditions = [];
-      if (published === "true") conditions.push(eq(portfolio.published, true));
+      if (!isAdmin || published === "true") conditions.push(eq(portfolio.published, true));
       if (localidad) conditions.push(eq(portfolio.localidad, localidad as string));
       if (tipoInmueble) conditions.push(eq(portfolio.tipoInmueble, tipoInmueble as string));
       if (destacado === "true") conditions.push(eq(portfolio.destacado, true));
@@ -27,7 +28,10 @@ export function registerPortfolioRoutes(app: Express) {
     try {
       const id = parseInt(req.params.id as string);
       const project = await db.query.portfolio.findFirst({ where: eq(portfolio.id, id) });
-      if (!project) return res.status(404).json({ error: "Proyecto no encontrado" });
+      const isAdmin = req.isAuthenticated?.() === true;
+      if (!project || (!project.published && !isAdmin)) {
+        return res.status(404).json({ error: "Proyecto no encontrado" });
+      }
       res.json(project);
     } catch (err) {
       res.status(500).json({ error: "Error al obtener proyecto" });

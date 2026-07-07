@@ -3,8 +3,10 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import session from "express-session";
+import connectPgSimple from "connect-pg-simple";
 import compression from "compression";
 import passport from "./middleware/auth.js";
+import { pool } from "./db.js";
 import { registerRoutes } from "./routes.js";
 import { getMetaForRoute, injectMeta } from "./lib/seo-inject.js";
 
@@ -34,9 +36,19 @@ app.use((req, res, next) => {
 });
 app.use(express.urlencoded({ extended: true }));
 
-// Session middleware — must be before passport and routes
+// Session middleware — must be before passport and routes.
+// Store en Postgres (connect-pg-simple) para que las sesiones sobrevivan a
+// reinicios/scale-out de Replit autoscale (antes: MemoryStore en RAM por instancia).
+const PgStore = connectPgSimple(session);
+if (process.env.NODE_ENV === "production" && !process.env.SESSION_SECRET) {
+  // No tumbamos el arranque, pero el fallback hardcodeado permite forjar la cookie de admin.
+  console.error(
+    "[security] SESSION_SECRET no está definido en producción — usando fallback inseguro. Defínelo en los secrets de Replit."
+  );
+}
 app.use(
   session({
+    store: new PgStore({ pool, createTableIfMissing: true }),
     secret: process.env.SESSION_SECRET || "ara-finestra-dev-secret-change-me",
     resave: false,
     saveUninitialized: false,

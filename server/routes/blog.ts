@@ -13,8 +13,10 @@ export function registerBlogRoutes(app: Express) {
       const offset = (page - 1) * limit;
       const { published, categoria } = req.query;
 
+      const isAdmin = req.isAuthenticated?.() === true;
       const conditions = [];
-      if (published === "true") conditions.push(eq(blogPosts.published, true));
+      // No autenticados: solo posts publicados (los borradores no se filtran a público)
+      if (!isAdmin || published === "true") conditions.push(eq(blogPosts.published, true));
       if (categoria) conditions.push(eq(blogPosts.categoria, categoria as string));
       const where = conditions.length > 0 ? and(...conditions) : undefined;
 
@@ -36,7 +38,10 @@ export function registerBlogRoutes(app: Express) {
       const post = await db.query.blogPosts.findFirst({
         where: eq(blogPosts.slug, req.params.slug as string),
       });
-      if (!post) return res.status(404).json({ error: "Post no encontrado" });
+      const isAdmin = req.isAuthenticated?.() === true;
+      if (!post || (!post.published && !isAdmin)) {
+        return res.status(404).json({ error: "Post no encontrado" });
+      }
       res.json(post);
     } catch (err) {
       res.status(500).json({ error: "Error al obtener post" });

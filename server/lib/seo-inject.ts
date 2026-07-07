@@ -1,6 +1,7 @@
 import { db } from "../db.js";
 import { blogPosts, zones } from "@shared/schema";
 import { eq, and } from "drizzle-orm";
+import { safeJsonLd } from "./escape.js";
 
 const DOMAIN = "https://arafinestra.com";
 const DEFAULT_OG_IMAGE = `${DOMAIN}/og-image.png`;
@@ -526,7 +527,7 @@ export function injectMeta(template: string, meta: RouteMeta, reqPath?: string):
 
   if (meta.jsonLd) {
     metaTags.push(
-      `<script type="application/ld+json">${JSON.stringify(meta.jsonLd)}</script>`
+      `<script type="application/ld+json">${safeJsonLd(meta.jsonLd)}</script>`
     );
   }
 

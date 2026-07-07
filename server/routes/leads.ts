@@ -89,8 +89,12 @@ export function registerLeadRoutes(app: Express) {
       const rows = allLeads.map((l) => {
         const esc = (v: string | null | undefined) => {
           if (!v) return "";
-          const s = v.replace(/"/g, '""');
-          return s.includes(",") || s.includes('"') || s.includes("\n") ? `"${s}"` : s;
+          let s = v;
+          // Neutraliza inyección de fórmulas (CSV/Excel): un valor que empieza por
+          // = + - @ tab o CR se ejecutaría como fórmula al abrir el CSV
+          if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+          s = s.replace(/"/g, '""');
+          return /[",\n]/.test(s) ? `"${s}"` : s;
         };
         const fecha = l.createdAt ? new Date(l.createdAt).toISOString().slice(0, 10) : "";
         return [l.id, esc(l.nombre), esc(l.email), esc(l.telefono), esc(l.localidad), esc(l.tipoCliente), esc(l.origen), esc(l.estado), esc(l.notas), fecha].join(",");

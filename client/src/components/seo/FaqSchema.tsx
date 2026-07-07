@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { safeJsonLd } from "../../lib/jsonld";
 
 interface FaqItem {
   question: string;
@@ -25,7 +26,7 @@ export default function FaqSchema({ faqs }: FaqSchemaProps) {
 
   return (
     <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      <script type="application/ld+json">{safeJsonLd(schema)}</script>
     </Helmet>
   );
 }

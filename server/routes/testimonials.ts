@@ -9,7 +9,9 @@ export function registerTestimonialRoutes(app: Express) {
   app.get("/api/testimonials", async (req, res) => {
     try {
       const { published } = req.query;
-      const where = published === "true" ? eq(testimonials.published, true) : undefined;
+      const isAdmin = req.isAuthenticated?.() === true;
+      // No autenticados: solo testimonios publicados (contienen PII de clientes)
+      const where = !isAdmin || published === "true" ? eq(testimonials.published, true) : undefined;
       const data = await db.select().from(testimonials).where(where).orderBy(desc(testimonials.createdAt));
       res.json(data);
     } catch (err) {

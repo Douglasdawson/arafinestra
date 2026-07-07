@@ -5,6 +5,7 @@ import PageHead from "../../components/seo/PageHead";
 import ScrollReveal from "../../components/ui/ScrollReveal";
 import ProgressiveImage from "../../components/ui/ProgressiveImage";
 import { localize } from "../../lib/localize";
+import { safeJsonLd } from "../../lib/jsonld";
 
 interface Post {
   id: number;
@@ -86,20 +87,38 @@ function renderMarkdown(md: string | null): string {
   return html.join("\n");
 }
 
+// El contenido ya viene escapado para & < > por renderMarkdown.escape().
+// Aquí solo faltan las comillas, que permitirían romper el atributo href/src.
+function escAttr(s: string): string {
+  return s.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+// Solo permite URLs http(s), relativas (/) o anclas (#). Cualquier otra (javascript:, data:) → null
+function safeUrl(url: string): string | null {
+  const u = url.trim();
+  if (/^https?:\/\//i.test(u) || u.startsWith("/") || u.startsWith("#")) return u;
+  return null;
+}
+
 function inlineFormat(text: string): string {
   return (
     text
-      // Images: ![alt](src)
-      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
-      // Links: [text](url)
-      .replace(
-        /\[([^\]]+)\]\((\/[^)]+)\)/g,
-        '<a href="$2" class="text-brand hover:text-brand-dark underline">$1</a>'
-      )
-      .replace(
-        /\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-brand hover:text-brand-dark underline">$1</a>'
-      )
+      // Images: ![alt](src) — src validado y escapado; si el esquema no es seguro, se descarta la imagen
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt: string, src: string) => {
+        const safe = safeUrl(src);
+        if (!safe) return escAttr(alt);
+        return `<img src="${escAttr(safe)}" alt="${escAttr(alt)}" loading="lazy" />`;
+      })
+      // Links internos: [text](/url)
+      .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, (_m, label: string, url: string) => {
+        return `<a href="${escAttr(url)}" class="text-brand hover:text-brand-dark underline">${label}</a>`;
+      })
+      // Links externos: [text](url) — si el esquema no es seguro, se renderiza solo el texto
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label: string, url: string) => {
+        const safe = safeUrl(url);
+        if (!safe) return label;
+        return `<a href="${escAttr(safe)}" target="_blank" rel="noopener noreferrer" class="text-brand hover:text-brand-dark underline">${label}</a>`;
+      })
       // Bold: **text**
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       // Italic: *text*
@@ -203,7 +222,7 @@ export default function BlogPost() {
         image={post.imagen_portada || undefined}
       />
       {/* Breadcrumb schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }} />
 
       {/* Hero image */}
       {post.imagen_portada && (

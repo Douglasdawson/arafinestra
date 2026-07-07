@@ -9,7 +9,8 @@ export function registerZoneRoutes(app: Express) {
   app.get("/api/zones", async (req, res) => {
     try {
       const { published } = req.query;
-      const where = published === "true" ? eq(zones.published, true) : undefined;
+      const isAdmin = req.isAuthenticated?.() === true;
+      const where = !isAdmin || published === "true" ? eq(zones.published, true) : undefined;
       const data = await db.select().from(zones).where(where);
       res.json(data);
     } catch (err) {
@@ -23,7 +24,10 @@ export function registerZoneRoutes(app: Express) {
       const zone = await db.query.zones.findFirst({
         where: eq(zones.slug, req.params.slug as string),
       });
-      if (!zone) return res.status(404).json({ error: "Zona no encontrada" });
+      const isAdmin = req.isAuthenticated?.() === true;
+      if (!zone || (!zone.published && !isAdmin)) {
+        return res.status(404).json({ error: "Zona no encontrada" });
+      }
       res.json(zone);
     } catch (err) {
       res.status(500).json({ error: "Error al obtener zona" });

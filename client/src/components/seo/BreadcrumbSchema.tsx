@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { safeJsonLd } from "../../lib/jsonld";
 
 interface BreadcrumbItem {
   name: string;
@@ -18,7 +19,7 @@ export default function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] })
   };
   return (
     <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      <script type="application/ld+json">{safeJsonLd(schema)}</script>
     </Helmet>
   );
 }
