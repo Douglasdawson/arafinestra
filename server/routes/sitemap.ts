@@ -81,6 +81,7 @@ ${alternates}
         .where(eq(blogPosts.published, true));
 
       for (const post of posts) {
+        const slug = escapeXml(post.slug);
         const lastmod = post.publishedAt
           ? new Date(post.publishedAt).toISOString().slice(0, 10)
           : BUILD_DATE;
@@ -89,13 +90,13 @@ ${alternates}
           : "";
         const blogAlternates = [
           ...LANGS.map(
-            (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}/blog/${post.slug}" />`
+            (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}/blog/${slug}" />`
           ),
-          `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca/blog/${post.slug}" />`,
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca/blog/${slug}" />`,
         ].join("\n");
 
         for (const lang of LANGS) {
-          const url = `${DOMAIN}/${lang}/blog/${post.slug}`;
+          const url = `${DOMAIN}/${lang}/blog/${slug}`;
           urls.push(`  <url>
     <loc>${escapeXml(url)}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -113,15 +114,16 @@ ${blogAlternates}${imageTag}
         .where(eq(zones.published, true));
 
       for (const zone of allZones) {
+        const slug = escapeXml(zone.slug);
         const zoneAlternates = [
           ...LANGS.map(
-            (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}/zones/${zone.slug}" />`
+            (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${DOMAIN}/${l}/zones/${slug}" />`
           ),
-          `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca/zones/${zone.slug}" />`,
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${DOMAIN}/ca/zones/${slug}" />`,
         ].join("\n");
 
         for (const lang of LANGS) {
-          const url = `${DOMAIN}/${lang}/zones/${zone.slug}`;
+          const url = `${DOMAIN}/${lang}/zones/${slug}`;
           urls.push(`  <url>
     <loc>${escapeXml(url)}</loc>
     <lastmod>${BUILD_DATE}</lastmod>

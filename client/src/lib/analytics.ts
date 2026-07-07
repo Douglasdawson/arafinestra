@@ -11,9 +11,12 @@ export function initAnalytics() {
   document.head.appendChild(script);
 
   (window as any).dataLayer = (window as any).dataLayer || [];
-  function gtag(...args: any[]) {
-    (window as any).dataLayer.push(args);
+  // GA4 requiere que se empuje el objeto `arguments` (no un array) y que gtag
+  // quede accesible en window para que trackEvent() pueda emitir eventos.
+  function gtag(..._args: any[]) {
+    (window as any).dataLayer.push(arguments);
   }
+  (window as any).gtag = gtag;
   gtag("js", new Date());
   gtag("config", GA_ID);
 }

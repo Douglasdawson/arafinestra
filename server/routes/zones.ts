@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
 import { parseId } from "../lib/parseId.js";
+import { isValidSlug } from "../lib/slug.js";
 import { zones } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
@@ -38,7 +39,11 @@ export function registerZoneRoutes(app: Express) {
   // POST /api/zones
   app.post("/api/zones", requireAuth, async (req, res) => {
     try {
-      const [zone] = await db.insert(zones).values(req.body).returning();
+      const { id: _id, ...body } = req.body;
+      if (!isValidSlug(body.slug)) {
+        return res.status(400).json({ error: "Slug inválido (solo minúsculas, dígitos y guiones)" });
+      }
+      const [zone] = await db.insert(zones).values(body).returning();
       res.status(201).json(zone);
     } catch (err) {
       console.error("Error creating zone:", err);
@@ -51,7 +56,12 @@ export function registerZoneRoutes(app: Express) {
     try {
       const id = parseId(req.params.id);
       if (id === null) return res.status(400).json({ error: "id inválido" });
-      const [updated] = await db.update(zones).set(req.body).where(eq(zones.id, id)).returning();
+      const { id: _id, ...data } = req.body;
+      if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
+      if (data.slug !== undefined && !isValidSlug(data.slug)) {
+        return res.status(400).json({ error: "Slug inválido (solo minúsculas, dígitos y guiones)" });
+      }
+      const [updated] = await db.update(zones).set(data).where(eq(zones.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Zona no encontrada" });
       res.json(updated);
     } catch (err) {

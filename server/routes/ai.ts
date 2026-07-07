@@ -168,9 +168,10 @@ Return ONLY the JSON object, no other text.`,
           ],
         }),
 
-        // Geocode via Nominatim
+        // Geocode via Nominatim. "Catalonia" en vez de "Girona" para cubrir también
+        // los municipios del Maresme (provincia de Barcelona); countrycodes=es acota.
         fetch(
-          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(municipality.trim())}, Girona, Spain&format=json&limit=1`,
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(`${municipality.trim()}, Catalonia, Spain`)}&countrycodes=es&format=json&limit=1`,
           {
             headers: {
               "User-Agent": "AraFinestra/1.0 (admin@arafinestra.com)",

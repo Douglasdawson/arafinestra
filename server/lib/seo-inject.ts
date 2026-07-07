@@ -365,7 +365,9 @@ async function getBlogPostMeta(lang: string, slug: string): Promise<RouteMeta | 
         image: post.imagenPortada || undefined,
         author: post.autor || undefined,
         publishedAt: post.publishedAt,
-        updatedAt: post.createdAt,
+        // dateModified debe ser >= datePublished. createdAt (fecha de borrador) puede
+        // ser anterior a la publicación → usar publishedAt, coherente con modifiedTime.
+        updatedAt: post.publishedAt || post.createdAt,
       }),
     };
   } catch (err) {
@@ -464,11 +466,10 @@ const OG_LOCALE_MAP: Record<string, string> = { ca: "ca_ES", es: "es_ES", en: "e
  * Inject meta tags into the HTML template string.
  */
 export function injectMeta(template: string, meta: RouteMeta, reqPath?: string): string {
-  // Replace <title>
-  let html = template.replace(
-    /<title>[^<]*<\/title>/,
-    `<title>${escapeHtml(meta.title)}</title>`
-  );
+  // Replace <title>. Función de reemplazo para que un $$ / $& / $' en el título
+  // no sea interpretado como patrón de String.replace y corrompa el HTML.
+  const titleTag = `<title>${escapeHtml(meta.title)}</title>`;
+  let html = template.replace(/<title>[^<]*<\/title>/, () => titleTag);
 
   // Extract lang from canonical URL or request path for hreflang/og:locale
   const { lang, routePath } = parsePath(reqPath || meta.canonicalUrl.replace(DOMAIN, ""));
@@ -531,8 +532,10 @@ export function injectMeta(template: string, meta: RouteMeta, reqPath?: string):
     );
   }
 
-  // Insert after </title>
-  html = html.replace("</title>", `</title>\n    ${metaTags.join("\n    ")}`);
+  // Insert after </title>. Función de reemplazo por la misma razón: los meta tags
+  // contienen contenido de usuario que puede incluir $ (p.ej. "Ofertes $$").
+  const injected = `</title>\n    ${metaTags.join("\n    ")}`;
+  html = html.replace("</title>", () => injected);
 
   return html;
 }

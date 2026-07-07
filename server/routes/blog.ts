@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { requireAuth } from "../middleware/auth.js";
 import { db } from "../db.js";
 import { parseId } from "../lib/parseId.js";
+import { isValidSlug } from "../lib/slug.js";
 import { blogPosts } from "@shared/schema";
 import { eq, and, desc, count } from "drizzle-orm";
 
@@ -66,7 +67,15 @@ export function registerBlogRoutes(app: Express) {
   // POST /api/blog
   app.post("/api/blog", requireAuth, async (req, res) => {
     try {
-      const [post] = await db.insert(blogPosts).values(req.body).returning();
+      const { id: _id, ...body } = req.body;
+      if (!isValidSlug(body.slug)) {
+        return res.status(400).json({ error: "Slug inválido (solo minúsculas, dígitos y guiones)" });
+      }
+      // Rellenar publishedAt al publicar (necesario para el datePublished del SEO)
+      if (body.published === true && !body.publishedAt) {
+        body.publishedAt = new Date();
+      }
+      const [post] = await db.insert(blogPosts).values(body).returning();
       res.status(201).json(post);
     } catch (err) {
       console.error("Error creating blog post:", err);
@@ -83,6 +92,14 @@ export function registerBlogRoutes(app: Express) {
       // id no debe reasignarse (mass assignment).
       const { id: _id, createdAt: _c, ...data } = req.body;
       if (Object.keys(data).length === 0) return res.status(400).json({ error: "Nada que actualizar" });
+      if (data.slug !== undefined && !isValidSlug(data.slug)) {
+        return res.status(400).json({ error: "Slug inválido (solo minúsculas, dígitos y guiones)" });
+      }
+      // Al pasar de borrador a publicado, sellar publishedAt si aún no lo tenía
+      if (data.published === true && !data.publishedAt) {
+        const current = await db.query.blogPosts.findFirst({ where: eq(blogPosts.id, id) });
+        if (current && !current.publishedAt) data.publishedAt = new Date();
+      }
       const [updated] = await db.update(blogPosts).set(data).where(eq(blogPosts.id, id)).returning();
       if (!updated) return res.status(404).json({ error: "Post no encontrado" });
       res.json(updated);
