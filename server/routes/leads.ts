@@ -4,6 +4,7 @@ import { db } from "../db.js";
 import { leads } from "@shared/schema";
 import { eq, and, or, like, desc, sql, count } from "drizzle-orm";
 import { notifyNewLead } from "../lib/notify.js";
+import { parseId } from "../lib/parseId.js";
 
 // Simple in-memory rate limiter for POST /api/leads
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -21,13 +22,14 @@ function isRateLimited(ip: string): boolean {
   return entry.count > RATE_LIMIT_MAX;
 }
 
-// Cleanup expired entries every 15 minutes
+// Cleanup expired entries every 15 minutes.
+// .unref() para que este timer no impida que el proceso salga limpiamente.
 setInterval(() => {
   const now = Date.now();
   for (const [ip, entry] of rateLimitMap) {
     if (now > entry.resetAt) rateLimitMap.delete(ip);
   }
-}, RATE_LIMIT_WINDOW_MS);
+}, RATE_LIMIT_WINDOW_MS).unref();
 
 export function registerLeadRoutes(app: Express) {
   // GET /api/leads — list with filters + pagination
@@ -114,7 +116,8 @@ export function registerLeadRoutes(app: Express) {
   // GET /api/leads/:id
   app.get("/api/leads/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const lead = await db.query.leads.findFirst({ where: eq(leads.id, id) });
       if (!lead) return res.status(404).json({ error: "Lead no encontrado" });
       res.json(lead);
@@ -196,7 +199,8 @@ export function registerLeadRoutes(app: Express) {
   // PATCH /api/leads/:id
   app.patch("/api/leads/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const [updated] = await db
         .update(leads)
         .set({ ...req.body, updatedAt: new Date() })
@@ -212,7 +216,8 @@ export function registerLeadRoutes(app: Express) {
   // DELETE /api/leads/:id
   app.delete("/api/leads/:id", requireAuth, async (req, res) => {
     try {
-      const id = parseInt(req.params.id as string);
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ error: "id inválido" });
       const [deleted] = await db.delete(leads).where(eq(leads.id, id)).returning();
       if (!deleted) return res.status(404).json({ error: "Lead no encontrado" });
       res.json({ ok: true });

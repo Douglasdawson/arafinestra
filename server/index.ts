@@ -13,6 +13,11 @@ import { getMetaForRoute, injectMeta } from "./lib/seo-inject.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Red de seguridad global: una promesa rechazada sin catch no debe tumbar el proceso.
+process.on("unhandledRejection", (reason) => {
+  console.error("[unhandledRejection]", reason);
+});
+
 const app = express();
 app.set("trust proxy", 1);
 app.disable("x-powered-by");
@@ -98,8 +103,11 @@ if (process.env.NODE_ENV === "development") {
     maxAge: "1y",
     immutable: true,
   }));
+  // index:false → GET "/" NO sirve index.html crudo aquí, sino que cae al
+  // redirect de idioma (más abajo) y las rutas SPA al catch-all con meta SEO.
   app.use(express.static(publicDir, {
     maxAge: "1h",
+    index: false,
   }));
 
   // Read HTML template once at startup
