@@ -153,6 +153,14 @@ if (process.env.NODE_ENV === "development") {
     next();
   });
 
+  // Un chunk hasheado que ya no existe (deploy nuevo, HTML viejo cacheado en el
+  // navegador) debe dar 404 real, no el HTML de la SPA — si no, el navegador
+  // intenta parsear HTML como JS y la página se queda en blanco sin que un
+  // reload normal lo arregle.
+  app.get("/assets/{*splat}", (_req, res) => {
+    res.status(404).end();
+  });
+
   // SPA catch-all with server-side meta injection + prerendering for bots
   app.get("/{*splat}", async (req, res) => {
     try {
