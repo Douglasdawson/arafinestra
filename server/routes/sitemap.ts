@@ -161,4 +161,38 @@ Disallow: /api/
 Sitemap: ${DOMAIN}/sitemap.xml
 `);
   });
+
+  // llms.txt — resum per a crawlers d'IA (ChatGPT, Perplexity, Claude, etc.)
+  app.get("/llms.txt", (_req, res) => {
+    res.setHeader("Content-Type", "text/plain");
+    res.send(`# ARA FINESTRA
+
+> Instal·lació de finestres de PVC amb perfils Cortizo, portes corredisses, persianes i mosquiteres a la Costa Brava i comarca de Girona (Catalunya, Espanya). Empresa familiar amb seu a Blanes, partner certificat Cortizo.
+
+## Serveis
+- [Finestres PVC](${DOMAIN}/ca/serveis/finestres-pvc)
+- [Portes corredisses](${DOMAIN}/ca/serveis/portes-corredisses)
+- [Persianes](${DOMAIN}/ca/serveis/persianes)
+- [Mosquiteres](${DOMAIN}/ca/serveis/mosquiteres)
+- [Pressupost online](${DOMAIN}/ca/pressupost)
+- [Visita gratuita a domicili](${DOMAIN}/ca/visita-gratuita)
+
+## Empresa
+- [Qui som](${DOMAIN}/ca/qui-som)
+- [Preus](${DOMAIN}/ca/preus)
+- [Finançament](${DOMAIN}/ca/financament)
+- [Subvencions](${DOMAIN}/ca/subvencions)
+- [Cortizo (perfils)](${DOMAIN}/ca/cortizo)
+- [Projectes realitzats](${DOMAIN}/ca/projectes)
+- [Opinions de clients](${DOMAIN}/ca/opinions)
+- [Blog](${DOMAIN}/ca/blog)
+- [Contacte](${DOMAIN}/ca/contacte)
+
+## Zones de servei
+Costa Brava i comarca de Girona: Blanes, Lloret de Mar, Tossa de Mar, Girona, Figueres, Mataró i altres municipis — llistat complet a [${DOMAIN}/ca/zones](${DOMAIN}/ca/zones).
+
+## Idiomes
+Contingut disponible en català (/ca), castellà (/es) i anglès (/en).
+`);
+  });
 }

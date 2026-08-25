@@ -20,9 +20,10 @@
   --color-navy-100: #dce8f3;
   --color-navy-50: #f0f5fa;
 
-  /* Brand orange — CTA accent (action, warmth) */
-  --color-brand: #e8652b;
-  --color-brand-dark: #d4571f;
+  /* Brand orange — CTA accent (action, warmth). Darkened from #e8652b/#d4571f
+     for WCAG AA contrast (4.5:1) with white button/banner text. */
+  --color-brand: #c94f1b;
+  --color-brand-dark: #ae4417;
   --color-brand-light: #fef3ee;
 
   /* Semantic tokens */

@@ -4,7 +4,14 @@ import { Link, useParams } from "react-router-dom";
 const PHONE = "+34 611 500 372";
 const EMAIL = "info@arafinestra.com";
 
-const ZONE_CITIES = ["Blanes", "Lloret", "Girona", "Mataro", "Figueres", "Tossa"];
+const ZONE_CITIES = [
+  { name: "Blanes", slug: "blanes" },
+  { name: "Lloret de Mar", slug: "lloret-de-mar" },
+  { name: "Girona", slug: "girona" },
+  { name: "Mataró", slug: "mataro" },
+  { name: "Figueres", slug: "figueres" },
+  { name: "Tossa de Mar", slug: "tossa-de-mar" },
+];
 
 export default function Footer() {
   const { t, i18n } = useTranslation();
@@ -87,12 +94,12 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               {ZONE_CITIES.map((city) => (
-                <li key={city}>
+                <li key={city.slug}>
                   <Link
-                    to={`/${prefix}/zones/${city.toLowerCase()}`}
+                    to={`/${prefix}/zones/${city.slug}`}
                     className="py-2 text-sm text-slate-300 hover:text-white transition-colors link-underline"
                   >
-                    {city}
+                    {city.name}
                   </Link>
                 </li>
               ))}
@@ -154,21 +161,21 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-navy-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <Link to="/admin/login" className="text-xs text-slate-300 hover:text-slate-300 transition-colors">
+          <Link to="/admin/login" className="text-xs text-slate-300 hover:text-slate-300 transition-colors py-3 -my-3">
             &copy; 2026 Renova't Costa Brava SL. {t("footer.rights")}.
           </Link>
 
           <div className="flex items-center gap-4 text-xs text-slate-300">
-            <Link to={`/${prefix}/legal/privacitat`} className="py-2 hover:text-slate-300 transition-colors">
+            <Link to={`/${prefix}/legal/privacitat`} className="px-1 py-3 hover:text-slate-300 transition-colors">
               {t("legal.privacy_title")}
             </Link>
-            <Link to={`/${prefix}/legal/termes`} className="py-2 hover:text-slate-300 transition-colors">
+            <Link to={`/${prefix}/legal/termes`} className="px-1 py-3 hover:text-slate-300 transition-colors">
               {t("legal.terms_title")}
             </Link>
-            <Link to={`/${prefix}/legal/cookies`} className="py-2 hover:text-slate-300 transition-colors">
+            <Link to={`/${prefix}/legal/cookies`} className="px-1 py-3 hover:text-slate-300 transition-colors">
               {t("legal.cookies_title")}
             </Link>
-            <Link to={`/${prefix}/legal/avis-legal`} className="py-2 hover:text-slate-300 transition-colors">
+            <Link to={`/${prefix}/legal/avis-legal`} className="px-1 py-3 hover:text-slate-300 transition-colors">
               {t("legal.aviso_legal_title")}
             </Link>
           </div>

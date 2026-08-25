@@ -5,6 +5,15 @@ import { useLocation } from "react-router-dom";
 const SHOW_DURATION = 5000;
 const HIDE_DURATION = 35000; // time between toasts
 const DISMISSED_KEY = "social_proof_dismissed";
+const CONSENT_KEY = "cookie_consent"; // must mirror CookieBanner.tsx
+
+function hasCookieConsent() {
+  try {
+    return localStorage.getItem(CONSENT_KEY) !== null;
+  } catch {
+    return true;
+  }
+}
 
 export default function SocialProofToast() {
   const { t } = useTranslation();
@@ -57,13 +66,20 @@ export default function SocialProofToast() {
       if (dismissed) return;
     } catch { /* ignore */ }
 
-    // First toast after 20s
-    const initialDelay = setTimeout(() => {
+    // First toast after 20s — but not while the cookie banner still occupies
+    // the same bottom area on mobile; wait it out instead of overlapping it.
+    let timer: ReturnType<typeof setTimeout>;
+    const tryShow = () => {
+      if (!hasCookieConsent()) {
+        timer = setTimeout(tryShow, 3000);
+        return;
+      }
       setMessage(generateMessage());
       setVisible(true);
-    }, 20000);
+    };
+    timer = setTimeout(tryShow, 20000);
 
-    return () => clearTimeout(initialDelay);
+    return () => clearTimeout(timer);
   }, [isAllowed, generateMessage]);
 
   useEffect(() => {

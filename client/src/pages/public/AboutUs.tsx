@@ -95,7 +95,7 @@ export default function AboutUs() {
     "@type": "Organization",
     name: "ARA FINESTRA",
     url: "https://arafinestra.com",
-    logo: "https://arafinestra.com/og-image.svg",
+    logo: "https://arafinestra.com/logo.png",
     description: t("about_page.page_desc"),
     address: {
       "@type": "PostalAddress",

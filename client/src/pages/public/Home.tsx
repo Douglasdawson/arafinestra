@@ -784,7 +784,7 @@ function EnergySavings({
                   <button
                     key={wt.id}
                     onClick={() => setOldType(wt.id)}
-                    className={`px-2 sm:px-3 py-3 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-3.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                       oldType === wt.id
                         ? "bg-navy-900 text-white shadow-md"
                         : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"
@@ -798,7 +798,7 @@ function EnergySavings({
 
             <div>
               <div className="flex justify-between items-baseline mb-3">
-                <label className="text-sm font-semibold text-slate-700">
+                <label id="energy-window-area-label" className="text-sm font-semibold text-slate-700">
                   {t("home.energy_window_area")}
                 </label>
                 <span className="text-2xl font-bold text-navy-900">
@@ -811,6 +811,7 @@ function EnergySavings({
                 max={40}
                 value={windowArea}
                 onChange={(e) => setWindowArea(parseInt(e.target.value))}
+                aria-labelledby="energy-window-area-label"
                 className="w-full accent-navy-900 h-2"
               />
               <div className="flex justify-between text-xs text-slate-400 mt-1">

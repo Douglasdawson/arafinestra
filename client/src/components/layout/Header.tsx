@@ -122,7 +122,7 @@ export default function Header() {
             }`}
           >
             {/* Logo */}
-            <Link to={`/${prefix}`} className="group flex items-center gap-2">
+            <Link to={`/${prefix}`} className="group flex items-center gap-2 py-3">
               <span
                 className={`text-xl font-bold tracking-tight transition-colors duration-300 ${
                   scrolled || !isHome ? "text-navy-800" : "text-white"

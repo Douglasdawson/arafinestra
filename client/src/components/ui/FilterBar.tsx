@@ -16,7 +16,7 @@ export default function FilterBar({ options, value, onChange }: FilterBarProps) 
         <button
           key={opt.value}
           onClick={() => onChange(opt.value)}
-          className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
+          className={`px-4 py-3 rounded-full text-sm font-medium transition-colors ${
             value === opt.value
               ? "bg-brand text-white shadow-sm"
               : "bg-white text-slate-600 border border-slate-300 hover:border-brand hover:text-brand"

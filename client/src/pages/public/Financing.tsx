@@ -99,7 +99,7 @@ export default function Financing() {
               <button
                 key={amt}
                 onClick={() => setSelectedAmount(i)}
-                className={`px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
+                className={`px-3 sm:px-4 py-3 rounded-lg font-semibold text-sm transition-colors ${
                   selectedAmount === i
                     ? "bg-brand text-white shadow-md"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200"
